@@ -69,6 +69,6 @@ class PaisController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pai_params
-      params.require(:pai).permit(:nombre, :nacionalidad)
+      params.require(:pai).permit(:nombre, :nacionalidad, :lugar_nacimiento)
     end
 end

@@ -2,10 +2,6 @@
 
 one:
   nombre: MyString
-  nacionalidad: MyString
-  lugar_nacimiento: false
 
 two:
   nombre: MyString
-  nacionalidad: MyString
-  lugar_nacimiento: false

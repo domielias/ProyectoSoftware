@@ -14,6 +14,7 @@ class PaisTest < ApplicationSystemTestCase
     visit pais_url
     click_on "New Pai"
 
+    check "Lugar nacimiento" if @pai.lugar_nacimiento
     fill_in "Nacionalidad", with: @pai.nacionalidad
     fill_in "Nombre", with: @pai.nombre
     click_on "Create Pai"
@@ -26,6 +27,7 @@ class PaisTest < ApplicationSystemTestCase
     visit pais_url
     click_on "Edit", match: :first
 
+    check "Lugar nacimiento" if @pai.lugar_nacimiento
     fill_in "Nacionalidad", with: @pai.nacionalidad
     fill_in "Nombre", with: @pai.nombre
     click_on "Update Pai"
