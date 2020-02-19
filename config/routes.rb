@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :carrera_solicitadas
+  resources :categories
+  resources :rols
+  resources :facultads
   resources :pais
   resources :personas
   resources :temporadas
