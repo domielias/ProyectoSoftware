@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   resources :nivels
+=======
+  resources :carrera_solicitadas
+  resources :categories
+  resources :rols
+  resources :facultads
+>>>>>>> CreateScaffoldDomi
   resources :pais
   resources :personas
   resources :temporadas

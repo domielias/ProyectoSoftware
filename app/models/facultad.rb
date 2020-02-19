@@ -1,0 +1,2 @@
+class Facultad < ApplicationRecord
+end

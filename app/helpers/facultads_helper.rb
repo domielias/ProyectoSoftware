@@ -1,0 +1,2 @@
+module FacultadsHelper
+end
