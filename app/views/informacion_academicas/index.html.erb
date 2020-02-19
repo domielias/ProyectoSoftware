@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Informacion Academicas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cantidad de anos de espanol estudiadas</th>
+      <th>Asignaturas de espanol recientes</th>
+      <th>Cantidad de horas de espanol cursadas</th>
+      <th>Nivel alcanzado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @informacion_academicas.each do |informacion_academica| %>
+      <tr>
+        <td><%= informacion_academica.cantidad_de_anos_de_espanol_estudiadas %></td>
+        <td><%= informacion_academica.asignaturas_de_espanol_recientes %></td>
+        <td><%= informacion_academica.cantidad_de_horas_de_espanol_cursadas %></td>
+        <td><%= informacion_academica.nivel_alcanzado %></td>
+        <td><%= link_to 'Show', informacion_academica %></td>
+        <td><%= link_to 'Edit', edit_informacion_academica_path(informacion_academica) %></td>
+        <td><%= link_to 'Destroy', informacion_academica, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Informacion Academica', new_informacion_academica_path %>

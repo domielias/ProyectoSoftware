@@ -1,0 +1,2 @@
+class ProgresoInscripcion < ApplicationRecord
+end

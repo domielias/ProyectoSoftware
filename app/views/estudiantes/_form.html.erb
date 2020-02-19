@@ -1,0 +1,67 @@
+<%= form_with(model: estudiante, local: true) do |form| %>
+  <% if estudiante.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(estudiante.errors.count, "error") %> prohibited this estudiante from being saved:</h2>
+
+      <ul>
+        <% estudiante.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :pasaporte %>
+    <%= form.text_field :pasaporte %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tiempo_residencia %>
+    <%= form.text_field :tiempo_residencia %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_residencia %>
+    <%= form.text_field :numero_residencia %>
+  </div>
+
+  <div class="field">
+    <%= form.label :id_campus %>
+    <%= form.text_field :id_campus %>
+  </div>
+
+  <div class="field">
+    <%= form.label :matricula %>
+    <%= form.text_field :matricula %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estado_civil %>
+    <%= form.text_field :estado_civil %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombre_conyugue %>
+    <%= form.text_field :nombre_conyugue %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombre_conyugue %>
+    <%= form.text_field :nombre_conyugue %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sexo %>
+    <%= form.text_field :sexo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :egresado %>
+    <%= form.check_box :egresado %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

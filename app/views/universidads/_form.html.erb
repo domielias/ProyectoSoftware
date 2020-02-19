@@ -1,0 +1,22 @@
+<%= form_with(model: universidad, local: true) do |form| %>
+  <% if universidad.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(universidad.errors.count, "error") %> prohibited this universidad from being saved:</h2>
+
+      <ul>
+        <% universidad.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
