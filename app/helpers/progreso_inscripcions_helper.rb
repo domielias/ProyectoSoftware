@@ -1,0 +1,2 @@
+module ProgresoInscripcionsHelper
+end

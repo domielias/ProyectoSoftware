@@ -1,0 +1,2 @@
+class ProgramaInternacional < ApplicationRecord
+end

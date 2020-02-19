@@ -1,0 +1,2 @@
+json.extract! progreso_inscripcion, :id, :formulario_solicitud, :acta_nacimiento, :certificacion_medica, :fotografias, :copia_cedula, :record_secundaria, :certificado_pruebas_nacionales, :recibo_admision, :copia_seguro_salud, :acta_nacimiento_padre, :record_notas_original_de_univ_de_procedencia, :copia_vacunacion, :created_at, :updated_at
+json.url progreso_inscripcion_url(progreso_inscripcion, format: :json)

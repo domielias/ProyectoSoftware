@@ -1,0 +1,2 @@
+module InformacionAcademicasHelper
+end

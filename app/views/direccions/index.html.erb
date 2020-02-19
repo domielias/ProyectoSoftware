@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Direccions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Telefono</th>
+      <th>Calle</th>
+      <th>Ciudad</th>
+      <th>Codigo postal</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @direccions.each do |direccion| %>
+      <tr>
+        <td><%= direccion.telefono %></td>
+        <td><%= direccion.calle %></td>
+        <td><%= direccion.ciudad %></td>
+        <td><%= direccion.codigo_postal %></td>
+        <td><%= link_to 'Show', direccion %></td>
+        <td><%= link_to 'Edit', edit_direccion_path(direccion) %></td>
+        <td><%= link_to 'Destroy', direccion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Direccion', new_direccion_path %>

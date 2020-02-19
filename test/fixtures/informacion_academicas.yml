@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cantidad_de_anos_de_espanol_estudiadas: 1.5
+  asignaturas_de_espanol_recientes: MyString
+  cantidad_de_horas_de_espanol_cursadas: 1.5
+  nivel_alcanzado: MyString
+
+two:
+  cantidad_de_anos_de_espanol_estudiadas: 1.5
+  asignaturas_de_espanol_recientes: MyString
+  cantidad_de_horas_de_espanol_cursadas: 1.5
+  nivel_alcanzado: MyString

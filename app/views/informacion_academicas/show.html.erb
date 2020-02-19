@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cantidad de anos de espanol estudiadas:</strong>
+  <%= @informacion_academica.cantidad_de_anos_de_espanol_estudiadas %>
+</p>
+
+<p>
+  <strong>Asignaturas de espanol recientes:</strong>
+  <%= @informacion_academica.asignaturas_de_espanol_recientes %>
+</p>
+
+<p>
+  <strong>Cantidad de horas de espanol cursadas:</strong>
+  <%= @informacion_academica.cantidad_de_horas_de_espanol_cursadas %>
+</p>
+
+<p>
+  <strong>Nivel alcanzado:</strong>
+  <%= @informacion_academica.nivel_alcanzado %>
+</p>
+
+<%= link_to 'Edit', edit_informacion_academica_path(@informacion_academica) %> |
+<%= link_to 'Back', informacion_academicas_path %>

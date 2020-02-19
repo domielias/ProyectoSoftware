@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Telefono:</strong>
+  <%= @direccion.telefono %>
+</p>
+
+<p>
+  <strong>Calle:</strong>
+  <%= @direccion.calle %>
+</p>
+
+<p>
+  <strong>Ciudad:</strong>
+  <%= @direccion.ciudad %>
+</p>
+
+<p>
+  <strong>Codigo postal:</strong>
+  <%= @direccion.codigo_postal %>
+</p>
+
+<%= link_to 'Edit', edit_direccion_path(@direccion) %> |
+<%= link_to 'Back', direccions_path %>

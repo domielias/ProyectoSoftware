@@ -1,0 +1,2 @@
+class CarreraSolicitada < ApplicationRecord
+end

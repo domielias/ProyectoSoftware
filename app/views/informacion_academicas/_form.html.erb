@@ -1,0 +1,37 @@
+<%= form_with(model: informacion_academica, local: true) do |form| %>
+  <% if informacion_academica.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(informacion_academica.errors.count, "error") %> prohibited this informacion_academica from being saved:</h2>
+
+      <ul>
+        <% informacion_academica.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :cantidad_de_anos_de_espanol_estudiadas %>
+    <%= form.text_field :cantidad_de_anos_de_espanol_estudiadas %>
+  </div>
+
+  <div class="field">
+    <%= form.label :asignaturas_de_espanol_recientes %>
+    <%= form.text_field :asignaturas_de_espanol_recientes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cantidad_de_horas_de_espanol_cursadas %>
+    <%= form.text_field :cantidad_de_horas_de_espanol_cursadas %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nivel_alcanzado %>
+    <%= form.text_field :nivel_alcanzado %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

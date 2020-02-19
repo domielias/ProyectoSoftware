@@ -1,0 +1,2 @@
+class ExamenDeNivel < ApplicationRecord
+end

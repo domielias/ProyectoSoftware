@@ -1,0 +1,22 @@
+<%= form_with(model: examen_de_nivel, local: true) do |form| %>
+  <% if examen_de_nivel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(examen_de_nivel.errors.count, "error") %> prohibited this examen_de_nivel from being saved:</h2>
+
+      <ul>
+        <% examen_de_nivel.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :promedio %>
+    <%= form.text_field :promedio %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

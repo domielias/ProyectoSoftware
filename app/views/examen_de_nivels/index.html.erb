@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Examen De Nivels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Promedio</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @examen_de_nivels.each do |examen_de_nivel| %>
+      <tr>
+        <td><%= examen_de_nivel.promedio %></td>
+        <td><%= link_to 'Show', examen_de_nivel %></td>
+        <td><%= link_to 'Edit', edit_examen_de_nivel_path(examen_de_nivel) %></td>
+        <td><%= link_to 'Destroy', examen_de_nivel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Examen De Nivel', new_examen_de_nivel_path %>
