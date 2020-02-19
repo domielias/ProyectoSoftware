@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :nivels
   resources :pais
   resources :personas
   resources :temporadas

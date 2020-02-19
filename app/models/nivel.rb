@@ -1,0 +1,2 @@
+class Nivel < ApplicationRecord
+end
