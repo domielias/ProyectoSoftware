@@ -1,0 +1,2 @@
+class Pai < ApplicationRecord
+end
