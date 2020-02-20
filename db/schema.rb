@@ -108,16 +108,6 @@ ActiveRecord::Schema.define(version: 2020_02_19_054054) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "personas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "nombres", limit: 50
-    t.string "apellidos", limit: 50
-    t.date "fecha_nacimiento"
-    t.string "puesto", limit: 25
-    t.string "correo_electronico", limit: 60
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "programa_internacionals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nombre", limit: 30
     t.datetime "created_at", precision: 6, null: false
