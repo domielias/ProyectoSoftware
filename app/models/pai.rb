@@ -1,3 +1,3 @@
 class Pai < ApplicationRecord
-    has_many :persona
+    has_and_belongs_to_many :personas
 end

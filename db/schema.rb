@@ -92,6 +92,12 @@ ActiveRecord::Schema.define(version: 2020_02_20_041734) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "institucions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nombre", limit: 30
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "nivels", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nombre", limit: 30
     t.float "rango_min"
