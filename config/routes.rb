@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :modalidads
+  resources :clases
+  resources :bloques
+  resources :asignaturas
   resources :institucions
   resources :personas
   resources :estudiantes

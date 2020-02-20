@@ -1,0 +1,2 @@
+class Modalidad < ApplicationRecord
+end

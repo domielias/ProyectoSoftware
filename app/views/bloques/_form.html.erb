@@ -1,0 +1,27 @@
+<%= form_with(model: bloque, local: true) do |form| %>
+  <% if bloque.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bloque.errors.count, "error") %> prohibited this bloque from being saved:</h2>
+
+      <ul>
+        <% bloque.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :fecha_inicio %>
+    <%= form.datetime_select :fecha_inicio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha_final %>
+    <%= form.datetime_select :fecha_final %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

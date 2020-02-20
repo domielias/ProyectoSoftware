@@ -1,0 +1,2 @@
+class Bloque < ApplicationRecord
+end
