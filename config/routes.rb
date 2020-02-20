@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :institucions
   resources :personas
   resources :estudiantes
   resources :facultads
   resources :direccions
   resources :informacion_academicas
   resources :carrera_solicitadas
-  resources :universidads
   resources :programa_internacionals
   resources :examen_de_nivels
   resources :progreso_inscripcions
