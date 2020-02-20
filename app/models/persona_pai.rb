@@ -1,0 +1,2 @@
+class PersonaPai < ApplicationRecord
+end
