@@ -1,17 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  lugar_nacimiento_persona_id: 1
+  residencia_persona_id: 1
   nombres: MyString
   apellidos: MyString
-  fecha_nacimiento: 2020-02-19
+  fecha_nacimiento: 2020-02-20
   puesto: MyString
-  carrera: MyString
   correo_electronico: MyString
 
 two:
+  lugar_nacimiento_persona_id: 1
+  residencia_persona_id: 1
   nombres: MyString
   apellidos: MyString
-  fecha_nacimiento: 2020-02-19
+  fecha_nacimiento: 2020-02-20
   puesto: MyString
-  carrera: MyString
   correo_electronico: MyString

@@ -5,6 +5,8 @@
 <table>
   <thead>
     <tr>
+      <th>Lugar nacimiento persona</th>
+      <th>Residencia persona</th>
       <th>Nombres</th>
       <th>Apellidos</th>
       <th>Fecha nacimiento</th>
@@ -17,6 +19,8 @@
   <tbody>
     <% @personas.each do |persona| %>
       <tr>
+        <td><%= persona.lugar_nacimiento_persona_id %></td>
+        <td><%= persona.residencia_persona_id %></td>
         <td><%= persona.nombres %></td>
         <td><%= persona.apellidos %></td>
         <td><%= persona.fecha_nacimiento %></td>

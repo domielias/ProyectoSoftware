@@ -17,7 +17,7 @@ class PersonasControllerTest < ActionDispatch::IntegrationTest
 
   test "should create persona" do
     assert_difference('Persona.count') do
-      post personas_url, params: { persona: { apellidos: @persona.apellidos, carrera: @persona.carrera, correo_electronico: @persona.correo_electronico, fecha_nacimiento: @persona.fecha_nacimiento, nombres: @persona.nombres, puesto: @persona.puesto } }
+      post personas_url, params: { persona: { apellidos: @persona.apellidos, correo_electronico: @persona.correo_electronico, fecha_nacimiento: @persona.fecha_nacimiento, lugar_nacimiento_persona_id: @persona.lugar_nacimiento_persona_id, nombres: @persona.nombres, puesto: @persona.puesto, residencia_persona_id: @persona.residencia_persona_id } }
     end
 
     assert_redirected_to persona_url(Persona.last)
@@ -34,7 +34,7 @@ class PersonasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update persona" do
-    patch persona_url(@persona), params: { persona: { apellidos: @persona.apellidos, carrera: @persona.carrera, correo_electronico: @persona.correo_electronico, fecha_nacimiento: @persona.fecha_nacimiento, nombres: @persona.nombres, puesto: @persona.puesto } }
+    patch persona_url(@persona), params: { persona: { apellidos: @persona.apellidos, correo_electronico: @persona.correo_electronico, fecha_nacimiento: @persona.fecha_nacimiento, lugar_nacimiento_persona_id: @persona.lugar_nacimiento_persona_id, nombres: @persona.nombres, puesto: @persona.puesto, residencia_persona_id: @persona.residencia_persona_id } }
     assert_redirected_to persona_url(@persona)
   end
 

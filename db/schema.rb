@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_19_054054) do
+ActiveRecord::Schema.define(version: 2020_02_20_033552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -103,7 +103,18 @@ ActiveRecord::Schema.define(version: 2020_02_19_054054) do
   create_table "pais", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nombre", limit: 60
     t.string "nacionalidad", limit: 30
-    t.boolean "lugar_nacimiento"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "personas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "lugar_nacimiento_persona_id"
+    t.integer "residencia_persona_id"
+    t.string "nombres", limit: 50
+    t.string "apellidos", limit: 50
+    t.date "fecha_nacimiento"
+    t.string "puesto", limit: 25
+    t.string "correo_electronico", limit: 50
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

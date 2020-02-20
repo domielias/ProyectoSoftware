@@ -15,11 +15,12 @@ class PersonasTest < ApplicationSystemTestCase
     click_on "New Persona"
 
     fill_in "Apellidos", with: @persona.apellidos
-    fill_in "Carrera", with: @persona.carrera
     fill_in "Correo electronico", with: @persona.correo_electronico
     fill_in "Fecha nacimiento", with: @persona.fecha_nacimiento
+    fill_in "Lugar nacimiento persona", with: @persona.lugar_nacimiento_persona_id
     fill_in "Nombres", with: @persona.nombres
     fill_in "Puesto", with: @persona.puesto
+    fill_in "Residencia persona", with: @persona.residencia_persona_id
     click_on "Create Persona"
 
     assert_text "Persona was successfully created"
@@ -31,11 +32,12 @@ class PersonasTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Apellidos", with: @persona.apellidos
-    fill_in "Carrera", with: @persona.carrera
     fill_in "Correo electronico", with: @persona.correo_electronico
     fill_in "Fecha nacimiento", with: @persona.fecha_nacimiento
+    fill_in "Lugar nacimiento persona", with: @persona.lugar_nacimiento_persona_id
     fill_in "Nombres", with: @persona.nombres
     fill_in "Puesto", with: @persona.puesto
+    fill_in "Residencia persona", with: @persona.residencia_persona_id
     click_on "Update Persona"
 
     assert_text "Persona was successfully updated"

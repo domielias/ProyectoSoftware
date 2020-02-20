@@ -12,6 +12,16 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :lugar_nacimiento_persona_id %>
+    <%= form.number_field :lugar_nacimiento_persona_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :residencia_persona_id %>
+    <%= form.number_field :residencia_persona_id %>
+  </div>
+
+  <div class="field">
     <%= form.label :nombres %>
     <%= form.text_field :nombres %>
   </div>
@@ -30,7 +40,7 @@
     <%= form.label :puesto %>
     <%= form.text_field :puesto %>
   </div>
-  
+
   <div class="field">
     <%= form.label :correo_electronico %>
     <%= form.text_field :correo_electronico %>
