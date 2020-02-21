@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha_inicio: 2020-02-21 02:08:30
+  fecha_final: 2020-02-21 02:08:30
+  descripcion: MyString
+  ubicacion: MyString
+  forma_de_transporte: MyString
+  dentro_de_la_ciudad: 
+
+two:
+  fecha_inicio: 2020-02-21 02:08:30
+  fecha_final: 2020-02-21 02:08:30
+  descripcion: MyString
+  ubicacion: MyString
+  forma_de_transporte: MyString
+  dentro_de_la_ciudad: 
