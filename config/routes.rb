@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :tutories
+  resources :horarios
   resources :edificios
   resources :modalidads
   resources :clases

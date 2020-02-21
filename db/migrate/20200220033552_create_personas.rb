@@ -7,7 +7,6 @@ class CreatePersonas < ActiveRecord::Migration[6.0]
       t.string :apellidos, limit: 50
       t.date :fecha_nacimiento
       t.string :correo_electronico, limit: 50
-
       t.timestamps
     end
   end

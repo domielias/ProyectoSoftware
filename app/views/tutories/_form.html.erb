@@ -1,0 +1,32 @@
+<%= form_with(model: tutory, local: true) do |form| %>
+  <% if tutory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tutory.errors.count, "error") %> prohibited this tutory from being saved:</h2>
+
+      <ul>
+        <% tutory.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :profesor_id %>
+    <%= form.number_field :profesor_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :clase_id %>
+    <%= form.number_field :clase_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :aula_id %>
+    <%= form.number_field :aula_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

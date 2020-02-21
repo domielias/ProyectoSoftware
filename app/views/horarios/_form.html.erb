@@ -1,0 +1,42 @@
+<%= form_with(model: horario, local: true) do |form| %>
+  <% if horario.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(horario.errors.count, "error") %> prohibited this horario from being saved:</h2>
+
+      <ul>
+        <% horario.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :clase_id %>
+    <%= form.number_field :clase_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tutoria_id %>
+    <%= form.number_field :tutoria_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :aula_id %>
+    <%= form.number_field :aula_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :inicio %>
+    <%= form.datetime_select :inicio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fin %>
+    <%= form.datetime_select :fin %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
