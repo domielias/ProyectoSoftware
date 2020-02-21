@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_20_041734) do
+ActiveRecord::Schema.define(version: 2020_02_21_050132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -36,6 +36,23 @@ ActiveRecord::Schema.define(version: 2020_02_20_041734) do
   enable_extension "uuid-ossp"
   enable_extension "xml2"
 
+  create_table "asignaturas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "clave"
+    t.integer "valor_teorico"
+    t.integer "valor_practico"
+    t.integer "valor_credito"
+    t.boolean "activo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "bloques", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "fecha_inicio"
+    t.datetime "fecha_final"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "carrera_solicitadas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nombre", limit: 50
     t.datetime "created_at", precision: 6, null: false
@@ -48,11 +65,28 @@ ActiveRecord::Schema.define(version: 2020_02_20_041734) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "clases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "fecha_inicio"
+    t.datetime "fecha_final"
+    t.integer "seccion"
+    t.boolean "activo"
+    t.integer "no_clase"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "direccions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "telefono", limit: 20
     t.string "calle", limit: 40
     t.string "ciudad", limit: 30
     t.string "codigo_postal", limit: 15
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "edificios", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nombre", limit: 30
+    t.string "abreviatura", limit: 30
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -94,6 +128,12 @@ ActiveRecord::Schema.define(version: 2020_02_20_041734) do
 
   create_table "institucions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nombre", limit: 30
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "modalidads", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nombre", limit: 15
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

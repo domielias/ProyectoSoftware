@@ -5,7 +5,7 @@ class CreateClases < ActiveRecord::Migration[6.0]
       t.timestamp :fecha_final
       t.integer :seccion
       t.boolean :activo
-      t.no_clase :integer
+      t.integer :no_clase
       t.timestamps
     end
   end
