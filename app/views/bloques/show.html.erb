@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fecha inicio:</strong>
+  <%= @bloque.fecha_inicio %>
+</p>
+
+<p>
+  <strong>Fecha final:</strong>
+  <%= @bloque.fecha_final %>
+</p>
+
+<%= link_to 'Edit', edit_bloque_path(@bloque) %> |
+<%= link_to 'Back', bloques_path %>

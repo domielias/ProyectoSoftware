@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Clave:</strong>
+  <%= @asignatura.clave %>
+</p>
+
+<p>
+  <strong>Valor teorico:</strong>
+  <%= @asignatura.valor_teorico %>
+</p>
+
+<p>
+  <strong>Valor practico:</strong>
+  <%= @asignatura.valor_practico %>
+</p>
+
+<p>
+  <strong>Valor credito:</strong>
+  <%= @asignatura.valor_credito %>
+</p>
+
+<%= link_to 'Edit', edit_asignatura_path(@asignatura) %> |
+<%= link_to 'Back', asignaturas_path %>

@@ -1,4 +1,3 @@
 class Institucion < ApplicationRecord
-    has_many :programa_internacional
-    has_many :estudiante, through :programa_internacional
+    has_and_belongs_to_many :programa_internacionals
 end

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  clave: 1
+  valor_teorico: 1
+  valor_practico: 1
+  valor_credito: 1
+
+two:
+  clave: 1
+  valor_teorico: 1
+  valor_practico: 1
+  valor_credito: 1
