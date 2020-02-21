@@ -1,5 +1,5 @@
 class ProgramaInternacional < ApplicationRecord
     belongs_to :pai
-    belongs_to :institucion
-    has_many :students
+    has_and_belongs_to_many :institucion
+    has_many :estudiantes
 end
