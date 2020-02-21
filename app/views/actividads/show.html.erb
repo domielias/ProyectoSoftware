@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fecha inicio:</strong>
+  <%= @actividad.fecha_inicio %>
+</p>
+
+<p>
+  <strong>Fecha final:</strong>
+  <%= @actividad.fecha_final %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @actividad.descripcion %>
+</p>
+
+<p>
+  <strong>Ubicacion:</strong>
+  <%= @actividad.ubicacion %>
+</p>
+
+<p>
+  <strong>Forma de transporte:</strong>
+  <%= @actividad.forma_de_transporte %>
+</p>
+
+<p>
+  <strong>Dentro de la ciudad:</strong>
+  <%= @actividad.dentro_de_la_ciudad %>
+</p>
+
+<%= link_to 'Edit', edit_actividad_path(@actividad) %> |
+<%= link_to 'Back', actividads_path %>
