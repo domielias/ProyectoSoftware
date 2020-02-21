@@ -1,0 +1,2 @@
+class Edificio < ApplicationRecord
+end
