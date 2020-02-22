@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_21_050132) do
+ActiveRecord::Schema.define(version: 2020_02_21_061727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -36,12 +36,29 @@ ActiveRecord::Schema.define(version: 2020_02_21_050132) do
   enable_extension "uuid-ossp"
   enable_extension "xml2"
 
+  create_table "actividads", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "fecha_inicio"
+    t.datetime "fecha_final"
+    t.string "descripcion", limit: 80
+    t.string "ubicacion", limit: 30
+    t.string "forma_de_transporte", limit: 30
+    t.boolean "dentro_de_la_ciudad"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "asignaturas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "clave"
     t.integer "valor_teorico"
     t.integer "valor_practico"
     t.integer "valor_credito"
     t.boolean "activo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "aulas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nombre", limit: 25
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -105,6 +122,12 @@ ActiveRecord::Schema.define(version: 2020_02_21_050132) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "evaluacions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.float "promedio"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "examen_de_nivels", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.float "promedio"
     t.datetime "created_at", precision: 6, null: false
@@ -113,6 +136,16 @@ ActiveRecord::Schema.define(version: 2020_02_21_050132) do
 
   create_table "facultads", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nombre", limit: 25
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "horarios", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "clase_id"
+    t.integer "tutoria_id"
+    t.integer "aula_id"
+    t.datetime "inicio"
+    t.datetime "fin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -160,18 +193,6 @@ ActiveRecord::Schema.define(version: 2020_02_21_050132) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "personas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "lugar_nacimiento_persona_id"
-    t.integer "residencia_persona_id"
-    t.string "nombres", limit: 50
-    t.string "apellidos", limit: 50
-    t.date "fecha_nacimiento"
-    t.string "puesto", limit: 25
-    t.string "correo_electronico", limit: 50
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "programa_internacionals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nombre", limit: 30
     t.datetime "created_at", precision: 6, null: false
@@ -207,8 +228,29 @@ ActiveRecord::Schema.define(version: 2020_02_21_050132) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "tipo_evaluacions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nombre", limit: 20
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tutories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "profesor_id"
+    t.integer "clase_id"
+    t.integer "aula_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "universidads", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nombre", limit: 30
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "usuarios", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nombre", limit: 50
+    t.string "password", limit: 50
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

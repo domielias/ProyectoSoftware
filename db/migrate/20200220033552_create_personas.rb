@@ -1,6 +1,6 @@
 class CreatePersonas < ActiveRecord::Migration[6.0]
   def change
-    create_table :personas, id: :uuid do |t|
+    create_table :personas do |t|
       t.integer :lugar_nacimiento_persona_id
       t.integer :residencia_persona_id
       t.string :nombres, limit: 50
