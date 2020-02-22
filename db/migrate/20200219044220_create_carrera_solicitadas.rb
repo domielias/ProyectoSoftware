@@ -5,5 +5,8 @@ class CreateCarreraSolicitadas < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :carrera_solicitadas, :id, unique: true
+
   end
 end

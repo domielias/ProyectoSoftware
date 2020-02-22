@@ -7,5 +7,8 @@ class CreateRols < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :rols, :id, unique: true
+
   end
 end

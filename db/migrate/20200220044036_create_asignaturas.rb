@@ -6,7 +6,12 @@ class CreateAsignaturas < ActiveRecord::Migration[6.0]
       t.integer :valor_practico
       t.integer :valor_credito
       t.boolean :activo
+
+      t.references :facultad, foreign_key: true
+
       t.timestamps
     end
+
+    add_index :asignaturas, :id, unique: true
   end
 end

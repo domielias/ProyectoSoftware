@@ -5,5 +5,8 @@ class CreatePais < ActiveRecord::Migration[6.0]
       t.string :nacionalidad, limit: 30
       t.timestamps
     end
+
+    add_index :pais, :id, unique: true
+
   end
 end

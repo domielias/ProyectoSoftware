@@ -5,5 +5,8 @@ class CreateTemporadas < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :temporadas, :id, unique: true
+
   end
 end

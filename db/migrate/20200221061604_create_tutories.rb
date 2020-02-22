@@ -1,11 +1,15 @@
 class CreateTutories < ActiveRecord::Migration[6.0]
   def change
     create_table :tutories do |t|
-      t.integer :profesor_id
-      t.integer :clase_id
-      t.integer :aula_id
+
+      t.references :profesor, foreign_key: true
+      t.references :clase, foreign_key: true
+      t.references :profesor, foreign_key: true
 
       t.timestamps
     end
+
+    add_index :tutories, :id, unique: true
+
   end
 end

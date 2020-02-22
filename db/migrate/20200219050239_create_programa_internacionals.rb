@@ -3,17 +3,13 @@ class CreateProgramaInternacionals < ActiveRecord::Migration[6.0]
     create_table :programa_internacionals do |t|
       t.string :nombre, limit: 30
 
-      t.integer :pai_id
-      t.integer :institucion_id
+      t.references :pai, foreign_key: true
+      t.references :institucion, foreign_key: true
 
       t.timestamps
     end
 
-    add_foreign_key :programa_internacionals, :pais, column: :pai_id
-    add_index :programa_internacionals, :pai_id
-
-    add_foreign_key :programa_internacionals, :institucions, column: :institucion_id
-    add_index :programa_internacionals, :institucion_id
+    add_index :programa_internacionals, :id, unique: true
 
   end
 end

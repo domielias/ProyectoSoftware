@@ -5,5 +5,8 @@ class CreateInstitucions < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :institucions, :id, unique: true
+
   end
 end

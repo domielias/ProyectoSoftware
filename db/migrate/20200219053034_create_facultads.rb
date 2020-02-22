@@ -5,5 +5,8 @@ class CreateFacultads < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :facultads, :id, unique: true
+
   end
 end

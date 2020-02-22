@@ -5,5 +5,8 @@ class CreateModalidads < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :modalidads, :id, unique: true
+
   end
 end

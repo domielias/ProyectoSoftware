@@ -5,5 +5,8 @@ class CreateTipoEvaluacions < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :tipo_evaluacions, :id, unique: true
+
   end
 end

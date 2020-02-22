@@ -7,7 +7,14 @@ class CreateHorarios < ActiveRecord::Migration[6.0]
       t.timestamp :inicio
       t.timestamp :fin
 
+      t.references :clase, foreign_key: true
+      t.references :tutoria, foreign_key: true
+      t.references :aula, foreign_key: true
+
       t.timestamps
     end
+
+    add_index :horarios, :id, unique: true
+
   end
 end

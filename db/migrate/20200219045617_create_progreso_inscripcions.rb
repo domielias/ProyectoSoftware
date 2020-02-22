@@ -14,7 +14,13 @@ class CreateProgresoInscripcions < ActiveRecord::Migration[6.0]
       t.boolean :record_notas_original_de_univ_de_procedencia
       t.boolean :copia_vacunacion
 
+      t.references :estudiante, foreign_key: true
+
       t.timestamps
     end
+
+    add_index :progreso_inscripcions, :id, unique: true
+    add_index :progreso_inscripcions, :estudiante_id, unique: true
+
   end
 end
