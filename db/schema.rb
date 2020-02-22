@@ -216,6 +216,13 @@ ActiveRecord::Schema.define(version: 2020_02_21_061727) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "usuarios", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nombre", limit: 50
+    t.string "password", limit: 50
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "rols", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nombre", limit: 20
     t.datetime "created_at", precision: 6, null: false
@@ -244,13 +251,6 @@ ActiveRecord::Schema.define(version: 2020_02_21_061727) do
 
   create_table "universidads", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nombre", limit: 30
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "usuarios", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "nombre", limit: 50
-    t.string "password", limit: 50
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
