@@ -1,6 +1,6 @@
 class CreateProgramaInternacionals < ActiveRecord::Migration[6.0]
   def change
-    create_table :programa_internacionals, id: :uuid do |t|
+    create_table :programa_internacionals do |t|
       t.string :nombre, limit: 30
 
       t.integer :pai_id

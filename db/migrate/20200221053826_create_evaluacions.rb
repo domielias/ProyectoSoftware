@@ -1,6 +1,6 @@
 class CreateEvaluacions < ActiveRecord::Migration[6.0]
   def change
-    create_table :evaluacions, id: :uuid do |t|
+    create_table :evaluacions do |t|
       t.float :promedio
 
       t.timestamps

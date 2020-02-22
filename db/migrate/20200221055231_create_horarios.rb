@@ -1,6 +1,6 @@
 class CreateHorarios < ActiveRecord::Migration[6.0]
   def change
-    create_table :horarios, id: :uuid do |t|
+    create_table :horarios do |t|
       t.integer :clase_id
       t.integer :tutoria_id
       t.integer :aula_id

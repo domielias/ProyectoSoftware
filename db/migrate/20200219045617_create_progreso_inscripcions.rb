@@ -1,6 +1,6 @@
 class CreateProgresoInscripcions < ActiveRecord::Migration[6.0]
   def change
-    create_table :progreso_inscripcions, id: :uuid do |t|
+    create_table :progreso_inscripcions do |t|
       t.boolean :formulario_solicitud
       t.boolean :acta_nacimiento
       t.boolean :certificacion_medica

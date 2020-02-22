@@ -1,6 +1,6 @@
 class CreateActividads < ActiveRecord::Migration[6.0]
   def change
-    create_table :actividads, id: :uuid do |t|
+    create_table :actividads do |t|
       t.timestamp :fecha_inicio
       t.timestamp :fecha_final
       t.string :descripcion, limit: 80
