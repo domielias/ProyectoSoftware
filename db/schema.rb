@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_21_061727) do
+ActiveRecord::Schema.define(version: 28) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -163,11 +163,13 @@ ActiveRecord::Schema.define(version: 2020_02_21_061727) do
     t.bigint "programa_internacional_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "persona_id"
     t.index ["carrera_solicitada_id"], name: "index_estudiantes_on_carrera_solicitada_id"
     t.index ["facultad_id"], name: "index_estudiantes_on_facultad_id"
     t.index ["id"], name: "index_estudiantes_on_id", unique: true
     t.index ["madre_id"], name: "index_estudiantes_on_madre_id"
     t.index ["padre_id"], name: "index_estudiantes_on_padre_id"
+    t.index ["persona_id"], name: "index_estudiantes_on_persona_id"
     t.index ["programa_internacional_id"], name: "index_estudiantes_on_programa_internacional_id"
   end
 
@@ -196,7 +198,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_061727) do
   end
 
   create_table "facultads", force: :cascade do |t|
-    t.string "nombre", limit: 25
+    t.string "nombre", limit: 40
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["id"], name: "index_facultads_on_id", unique: true
@@ -373,6 +375,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_061727) do
   add_foreign_key "direccions", "pais"
   add_foreign_key "estudiantes", "carrera_solicitadas"
   add_foreign_key "estudiantes", "facultads"
+  add_foreign_key "estudiantes", "personas"
   add_foreign_key "estudiantes", "personas", column: "madre_id"
   add_foreign_key "estudiantes", "personas", column: "padre_id"
   add_foreign_key "estudiantes", "programa_internacionals"
