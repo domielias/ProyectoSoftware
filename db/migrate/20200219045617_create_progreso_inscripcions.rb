@@ -20,7 +20,7 @@ class CreateProgresoInscripcions < ActiveRecord::Migration[6.0]
     end
 
     add_index :progreso_inscripcions, :id, unique: true
-    add_index :progreso_inscripcions, :estudiante_id, unique: true
+    add_index :progreso_inscripcions, :estudiante_id,name:'index_progreso_inscripcions_on_estudiantes_id', unique: true
 
   end
 end

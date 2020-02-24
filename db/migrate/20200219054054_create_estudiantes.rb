@@ -12,10 +12,10 @@ class CreateEstudiantes < ActiveRecord::Migration[6.0]
       t.boolean :egresado
 
       t.references :facultad, foreign_key: true
-      t.references :padre, foreign_key: true
-      t.references :madre, foreign_key: true
+      t.references :padre, foreign_key:{to_table: :personas}
+      t.references :madre, foreign_key: {to_table: :personas}
       t.references :carrera_solicitada, foreign_key: true
-      t.references :programa_internacional, foreign_key: true
+      t.references :programa_internacional, foreign_key:true
 
       t.timestamps
     end

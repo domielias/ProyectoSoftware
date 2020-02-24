@@ -2,8 +2,6 @@ class CreateAulas < ActiveRecord::Migration[6.0]
   def change
     create_table :aulas do |t|
       t.string :nombre, limit: 25
-      t.integer :edificio_id
-
       t.references :edificio, foreign_key: true
 
       t.timestamps

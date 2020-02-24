@@ -6,13 +6,12 @@ class CreateInformacionAcademicas < ActiveRecord::Migration[6.0]
       t.float :cantidad_de_horas_de_espanol_cursadas
       t.string :nivel_alcanzado, limit: 20
 
-      t.references :estudiante, foreign_key: true
+      t.references :estudiante,index: true, foreign_key: true
 
       t.timestamps
     end
 
     add_index :informacion_academicas, :id, unique: true
-    add_index :informacion_academicas, :estudiante_id, unique: true
 
   end
 end

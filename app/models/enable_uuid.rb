@@ -1,2 +1,0 @@
-class EnableUuid < ApplicationRecord
-end
