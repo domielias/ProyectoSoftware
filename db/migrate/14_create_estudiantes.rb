@@ -18,6 +18,9 @@ class CreateEstudiantes < ActiveRecord::Migration[6.0]
       t.references :programa_internacional, foreign_key:true
 
       t.timestamps
+
+      t.references :persona, foreign_key: true
+
     end
 
     add_index :estudiantes, :id, unique: true

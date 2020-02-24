@@ -1,3 +1,3 @@
 class CarreraSolicitada < ApplicationRecord
-    belongs_to :estudiante
+    has_many :estudiante
 end
