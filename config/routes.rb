@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'pages#home'
   resources :tutories
   resources :horarios
   resources :usuarios
