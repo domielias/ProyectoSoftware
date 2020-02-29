@@ -9,10 +9,6 @@ require("@rails/activestorage").start()
 require("channels")
 require("bootstrap")
 
-// stylesheets
-require("../stylesheets/main.scss")
-require("../vendor/*")
-
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
