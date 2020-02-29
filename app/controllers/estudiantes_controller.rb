@@ -15,6 +15,9 @@ class EstudiantesController < ApplicationController
   # GET /estudiantes/new
   def new
     @estudiante = Estudiante.new
+    @estudiante.build_facultad
+    @estudiante.build_carrera_solicitada
+    @estudiante.build_persona
   end
 
   # GET /estudiantes/1/edit

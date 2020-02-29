@@ -11,6 +11,39 @@
     </div>
   <% end %>
 
+  <%= form.fields_for :personas do |prsn| %>
+    <div class="field">
+    <%= prsn.label :nombre %>
+    <%= prsn.text_field :nombre %>
+    </div>
+
+    <div class="field">
+      <%= prsn.label :apellidos %>
+      <%= prsn.text_field :apellidos %>
+    </div>
+
+    <div class="field">
+      <%= prsn.label :fecha_nacimiento %>
+      <%= prsn.date_field :fecha_nacimiento %>
+    </div>
+
+    <div class="field">
+      <%= prsn.label :correo_electronico %>
+      <%= prsn.text_field :correo_electronico %>
+    </div>
+
+  <% end %>
+
+  <%= form.fields_for :facultads do |fcltd| %>
+    <%= fcltd.label :facultad %>
+    <%= fcltd.collection_select :facultad_id, Facultad.order(:nombre),:id,:nombre, include_blank: true%>
+  <% end %>
+
+  <%= form.fields_for :carrera_solicitadas do |car_sol| %>
+    <%= car_sol.label :carrera_solicitada %>
+    <%= car_sol.collection_select :carrera_solicitada_id, CarreraSolicitada.order(:nombre),:id,:nombre, include_blank: true%>
+  <% end %>
+
   <div class="field">
     <%= form.label :pasaporte %>
     <%= form.text_field :pasaporte %>
