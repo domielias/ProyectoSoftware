@@ -13,8 +13,8 @@
 
   <%= form.fields_for :personas do |prsn| %>
     <div class="field">
-    <%= prsn.label :nombre %>
-    <%= prsn.text_field :nombre %>
+    <%= prsn.label :nombres %>
+    <%= prsn.text_field :nombres   %>
     </div>
 
     <div class="field">
@@ -39,9 +39,76 @@
     <%= fcltd.collection_select :facultad_id, Facultad.order(:nombre),:id,:nombre, include_blank: true%>
   <% end %>
 
+  <%= form.fields_for :programa_internacionals do |prog_inter| %>
+    <%= prog_inter.label :programa_internacional %>
+    <%= prog_inter.collection_select :programa_internacional_id, ProgramaInternacional.order(:nombre),:id,:nombre, include_blank: true%>
+  <% end %>
+
   <%= form.fields_for :carrera_solicitadas do |car_sol| %>
     <%= car_sol.label :carrera_solicitada %>
     <%= car_sol.collection_select :carrera_solicitada_id, CarreraSolicitada.order(:nombre),:id,:nombre, include_blank: true%>
+  <% end %>
+
+  <%= form.fields_for :padre do |padre| %>
+    <%= padre.label :padre %>
+    <%= padre.text_field :nombres %>
+    <%= padre.text_field :apellidos %>
+  <% end %>
+
+  <%= form.fields_for :madre do |madre| %>
+    <%= madre.label :madre %>
+    <%= madre.text_field :nombres %>
+    <%= madre.text_field :apellidos %>
+  <% end %>
+
+  <%= form.fields_for :direccion do |dirr| %>
+    <%= form.fields_for :pai do |pai| %>
+      <%= pai.collection_select :pai_id, Pai.order(:nombre),:id,:nombre, include_blank: true%>
+    <% end %>
+    <%= dirr.label :dirreccion %>
+    <%= dirr.text_field :telefono %>
+    <%= dirr.text_field :calle %>
+    <%= dirr.text_field :ciudad %>
+    <%= dirr.text_field :codigo_postal %>
+  <% end %>
+
+  <%= form.fields_for :examen_de_nivel do |ex_niv| %>
+    <%= ex_niv.label :examen_de_nivel %>
+    <%= ex_niv.number_field :promedio, step: 0.1 %>
+  <% end %>
+
+  <%= form.fields_for :informacion_academicas do |info_acad| %>
+    <%= info_acad.label :informacion_academicas %>
+    <%= info_acad.number_field :cantidad_de_anos_de_espanol_estudiadas, step: 0.1 %>
+    <%= info_acad.text_field :asignaturas_de_espanol_recientes %>
+    <%= info_acad.number_field :cantidad_de_horas_de_espanol_cursadas, step: 0.1 %>
+    <%= info_acad.text_field :nivel_alcanzado %>
+  <% end %>
+
+  <%= form.fields_for :progreso_inscripcions do |prog_insc| %>
+    <%= prog_insc.label :progreso_inscripcion %>
+    <%= prog_insc.check_box :formulario_solicitud %>
+    <%= prog_insc.check_box :acta_nacimiento %>
+    <%= prog_insc.check_box :certificacion_medica %>
+    <%= prog_insc.check_box :fotografias %>
+    <%= prog_insc.check_box :copia_cedula %>
+    <%= prog_insc.check_box :record_secundaria %>
+    <%= prog_insc.check_box :certificado_pruebas_nacionales %>
+    <%= prog_insc.check_box :recibo_admision %>
+    <%= prog_insc.check_box :copia_seguro_salud %>
+    <%= prog_insc.check_box :acta_nacimiento_padre %>
+    <%= prog_insc.check_box :record_notas_original_de_univ_de_procedencia %>
+    <%= prog_insc.check_box :copia_vacunacion %>
+  <% end %>
+
+  <%= form.fields_for :bloque do |bloq| %>
+    <%= bloq.label :bloque %>
+    <%= bloq.collection_select :bloque_id, Bloque.order(:fecha_inicio),:id, include_blank: true%>
+  <% end %>
+
+  <%= form.fields_for :clases do |clas| %>
+    <%= clas.label :clase %>
+    <%= clas.collection_select :clas_id, Clase.order(:nombre),:id, include_blank: true%>
   <% end %>
 
   <div class="field">

@@ -18,6 +18,7 @@ class EstudiantesController < ApplicationController
     @estudiante.build_facultad
     @estudiante.build_carrera_solicitada
     @estudiante.build_persona
+    @estudiante.build_programa_internacional
   end
 
   # GET /estudiantes/1/edit
@@ -72,6 +73,6 @@ class EstudiantesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def estudiante_params
-      params.require(:estudiante).permit(:pasaporte, :tiempo_residencia, :numero_residencia, :id_campus, :matricula, :estado_civil, :nombre_conyugue, :nombre_conyugue, :sexo, :egresado)
+      params.require(:estudiante).permit(:pasaporte, :tiempo_residencia, :numero_residencia, :id_campus, :matricula, :estado_civil, :nombre_conyugue, :nombre_conyugue, :sexo, :egresado, persons_attributes: [:nombres, :apellidos, :fecha_nacimiento, :correo_electronico], facultads_attributes: [:id, :nombre], programa_internacional: [:id, :nombre], carrera_solicitada: [:id, :nombre], padre: [:id, :nombres, :apellidos], madre: [:id, :nombres, :apellidos], direccion: [:id, :telefono, :calle, :ciudad, :codigo_postal, pai: [:id, :nacionalidad]], examen_de_nivel: [:id, :promedio], informacion_academica: [:id, :cantidad_de_anos_de_espanol_estudiadas, :asignaturas_de_espanol_recientes, :cantidad_de_horas_de_espanol_cursadas, :nivel_alcanzado], progreso_inscripcions: [:id, :formulario_solicitud, :acta_nacimiento, :certificacion_medica, :fotografias, :copia_cedula, :record_secundaria, :certificado_pruebas_nacionales, :recibo_admision, :copia_seguro_salud, :acta_nacimiento_padre, :record_notas_original_de_univ_de_procedencia, :copia_vacunacion], bloque: [:id, :nombre], clase: [:id, :nombre])
     end
 end
