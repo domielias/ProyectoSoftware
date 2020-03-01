@@ -1,0 +1,7 @@
+<div class="col-xs-10">
+  <% flash.each do |name,msg| %>
+  <div class='alert alert-<%=name%>' role="alert">
+    <%= content_tag( :div, msg, id: ("flash_#{name}" if name.is_a? String    ))  %>
+  </div>
+  <% end %>
+<div>
