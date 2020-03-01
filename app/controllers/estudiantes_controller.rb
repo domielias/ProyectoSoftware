@@ -15,10 +15,16 @@ class EstudiantesController < ApplicationController
   # GET /estudiantes/new
   def new
     @estudiante = Estudiante.new
-    #@estudiante.build_facultad
-    #@estudiante.build_carrera_solicitada
+    @estudiante.build_facultad
+    @estudiante.build_carrera_solicitada
     @estudiante.build_persona
-      #@estudiante.build_programa_internacional
+    @estudiante.build_programa_internacional
+    @estudiante.build_padre
+    @estudiante.build_madre
+    2.times {@estudiante.direccions.build}
+    @estudiante.build_examen_de_nivel
+    @estudiante.build_informacion_academica
+    @estudiante.build_progreso_inscripcion
   end
 
   # GET /estudiantes/1/edit
@@ -74,6 +80,7 @@ class EstudiantesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def estudiante_params
       # params.require(:estudiante).permit(:pasaporte, :tiempo_residencia, :numero_residencia, :id_campus, :matricula, :estado_civil, :nombre_conyugue, :nombre_conyugue, :sexo, :egresado, persons_attributes: [:nombres, :apellidos, :fecha_nacimiento, :correo_electronico], facultads_attributes: [:id, :nombre], programa_internacional: [:id, :nombre], carrera_solicitada: [:id, :nombre], padre: [:id, :nombres, :apellidos], madre: [:id, :nombres, :apellidos], direccion: [:id, :telefono, :calle, :ciudad, :codigo_postal, pai: [:id, :nacionalidad]], examen_de_nivel: [:id, :promedio], informacion_academica: [:id, :cantidad_de_anos_de_espanol_estudiadas, :asignaturas_de_espanol_recientes, :cantidad_de_horas_de_espanol_cursadas, :nivel_alcanzado], progreso_inscripcions: [:id, :formulario_solicitud, :acta_nacimiento, :certificacion_medica, :fotografias, :copia_cedula, :record_secundaria, :certificado_pruebas_nacionales, :recibo_admision, :copia_seguro_salud, :acta_nacimiento_padre, :record_notas_original_de_univ_de_procedencia, :copia_vacunacion], bloque: [:id, :nombre], clase: [:id, :nombre])
-      params.require(:estudiante).permit(:pasaporte, :tiempo_residencia, :numero_residencia, :id_campus, :matricula, :estado_civil, :nombre_conyugue, :nombre_conyugue, :sexo, :egresado, persona_attributes: [:id, :nombres, :apellidos, :fecha_nacimiento, :correo_electronico])
+      #params.require(:estudiante).permit(:pasaporte, :tiempo_residencia, :numero_residencia, :id_campus,:matricula, :estado_civil, :nombre_conyugue, :nombre_conyugue, :sexo, :egresado, :facultad_id, :programa_internacional_id, :carrera_solicitada_id, direccions_attributes: [:id, :telefono, :calle, :ciudad, :codigo_postal, :pai_id], persona_attributes: [:id, :nombres, :apellidos, :fecha_nacimiento, :correo_electronico], padre_attributes: [:id, :nombres, :apellidos], madre_attributes: [:id, :nombres, :apellidos], examen_de_nivel_attributes: [:id, :promedio, :nivel_id],informacion_academica_attributes: [:id, :cantidad_de_anos_de_espanol_estudiadas, :asignaturas_de_espanol_recientes, :cantidad_de_horas_de_espanol_cursadas, :nivel_alcanzado])
+      params.require(:estudiante).permit(:pasaporte, :tiempo_residencia, :numero_residencia, :id_campus,:matricula, :estado_civil, :nombre_conyugue, :nombre_conyugue, :sexo, :egresado, :facultad_id, :programa_internacional_id, :carrera_solicitada_id, direccions_attributes: [:id, :telefono, :calle, :ciudad, :codigo_postal, :pai_id], persona_attributes: [:id, :nombres, :apellidos, :fecha_nacimiento, :correo_electronico], padre_attributes: [:id, :nombres, :apellidos], madre_attributes: [:id, :nombres, :apellidos], examen_de_nivel_attributes: [:id, :promedio, :nivel_id],informacion_academica_attributes: [:id, :cantidad_de_anos_de_espanol_estudiadas, :asignaturas_de_espanol_recientes, :cantidad_de_horas_de_espanol_cursadas, :nivel_alcanzado],progreso_inscripcion_attributes: [:id, :formulario_solicitud, :acta_nacimiento, :certificacion_medica, :fotografias, :copia_cedula, :record_secundaria, :certificado_pruebas_nacionales, :recibo_admision, :copia_seguro_salud, :acta_nacimiento_padre, :record_notas_original_de_univ_de_procedencia, :copia_vacunacion])
     end
 end
