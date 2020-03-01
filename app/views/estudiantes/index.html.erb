@@ -2,16 +2,14 @@
 
 <h1>Estudiantes</h1>
 
-<table>
+<table id="dtBasicExample" class="table table-striped">
   <thead>
     <tr>
-      <th>Pasaporte</th>
-      <th>Tiempo residencia</th>
-      <th>Numero residencia</th>
-      <th>Id campus</th>
+      <th>#</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Id Campus</th>
       <th>Matricula</th>
-      <th>Estado civil</th>
-      <th>Nombre conyugue</th>
       <th>Sexo</th>
       <th>Egresado</th>
       <th colspan="3"></th>
@@ -21,18 +19,15 @@
   <tbody>
     <% @estudiantes.each do |estudiante| %>
       <tr>
-        <td><%= estudiante.pasaporte %></td>
-        <td><%= estudiante.tiempo_residencia %></td>
-        <td><%= estudiante.numero_residencia %></td>
+        <td><%= estudiante.id %></td>
+        <td><%= estudiante.persona.nombres %></td>
+        <td><%= estudiante.persona.apellidos %></td>
         <td><%= estudiante.id_campus %></td>
         <td><%= estudiante.matricula %></td>
-        <td><%= estudiante.estado_civil %></td>
-        <td><%= estudiante.nombre_conyugue %></td>
         <td><%= estudiante.sexo %></td>
-        <td><%= estudiante.egresado %></td>
-        <td><%= link_to 'Show', estudiante %></td>
-        <td><%= link_to 'Edit', edit_estudiante_path(estudiante) %></td>
-        <td><%= link_to 'Destroy', estudiante, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= estudiante.egresado ? :Si : :No %></td>
+        <td><%= link_to 'Show', estudiante, class: "btn btn-info" %></td>
+        <td><%= link_to 'Edit', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,4 +35,5 @@
 
 <br>
 
-<%= link_to 'New Estudiante', new_estudiante_path %>
+
+<%= link_to 'Nuevo Estudiante', new_estudiante_path, class: "btn btn-primary" %>
