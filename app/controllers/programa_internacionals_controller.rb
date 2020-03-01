@@ -16,7 +16,6 @@ class ProgramaInternacionalsController < ApplicationController
   def new
     @programa_internacional = ProgramaInternacional.new
     @programa_internacional.build_pai
-      #@programa_internacional.pai.save
   end
 
   # GET /programa_internacionals/1/edit
@@ -71,6 +70,7 @@ class ProgramaInternacionalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def programa_internacional_params
-      params.require(:programa_internacional).permit(:nombre, pai: [:id, :nombre])
+      # params.require(:programa_internacional).permit(:nombre, pai_attributes: [:id, :nombre, :nacionalidad])
+      params.require(:programa_internacional).permit(:nombre, :pai_id)
     end
 end

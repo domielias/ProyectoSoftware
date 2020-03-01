@@ -3,4 +3,5 @@ class Pai < ApplicationRecord
     has_many :persona_pais
     has_many :personas, through: :persona_pais
     has_many :direccions
+    has_many :programa_internacionals
 end

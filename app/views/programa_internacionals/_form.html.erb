@@ -16,10 +16,14 @@
     <%= form.text_field :nombre %>
   </div>
 
-  <%= form.fields_for :pais do |pis| %>
-    <%= pis.label :pai %>
-    <%= pis.collection_select :pai_id, Pai.order(:nombre),:id,:nombre, include_blank: true%>
-  <% end %>
+  <%#= form.fields_for :pai do |pis| %>
+    <%#= pis.label :pai %>
+    <%#= pis.collection_select(:id, Pai.all, :id, :nombre, include_blank: true) %>
+  <%# end %>
+
+  <div>
+    <%= form.collection_select(:pai_id, Pai.all, :id, :nombre, include_blank: true) %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

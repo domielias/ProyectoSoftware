@@ -14,6 +14,7 @@
     <% @programa_internacionals.each do |programa_internacional| %>
       <tr>
         <td><%= programa_internacional.nombre %></td>
+        <td><%= programa_internacional.pai.nombre %></td>
         <td><%= link_to 'Show', programa_internacional %></td>
         <td><%= link_to 'Edit', edit_programa_internacional_path(programa_internacional) %></td>
         <td><%= link_to 'Destroy', programa_internacional, method: :delete, data: { confirm: 'Are you sure?' } %></td>
