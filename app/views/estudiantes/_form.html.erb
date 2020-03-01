@@ -66,16 +66,25 @@
     </div>
   <% end %>
 
-  <%= form.fields_for :direccions do |dirr| %>
-    <%= dirr.label :dirreccion %>
-    <div>
-      <%= dirr.collection_select(:pai_id, Pai.all, :id, :nombre, include_blank: true) %>
-      <%= dirr.text_field :telefono %>
-      <%= dirr.text_field :calle %>
-      <%= dirr.text_field :ciudad %>
-      <%= dirr.text_field :codigo_postal %>
-    </div>
+  <%#= form.fields_for :direccions do |dirr| %>
+    <%#= dirr.label :dirreccion %>
+<!--    <div>-->
+      <%#= dirr.collection_select(:pai_id, Pai.all, :id, :nombre, include_blank: true) %>
+      <%#= dirr.text_field :telefono %>
+      <%#= dirr.text_field :calle %>
+      <%#= dirr.text_field :ciudad %>
+      <%#= dirr.text_field :codigo_postal %>
+      <%#= form.fields_for :persona_pais do |per_pis| %>
+        <%#= per_pis.radio_button :lugar_nacimiento, 'dir', :checked => false %>
+        <%#= per_pis.label :lugar_nacimiento, '0' %>
+      <%# end %>
+<!--    </div>-->
+  <%# end %>
+
+  <%= form.fields_for :persona_pais do |per_pai| %>
+    <%= per_pai.radio_button :lugar_nacimiento, 'same_name' %>
   <% end %>
+
 
   <%= form.fields_for :examen_de_nivel do |ex_niv| %>
     <div>
