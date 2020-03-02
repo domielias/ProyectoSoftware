@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 28) do
   end
 
   create_table "direccions", force: :cascade do |t|
+    t.boolean "pais_nacimiento"
     t.string "telefono", limit: 20
     t.string "calle", limit: 40
     t.string "ciudad", limit: 30
@@ -231,7 +232,7 @@ ActiveRecord::Schema.define(version: 28) do
   end
 
   create_table "institucions", force: :cascade do |t|
-    t.string "nombre", limit: 30
+    t.string "nombre", limit: 100
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["id"], name: "index_institucions_on_id", unique: true
@@ -245,7 +246,7 @@ ActiveRecord::Schema.define(version: 28) do
   end
 
   create_table "nivels", force: :cascade do |t|
-    t.string "nombre", limit: 30
+    t.string "nombre", limit: 100
     t.float "rango_min"
     t.float "rango_max"
     t.datetime "created_at", precision: 6, null: false
@@ -259,17 +260,6 @@ ActiveRecord::Schema.define(version: 28) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["id"], name: "index_pais_on_id", unique: true
-  end
-
-  create_table "persona_pais", force: :cascade do |t|
-    t.boolean "lugar_nacimiento"
-    t.bigint "persona_id"
-    t.bigint "pai_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["id"], name: "index_persona_pais_on_id", unique: true
-    t.index ["pai_id"], name: "index_persona_pais_on_pai_id"
-    t.index ["persona_id"], name: "index_persona_pais_on_persona_id"
   end
 
   create_table "personas", force: :cascade do |t|
@@ -388,8 +378,6 @@ ActiveRecord::Schema.define(version: 28) do
   add_foreign_key "horarios", "clases"
   add_foreign_key "horarios", "tutories"
   add_foreign_key "informacion_academicas", "estudiantes"
-  add_foreign_key "persona_pais", "pais"
-  add_foreign_key "persona_pais", "personas"
   add_foreign_key "programa_internacionals", "institucions"
   add_foreign_key "programa_internacionals", "pais"
   add_foreign_key "progreso_inscripcions", "estudiantes"

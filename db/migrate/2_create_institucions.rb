@@ -1,7 +1,7 @@
 class CreateInstitucions < ActiveRecord::Migration[6.0]
   def change
     create_table :institucions do |t|
-      t.string :nombre, limit: 30
+      t.string :nombre, limit: 100
 
       t.timestamps
     end
