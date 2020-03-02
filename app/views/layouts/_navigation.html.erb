@@ -9,6 +9,15 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Ficha de Admisión
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to "Nueva Ficha de Admisión", new_estudiante_path,class:"dropdown-item",id:"CrearAdmisión" %>
+          <%= link_to "Listar Ficha de Admisión", estudiantes_path, class:"dropdown-item", id:"ListarAdmisión" %>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Estudiante
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -16,6 +25,14 @@
           <%= link_to "Listar Estudiante", estudiantes_path, class:"dropdown-item", id:"ListarEstudiante" %>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="">Buscar estudiante</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Egresado
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to "Listar Egresado", new_estudiante_path,class:"dropdown-item",id:"CrearEstudiante" %>
         </div>
       </li>
     </ul>
