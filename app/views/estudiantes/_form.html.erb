@@ -3,92 +3,137 @@
     <%= render '/shared/errors', obj: @estudiante %>
     </div>
   <% end %>
-  
-  <%= form.fields_for :persona do |prsn| %>
-
-    <div class="field">
-    <%= prsn.label :nombres %>
-    <%= prsn.text_field :nombres   %>
-    </div>
-
-    <div class="field">
-      <%= prsn.label :apellidos %>
-      <%= prsn.text_field :apellidos %>
-    </div>
-
-    <div class="field">
-      <%= prsn.label :fecha_nacimiento %>
-      <%= prsn.date_field :fecha_nacimiento %>
-    </div>
-
-    <div class="field">
-      <%= prsn.label :correo_electronico %>
-      <%= prsn.text_field :correo_electronico %>
-    </div>
-
-  <% end %>
-
-  <div>
-    <%= form.label :facultad %>
-    <%= form.collection_select(:facultad_id, Facultad.all, :id, :nombre, include_blank: true) %>
+<div class="card">
+  <div class="card-header">
+    <h2>Datos Personales </h2> 
   </div>
-
-  <div>
-    <%= form.label :programa_internacional %>
-    <%= form.collection_select(:programa_internacional_id, ProgramaInternacional.all, :id, :nombre, include_blank: true) %>
+    <div class="card-body">
+    <%= form.fields_for :persona do |prsn| %>
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <h5>Nombre Estudiante:</h5>
+            <%= prsn.text_field :nombres, class: "form-control"%>
+          </div>
+        </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Apellido Estudiante:</h5>
+              <%= prsn.text_field :apellidos, class: "form-control" %>
+            </div>
+        </div>
+          <div class="col-md-4 col-sm-4">   
+            <div class="form-group">
+              <h5>Fecha Nacimiento:</h5>
+              <%= prsn.date_field :fecha_nacimiento %>
+            </div>
+          </div>
+        </div>
+      <div class="row col-md-12 col-sm-12">
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group"> 
+              <h5>Correo Electronico:</h5>
+              <%= prsn.text_field :correo_electronico,class: "form-control", placeholder:"hola@ejemplo.com" %>
+            </div>
+          </div>
+        <% end %>
+      <%= form.fields_for :padre do |padre| %>
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group"> 
+            <h5>Nombre Padre:</h5>
+            <%= padre.text_field :nombres,class: "form-control" %>
+            <h5>Apellidos Padre:</h5>
+            <%= padre.text_field :apellidos,class: "form-control" %>
+          </div>
+        </div>
+      <% end %>
+      <%= form.fields_for :madre do |madre| %>
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group"> 
+            <h5>Nombre Madre:</h5>
+            <%= madre.text_field :nombres,class: "form-control" %>
+            <h5>Apellidos Madre:</h5>
+            <%= madre.text_field :apellidos,class: "form-control" %>
+          </div>
+        </div>
+      <% end %>
+      <div class="col-md-4 col-sm-4">
+        <div class="form-group"> 
+          <h5>Estado Civil:</h5>
+          <%= form.select :estado_civil, ['Soltero/a', 'Casado/a','Viudo/a','Comprometido/a','En Relación','Unión Libre','Separado/a','Divorciado/a','Noviazgo/a'],{},{ class:"form-control"}%>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="form-group">         
+          <h5>Nombre Conyugue:</h5>
+          <%= form.text_field :nombre_conyugue, class: "form-control"%>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="form-group">         
+          <h5>Sexo:</h5>
+          <%= form.select :sexo, ['Femenino', 'Masculino'],{},{ class:"form-control"}%>
+        </div>
+       </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="form-group">         
+        <h5>No. Pasaporte</h5>
+        <%= form.text_field :pasaporte, class: "form-control"%>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div>
-    <%= form.label :carrera_solicitada %>
-    <%= form.collection_select(:carrera_solicitada_id, CarreraSolicitada.all, :id, :nombre, include_blank: true) %>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h2>Datos Academicos </h2> 
   </div>
-
-  <%= form.fields_for :padre do |padre| %>
-    <div>
-      <%= padre.label :padre %>
-      <%= padre.text_field :nombres %>
-      <%= padre.text_field :apellidos %>
-    </div>
-  <% end %>
-
-  <%= form.fields_for :madre do |madre| %>
-    <div>
-      <%= madre.label :madre %>
-      <%= madre.text_field :nombres %>
-      <%= madre.text_field :apellidos %>
-    </div>
-  <% end %>
-
-  <%= form.fields_for :direccions do |dirr| %>
-    <%= dirr.label :dirreccion %>
-    <div>
-      <%= dirr.collection_select(:pai_id, Pai.all, :id, :nombre, include_blank: true) %>
-      <%#= radio_button_tag "lugar_nacimiento", dirr.index, :lugar_nacimiento, checked: true %>
-      <%= dirr.radio_button "lugar_nacimiento", :pais_nacimiento, checked: false, name: 'pais_nacimiento' %>
-      <%= dirr.text_field :telefono %>
-      <%= dirr.text_field :calle %>
-      <%= dirr.text_field :ciudad %>
-      <%= dirr.text_field :codigo_postal %>
-    </div>
-  <% end %>
-
-  <%= form.fields_for :examen_de_nivel do |ex_niv| %>
-    <div>
-      <%= ex_niv.label :examen_de_nivel %>
-      <%= ex_niv.collection_select(:nivel_id, Nivel.all, :id, :nombre, include_blank: true) %>
-      <%= ex_niv.number_field :promedio, step: 0.1 %>
-    </div>
-  <% end %>
-
-  <%= form.fields_for :informacion_academica do |info_acad| %>
-    <div>
-      <%= info_acad.label :informacion_academicas %>
-      <%= info_acad.number_field :cantidad_de_anos_de_espanol_estudiadas, step: 0.1 %>
-      <%= info_acad.text_field :asignaturas_de_espanol_recientes %>
-      <%= info_acad.number_field :cantidad_de_horas_de_espanol_cursadas, step: 0.1 %>
-      <%= info_acad.text_field :nivel_alcanzado %>
-    </div>
-  <% end %>
+    <div class="card-body">
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <h5>Facultad:<h5>
+            <%= form.collection_select(:facultad_id, Facultad.all, :id, :nombre,{},{class:"form-control"}) %>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <h5>Programa Internacional<h5>
+            <%= form.collection_select(:programa_internacional_id, ProgramaInternacional.all, :id, :nombre,{},{class:"form-control"}) %>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <%= form.label :carrera_solicitada %>
+            <%= form.collection_select(:carrera_solicitada_id, CarreraSolicitada.all, :id, :nombre,{},{class:"form-control"}) %>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="row col-md-12 col-sm-12">
+            <div class="form-group">
+              <%= form.fields_for :examen_de_nivel do |ex_niv| %>
+                <div>
+                  <h5>Examen de Nivel</h5>
+                  <%= ex_niv.collection_select(:nivel_id, Nivel.all, :id, :nombre, {},{class:"form-control"}) %>
+                  <%= ex_niv.number_field :promedio, step: 0.1 %>
+                </div>
+            </div>
+          </div>
+              <% end %>
+              </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <%= form.fields_for :informacion_academica do |info_acad| %>
+              <div>
+                <h5>Informacion Academica</h5>
+                <%= info_acad.number_field :cantidad_de_anos_de_espanol_estudiadas, step: 0.1 %>
+                <%= info_acad.text_field :asignaturas_de_espanol_recientes %>
+                <%= info_acad.number_field :cantidad_de_horas_de_espanol_cursadas, step: 0.1 %>
+                <%= info_acad.text_field :nivel_alcanzado %>
+              </div>
+            <% end %>
+          </div>
+        </div>
 
   <%= form.fields_for :progreso_inscripcion do |prog_insc| %>
     <%= prog_insc.label :progreso_inscripcion %>
@@ -105,11 +150,29 @@
     <%= prog_insc.check_box :record_notas_original_de_univ_de_procedencia %>
     <%= prog_insc.check_box :copia_vacunacion %>
   <% end %>
-
   <div class="field">
-    <%= form.label :pasaporte %>
-    <%= form.text_field :pasaporte %>
+    <%= form.label :id_campus %>
+    <%= form.text_field :id_campus %>
   </div>
+  <div class="field">
+    <%= form.label :matricula %>
+    <%= form.text_field :matricula %>
+  </div>
+
+  <%= form.fields_for :direccions do |dirr| %>
+    <%= dirr.label :dirreccion %>
+    <div>
+      <%= dirr.collection_select(:pai_id, Pai.all, :id, :nombre, include_blank: true) %>
+      <%#= radio_button_tag "lugar_nacimiento", dirr.index, :lugar_nacimiento, checked: true %>
+      <%= dirr.radio_button "lugar_nacimiento", :pais_nacimiento, checked: false, name: 'pais_nacimiento' %>
+      <%= dirr.text_field :telefono %>
+      <%= dirr.text_field :calle %>
+      <%= dirr.text_field :ciudad %>
+      <%= dirr.text_field :codigo_postal %>
+    </div>
+  <% end %>
+
+
 
   <div class="field">
     <%= form.label :tiempo_residencia %>
@@ -121,30 +184,6 @@
     <%= form.text_field :numero_residencia %>
   </div>
 
-  <div class="field">
-    <%= form.label :id_campus %>
-    <%= form.text_field :id_campus %>
-  </div>
-
-  <div class="field">
-    <%= form.label :matricula %>
-    <%= form.text_field :matricula %>
-  </div>
-
-  <div class="field">
-    <%= form.label :estado_civil %>
-    <%= form.text_field :estado_civil %>
-  </div>
-
-  <div class="field">
-    <%= form.label :nombre_conyugue %>
-    <%= form.text_field :nombre_conyugue %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sexo %>
-    <%= form.text_field :sexo %>
-  </div>
 
   <div class="field">
     <%= form.label :egresado %>
