@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Estudiantes</h1>
+
+<table id="dtBasicExample" class="table table-striped">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Id Campus</th>
+    <th>Matricula</th>
+    <th>Sexo</th>
+    <th>Egresado</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @estudiantes.each do |estudiante| %>
+    <% if estudiante.admitido == false %>
+      <tr>
+        <td><%= estudiante.id %></td>
+        <td><%= estudiante.persona.nombres %></td>
+        <td><%= estudiante.persona.apellidos %></td>
+        <td><%= estudiante.id_campus %></td>
+        <td><%= estudiante.matricula %></td>
+        <td><%= estudiante.sexo %></td>
+        <td><%= estudiante.egresado ? :Si : :No %></td>
+        <td><%= link_to 'Show', estudiante, class: "btn btn-info" %></td>
+        <td><%= link_to 'Edit', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
+      </tr>
+    <%end %>>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<%= link_to 'Nuevo Estudiante', new_estudiante_path, class: "btn btn-primary" %>

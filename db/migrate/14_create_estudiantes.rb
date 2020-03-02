@@ -10,6 +10,7 @@ class CreateEstudiantes < ActiveRecord::Migration[6.0]
       t.string :nombre_conyugue, limit: 50
       t.string :sexo, limit: 9
       t.boolean :egresado
+      t.boolean :admitido
 
       t.references :facultad, foreign_key: true
       t.references :padre, foreign_key:{to_table: :personas}

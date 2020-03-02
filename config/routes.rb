@@ -26,5 +26,7 @@ Rails.application.routes.draw do
   resources :pais
   resources :rols
   resources :temporadas
+  get "egresados", to: "pages#egresados"
+  get "no_admitidos", to: "pages#no_admitidos"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

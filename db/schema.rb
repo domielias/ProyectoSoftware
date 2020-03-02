@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 28) do
     t.string "nombre_conyugue", limit: 50
     t.string "sexo", limit: 9
     t.boolean "egresado"
+    t.boolean "admitido"
     t.bigint "facultad_id"
     t.bigint "padre_id"
     t.bigint "madre_id"

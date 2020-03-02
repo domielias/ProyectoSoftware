@@ -18,17 +18,19 @@
 
   <tbody>
     <% @estudiantes.each do |estudiante| %>
-      <tr>
-        <td><%= estudiante.id %></td>
-        <td><%= estudiante.persona.nombres %></td>
-        <td><%= estudiante.persona.apellidos %></td>
-        <td><%= estudiante.id_campus %></td>
-        <td><%= estudiante.matricula %></td>
-        <td><%= estudiante.sexo %></td>
-        <td><%= estudiante.egresado ? :Si : :No %></td>
-        <td><%= link_to 'Show', estudiante, class: "btn btn-info" %></td>
-        <td><%= link_to 'Edit', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
-      </tr>
+      <% if estudiante.admitido == true and estudiante.egresado == false %>
+        <tr>
+          <td><%= estudiante.id %></td>
+          <td><%= estudiante.persona.nombres %></td>
+          <td><%= estudiante.persona.apellidos %></td>
+          <td><%= estudiante.id_campus %></td>
+          <td><%= estudiante.matricula %></td>
+          <td><%= estudiante.sexo %></td>
+          <td><%= estudiante.egresado ? :Si : :No %></td>
+          <td><%= link_to 'Show', estudiante, class: "btn btn-info" %></td>
+          <td><%= link_to 'Edit', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
+        </tr>
+      <%end %>>
     <% end %>
   </tbody>
 </table>
