@@ -1,16 +1,9 @@
 <%= form_with(model: estudiante, local: true) do |form| %>
   <% if estudiante.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(estudiante.errors.count, "error") %> prohibited this estudiante from being saved:</h2>
-
-      <ul>
-        <% estudiante.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+    <%= render '/shared/errors', obj: @estudiante %>
     </div>
   <% end %>
-
+  
   <%= form.fields_for :persona do |prsn| %>
 
     <div class="field">
