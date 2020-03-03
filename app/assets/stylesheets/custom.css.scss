@@ -1,4 +1,10 @@
 @import 'bootstrap/dist/css/bootstrap';
+@import 'adminlte';
+@import 'adminlte.components';
+@import 'adminlte.pages';
+@import 'adminlte.plugins';
+@import 'adminlte.core';
+
 
 .navbar {
 
@@ -16,6 +22,9 @@
     }
     .card{
         border-radius: .25rem;
+    }
+    .display-4{
+        color: red;
     }
   
     

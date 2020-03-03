@@ -13,5 +13,11 @@
  *= require bootstrap
  *= require_tree .
  *= require_self
-
+ *= require adminlte.components
+ *= require adminlte.core
+ *= require adminlte
+ *= require adminlte.extra-components
+ *= require adminlte.pages
+ *= require adminlte.plugins
+ *= require font-awesome
  */
