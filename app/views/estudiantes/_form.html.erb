@@ -1,12 +1,15 @@
 <%= form_with(model: estudiante, local: true) do |form| %>
   <% if estudiante.errors.any? %>
     <%= render '/shared/errors', obj: @estudiante %>
-    </div>
   <% end %>
-<div class="card">
+<div class="card card-default">
   <div class="card-header">
-    <h2>Datos Personales </h2> 
+    <h3 class="card-title">Datos Personales </h3>
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+    </div>
   </div>
+
     <div class="card-body">
     <%= form.fields_for :persona do |prsn| %>
       <div class="row col-md-12 col-sm-12">
@@ -21,14 +24,50 @@
               <h5>Apellido Estudiante:</h5>
               <%= prsn.text_field :apellidos, class: "form-control" %>
             </div>
+          </div>
         </div>
-          <div class="col-md-4 col-sm-4">   
+        <hr>
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-4 col-sm-4">
             <div class="form-group">
-              <h5>Fecha Nacimiento:</h5>
-              <%= prsn.date_field :fecha_nacimiento %>
+              <h5>No. Pasaporte</h5>
+              <%= form.text_field :pasaporte, class: "form-control"%>
             </div>
           </div>
         </div>
+        <hr>
+         <div class="row col-md-12 col-sm-12">
+           <div class="col-md-1 col-sm-1">
+            <div class="form-group">
+              <h5>Sexo:</h5>
+              <%= form.select :sexo, ['Femenino', 'Masculino'],{},{ class:"form-control"}%>
+            </div>
+           </div>
+          </div>
+        <hr>
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-2 col-sm-2">
+            <div class="form-group">
+              <h5>Fecha Nacimiento:</h5>
+              <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="far fa-calendar-alt"></i>
+                      </span>
+              <%= prsn.date_field :fecha_nacimiento, {class: "form-control", style: "text-align:center"}%>
+            </div>
+          </div>
+        </div>
+
+<!--        <div class="input-group">-->
+<!--          <div class="input-group-prepend">-->
+<!--                      <span class="input-group-text">-->
+<!--                        <i class="far fa-calendar-alt"></i>-->
+<!--                      </span>-->
+<!--          </div>-->
+<!--          <input type="text" class="form-control float-right" id="reservation">-->
+<!--        </div>-->
+
+        <hr>
       <div class="row col-md-12 col-sm-12">
           <div class="col-md-4 col-sm-4">
             <div class="form-group"> 
@@ -37,74 +76,85 @@
             </div>
           </div>
         <% end %>
-      <%= form.fields_for :padre do |padre| %>
-        <div class="col-md-4 col-sm-4">
-          <div class="form-group"> 
-            <h5>Nombre Padre:</h5>
-            <%= padre.text_field :nombres,class: "form-control" %>
-            <h5>Apellidos Padre:</h5>
-            <%= padre.text_field :apellidos,class: "form-control" %>
+      </div>
+      <hr>
+      <div class="row col-md-12 col-sm-12">
+        <%= form.fields_for :padre do |padre| %>
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Nombre Padre:</h5>
+              <%= padre.text_field :nombres,class: "form-control" %>
+            </div>
           </div>
-        </div>
-      <% end %>
-      <%= form.fields_for :madre do |madre| %>
-        <div class="col-md-4 col-sm-4">
-          <div class="form-group"> 
-            <h5>Nombre Madre:</h5>
-            <%= madre.text_field :nombres,class: "form-control" %>
-            <h5>Apellidos Madre:</h5>
-            <%= madre.text_field :apellidos,class: "form-control" %>
+            <div class="col-md-4 col-sm-4">
+              <div class="form-group">
+              <h5>Apellidos Padre:</h5>
+              <%= padre.text_field :apellidos,class: "form-control" %>
+              </div>
           </div>
-        </div>
-      <% end %>
-      <div class="col-md-4 col-sm-4">
-        <div class="form-group"> 
+        <% end %>
+      </div>
+      <hr>
+      <div class="row col-md-12 col-sm-12">
+        <%= form.fields_for :madre do |madre| %>
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Nombre Madre:</h5>
+              <%= madre.text_field :nombres,class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Apellidos Madre:</h5>
+              <%= madre.text_field :apellidos,class: "form-control" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="row col-md-12 col-sm-12">
+      <div class="col-md-1 col-sm-1">
+        <div class="form-group">
           <h5>Estado Civil:</h5>
           <%= form.select :estado_civil, ['Soltero/a', 'Casado/a','Viudo/a','Comprometido/a','En Relación','Unión Libre','Separado/a','Divorciado/a','Noviazgo/a'],{},{ class:"form-control"}%>
         </div>
       </div>
+      </div>
+      <div class="row col-md-12 col-sm-12">
       <div class="col-md-4 col-sm-4">
         <div class="form-group">         
           <h5>Nombre Conyugue:</h5>
           <%= form.text_field :nombre_conyugue, class: "form-control"%>
         </div>
       </div>
-      <div class="col-md-4 col-sm-4">
-        <div class="form-group">         
-          <h5>Sexo:</h5>
-          <%= form.select :sexo, ['Femenino', 'Masculino'],{},{ class:"form-control"}%>
-        </div>
-       </div>
-      <div class="col-md-4 col-sm-4">
-        <div class="form-group">         
-        <h5>No. Pasaporte</h5>
-        <%= form.text_field :pasaporte, class: "form-control"%>
-        </div>
       </div>
     </div>
   </div>
 </div>
-<div class="card">
-  <div class="card-header">
-    <h2>Datos Academicos </h2> 
+  <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">Datos Academicos </h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+      </div>
   </div>
     <div class="card-body">
       <div class="row col-md-12 col-sm-12">
         <div class="col-md-4 col-sm-4">
           <div class="form-group">
-            <h5>Facultad:<h5>
+            <h5>Facultad:</h5>
             <%= form.collection_select(:facultad_id, Facultad.all, :id, :nombre,{},{class:"form-control"}) %>
           </div>
         </div>
         <div class="col-md-4 col-sm-4">
           <div class="form-group">
-            <h5>Programa Internacional<h5>
+            <h5>Programa Internacional</h5>
             <%= form.collection_select(:programa_internacional_id, ProgramaInternacional.all, :id, :nombre,{},{class:"form-control"}) %>
           </div>
         </div>
         <div class="col-md-4 col-sm-4">
           <div class="form-group">
-            <h5>Carrera Solicitada<h5>
+            <h5>Carrera Solicitada</h5>
             <%= form.collection_select(:carrera_solicitada_id, CarreraSolicitada.all, :id, :nombre,{},{class:"form-control"}) %>
           </div>
         </div>
@@ -165,11 +215,15 @@
             <%= form.text_field :matricula,class:"form-control" %>
           </div>
         </div>
+      </div>
     </div>
   </div>
-<div class="card">
-  <div class="card-header">
-    <h2>Otras Informaciones</h2> 
+  <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">Otras Informaciones</h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+      </div>
   </div>
     <div class="card-body">
     <div class="row col-md-12 col-sm-12">
@@ -220,4 +274,6 @@
           </div>
         </div>
       </div>
+    </div>
+</div>
 <% end %>
