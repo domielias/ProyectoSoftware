@@ -10,5 +10,7 @@ class PagesController < ApplicationController
     def no_admitidos
         @estudiantes = Estudiante.all
     end
-    
+    def configuracion
+        @edificio=Edificio.new
+    end
 end

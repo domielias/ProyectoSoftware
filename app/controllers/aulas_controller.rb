@@ -15,6 +15,7 @@ class AulasController < ApplicationController
   # GET /aulas/new
   def new
     @aula = Aula.new
+    @aula.build_edificio
   end
 
   # GET /aulas/1/edit
@@ -69,6 +70,6 @@ class AulasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def aula_params
-      params.require(:aula).permit(:nombre)
+      params.require(:aula).permit(:nombre, :edificio_id)
     end
 end

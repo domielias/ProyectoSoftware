@@ -1,0 +1,49 @@
+<div class="row col-md-12 col-sm-12 col-lg-12">
+<div class="col-lg-4 connectedSortable ui-sortable">
+  <div class="card">
+    <div class="card-header ui-sortable-handle" style="cursor: move;">
+      <h3 class="card-title">Crear Aula</h3>
+      <div class="card-tools">
+         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div>
+        <%= form_with model: @edificio, url: "edificios" do |form| %>
+        <h5>Nombre:</h5>
+        <%= form.text_field :nombre %>
+        <h5>Abreviatura:</h5>
+        <%= form.text_field :abreviatura %>
+        <h5>Edificio:</h5>
+        <%= form.collection_select(:edificio_id, Edificio.all, :id, :nombre,{},{class:"form-control"}) %>
+        <%= form.submit  %>
+        <%=puts "Niidea"%>
+        <% end  %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-lg-5 connectedSortable ui-sortable">
+  <div class="card">
+    <div class="card-header ui-sortable-handle" style="cursor: move;">
+      <h3 class="card-title">Listar Aula</h3>
+      <div class="card-tools">
+         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div>
+        <%= form_with model: @edificio, url: "edificios" do |form| %>
+        <h5>Nombre:</h5>
+        <%= form.text_field :nombre %>
+        <h5>Abreviatura:</h5>
+        <%= form.text_field :abreviatura %>
+        <h5>Edificio:</h5>
+        <%= form.collection_select(:edificio_id, Edificio.all, :id, :nombre,{},{class:"form-control"}) %>
+        <%= form.submit  %>
+        <%=puts "Niidea"%>
+        <% end  %>
+      </div>
+    </div>
+  </div>
+</div>

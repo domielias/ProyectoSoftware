@@ -28,7 +28,7 @@ class EdificiosController < ApplicationController
 
     respond_to do |format|
       if @edificio.save
-        format.html { redirect_to @edificio, notice: 'Edificio was successfully created.' }
+        # format.html { redirect_to @edificio, notice: 'Edificio was successfully created.' }
         format.json { render :show, status: :created, location: @edificio }
       else
         format.html { render :new }
