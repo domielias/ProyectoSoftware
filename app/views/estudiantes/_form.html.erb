@@ -6,7 +6,7 @@
   <div class="card-header">
     <h3 class="card-title">Datos Personales </h3>
     <div class="card-tools">
-      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
     </div>
   </div>
 
@@ -57,27 +57,19 @@
             </div>
           </div>
         </div>
+        </div>
 
-<!--        <div class="input-group">-->
-<!--          <div class="input-group-prepend">-->
-<!--                      <span class="input-group-text">-->
-<!--                        <i class="far fa-calendar-alt"></i>-->
-<!--                      </span>-->
-<!--          </div>-->
-<!--          <input type="text" class="form-control float-right" id="reservation">-->
-<!--        </div>-->
-
-        <hr>
+          <hr/>
       <div class="row col-md-12 col-sm-12">
           <div class="col-md-4 col-sm-4">
-            <div class="form-group"> 
+            <div class="form-group">
               <h5>Correo Electronico:</h5>
               <%= prsn.text_field :correo_electronico,class: "form-control", placeholder:"hola@ejemplo.com" %>
             </div>
           </div>
         <% end %>
       </div>
-      <hr>
+      <hr/>
       <div class="row col-md-12 col-sm-12">
         <%= form.fields_for :padre do |padre| %>
           <div class="col-md-4 col-sm-4">
@@ -94,7 +86,7 @@
           </div>
         <% end %>
       </div>
-      <hr>
+      <hr/>
       <div class="row col-md-12 col-sm-12">
         <%= form.fields_for :madre do |madre| %>
           <div class="col-md-4 col-sm-4">
@@ -111,7 +103,7 @@
           </div>
         <% end %>
       </div>
-
+      <hr/>
       <div class="row col-md-12 col-sm-12">
       <div class="col-md-1 col-sm-1">
         <div class="form-group">
@@ -122,7 +114,7 @@
       </div>
       <div class="row col-md-12 col-sm-12">
       <div class="col-md-4 col-sm-4">
-        <div class="form-group">         
+        <div class="form-group">
           <h5>Nombre Conyugue:</h5>
           <%= form.text_field :nombre_conyugue, class: "form-control"%>
         </div>
@@ -130,121 +122,140 @@
       </div>
     </div>
   </div>
-</div>
+
   <div class="card card-default">
     <div class="card-header">
       <h3 class="card-title">Datos Academicos </h3>
       <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
       </div>
   </div>
+
     <div class="card-body">
       <div class="row col-md-12 col-sm-12">
-        <div class="col-md-4 col-sm-4">
-          <div class="form-group">
-            <h5>Facultad:</h5>
-            <%= form.collection_select(:facultad_id, Facultad.all, :id, :nombre,{},{class:"form-control"}) %>
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-2 col-sm-2">
+            <div class="form-group">
+              <h5>Programa Internacional</h5>
+              <%= form.collection_select(:programa_internacional_id, ProgramaInternacional.all, :id, :nombre,{},{class:"form-control"}) %>
+            </div>
           </div>
         </div>
-        <div class="col-md-4 col-sm-4">
-          <div class="form-group">
-            <h5>Programa Internacional</h5>
-            <%= form.collection_select(:programa_internacional_id, ProgramaInternacional.all, :id, :nombre,{},{class:"form-control"}) %>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-4">
-          <div class="form-group">
-            <h5>Carrera Solicitada</h5>
-            <%= form.collection_select(:carrera_solicitada_id, CarreraSolicitada.all, :id, :nombre,{},{class:"form-control"}) %>
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-2 col-sm-2">
+            <div class="form-group">
+              <h5>Carrera Solicitada</h5>
+              <%= form.collection_select(:carrera_solicitada_id, CarreraSolicitada.all, :id, :nombre,{},{class:"form-control"}) %>
+            </div>
           </div>
         </div>
       </div>
+      <hr>
+
+      <%= form.fields_for :examen_de_nivel do |ex_niv| %>
       <div class="row col-md-12 col-sm-12">
-        <%= form.fields_for :examen_de_nivel do |ex_niv| %>
-          <div class="col-md-4 col-sm-4">
-              <div class="form-group">
-                <div>
-                  <h5>Examen de Nivel</h5>
-                  <%= ex_niv.collection_select(:nivel_id, Nivel.all, :id, :nombre, {},{class:"form-control"}) %>
-                  <%= ex_niv.number_field :promedio, step: 0.1 %>
-                </div>
-              </div>
-        <% end %>
-          </div>
-          <%= form.fields_for :informacion_academica do |info_acad| %>
-            <div class="col-md-4 col-sm-4">
-              <div class="form-group">
-                <div>
-                  <h5>Informacion Academica</h5>
-                  <h6>Tiempo estudiando español <%= info_acad.number_field :cantidad_de_anos_de_espanol_estudiadas, step: 0.1 %></h6>
-                  <h6>Asignaturas de español recientes <%= info_acad.text_field :asignaturas_de_espanol_recientes,class:"form-control" %> </h6>
-                  <h6>Horas de español cursado <%= info_acad.number_field :cantidad_de_horas_de_espanol_cursadas, step: 0.1 %></h6>
-                  <h6>Nivel Alcanzado <%= info_acad.text_field :nivel_alcanzado,class:"form-control" %></h6>
-                </div>
-            </div>
-          <% end %>
-        </div>
-        <%= form.fields_for :progreso_inscripcion do |prog_insc| %>
-            <div class="col-md-4 col-sm-4">
-              <div class="form-group">
-                <h5>Progreso Inscripción</h5>
-                <h6>Formulario de Solicitud <%= prog_insc.check_box :formulario_solicitud %></h6>
-                <h6>Acta de Nacimiento <%= prog_insc.check_box :acta_nacimiento %> </h6>
-                <h6>Certificado Medico <%= prog_insc.check_box :certificacion_medica %> </h6>
-                <h6>Fotografia 2x2<%= prog_insc.check_box :fotografias %> </h6>
-                <h6>Copia de Cedula <%= prog_insc.check_box :copia_cedula %> </h6>
-                <h6>Record Secundaria <%= prog_insc.check_box :record_secundaria %> </h6>
-                <h6>Certificado Prueba Nacionales <%= prog_insc.check_box :certificado_pruebas_nacionales %> </h6>
-                <h6>Recibo Admisión <%= prog_insc.check_box :recibo_admision %> </h6>
-                <h6>Copia Seguro de Salud <%= prog_insc.check_box :copia_seguro_salud %> </h6>
-                <h6>Acta Nacimiento Padre <%= prog_insc.check_box :acta_nacimiento_padre %> </h6>
-                <h6>Record de nota <%= prog_insc.check_box :record_notas_original_de_univ_de_procedencia %> </h6>
-                <h6>Copia de Vacunación <%= prog_insc.check_box :copia_vacunacion %> </h6>
-              </div>
-            </div>
-          <% end %>
-          <div class="col-md-4 col-sm-4">
+          <div class="col-md-2 col-sm-2">
             <div class="form-group">
-              <h5>Id Campus</h5>
-              <%= form.text_field :id_campus,class:"form-control" %>
+              <h5>Examen de Nivel</h5>
+              <h6>Nota</h6>
+              <%= ex_niv.number_field :promedio, {step: 0.1, class:"number-box"}%>
             </div>
           </div>
-        <div class="col-md-4 col-sm-4">
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-3 col-sm-3">
           <div class="form-group">
-            <h5>Matricula</h5>
-            <%= form.text_field :matricula,class:"form-control" %>
+            <h6>Nivel</h6>
+            <%= ex_niv.collection_select(:nivel_id, Nivel.all, :id, :nombre, {},{class:"form-control"}) %>
+        </div>
+      </div>
+        </div>
+    </div>
+      <% end %>
+      <hr>
+
+    <%= form.fields_for :informacion_academica do |info_acad| %>
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-2 col-sm-2">
+          <div class="form-group">
+            <h5>Informacion Academica</h5>
+            <h6>Tiempo estudiando español</h6>
+            <%= info_acad.number_field :cantidad_de_anos_de_espanol_estudiadas, {step: 0.1, class:"number-box"} %>
           </div>
         </div>
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-2 col-sm-2">
+            <div class="form-group">
+              <h6>Asignaturas de español recientes</h6>
+              <%= info_acad.text_field :asignaturas_de_espanol_recientes,class:"form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-2 col-sm-2">
+            <div class="form-group">
+              <h6>Cantidad de horas de español cursadas</h6>
+              <%= info_acad.number_field :cantidad_de_horas_de_espanol_cursadas, {step: 0.1, class: "number-box"} %>
+            </div>
+          </div>
+        </div>
+        <div class="row col-md-12 col-sm-12">
+        <div class="col-md-2 col-sm-2">
+          <div class="form-group">
+            <h6>Nivel Alcanzado</h6>
+            <%= info_acad.text_field :nivel_alcanzado,class:"form-control" %>
+          </div>
+        </div>
+        </div>
+          <% end %>
+      </div>
       </div>
     </div>
-  </div>
+
+
   <div class="card card-default">
     <div class="card-header">
       <h3 class="card-title">Otras Informaciones</h3>
       <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
       </div>
-  </div>
+    </div>
     <div class="card-body">
-    <div class="row col-md-12 col-sm-12">
       <% n=0 %>
       <%= form.fields_for :direccions do |dirr| %>
-        <div class="col-md-4 col-sm-4">
-          <div class="form-group">
-            <h5>Dirección: <%= n+=1 %></h5>
-              <div>
-                <h6> Pais:<%= dirr.collection_select(:pai_id, Pai.all, :id, :nombre,{},{class:"form-control"}) %></h6>
-                <%#= radio_button_tag "lugar_nacimiento", dirr.index, :lugar_nacimiento, checked: true %>
-                <h6>Lugar de nacimiento: <%= dirr.radio_button "lugar_nacimiento", :pais_nacimiento, checked: false, name: 'pais_nacimiento' %></h6>
-                <h6>Teléfono: <%= dirr.text_field :telefono,class:"form-control"%></h6>
+          <div class="row col-md-12 col-sm-12">
+            <div class="col-md-4 col-sm-4">
+              <div class="form-group">
+                <h5>Dirección: <%= n+=1 %></h5>
+                  <div>
+                    <h6> Pais:<%= dirr.collection_select(:pai_id, Pai.all, :id, :nombre,{},{class:"form-control"}) %></h6>
+                    <%#= radio_button_tag "lugar_nacimiento", dirr.index, :lugar_nacimiento, checked: true %>
+                    <h6>Lugar de nacimiento: <%= dirr.radio_button "lugar_nacimiento", :pais_nacimiento, checked: false, name: 'pais_nacimiento' %></h6>
+                    <hr/>
+                    <h6>Teléfono: <%= dirr.text_field :telefono,class:"form-control"%></h6>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <hr/>
+          <div class="row col-md-12 col-sm-12">
+                <div class="col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <h6>Ciudad: <%= dirr.text_field :ciudad,class:"form-control" %></h6>
+                  </div>
+                </div>
+            <div class="col-md-4 col-sm-4">
+              <div class="form-group">
                 <h6>Calle: <%= dirr.text_field :calle,class:"form-control" %></h6>
-                <h6>Ciudad: <%= dirr.text_field :ciudad,class:"form-control" %></h6>
+              </div>
+            </div>
+        </div>
+          <div class="row col-md-12 col-sm-12">
+              <div class="col-md-1 col-sm-1">
                 <h6>Codigo Postal: <%= dirr.text_field :codigo_postal,class:"form-control" %></h6>
               </div>
-          </div>
         </div>
+        <hr/>
         <% end %>
-    </div>
       <div class="col-md-4 col-sm-4">
         <div class="form-group">
           <h6>Tiempo de Residencia</h6>
@@ -257,6 +268,7 @@
           <%= form.text_field :numero_residencia,class:"form-control" %>
         </div>
       </div>
+      <hr/>
       <div class="col-md-4 col-sm-4">
         <div class="form-group">
           <h6>Egresado: <%= form.check_box :egresado %></h6>
@@ -274,6 +286,7 @@
           </div>
         </div>
       </div>
-    </div>
-</div>
+      </div>
+  </div>
+
 <% end %>

@@ -56,6 +56,10 @@
   line-height: calc(1.8125rem + 2px);
 }
 
+.number-box{
+    height:calc(2.25rem + 2px);
+}
+
 .form-group-sm .form-control + .form-control-feedback.fa, .form-group-sm .form-control + .form-control-feedback.fas, .form-group-sm .form-control + .form-control-feedback.far, .form-group-sm .form-control + .form-control-feedback.fab, .form-group-sm .form-control + .form-control-feedback.glyphicon, .form-group-sm .form-control + .form-control-feedback.ion {
   line-height: calc(1.8125rem + 2px);
 }
