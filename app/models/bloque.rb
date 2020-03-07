@@ -5,4 +5,9 @@ class Bloque < ApplicationRecord
   belongs_to :temporada
   has_and_belongs_to_many :asignaturas
   has_many :evaluacions
+
+  accepts_nested_attributes_for :category
+  accepts_nested_attributes_for :temporada
+  accepts_nested_attributes_for :asignaturas
+
 end

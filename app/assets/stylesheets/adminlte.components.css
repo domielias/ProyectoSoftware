@@ -64,6 +64,10 @@
   line-height: calc(1.8125rem + 2px);
 }
 
+.date-input{
+    text-align:center
+}
+
 label:not(.form-check-label):not(.custom-file-label) {
   font-weight: 700;
 }

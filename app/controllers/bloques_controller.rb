@@ -15,6 +15,7 @@ class BloquesController < ApplicationController
   # GET /bloques/new
   def new
     @bloque = Bloque.new
+    @bloque.build_category
   end
 
   # GET /bloques/1/edit
@@ -69,6 +70,6 @@ class BloquesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bloque_params
-      params.require(:bloque).permit(:fecha_inicio, :fecha_final)
+      params.require(:bloque).permit(:fecha_inicio, :fecha_final, :category_id)
     end
 end

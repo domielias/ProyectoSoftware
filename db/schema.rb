@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 28) do
+ActiveRecord::Schema.define(version: 2020_03_06_043713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -63,24 +63,15 @@ ActiveRecord::Schema.define(version: 28) do
     t.index ["id"], name: "index_asignaturas_on_id", unique: true
   end
 
-  create_table "aulas", force: :cascade do |t|
-    t.string "nombre", limit: 25
-    t.bigint "edificio_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["edificio_id"], name: "index_aulas_on_edificio_id"
-    t.index ["id"], name: "index_aulas_on_id", unique: true
-  end
-
   create_table "bloques", force: :cascade do |t|
     t.datetime "fecha_inicio"
     t.datetime "fecha_final"
-    t.bigint "categoria_id"
+    t.bigint "category_id"
     t.bigint "creador_id"
     t.bigint "temporada_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["categoria_id"], name: "index_bloques_on_categoria_id"
+    t.index ["category_id"], name: "index_bloques_on_category_id"
     t.index ["creador_id"], name: "index_bloques_on_creador_id"
     t.index ["id"], name: "index_bloques_on_id", unique: true
     t.index ["temporada_id"], name: "index_bloques_on_temporada_id"
@@ -106,21 +97,26 @@ ActiveRecord::Schema.define(version: 28) do
     t.integer "seccion"
     t.boolean "activo"
     t.integer "no_clase"
+    t.string "lugar", limit: 20
+    t.string "modalidad", limit: 20
     t.bigint "profesor_id"
     t.bigint "asignatura_id"
     t.bigint "temporada_id"
-    t.bigint "aula_id"
     t.bigint "modalidad_id"
     t.bigint "clase_vinculada_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["asignatura_id"], name: "index_clases_on_asignatura_id"
-    t.index ["aula_id"], name: "index_clases_on_aula_id"
     t.index ["clase_vinculada_id"], name: "index_clases_on_clase_vinculada_id"
     t.index ["id"], name: "index_clases_on_id", unique: true
     t.index ["modalidad_id"], name: "index_clases_on_modalidad_id"
     t.index ["profesor_id"], name: "index_clases_on_profesor_id"
     t.index ["temporada_id"], name: "index_clases_on_temporada_id"
+  end
+
+  create_table "configuracions", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "direccions", force: :cascade do |t|
@@ -137,14 +133,6 @@ ActiveRecord::Schema.define(version: 28) do
     t.index ["estudiante_id"], name: "index_direccions_on_estudiante_id"
     t.index ["id"], name: "index_direccions_on_id", unique: true
     t.index ["pai_id"], name: "index_direccions_on_pai_id"
-  end
-
-  create_table "edificios", force: :cascade do |t|
-    t.string "nombre", limit: 30
-    t.string "abreviatura", limit: 30
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["id"], name: "index_edificios_on_id", unique: true
   end
 
   create_table "estudiantes", force: :cascade do |t|
@@ -209,12 +197,10 @@ ActiveRecord::Schema.define(version: 28) do
   create_table "horarios", force: :cascade do |t|
     t.bigint "clase_id"
     t.bigint "tutory_id"
-    t.bigint "aula_id"
     t.datetime "inicio"
     t.datetime "fin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["aula_id"], name: "index_horarios_on_aula_id"
     t.index ["clase_id"], name: "index_horarios_on_clase_id"
     t.index ["id"], name: "index_horarios_on_id", unique: true
     t.index ["tutory_id"], name: "index_horarios_on_tutory_id"
@@ -327,12 +313,11 @@ ActiveRecord::Schema.define(version: 28) do
   end
 
   create_table "tutories", force: :cascade do |t|
+    t.string "lugar", limit: 20
     t.bigint "profesor_id"
     t.bigint "clase_id"
-    t.bigint "aula_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["aula_id"], name: "index_tutories_on_aula_id"
     t.index ["clase_id"], name: "index_tutories_on_clase_id"
     t.index ["id"], name: "index_tutories_on_id", unique: true
     t.index ["profesor_id"], name: "index_tutories_on_profesor_id"
@@ -352,12 +337,10 @@ ActiveRecord::Schema.define(version: 28) do
 
   add_foreign_key "actividads", "usuarios"
   add_foreign_key "asignaturas", "facultads"
-  add_foreign_key "aulas", "edificios"
-  add_foreign_key "bloques", "categories", column: "categoria_id"
+  add_foreign_key "bloques", "categories"
   add_foreign_key "bloques", "temporadas"
   add_foreign_key "bloques", "usuarios", column: "creador_id"
   add_foreign_key "clases", "asignaturas"
-  add_foreign_key "clases", "aulas"
   add_foreign_key "clases", "clases", column: "clase_vinculada_id"
   add_foreign_key "clases", "modalidads"
   add_foreign_key "clases", "temporadas"
@@ -375,14 +358,12 @@ ActiveRecord::Schema.define(version: 28) do
   add_foreign_key "evaluacions", "tipo_evaluacions"
   add_foreign_key "examen_de_nivels", "estudiantes"
   add_foreign_key "examen_de_nivels", "nivels"
-  add_foreign_key "horarios", "aulas"
   add_foreign_key "horarios", "clases"
   add_foreign_key "horarios", "tutories"
   add_foreign_key "informacion_academicas", "estudiantes"
   add_foreign_key "programa_internacionals", "institucions"
   add_foreign_key "programa_internacionals", "pais"
   add_foreign_key "progreso_inscripcions", "estudiantes"
-  add_foreign_key "tutories", "aulas"
   add_foreign_key "tutories", "clases"
   add_foreign_key "tutories", "usuarios", column: "profesor_id"
   add_foreign_key "usuarios", "personas"

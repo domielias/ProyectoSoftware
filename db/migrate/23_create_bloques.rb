@@ -4,7 +4,7 @@ class CreateBloques < ActiveRecord::Migration[6.0]
       t.timestamp :fecha_inicio
       t.timestamp :fecha_final
 
-      t.references :categoria, foreign_key: {to_table: :categories}
+      t.references :category, foreign_key: {to_table: :categories}
       t.references :creador, foreign_key: {to_table: :usuarios}
       t.references :temporada, foreign_key: true
 

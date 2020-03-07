@@ -11,14 +11,63 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :fecha_inicio %>
-    <%= form.datetime_select :fecha_inicio %>
+          <!--  <div class="field">-->
+              <%#= form.label :fecha_inicio %>
+              <%#= form.datetime_select :fecha_inicio %>
+          <!--  </div>-->
+
+          <!--  <div class="field">-->
+              <%#= form.label :fecha_final %>
+              <%#= form.datetime_select :fecha_final %>
+          <!--  </div>-->
+
+  <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">Rango de Fecha (opcional)</h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-2 col-sm-2">
+          <div class="form-group">
+            <h5>Fecha Inicial</h5>
+            <%= form.date_field :fecha_inicio, {class: "form-control date-input"}%>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <div class="form-group">
+            <h5>Fecha final</h5>
+            <%= form.date_field :fecha_final, {class: "form-control date-input"}%>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :fecha_final %>
-    <%= form.datetime_select :fecha_final %>
+  <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">Datos generales</h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <%= form.fields_for :category do |ctga| %>
+        <div class="row col-md-12 col-sm-12">
+          <div class="row col-md-4 col-sm-4">
+            <div class="form-group">
+              <h6>Categoria</h6>
+              <%#= ctga.collection_select(:category_id, Categories.all, :id, :nombre,{},{class:"form-control"}) %>
+              <%= form.date_field :fecha_final, {class: "form-control date-input"}%>
+            </div>
+          </div>
+          <% end %>
+        </div>
+    </div>
   </div>
 
   <div class="actions">
