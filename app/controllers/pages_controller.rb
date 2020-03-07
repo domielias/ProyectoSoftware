@@ -12,5 +12,6 @@ class PagesController < ApplicationController
     end
     def configuracion
         @edificio=Edificio.new
+        @aula=Aula.all
     end
 end
