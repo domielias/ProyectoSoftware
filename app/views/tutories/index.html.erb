@@ -7,7 +7,6 @@
     <tr>
       <th>Profesor</th>
       <th>Clase</th>
-      <th>Aula</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,7 +16,6 @@
       <tr>
         <td><%= tutory.profesor_id %></td>
         <td><%= tutory.clase_id %></td>
-        <td><%= tutory.aula_id %></td>
         <td><%= link_to 'Show', tutory %></td>
         <td><%= link_to 'Edit', edit_tutory_path(tutory) %></td>
         <td><%= link_to 'Destroy', tutory, method: :delete, data: { confirm: 'Are you sure?' } %></td>

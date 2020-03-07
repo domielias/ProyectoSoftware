@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   resources :actividads
   resources :tipo_evaluacions
   resources :evaluacions
-  resources :aulas
-  resources :edificios
   resources :modalidads
   resources :clases
   resources :bloques

@@ -10,8 +10,4 @@ class PagesController < ApplicationController
     def no_admitidos
         @estudiantes = Estudiante.all
     end
-    def configuracion
-        @edificio=Edificio.new
-        @aula=Aula.all
-    end
 end

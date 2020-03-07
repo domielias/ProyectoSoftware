@@ -3,7 +3,6 @@ class CreateHorarios < ActiveRecord::Migration[6.0]
     create_table :horarios do |t|
       t.references :clase, foreign_key: true
       t.references :tutory, foreign_key: true
-      t.references :aula, foreign_key: true
       t.timestamp :inicio
       t.timestamp :fin
       t.timestamps
