@@ -31,6 +31,11 @@
     <%= form.number_field :valor_credito %>
   </div>
 
+  <div class="field">
+    <%= form.label :facultad %>
+    <%= form.collection_select(:facultad_id, Facultad.all, :id, :nombre,{},{class:"form-control"}) %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

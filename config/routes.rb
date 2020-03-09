@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :pais
   resources :rols
   resources :temporadas
+  resources :categories
   get "egresados", to: "pages#egresados"
   get "no_admitidos", to: "pages#no_admitidos"
   get 'configuracion',to: 'pages#configuracion'

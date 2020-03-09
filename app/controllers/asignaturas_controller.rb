@@ -15,6 +15,7 @@ class AsignaturasController < ApplicationController
   # GET /asignaturas/new
   def new
     @asignatura = Asignatura.new
+    @asignatura.build_facultad
   end
 
   # GET /asignaturas/1/edit
@@ -69,6 +70,6 @@ class AsignaturasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def asignatura_params
-      params.require(:asignatura).permit(:clave, :valor_teorico, :valor_practico, :valor_credito)
+      params.require(:asignatura).permit(:clave, :valor_teorico, :valor_practico, :valor_credito, :facultad_id)
     end
 end
