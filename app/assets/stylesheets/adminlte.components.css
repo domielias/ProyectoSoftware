@@ -68,6 +68,11 @@
     text-align:center
 }
 
+.card-container{
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
 label:not(.form-check-label):not(.custom-file-label) {
   font-weight: 700;
 }
