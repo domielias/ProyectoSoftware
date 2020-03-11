@@ -5,203 +5,203 @@
 
 
   <div class="card-container">
-        <div class="card card-default">
-          <div class="card-header">
-            <h3 class="card-title">Datos Personales </h3>
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title">Datos Personales </h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <%= form.fields_for :persona do |prsn| %>
+
+          <div class="row col-md-12 col-sm-12">
+            <div class="col-md-4 col-sm-4">
+              <div class="form-group">
+                <h5>Nombre Estudiante:</h5>
+                <%= prsn.text_field :nombres, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <div class="form-group">
+                <h5>Apellido Estudiante:</h5>
+                <%= prsn.text_field :apellidos, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <div class="form-group">
+                <h5>Fecha Nacimiento:</h5>
+                <%= prsn.date_field :fecha_nacimiento, {class: "form-control date-input"} %>
+              </div>
             </div>
           </div>
 
-          <div class="card-body">
-    <%= form.fields_for :persona do |prsn| %>
+          <hr/>
 
-              <div class="row col-md-12 col-sm-12">
-                <div class="col-md-4 col-sm-4">
-                  <div class="form-group">
-                    <h5>Nombre Estudiante:</h5>
-    <%= prsn.text_field :nombres, class: "form-control" %>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                  <div class="form-group">
-                    <h5>Apellido Estudiante:</h5>
-    <%= prsn.text_field :apellidos, class: "form-control" %>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                  <div class="form-group">
-                    <h5>Fecha Nacimiento:</h5>
-    <%= prsn.date_field :fecha_nacimiento, {class: "form-control date-input"} %>
-                  </div>
-                </div>
+          <div class="row col-md-12 col-sm-12">
+            <div class="col-md-4 col-sm-4">
+              <div class="form-group">
+                <h5>No. Pasaporte</h5>
+                <%= form.text_field :pasaporte, class: "form-control" %>
               </div>
-
-              <hr/>
-
-              <div class="row col-md-12 col-sm-12">
-                <div class="col-md-4 col-sm-4">
-                  <div class="form-group">
-                    <h5>No. Pasaporte</h5>
-    <%= form.text_field :pasaporte, class: "form-control" %>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                  <div class="form-group">
-                    <h5>Sexo:</h5>
-    <%= form.select :sexo, ['Femenino', 'Masculino'], {}, {class: "form-control"} %>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                  <div class="form-group">
-                    <h5>Correo Electronico:</h5>
-    <%= prsn.text_field :correo_electronico, class: "form-control date-input", placeholder: "hola@ejemplo.com" %>
-                  </div>
-                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <div class="form-group">
+                <h5>Sexo:</h5>
+                <%= form.select :sexo, ['Femenino', 'Masculino'], {}, {class: "form-control"} %>
               </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <div class="form-group">
+                <h5>Correo Electronico:</h5>
+                <%= prsn.text_field :correo_electronico, class: "form-control date-input", placeholder: "hola@ejemplo.com" %>
+              </div>
+            </div>
+          </div>
 
-              <hr/>
+          <hr/>
 
-    <%= form.fields_for :padre do |padre| %>
-                    <div class="row col-md-12 col-sm-12">
-                      <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                          <h5>Nombre Padre:</h5>
-    <%= padre.text_field :nombres, class: "form-control" %>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                          <h5>Apellidos Padre:</h5>
-    <%= padre.text_field :apellidos, class: "form-control" %>
-                        </div>
-                      </div>
-                    </div>
-    <% end %>
-    <%= form.fields_for :madre do |madre| %>
-                <div class="row col-md-12 col-sm-12">
-                  <div class="col-md-6 col-sm-6">
-                    <div class="form-group">
-                      <h5>Nombre Madre:</h5>
-    <%= madre.text_field :nombres, class: "form-control" %>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-sm-6">
-                    <div class="form-group">
-                      <h5>Apellidos Madre:</h5>
-    <%= madre.text_field :apellidos, class: "form-control" %>
-                    </div>
-                  </div>
-                </div>
-    <% end %>
-    <% end %>
-
-            <hr/>
-
+          <%= form.fields_for :padre do |padre| %>
             <div class="row col-md-12 col-sm-12">
-              <div class="col-md-4 col-sm-4">
+              <div class="col-md-6 col-sm-6">
                 <div class="form-group">
-                  <h5>Estado Civil:</h5>
-    <%= form.select :estado_civil, ['Soltero/a', 'Casado/a', 'Viudo/a', 'Comprometido/a', 'En Relación', 'Unión Libre', 'Separado/a', 'Divorciado/a', 'Noviazgo/a'], {}, {class: "form-control"} %>
+                  <h5>Nombre Padre:</h5>
+                  <%= padre.text_field :nombres, class: "form-control" %>
                 </div>
               </div>
-              <div class="col-md-8 col-sm-8">
+              <div class="col-md-6 col-sm-6">
                 <div class="form-group">
-                  <h5>Nombre Conyugue:</h5>
-    <%= form.text_field :nombre_conyugue, class: "form-control" %>
+                  <h5>Apellidos Padre:</h5>
+                  <%= padre.text_field :apellidos, class: "form-control" %>
                 </div>
               </div>
             </div>
+          <% end %>
+          <%= form.fields_for :madre do |madre| %>
+            <div class="row col-md-12 col-sm-12">
+              <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                  <h5>Nombre Madre:</h5>
+                  <%= madre.text_field :nombres, class: "form-control" %>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                  <h5>Apellidos Madre:</h5>
+                  <%= madre.text_field :apellidos, class: "form-control" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
 
+        <hr/>
+
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Estado Civil:</h5>
+              <%= form.select :estado_civil, ['Soltero/a', 'Casado/a', 'Viudo/a', 'Comprometido/a', 'En Relación', 'Unión Libre', 'Separado/a', 'Divorciado/a', 'Noviazgo/a'], {}, {class: "form-control"} %>
+            </div>
+          </div>
+          <div class="col-md-8 col-sm-8">
+            <div class="form-group">
+              <h5>Nombre Conyugue:</h5>
+              <%= form.text_field :nombre_conyugue, class: "form-control" %>
+            </div>
           </div>
         </div>
 
-        <div class="card card-default">
-          <div class="card-header">
-            <h3 class="card-title">Datos Academicos </h3>
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+    </div>
+
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title">Datos Academicos </h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
+        </div>
+      </div>
+
+      <div class="card-body">
+
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <h5>Programa Internacional</h5>
+              <%= form.collection_select(:programa_internacional_id, ProgramaInternacional.all, :id, :nombre, {}, {class: "form-control"}) %>
             </div>
           </div>
-
-          <div class="card-body">
-
-            <div class="row col-md-12 col-sm-12">
-              <div class="col-md-6 col-sm-6">
-                <div class="form-group">
-                  <h5>Programa Internacional</h5>
-    <%= form.collection_select(:programa_internacional_id, ProgramaInternacional.all, :id, :nombre, {}, {class: "form-control"}) %>
-                </div>
-              </div>
-              <div class="col-md-6 col-sm-6">
-                <div class="form-group">
-                  <h5>Carrera Solicitada</h5>
-    <%= form.collection_select(:carrera_solicitada_id, CarreraSolicitada.all, :id, :nombre, {}, {class: "form-control"}) %>
-                </div>
-              </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <h5>Carrera Solicitada</h5>
+              <%= form.collection_select(:carrera_solicitada_id, CarreraSolicitada.all, :id, :nombre, {}, {class: "form-control"}) %>
             </div>
-
-            <hr/>
-
-    <%= form.fields_for :examen_de_nivel do |ex_niv| %>
-                  <div class="col-md-12 col-sm-12">
-                    <div class="form-group">
-                      <h5>Examen de Nivel</h5>
-                    </div>
-                  </div>
-            <div class="row col-md-12 col-sm-12">
-              <div class="col-md-6 col-sm-6">
-                <div class="form-group">
-                  <h6>Nota</h6>
-    <%= ex_niv.number_field :promedio, {step: 0.1, class: "form-control"} %>
-                </div>
-              </div>
-              <div class="col-md-6 col-sm-6">
-                <div class="form-group">
-                  <h6>Nivel</h6>
-    <%= ex_niv.collection_select(:nivel_id, Nivel.all, :id, :nombre, {}, {class: "form-control"}) %>
-                </div>
-              </div>
-    <% end %>
-            </div>
-
-            <hr/>
-
-    <%= form.fields_for :informacion_academica do |info_acad| %>
-              <div class="col-md-12 col-sm-12">
-                <div class="form-group">
-                  <h5>Informacion Academica</h5>
-                </div>
-              </div>
-              <div class="row col-md-12 col-sm-12">
-                <div class="col-md-4 col-sm-4">
-                  <div class="form-group">
-                    <h6>Tiempo estudiando español</h6>
-    <%= info_acad.number_field :cantidad_de_anos_de_espanol_estudiadas, {step: 0.1, class: "form-control"} %>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                  <div class="form-group">
-                    <h6>Asignaturas de español recientes</h6>
-    <%= info_acad.text_field :asignaturas_de_espanol_recientes, class: "form-control" %>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                  <div class="form-group">
-                    <h6>Nivel Alcanzado</h6>
-    <%= info_acad.text_field :nivel_alcanzado, class: "form-control" %>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12 col-sm-12">
-                <div class="form-group">
-                  <h6>Asignaturas de español recientes</h6>
-    <%= info_acad.text_field :asignaturas_de_espanol_recientes, class: "form-control" %>
-                </div>
-              </div>
-    <% end %>
           </div>
         </div>
+
+        <hr/>
+
+        <%= form.fields_for :examen_de_nivel do |ex_niv| %>
+          <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+              <h5>Examen de Nivel</h5>
+            </div>
+          </div>
+          <div class="row col-md-12 col-sm-12">
+            <div class="col-md-6 col-sm-6">
+              <div class="form-group">
+                <h6>Nota</h6>
+                <%= ex_niv.number_field :promedio, {step: 0.1, class: "form-control"} %>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="form-group">
+                <h6>Nivel</h6>
+                <%= ex_niv.collection_select(:nivel_id, Nivel.all, :id, :nombre, {}, {class: "form-control"}) %>
+              </div>
+            </div>
+        <% end %>
+        </div>
+
+        <hr/>
+
+        <%= form.fields_for :informacion_academica do |info_acad| %>
+          <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+              <h5>Informacion Academica</h5>
+            </div>
+          </div>
+          <div class="row col-md-12 col-sm-12">
+            <div class="col-md-4 col-sm-4">
+              <div class="form-group">
+                <h6>Tiempo estudiando español</h6>
+                <%= info_acad.number_field :cantidad_de_anos_de_espanol_estudiadas, {step: 0.1, class: "form-control"} %>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <div class="form-group">
+                <h6>Asignaturas de español recientes</h6>
+                <%= info_acad.text_field :asignaturas_de_espanol_recientes, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <div class="form-group">
+                <h6>Nivel Alcanzado</h6>
+                <%= info_acad.text_field :nivel_alcanzado, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+              <h6>Asignaturas de español recientes</h6>
+              <%= info_acad.text_field :asignaturas_de_espanol_recientes, class: "form-control" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
 
     <div class="card card-default">
@@ -293,21 +293,28 @@
             </div>
           </div>
         </div>
-<!--        <div class="col-md-4 col-sm-4">-->
-<!--          <div class="form-group">-->
-<!--            <div class="actions">-->
+        <!--        <div class="col-md-4 col-sm-4">-->
+        <!--          <div class="form-group">-->
+        <!--            <div class="actions">-->
 
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
       </div>
     </div>
     <div class="right">
-      <%= form.submit 'Eliminar', {class: "btn btn-danger"} %>
+      <% if @estudiante.new_record? %>
+      <%#=  form.submit 'Eliminar', {class: "btn btn-danger"}  %>
+        <%#= button_to "Cancelar", { :action => "index" }, :method => :get, class: "btn btn-danger "%>
+        <%= link_to "Cancelar", '/estudiantes', class: "btn btn-danger "%>
+      <% end %>
       <div class="float-right">
-        <%= form.submit 'Guardar', {class: "btn btn-primary"} %>
-        <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
-
+        <% if @estudiante.admitido? %>
+          <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+        <% else %>
+          <%= form.submit 'Guardar como borrador', {class: "btn btn-primary"} %>
+          <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+        <% end %>
       </div>
     </div>
 

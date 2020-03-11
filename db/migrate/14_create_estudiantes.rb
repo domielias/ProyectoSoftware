@@ -27,4 +27,5 @@ class CreateEstudiantes < ActiveRecord::Migration[6.0]
     add_index :estudiantes, :id, unique: true
 
   end
+
 end
