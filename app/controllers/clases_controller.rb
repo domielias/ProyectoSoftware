@@ -1,6 +1,5 @@
 class ClasesController < ApplicationController
   before_action :set_clase, only: [:show, :edit, :update, :destroy]
-
   # GET /clases
   # GET /clases.json
   def index
@@ -15,6 +14,7 @@ class ClasesController < ApplicationController
   # GET /clases/new
   def new
     @clase = Clase.new
+    @clase.build_temporada
   end
 
   # GET /clases/1/edit
@@ -62,13 +62,13 @@ class ClasesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_clase
-      @clase = Clase.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_clase
+    @clase = Clase.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def clase_params
-      params.require(:clase).permit(:fecha_inicio, :fecha_final, :seccion)
-    end
+  # Only allow a list of trusted parameters through.
+  def clase_params
+    params.require(:clase).permit(:fecha_inicio, :fecha_final, :seccion, :activo, :no_clase, :lugar, :modalidad, :temporada_id)
+  end
 end

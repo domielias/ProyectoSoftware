@@ -7,6 +7,21 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+<!--    Para los dropdowns de select2-->
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+    <script>
+        // $(document).ready(function() { $("#sel-1").select2(); });
+        // $(document).ready(function() { $("#sel-2").select2(); });
+        $(document).ready(function() {
+            $('.select2-simple-dropdown').select2();
+            var value = $('#temporada_escogida').find(':selected');
+        });
+        $(document).ready(function() {
+            $('.select2-multiple-dropdown').select2({multiple: "multiple"});
+        });
+    </script>
   </head>
 
   <body class="sidebar-mini layout-fixed sidebar-collapse">

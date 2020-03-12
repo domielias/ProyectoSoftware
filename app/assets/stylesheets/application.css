@@ -11,8 +11,6 @@
  * It is generally better to create a new file per style scope.
  *
  *= require bootstrap
- *= require_tree .
- *= require_self
  *= require adminlte.components
  *= require adminlte.core
  *= require adminlte
@@ -20,4 +18,7 @@
  *= require adminlte.pages
  *= require adminlte.plugins
  *= require font-awesome
+ *= require select2
+ *= require_self
+ *= require_tree .
  */

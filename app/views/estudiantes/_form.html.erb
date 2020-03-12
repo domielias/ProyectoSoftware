@@ -3,7 +3,6 @@
     <%= render '/shared/errors', obj: @estudiante %>
   <% end %>
 
-
   <div class="card-container">
     <div class="card card-default">
       <div class="card-header">
@@ -19,19 +18,19 @@
           <div class="row col-md-12 col-sm-12">
             <div class="col-md-4 col-sm-4">
               <div class="form-group">
-                <h5>Nombre Estudiante:</h5>
+                <h5>Nombres del estudiante:</h5>
                 <%= prsn.text_field :nombres, class: "form-control" %>
               </div>
             </div>
             <div class="col-md-4 col-sm-4">
               <div class="form-group">
-                <h5>Apellido Estudiante:</h5>
+                <h5>Apellidos del estudiante:</h5>
                 <%= prsn.text_field :apellidos, class: "form-control" %>
               </div>
             </div>
             <div class="col-md-4 col-sm-4">
               <div class="form-group">
-                <h5>Fecha Nacimiento:</h5>
+                <h5>Fecha de nacimiento:</h5>
                 <%= prsn.date_field :fecha_nacimiento, {class: "form-control date-input"} %>
               </div>
             </div>
@@ -42,7 +41,7 @@
           <div class="row col-md-12 col-sm-12">
             <div class="col-md-4 col-sm-4">
               <div class="form-group">
-                <h5>No. Pasaporte</h5>
+                <h5>No. pasaporte</h5>
                 <%= form.text_field :pasaporte, class: "form-control" %>
               </div>
             </div>
@@ -54,7 +53,7 @@
             </div>
             <div class="col-md-4 col-sm-4">
               <div class="form-group">
-                <h5>Correo Electronico:</h5>
+                <h5>Correo electrónico:</h5>
                 <%= prsn.text_field :correo_electronico, class: "form-control date-input", placeholder: "hola@ejemplo.com" %>
               </div>
             </div>
@@ -66,13 +65,13 @@
             <div class="row col-md-12 col-sm-12">
               <div class="col-md-6 col-sm-6">
                 <div class="form-group">
-                  <h5>Nombre Padre:</h5>
+                  <h5>Nombres del padre:</h5>
                   <%= padre.text_field :nombres, class: "form-control" %>
                 </div>
               </div>
               <div class="col-md-6 col-sm-6">
                 <div class="form-group">
-                  <h5>Apellidos Padre:</h5>
+                  <h5>Apellidos del padre:</h5>
                   <%= padre.text_field :apellidos, class: "form-control" %>
                 </div>
               </div>
@@ -82,13 +81,13 @@
             <div class="row col-md-12 col-sm-12">
               <div class="col-md-6 col-sm-6">
                 <div class="form-group">
-                  <h5>Nombre Madre:</h5>
+                  <h5>Nombres de la madre:</h5>
                   <%= madre.text_field :nombres, class: "form-control" %>
                 </div>
               </div>
               <div class="col-md-6 col-sm-6">
                 <div class="form-group">
-                  <h5>Apellidos Madre:</h5>
+                  <h5>Apellidos de la madre:</h5>
                   <%= madre.text_field :apellidos, class: "form-control" %>
                 </div>
               </div>
@@ -101,13 +100,13 @@
         <div class="row col-md-12 col-sm-12">
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
-              <h5>Estado Civil:</h5>
+              <h5>Estado civil:</h5>
               <%= form.select :estado_civil, ['Soltero/a', 'Casado/a', 'Viudo/a', 'Comprometido/a', 'En Relación', 'Unión Libre', 'Separado/a', 'Divorciado/a', 'Noviazgo/a'], {}, {class: "form-control"} %>
             </div>
           </div>
           <div class="col-md-8 col-sm-8">
             <div class="form-group">
-              <h5>Nombre Conyugue:</h5>
+              <h5>Nombre Cónyugue:</h5>
               <%= form.text_field :nombre_conyugue, class: "form-control" %>
             </div>
           </div>
@@ -118,7 +117,7 @@
 
     <div class="card card-default">
       <div class="card-header">
-        <h3 class="card-title">Datos Academicos </h3>
+        <h3 class="card-title">Datos académicos </h3>
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
         </div>
@@ -129,13 +128,13 @@
         <div class="row col-md-12 col-sm-12">
           <div class="col-md-6 col-sm-6">
             <div class="form-group">
-              <h5>Programa Internacional</h5>
+              <h5>Programa internacional</h5>
               <%= form.collection_select(:programa_internacional_id, ProgramaInternacional.all, :id, :nombre, {}, {class: "form-control"}) %>
             </div>
           </div>
           <div class="col-md-6 col-sm-6">
             <div class="form-group">
-              <h5>Carrera Solicitada</h5>
+              <h5>Carrera solicitada</h5>
               <%= form.collection_select(:carrera_solicitada_id, CarreraSolicitada.all, :id, :nombre, {}, {class: "form-control"}) %>
             </div>
           </div>
@@ -146,7 +145,7 @@
         <%= form.fields_for :examen_de_nivel do |ex_niv| %>
           <div class="col-md-12 col-sm-12">
             <div class="form-group">
-              <h5>Examen de Nivel</h5>
+              <h5>Examen de nivel</h5>
             </div>
           </div>
           <div class="row col-md-12 col-sm-12">
@@ -170,7 +169,7 @@
         <%= form.fields_for :informacion_academica do |info_acad| %>
           <div class="col-md-12 col-sm-12">
             <div class="form-group">
-              <h5>Informacion Academica</h5>
+              <h5>Información académica</h5>
             </div>
           </div>
           <div class="row col-md-12 col-sm-12">
@@ -188,7 +187,7 @@
             </div>
             <div class="col-md-4 col-sm-4">
               <div class="form-group">
-                <h6>Nivel Alcanzado</h6>
+                <h6>Nivel alcanzado</h6>
                 <%= info_acad.text_field :nivel_alcanzado, class: "form-control" %>
               </div>
             </div>
@@ -206,7 +205,7 @@
 
     <div class="card card-default">
       <div class="card-header">
-        <h3 class="card-title">Otras Informaciones</h3>
+        <h3 class="card-title">Otras informaciones</h3>
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
         </div>
@@ -221,20 +220,20 @@
           </div>
           <div class="col-md-12 col-sm-12">
             <div class="form-group">
-              <h5>Dirección: <%= n += 1 %></h5>
-            </div>
-          </div>
-          <div class="col-md-12 col-sm-12">
-            <div class="form-group">
-              <%= dirr.radio_button "pais_nacimiento", :pais_nacimiento, checked: false, name: 'pais_nacimiento' %>
-              <%= label :pais_nacimiento, 'Pais de nacimiento' %>
+              <% if n == 0 %>
+                <h5>Dirección: <%= n += 1 %> (Pais de nacimiento)</h5>
+                <%= dirr.hidden_field :pais_nacimiento, value: 1 %>
+              <% else %>
+                <h5>Dirección: <%= n += 1 %></h5>
+                <%= dirr.hidden_field :pais_nacimiento, value: 0 %>
+              <% end %>
             </div>
           </div>
           <div class="row col-md-12 col-sm-12">
             <div class="col-md-4 col-sm-4">
               <div class="form-group">
                 <div>
-                  <h6>Pais:</h6>
+                  <h6>País:</h6>
                   <%= dirr.collection_select(:pai_id, Pai.all, :id, :nombre, {}, {class: "form-control"}) %>
                 </div>
               </div>
@@ -247,7 +246,7 @@
             </div>
             <div class="col-md-4 col-sm-4">
               <div class="form-group">
-                <h6>Codigo Postal:</h6>
+                <h6>Código Postal:</h6>
                 <%= dirr.text_field :codigo_postal, class: "form-control" %>
               </div>
             </div>
@@ -304,9 +303,9 @@
     </div>
     <div class="right">
       <% if @estudiante.new_record? %>
-      <%#=  form.submit 'Eliminar', {class: "btn btn-danger"}  %>
+        <%#=  form.submit 'Eliminar', {class: "btn btn-danger"}  %>
         <%#= button_to "Cancelar", { :action => "index" }, :method => :get, class: "btn btn-danger "%>
-        <%= link_to "Cancelar", '/estudiantes', class: "btn btn-danger "%>
+        <%= link_to "Cancelar", '/estudiantes', class: "btn btn-danger " %>
       <% end %>
       <div class="float-right">
         <% if @estudiante.admitido? %>
