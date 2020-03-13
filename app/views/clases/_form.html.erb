@@ -103,7 +103,7 @@
           <div class="col-md-3 col-sm-3">
             <div class="form-group">
               <h5>Clase vinculada</h5>
-              <%#= form.select :clase_vinculada_id, Clase.where.not(clase_vinculada_id: id).pluck(:nombre, :id), {},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
+              <%= form.select :clase_vinculada_id, Clase.pluck(:no_clase, :id), {},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
             </div>
           </div>
         </div>
