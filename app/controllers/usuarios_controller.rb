@@ -15,6 +15,7 @@ class UsuariosController < ApplicationController
   # GET /usuarios/new
   def new
     @usuario = Usuario.new
+    @usuario.build_rol
   end
 
   # GET /usuarios/1/edit
@@ -69,6 +70,6 @@ class UsuariosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def usuario_params
-      params.require(:usuario).permit(:nombre, :password)
+      params.require(:usuario).permit(:nombre, :password, :rol_id)
     end
 end

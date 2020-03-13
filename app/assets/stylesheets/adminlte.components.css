@@ -13,6 +13,10 @@
   padding-right: 35px;
 }
 
+.select2-dropdown-width{
+    min-width: 100%;
+}
+
 .form-group.has-icon .form-icon {
   background-color: transparent;
   border: 0;

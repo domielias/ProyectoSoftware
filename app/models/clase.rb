@@ -11,4 +11,7 @@ class Clase < ApplicationRecord
     has_many :evaluacions
     has_and_belongs_to_many :estudiantes
     has_and_belongs_to_many :actividads
+
+    accepts_nested_attributes_for :clase_vinculada
+
 end

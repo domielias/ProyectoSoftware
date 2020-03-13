@@ -21,6 +21,11 @@
     <%= form.text_field :password %>
   </div>
 
+  <div class="field">
+    <%= form.label :rol %>
+    <%= form.select :rol_id, Rol.pluck(:nombre, :id), {},{ class: 'select2-simple-dropdown'}  %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

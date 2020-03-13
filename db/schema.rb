@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_03_06_043713) do
   end
 
   create_table "asignaturas", force: :cascade do |t|
+    t.string "nombre", limit: 100
     t.integer "clave"
     t.integer "valor_teorico"
     t.integer "valor_practico"
@@ -61,6 +62,13 @@ ActiveRecord::Schema.define(version: 2020_03_06_043713) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["facultad_id"], name: "index_asignaturas_on_facultad_id"
     t.index ["id"], name: "index_asignaturas_on_id", unique: true
+  end
+
+  create_table "asignaturas_bloques", id: false, force: :cascade do |t|
+    t.bigint "asignaturas_id"
+    t.bigint "bloques_id"
+    t.index ["asignaturas_id"], name: "index_asignaturas_bloques_on_asignaturas_id"
+    t.index ["bloques_id"], name: "index_asignaturas_bloques_on_bloques_id"
   end
 
   create_table "bloques", force: :cascade do |t|

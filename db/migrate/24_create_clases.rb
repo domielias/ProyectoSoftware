@@ -10,9 +10,9 @@ class CreateClases < ActiveRecord::Migration[6.0]
       t.string :modalidad, limit: 20 #######
 
 
-      t.references :profesor, foreign_key: {to_table: :usuarios}
-      t.references :asignatura, foreign_key: true  #?
-      t.references :temporada, foreign_key: true
+      t.references :profesor, foreign_key: {to_table: :usuarios} ############
+      t.references :asignatura, foreign_key: true  ##############
+      t.references :temporada, foreign_key: true ############
       t.references :clase_vinculada, foreign_key: {to_table: :clases}
 
       t.timestamps

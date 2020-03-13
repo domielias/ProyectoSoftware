@@ -84,9 +84,26 @@
         <div class="row col-md-12 col-sm-12">
           <div class="col-md-3 col-sm-3">
             <div class="form-group">
-
-              <%= form.select :temporada_id, Temporada.pluck(:nombre, :id), {},{ class: 'select2-simple-dropdown'}  %>
-
+              <h5>Temporada</h5>
+              <%= form.select :temporada_id, Temporada.pluck(:nombre, :id), {},{ class: 'select2-simple-dropdown select2-dropdown-width'}  %>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+              <h5>Asignatura</h5>
+              <%= form.select :asignatura_id, Asignatura.pluck(:nombre, :id), {},{ class: 'select2-simple-dropdown select2-dropdown-width'}  %>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+              <h5>Profesor</h5>
+              <%= form.select :profesor_id, Usuario.where(rol_id: 1).pluck(:nombre, :id), {},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+              <h5>Clase vinculada</h5>
+              <%#= form.select :clase_vinculada_id, Clase.where.not(clase_vinculada_id: id).pluck(:nombre, :id), {},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
             </div>
           </div>
         </div>
