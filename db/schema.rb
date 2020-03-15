@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 2020_03_06_043713) do
   end
 
   create_table "asignaturas", force: :cascade do |t|
-    t.string "nombre", limit: 100
     t.integer "clave"
     t.integer "valor_teorico"
     t.integer "valor_practico"
@@ -62,13 +61,6 @@ ActiveRecord::Schema.define(version: 2020_03_06_043713) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["facultad_id"], name: "index_asignaturas_on_facultad_id"
     t.index ["id"], name: "index_asignaturas_on_id", unique: true
-  end
-
-  create_table "asignaturas_bloques", id: false, force: :cascade do |t|
-    t.bigint "asignaturas_id"
-    t.bigint "bloques_id"
-    t.index ["asignaturas_id"], name: "index_asignaturas_bloques_on_asignaturas_id"
-    t.index ["bloques_id"], name: "index_asignaturas_bloques_on_bloques_id"
   end
 
   create_table "bloques", force: :cascade do |t|
@@ -110,14 +102,12 @@ ActiveRecord::Schema.define(version: 2020_03_06_043713) do
     t.bigint "profesor_id"
     t.bigint "asignatura_id"
     t.bigint "temporada_id"
-    t.bigint "modalidad_id"
     t.bigint "clase_vinculada_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["asignatura_id"], name: "index_clases_on_asignatura_id"
     t.index ["clase_vinculada_id"], name: "index_clases_on_clase_vinculada_id"
     t.index ["id"], name: "index_clases_on_id", unique: true
-    t.index ["modalidad_id"], name: "index_clases_on_modalidad_id"
     t.index ["profesor_id"], name: "index_clases_on_profesor_id"
     t.index ["temporada_id"], name: "index_clases_on_temporada_id"
   end
@@ -205,6 +195,7 @@ ActiveRecord::Schema.define(version: 2020_03_06_043713) do
   create_table "horarios", force: :cascade do |t|
     t.bigint "clase_id"
     t.bigint "tutory_id"
+    t.string "dias", limit: 50
     t.datetime "inicio"
     t.datetime "fin"
     t.datetime "created_at", precision: 6, null: false
@@ -350,7 +341,6 @@ ActiveRecord::Schema.define(version: 2020_03_06_043713) do
   add_foreign_key "bloques", "usuarios", column: "creador_id"
   add_foreign_key "clases", "asignaturas"
   add_foreign_key "clases", "clases", column: "clase_vinculada_id"
-  add_foreign_key "clases", "modalidads"
   add_foreign_key "clases", "temporadas"
   add_foreign_key "clases", "usuarios", column: "profesor_id"
   add_foreign_key "direccions", "estudiantes"
