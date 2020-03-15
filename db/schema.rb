@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_06_043713) do
+ActiveRecord::Schema.define(version: 30) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -77,6 +77,24 @@ ActiveRecord::Schema.define(version: 2020_03_06_043713) do
     t.index ["temporada_id"], name: "index_bloques_on_temporada_id"
   end
 
+  create_table "bloques_asignaturas", force: :cascade do |t|
+    t.bigint "asignatura_id", null: false
+    t.bigint "bloque_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["asignatura_id"], name: "index_bloques_asignaturas_on_asignatura_id"
+    t.index ["bloque_id"], name: "index_bloques_asignaturas_on_bloque_id"
+  end
+
+  create_table "bloques_estudiantes", id: false, force: :cascade do |t|
+    t.bigint "estudiante_id", null: false
+    t.bigint "bloque_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bloque_id"], name: "index_bloques_estudiantes_on_bloque_id"
+    t.index ["estudiante_id"], name: "index_bloques_estudiantes_on_estudiante_id"
+  end
+
   create_table "carrera_solicitadas", force: :cascade do |t|
     t.string "nombre", limit: 50
     t.datetime "created_at", precision: 6, null: false
@@ -110,11 +128,6 @@ ActiveRecord::Schema.define(version: 2020_03_06_043713) do
     t.index ["id"], name: "index_clases_on_id", unique: true
     t.index ["profesor_id"], name: "index_clases_on_profesor_id"
     t.index ["temporada_id"], name: "index_clases_on_temporada_id"
-  end
-
-  create_table "configuracions", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "direccions", force: :cascade do |t|
@@ -339,6 +352,10 @@ ActiveRecord::Schema.define(version: 2020_03_06_043713) do
   add_foreign_key "bloques", "categories"
   add_foreign_key "bloques", "temporadas"
   add_foreign_key "bloques", "usuarios", column: "creador_id"
+  add_foreign_key "bloques_asignaturas", "asignaturas"
+  add_foreign_key "bloques_asignaturas", "bloques"
+  add_foreign_key "bloques_estudiantes", "bloques"
+  add_foreign_key "bloques_estudiantes", "estudiantes"
   add_foreign_key "clases", "asignaturas"
   add_foreign_key "clases", "clases", column: "clase_vinculada_id"
   add_foreign_key "clases", "temporadas"
