@@ -166,14 +166,13 @@
     <div class="card-body">
       <%= fields_for @clase_estudiante do |ce| %>
       <%= collection_select(:estudiantes, :id, Estudiante.all, :id, :id_campus, {}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
-      <!-- <%= form.collection_select(:programa_internacional_id, ProgramaInternacional.all, :id, :nombre, {}, {class: "form-control"}) %> -->
-      <% end %>
-    </div>
+    <% end %>
   </div>
+</div>
 
-  <div class="float-right">
-    <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
-  </div>
+<div class="float-right">
+  <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+</div>
 
 </div>
 
