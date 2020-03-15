@@ -78,11 +78,9 @@ ActiveRecord::Schema.define(version: 31) do
     t.index ["temporada_id"], name: "index_bloques_on_temporada_id"
   end
 
-  create_table "bloques_asignaturas", force: :cascade do |t|
-    t.bigint "asignatura_id", null: false
-    t.bigint "bloque_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table "bloques_asignaturas", id: false, force: :cascade do |t|
+    t.bigint "asignatura_id"
+    t.bigint "bloque_id"
     t.index ["asignatura_id"], name: "index_bloques_asignaturas_on_asignatura_id"
     t.index ["bloque_id"], name: "index_bloques_asignaturas_on_bloque_id"
   end
@@ -360,8 +358,6 @@ ActiveRecord::Schema.define(version: 31) do
   add_foreign_key "bloques", "categories"
   add_foreign_key "bloques", "temporadas"
   add_foreign_key "bloques", "usuarios", column: "creador_id"
-  add_foreign_key "bloques_asignaturas", "asignaturas"
-  add_foreign_key "bloques_asignaturas", "bloques"
   add_foreign_key "bloques_estudiantes", "bloques"
   add_foreign_key "bloques_estudiantes", "estudiantes"
   add_foreign_key "clases", "asignaturas"

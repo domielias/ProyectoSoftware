@@ -70,6 +70,6 @@ class AsignaturasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def asignatura_params
-      params.require(:asignatura).permit(:clave, :valor_teorico, :valor_practico, :valor_credito, :facultad_id)
+      params.require(:asignatura).permit(:nombre,:clave, :valor_teorico, :valor_practico, :valor_credito, :facultad_id)
     end
 end
