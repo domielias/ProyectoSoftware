@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_06_043713) do
+ActiveRecord::Schema.define(version: 30) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -64,13 +64,6 @@ ActiveRecord::Schema.define(version: 2020_03_06_043713) do
     t.index ["id"], name: "index_asignaturas_on_id", unique: true
   end
 
-  create_table "asignaturas_bloques", id: false, force: :cascade do |t|
-    t.bigint "asignaturas_id"
-    t.bigint "bloques_id"
-    t.index ["asignaturas_id"], name: "index_asignaturas_bloques_on_asignaturas_id"
-    t.index ["bloques_id"], name: "index_asignaturas_bloques_on_bloques_id"
-  end
-
   create_table "bloques", force: :cascade do |t|
     t.datetime "fecha_inicio"
     t.datetime "fecha_final"
@@ -83,6 +76,24 @@ ActiveRecord::Schema.define(version: 2020_03_06_043713) do
     t.index ["creador_id"], name: "index_bloques_on_creador_id"
     t.index ["id"], name: "index_bloques_on_id", unique: true
     t.index ["temporada_id"], name: "index_bloques_on_temporada_id"
+  end
+
+  create_table "bloques_asignaturas", force: :cascade do |t|
+    t.bigint "asignatura_id", null: false
+    t.bigint "bloque_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["asignatura_id"], name: "index_bloques_asignaturas_on_asignatura_id"
+    t.index ["bloque_id"], name: "index_bloques_asignaturas_on_bloque_id"
+  end
+
+  create_table "bloques_estudiantes", id: false, force: :cascade do |t|
+    t.bigint "estudiante_id", null: false
+    t.bigint "bloque_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bloque_id"], name: "index_bloques_estudiantes_on_bloque_id"
+    t.index ["estudiante_id"], name: "index_bloques_estudiantes_on_estudiante_id"
   end
 
   create_table "carrera_solicitadas", force: :cascade do |t|
@@ -110,21 +121,14 @@ ActiveRecord::Schema.define(version: 2020_03_06_043713) do
     t.bigint "profesor_id"
     t.bigint "asignatura_id"
     t.bigint "temporada_id"
-    t.bigint "modalidad_id"
     t.bigint "clase_vinculada_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["asignatura_id"], name: "index_clases_on_asignatura_id"
     t.index ["clase_vinculada_id"], name: "index_clases_on_clase_vinculada_id"
     t.index ["id"], name: "index_clases_on_id", unique: true
-    t.index ["modalidad_id"], name: "index_clases_on_modalidad_id"
     t.index ["profesor_id"], name: "index_clases_on_profesor_id"
     t.index ["temporada_id"], name: "index_clases_on_temporada_id"
-  end
-
-  create_table "configuracions", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "direccions", force: :cascade do |t|
@@ -205,6 +209,7 @@ ActiveRecord::Schema.define(version: 2020_03_06_043713) do
   create_table "horarios", force: :cascade do |t|
     t.bigint "clase_id"
     t.bigint "tutory_id"
+    t.string "dias", limit: 50
     t.datetime "inicio"
     t.datetime "fin"
     t.datetime "created_at", precision: 6, null: false
@@ -348,9 +353,12 @@ ActiveRecord::Schema.define(version: 2020_03_06_043713) do
   add_foreign_key "bloques", "categories"
   add_foreign_key "bloques", "temporadas"
   add_foreign_key "bloques", "usuarios", column: "creador_id"
+  add_foreign_key "bloques_asignaturas", "asignaturas"
+  add_foreign_key "bloques_asignaturas", "bloques"
+  add_foreign_key "bloques_estudiantes", "bloques"
+  add_foreign_key "bloques_estudiantes", "estudiantes"
   add_foreign_key "clases", "asignaturas"
   add_foreign_key "clases", "clases", column: "clase_vinculada_id"
-  add_foreign_key "clases", "modalidads"
   add_foreign_key "clases", "temporadas"
   add_foreign_key "clases", "usuarios", column: "profesor_id"
   add_foreign_key "direccions", "estudiantes"
