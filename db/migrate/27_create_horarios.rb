@@ -1,7 +1,6 @@
 class CreateHorarios < ActiveRecord::Migration[6.0]
   def change
     create_table :horarios do |t|
-      validates :dias, presence: true
       t.references :clase, foreign_key: true
       t.references :tutory, foreign_key: true
       t.string :dias, limit: 50

@@ -126,13 +126,19 @@
       <div class="card-body">
 
         <div class="row col-md-12 col-sm-12">
-          <div class="col-md-6 col-sm-6">
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Id del campus</h5>
+              <%= form.text_field :id_campus, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h5>Programa internacional</h5>
               <%= form.collection_select(:programa_internacional_id, ProgramaInternacional.all, :id, :nombre, {}, {class: "form-control"}) %>
             </div>
           </div>
-          <div class="col-md-6 col-sm-6">
+          <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h5>Carrera solicitada</h5>
               <%= form.collection_select(:carrera_solicitada_id, CarreraSolicitada.all, :id, :nombre, {}, {class: "form-control"}) %>

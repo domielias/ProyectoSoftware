@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :clase_estudiantes
   root 'pages#home'
   resources :tutories
   resources :horarios

@@ -10,7 +10,8 @@ class Estudiante < ApplicationRecord
     has_one :informacion_academica
     has_one :progreso_inscripcion
     has_and_belongs_to_many :bloques
-    has_and_belongs_to_many :clases
+    has_many :clase_estudiantes
+    has_many :clases, through: :clase_estudiantes
     belongs_to :persona, optional: true
 
     accepts_nested_attributes_for :facultad

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 30) do
+ActiveRecord::Schema.define(version: 31) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 30) do
   end
 
   create_table "asignaturas", force: :cascade do |t|
+    t.string "nombre", limit: 100
     t.integer "clave"
     t.integer "valor_teorico"
     t.integer "valor_practico"
@@ -107,6 +108,13 @@ ActiveRecord::Schema.define(version: 30) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["id"], name: "index_categories_on_id", unique: true
+  end
+
+  create_table "clase_estudiantes", force: :cascade do |t|
+    t.integer "clase_id", null: false
+    t.integer "estudiante_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "clases", force: :cascade do |t|

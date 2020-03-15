@@ -19,6 +19,7 @@ class ClasesController < ApplicationController
     @clase.build_asignatura
     7.times {@clase.horarios.build}
     # @clase.build_clase_vinculada
+    @clase_estudiante = @clase.clase_estudiantes.build
   end
 
   # GET /clases/1/edit
@@ -29,6 +30,12 @@ class ClasesController < ApplicationController
   # POST /clases.json
   def create
     @clase = Clase.new(clase_params)
+
+    params[:estudiantes][:id].each do |estudiante|
+      if !estudiante.empty?
+        @clase.clase_estudiantes.build(estudiante_id: estudiante)
+      end
+    end
 
     respond_to do |format|
       if @clase.save
