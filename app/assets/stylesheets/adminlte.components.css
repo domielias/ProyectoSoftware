@@ -14,7 +14,8 @@
 }
 
 .select2-dropdown-width{
-    min-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .form-group.has-icon .form-icon {
@@ -121,6 +122,15 @@ label:not(.form-check-label):not(.custom-file-label) {
 textarea.form-control.is-warning {
   padding-right: 2.25rem;
   background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
+}
+
+.select-time-div-margin{
+  margin-top: 30px
+}
+
+.select-time-header-margin{
+  margin-left:20px;
+  margin-right:10px
 }
 
 .custom-select.is-warning {

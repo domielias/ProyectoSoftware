@@ -1,33 +1,42 @@
 <%# <!DOCTYPE html> %>
-<html>
-  <head>
-    <title>Proyecto Software</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <html>
+    <head>
+      <title>Proyecto Software</title>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-<!--    Para los dropdowns de select2-->
-    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <!-- Para los dropdowns de select2-->
+      <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+      <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
-    <script>
-        // $(document).ready(function() { $("#sel-1").select2(); });
-        // $(document).ready(function() { $("#sel-2").select2(); });
-        $(document).ready(function() {
-            $('.select2-simple-dropdown').select2();
+      <script>
+        // $(document).ready(function() { $("#sel-1").select2(); }); $(document).ready(function() { $("#sel-2").select2(); });
+
+        $(document).on('turbolinks:load', function () {
+          $('.select2-simple-dropdown').select2({placeholder: "Elegir", allowClear: true});
         });
-        $(document).ready(function() {
-            $('.select2-multiple-dropdown').select2({multiple: "multiple" });
+        $(document).on('turbolinks:load', function () {
+          $('.select2-multiple-dropdown').select2({allowClear: true, placeholder: "Elegir uno o más", closeOnSelect: false});
+          var selected_days = find(':selected');
         });
-    </script>
-  </head>
 
-  <body class="sidebar-mini layout-fixed sidebar-collapse">
-    <div class="wrapper">
-    <%= render 'layouts/sidebar' %>
-    <%= yield %>
-    <%= render 'layouts/footer' %>
-    </div>
-  </body>
-</html>
+        $(document).ready(function () {
+          $('.datepicker').datepicker({format: 'dd/mm/yyyy'});
+        });
+
+        // var ready = function(){   $('.select2-simple-dropdown').select2(); }
+        //
+        // $(document).ready(ready); $(document).on('turbolinks:load', ready);
+      </script>
+    </head>
+
+    <body class="sidebar-mini layout-fixed sidebar-collapse">
+      <div class="wrapper">
+        <%= render 'layouts/sidebar' %>
+        <%= yield %>
+        <%= render 'layouts/footer' %>
+      </div>
+    </body>
+  </html>

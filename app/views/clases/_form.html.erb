@@ -1,118 +1,172 @@
 <%= form_with(model: clase, local: true) do |form| %>
-  <% if clase.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(clase.errors.count, "error") %> prohibited this clase from being saved:</h2>
+<% if clase.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(clase.errors.count, "error") %>
+      prohibited this clase from being saved:</h2>
 
-      <ul>
-        <% clase.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+    <ul>
+      <% clase.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="card-container">
+  <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">Datos Generales
+      </h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+          <i class="fa fa-minus"></i>
+        </button>
+      </div>
     </div>
-  <% end %>
 
-  <div class="card-container">
-    <div class="card card-default">
-      <div class="card-header">
-        <h3 class="card-title">Datos Generales </h3>
-        <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
+    <div class="card-body">
+      <div class="col-md-12 col-sm-12">
+        <div class="form-group">
+          <%= form.check_box :activo %>
+          <%= form.label :activo, "Está activa" %>
         </div>
       </div>
-
-      <div class="card-body">
-        <div class="col-md-12 col-sm-12">
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-6 col-sm-6">
           <div class="form-group">
-            <%= form.check_box :activo %>
-            <%= form.label :activo, "Está activa" %>
+            <h5>Fecha de inicio</h5>
+            <%= form.date_field :fecha_inicio, {class: "form-control date-input" } %>
           </div>
         </div>
-        <div class="row col-md-12 col-sm-12">
-          <div class="col-md-6 col-sm-6">
-            <div class="form-group">
-              <h5>Fecha de inicio</h5>
-              <%= form.date_field :fecha_inicio, {class: "form-control date-input"} %>
-            </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="form-group datetimepicker">
+            <h5>Fecha de final</h5>
+            <%= form.date_field :fecha_final, class: "form-control date-input" %>
           </div>
-          <div class="col-md-6 col-sm-6">
-            <div class="form-group">
-              <h5>Fecha de final</h5>
-              <%= form.date_field :fecha_final, {class: "form-control date-input"} %>
-            </div>
+        </div>
+      </div>
+
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h5>No. clase</h5>
+            <%= form.number_field :no_clase, {step: 1, class: "form-control"} %>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h5>Sección</h5>
+            <%= form.number_field :seccion, {step: 1, class: "form-control"} %>
           </div>
         </div>
 
-        <div class="row col-md-12 col-sm-12">
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <h5>Sección</h5>
-              <%= form.number_field :seccion, {step: 1, class: "form-control"} %>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <h5>No. clase</h5>
-              <%= form.number_field :no_clase, {step: 1, class: "form-control"} %>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <h5>Modalidad</h5>
-              <%= form.text_field :modalidad, class: "form-control" %>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-4">
-            <div class="form-group">
-              <h5>Lugar</h5>
-              <%= form.text_field :lugar, class: "form-control" %>
-            </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h5>Modalidad</h5>
+            <%= form.text_field :modalidad, class: "form-control" %>
           </div>
         </div>
+        <div class="col-md-3 col-sm-4">
+          <div class="form-group">
+            <h5>Lugar</h5>
+            <%= form.text_field :lugar, class: "form-control" %>
+          </div>
+        </div>
+      </div>
 
+    </div>
+  </div>
+
+  <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">Datos Académicos
+      </h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+          <i class="fa fa-minus"></i>
+        </button>
       </div>
     </div>
 
-    <div class="card card-default">
-      <div class="card-header">
-        <h3 class="card-title">Datos Académicos </h3>
-        <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
+    <div class="card-body">
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h5>Temporada</h5>
+            <%= form.select :temporada_id, Temporada.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+          </div>
         </div>
-      </div>
-
-      <div class="card-body">
-        <div class="row col-md-12 col-sm-12">
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <h5>Temporada</h5>
-              <%= form.select :temporada_id, Temporada.pluck(:nombre, :id), {},{ class: 'select2-simple-dropdown select2-dropdown-width'}  %>
-            </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h5>Asignatura</h5>
+            <%= form.select :asignatura_id, Asignatura.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
           </div>
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <h5>Asignatura</h5>
-              <%= form.select :asignatura_id, Asignatura.pluck(:nombre, :id), {},{ class: 'select2-simple-dropdown select2-dropdown-width'}  %>
-            </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h5>Profesor</h5>
+            <%= form.select :profesor_id, Usuario.where(rol_id: 1).pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
           </div>
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <h5>Profesor</h5>
-              <%= form.select :profesor_id, Usuario.where(rol_id: 1).pluck(:nombre, :id), {},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <h5>Clase vinculada</h5>
-              <%= form.select :clase_vinculada_id, Clase.pluck(:no_clase, :id), {},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
-            </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h5>Clase vinculada</h5>
+            <%= form.select :clase_vinculada_id, Clase.where.not(id: params[:id]).pluck(:no_clase, :id), {:include_blank => 'Ninguna'},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="actions">
-      <%= form.submit %>
+  <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">Datos Generales
+      </h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+          <i class="fa fa-minus"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <% n = 0 %>
+        <%= form.fields_for :horarios do |hrro| %>
+        <h5>Horario:
+          <%= n += 1 %></h5>
+        <div class="col-md-12 col-sm-12">
+          <!-- <%= hrro.select :dias, options_for_select(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']), {},{ class: 'select2-multiple-dropdown select2-dropdown-width', multiple:'multiple'} %> -->
+          <select class='select2-multiple-dropdown select2-dropdown-width'>
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miércoles">Miércoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Viernes">Viernes</option>
+            <option value="Sábado">Sábado</option>
+            <option value="Domingo">Domingo</option>
+          </select>
+          <!-- <% @selected = select options_for_select(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']), {},{ class: 'select2-multiple-dropdown select2-dropdown-width', multiple:'multiple'} %>
+            <%= puts @selected %> -->
+            <%=  %>
+          </div>
+          <div class="col-md-12 col-sm-12">
+            <div class="form-inline select-time-div-margin">
+              <h8 class='select-time-header-margin'>Desde</h8>
+              <%= hrro.time_select :inicio, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
+              <h8 class='select-time-header-margin'>Hasta</h8>
+              <%= hrro.time_select :fin, { }, { class: 'form-control', default: {hour: '18', minute: '00'}} %>
+            </div>
+          </div>
+          <hr>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="float-right">
+      <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
     </div>
 
   </div>
+
+</div>
 <% end %>

@@ -17,7 +17,8 @@ class ClasesController < ApplicationController
     @clase.build_temporada
     @clase.build_profesor
     @clase.build_asignatura
-    @clase.build_clase_vinculada
+    7.times {@clase.horarios.build}
+    # @clase.build_clase_vinculada
   end
 
   # GET /clases/1/edit
@@ -72,6 +73,6 @@ class ClasesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def clase_params
-    params.require(:clase).permit(:fecha_inicio, :fecha_final, :seccion, :activo, :no_clase, :lugar, :modalidad, :temporada_id, :profesor_id, :asignatura_id, :clase_vinculada_id)
+    params.require(:clase).permit(:fecha_inicio, :fecha_final, :seccion, :activo, :no_clase, :lugar, :modalidad, :temporada_id, :profesor_id, :asignatura_id, :clase_vinculada_id, horarios_attributes: [:id, :dias, :inicio, :fin])
   end
 end

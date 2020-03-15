@@ -69,6 +69,6 @@ class HorariosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def horario_params
-      params.require(:horario).permit(:clase_id, :tutoria_id, :inicio, :fin)
+      params.require(:horario).permit(:clase_id, :tutoria_id, :dias, :inicio, :fin)
     end
 end

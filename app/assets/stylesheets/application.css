@@ -19,6 +19,7 @@
  *= require adminlte.plugins
  *= require font-awesome
  *= require select2
+ *= require bootstrap-datepicker
  *= require_self
  *= require_tree .
  */

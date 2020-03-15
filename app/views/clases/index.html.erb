@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Número clase</th>
       <th>Fecha inicio</th>
       <th>Fecha final</th>
       <th>Seccion</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @clases.each do |clase| %>
       <tr>
+        <td><%= clase.no_clase %></td>
         <td><%= clase.fecha_inicio %></td>
         <td><%= clase.fecha_final %></td>
         <td><%= clase.seccion %></td>
