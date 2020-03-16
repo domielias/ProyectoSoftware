@@ -27,7 +27,6 @@ class BloquesController < ApplicationController
   # POST /bloques.json
   def create
     @bloque = Bloque.new(bloque_params)
-
     respond_to do |format|
       if @bloque.save
         format.html { redirect_to @bloque, notice: 'Bloque was successfully created.' }
@@ -71,6 +70,6 @@ class BloquesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bloque_params
-      params.require(:bloque).permit(:fecha_inicio, :fecha_final, :category_id, :temporada_id)
+      params.require(:bloque).permit(:fecha_inicio, :fecha_final, :category_id, :temporada_id, asignaturas_ids:[])
     end
 end

@@ -13,99 +13,64 @@
 
 
   <div class="card card-default">
-    <div class="card-header">
-      <h3 class="card-title">Bootstrap Duallistbox</h3>
+   <div class="card-header">
+     <h3 class="card-title">Rango de Fecha (opcional)</h3>
+     <div class="card-tools">
+       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
+     </div>
+   </div>
 
-      <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
-      </div>
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-      <div class="row">
-        <div class="col-12">
-          <div class="form-group">
-            <label>Multiple</label>
-            <div class="bootstrap-duallistbox-container row moveonselect moveondoubleclick"> <div class="box1 col-md-6">   <label for="bootstrap-duallistbox-nonselected-list_" style="display: none;"></label>   <span class="info-container">     <span class="info">Showing all 6</span>     <button type="button" class="btn btn-sm clear1" style="float:right!important;">show all</button>   </span>   <input class="form-control filter" type="text" placeholder="Filter">   <div class="btn-group buttons">     <button type="button" class="btn moveall btn-outline-secondary" title="Move all">&gt;&gt;</button>        </div>   <select multiple="multiple" id="bootstrap-duallistbox-nonselected-list_" name="_helper1" style="height: 102.5px;"><option>Alaska</option><option>California</option><option>Delaware</option><option>Tennessee</option><option>Texas</option><option>Washington</option></select> </div> <div class="box2 col-md-6">   <label for="bootstrap-duallistbox-selected-list_" style="display: none;"></label>   <span class="info-container">     <span class="info">Showing all 1</span>     <button type="button" class="btn btn-sm clear2" style="float:right!important;">show all</button>   </span>   <input class="form-control filter" type="text" placeholder="Filter">   <div class="btn-group buttons">          <button type="button" class="btn removeall btn-outline-secondary" title="Remove all">&lt;&lt;</button>   </div>   <select multiple="multiple" id="bootstrap-duallistbox-selected-list_" name="_helper2" style="height: 102.5px;"><option selected="">Alabama</option></select> </div></div><select class="duallistbox" multiple="multiple" style="display: none;">
-            <option selected="">Alabama</option>
-            <option>Alaska</option>
-            <option>California</option>
-            <option>Delaware</option>
-            <option>Tennessee</option>
-            <option>Texas</option>
-            <option>Washington</option>
-          </select>
-          </div>
-          <!-- /.form-group -->
+   <div class="card-body">
+     <div class="row col-md-12 col-sm-12">
+       <div class="col-md-2 col-sm-2">
+         <div class="form-group">
+           <h5>Fecha Inicial</h5>
+            <%= form.date_field :fecha_inicio, {class: "form-control date-input"}%>
+         </div>
+       </div>
+       <div class="col-md-2 col-sm-2">
+         <div class="form-group">
+           <h5>Fecha final</h5>
+            <%= form.date_field :fecha_final, {class: "form-control date-input"}%>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <div class="card card-default">
+   <div class="card-header">
+     <h3 class="card-title">Datos generales</h3>
+     <div class="card-tools">
+       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
+     </div>
+   </div>
+
+   <div class="card-body">
+     <div class="row col-md-2 col-sm-2">
+       <div class="form-group">
+         <h6>Categoría</h6>
+          <%= form.collection_select(:category_id, Category.all, :id, :nombre,{},{class:"form-control"}) %>
+       </div>
+     </div>
+     <hr/>
+     <div class="row col-md-2 col-sm-2">
+       <div class="form-group">
+         <h6>Temporada</h6>
+          <%= form.collection_select(:temporada_id, Temporada.all, :id, :nombre,{},{class:"form-control"}) %>
+       </div>
+     </div>
+      <div class="row col-md-2 col-sm-2">
+        <div class="form-group">
+          <h6>Asignatura</h6>
+            <%= form.collection_select(:asignatura_id, Asignatura.all, :id, :nombre,{},{class:"select2-multiple-dropdown select2-dropdown-width",multiple:true}) %>
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.card-body -->
-    <div class="card-footer">
-      Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
-      the plugin.
+  
     </div>
   </div>
 
-
-<!--  <div class="card card-default">-->
-<!--    <div class="card-header">-->
-<!--      <h3 class="card-title">Rango de Fecha (opcional)</h3>-->
-<!--      <div class="card-tools">-->
-<!--        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    <div class="card-body">-->
-<!--      <div class="row col-md-12 col-sm-12">-->
-<!--        <div class="col-md-2 col-sm-2">-->
-<!--          <div class="form-group">-->
-<!--            <h5>Fecha Inicial</h5>-->
-            <%#= form.date_field :fecha_inicio, {class: "form-control date-input"}%>
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="col-md-2 col-sm-2">-->
-<!--          <div class="form-group">-->
-<!--            <h5>Fecha final</h5>-->
-            <%#= form.date_field :fecha_final, {class: "form-control date-input"}%>
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <div class="card card-default">-->
-<!--    <div class="card-header">-->
-<!--      <h3 class="card-title">Datos generales</h3>-->
-<!--      <div class="card-tools">-->
-<!--        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    <div class="card-body">-->
-<!--      <div class="row col-md-2 col-sm-2">-->
-<!--        <div class="form-group">-->
-<!--          <h6>Categoría</h6>-->
-          <%#= form.collection_select(:category_id, Category.all, :id, :nombre,{},{class:"form-control"}) %>
-<!--        </div>-->
-<!--      </div>-->
-<!--      <hr/>-->
-<!--      <div class="row col-md-2 col-sm-2">-->
-<!--        <div class="form-group">-->
-<!--          <h6>Temporada</h6>-->
-          <%#= form.collection_select(:temporada_id, Temporada.all, :id, :nombre,{},{class:"form-control"}) %>
-<!--        </div>-->
-<!--      </div>-->
-
-
-
-<!--    </div>-->
-<!--  </div>-->
-
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Crear Bloque',{class: "btn bg-gradient-success"}%>
   </div>
 <% end %>

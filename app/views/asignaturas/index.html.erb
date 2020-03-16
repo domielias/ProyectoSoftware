@@ -16,6 +16,7 @@
   <tbody>
     <% @asignaturas.each do |asignatura| %>
       <tr>
+        <td><%= asignatura.nombre %></td>
         <td><%= asignatura.clave %></td>
         <td><%= asignatura.valor_teorico %></td>
         <td><%= asignatura.valor_practico %></td>
