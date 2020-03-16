@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bloque:</strong>
+  <%= @bloque_asignatura.bloque_id %>
+</p>
+
+<p>
+  <strong>Asignatura:</strong>
+  <%= @bloque_asignatura.asignatura_id %>
+</p>
+
+<%= link_to 'Edit', edit_bloque_asignatura_path(@bloque_asignatura) %> |
+<%= link_to 'Back', bloque_asignaturas_path %>

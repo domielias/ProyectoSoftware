@@ -1,76 +1,108 @@
 <%= form_with(model: bloque, local: true) do |form| %>
-  <% if bloque.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(bloque.errors.count, "error") %> prohibited this bloque from being saved:</h2>
+<% if bloque.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(bloque.errors.count, "error") %>
+      prohibited this bloque from being saved:</h2>
 
-      <ul>
-        <% bloque.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <ul>
+      <% bloque.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
-
+<div class="card-container">
   <div class="card card-default">
-   <div class="card-header">
-     <h3 class="card-title">Rango de Fecha (opcional)</h3>
-     <div class="card-tools">
-       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
-     </div>
-   </div>
+    <div class="card-header">
+      <h3 class="card-title">Rango de Fecha (opcional)</h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+          <i class="fa fa-minus"></i>
+        </button>
+      </div>
+    </div>
 
-   <div class="card-body">
-     <div class="row col-md-12 col-sm-12">
-       <div class="col-md-2 col-sm-2">
-         <div class="form-group">
-           <h5>Fecha Inicial</h5>
-            <%= form.date_field :fecha_inicio, {class: "form-control date-input"}%>
-         </div>
-       </div>
-       <div class="col-md-2 col-sm-2">
-         <div class="form-group">
-           <h5>Fecha final</h5>
-            <%= form.date_field :fecha_final, {class: "form-control date-input"}%>
-         </div>
-       </div>
-     </div>
-   </div>
- </div>
-
- <div class="card card-default">
-   <div class="card-header">
-     <h3 class="card-title">Datos generales</h3>
-     <div class="card-tools">
-       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>
-     </div>
-   </div>
-
-   <div class="card-body">
-     <div class="row col-md-2 col-sm-2">
-       <div class="form-group">
-         <h6>Categoría</h6>
-          <%= form.collection_select(:category_id, Category.all, :id, :nombre,{},{class:"form-control"}) %>
-       </div>
-     </div>
-     <hr/>
-     <div class="row col-md-2 col-sm-2">
-       <div class="form-group">
-         <h6>Temporada</h6>
-          <%= form.collection_select(:temporada_id, Temporada.all, :id, :nombre,{},{class:"form-control"}) %>
-       </div>
-     </div>
-      <div class="row col-md-2 col-sm-2">
-        <div class="form-group">
-          <h6>Asignatura</h6>
-            <%= form.collection_select(:asignatura_id, Asignatura.all, :id, :nombre,{},{class:"select2-multiple-dropdown select2-dropdown-width",multiple:true}) %>
+    <div class="card-body">
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-6 col-sm-6">
+          <div class="form-group">
+            <h5>Fecha de inicio</h5>
+            <%= form.date_field :fecha_inicio, {class: "form-control date-input" } %>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="form-group datetimepicker">
+            <h5>Fecha de final</h5>
+            <%= form.date_field :fecha_final, class: "form-control date-input" %>
+          </div>
         </div>
       </div>
-  
     </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit 'Crear Bloque',{class: "btn bg-gradient-success"}%>
+  <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">Datos generales</h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+          <i class="fa fa-minus"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <h6>Creador</h6>
+            <%= form.text_field :nombres, placeholder: 20170639, class: "form-control", disabled: true %>
+          </div>
+        </div>
+        <hr/>
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <h6>Temporada</h6>
+            <!-- <%= form.collection_select(:temporada_id, Temporada.all, :id, :nombre,{},{class:"form-control"}) %> -->
+            <%= form.select :temporada_id, Temporada.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <h6>Categoría</h6>
+            <%= form.select :category_id, Category.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div class="col-md-12 col-sm-12">
+        <div class="form-group">
+          <h6>Asignaturas</h6>
+          <%= fields_for @bloque_asignatura do |ba| %>
+          <%= collection_select(:asignaturas, :id, Asignatura.all, :id, :nombre, {selected: bloque.asignaturas.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+        <% end %>
+
+        <% BloqueAsignatura.find_each do |ba| %>
+          <%= ba.bloque_id.to_s + ba.asignatura_id.to_s %>
+        <% end %>
+
+      </div>
+    </div>
+    <hr/>
+    <div class="col-md-12 col-sm-12">
+      <div class="form-group">
+        <h6>Estudiantes</h6>
+        <%= fields_for @bloque_estudiante do |be| %>
+        <%= collection_select(:estudiantes, :id, Estudiante.all, :id, :id_campus, {selected: bloque.estudiantes.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+      <% end %>
+    </div>
   </div>
+</div>
+
+</div>
+<div class="float-right">
+<%= form.submit 'Finalizar',{class: "btn bg-gradient-success"}%>
+</div>
+</div>
+
 <% end %>
