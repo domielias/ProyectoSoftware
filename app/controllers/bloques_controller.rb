@@ -17,16 +17,35 @@ class BloquesController < ApplicationController
     @bloque = Bloque.new
     @bloque.build_category
     @bloque.build_temporada
+
+    @bloque_asignatura = @bloque.bloque_asignaturas.build
+    @bloque_estudiante = @bloque.bloque_estudiantes.build
+
   end
 
   # GET /bloques/1/edit
   def edit
+    @asignaturas_seleccionadas = @bloque.asignaturas
+    @estudiantes_seleccionadas = @bloque.estudiantes
   end
 
   # POST /bloques
   # POST /bloques.json
   def create
     @bloque = Bloque.new(bloque_params)
+
+    params[:asignaturas][:id].each do |asignatura|
+      if !asignatura.empty?
+        @bloque.bloque_asignaturas.build(asignatura_id: asignatura)
+      end
+    end
+
+    params[:estudiantes][:id].each do |estudiante|
+      if !estudiante.empty?
+        @bloque.bloque_estudiantes.build(estudiante_id: estudiante)
+      end
+    end
+
     respond_to do |format|
       if @bloque.save
         format.html { redirect_to @bloque, notice: 'Bloque was successfully created.' }
@@ -41,6 +60,27 @@ class BloquesController < ApplicationController
   # PATCH/PUT /bloques/1
   # PATCH/PUT /bloques/1.json
   def update
+
+    BloqueAsignatura.where(bloque_id: @bloque).where.not(asignatura_id: params[:asignaturas][:id].reject { |a| a.empty? }).delete_all
+
+    params[:asignaturas][:id].each do |asignatura|
+      if !asignatura.empty?
+        if !BloqueAsignatura.exists?(bloque_id: @bloque, asignatura_id: asignatura)
+        @bloque.bloque_asignaturas.build(asignatura_id: asignatura)
+        end
+      end
+    end
+
+    BloqueEstudiante.where(bloque_id: @bloque).where.not(estudiante_id: params[:estudiantes][:id].reject { |e| e.empty? }).delete_all
+
+    params[:estudiantes][:id].each do |estudiante|
+      if !estudiante.empty?
+        if !BloqueEstudiante.exists?(bloque_id: @bloque, estudiante_id: estudiante)
+        @bloque.bloque_estudiantes.build(estudiante_id: estudiante)
+        end
+      end
+    end
+
     respond_to do |format|
       if @bloque.update(bloque_params)
         format.html { redirect_to @bloque, notice: 'Bloque was successfully updated.' }

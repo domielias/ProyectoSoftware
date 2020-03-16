@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 31) do
+ActiveRecord::Schema.define(version: 33) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -62,6 +62,20 @@ ActiveRecord::Schema.define(version: 31) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["facultad_id"], name: "index_asignaturas_on_facultad_id"
     t.index ["id"], name: "index_asignaturas_on_id", unique: true
+  end
+
+  create_table "bloque_asignaturas", force: :cascade do |t|
+    t.integer "bloque_id", null: false
+    t.integer "asignatura_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "bloque_estudiantes", force: :cascade do |t|
+    t.integer "bloque_id", null: false
+    t.integer "estudiante_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "bloques", force: :cascade do |t|

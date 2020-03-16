@@ -120,41 +120,6 @@
 
   <div class="card card-default">
     <div class="card-header">
-      <h3 class="card-title">Datos Generales
-      </h3>
-      <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-          <i class="fa fa-minus"></i>
-        </button>
-      </div>
-    </div>
-
-    <div class="card-body">
-      <% n = 0 %>
-        <%= form.fields_for :horarios do |hrro| %>
-        <h5>Horario:
-          <%= n += 1 %></h5>
-        <div class="col-md-12 col-sm-12">
-          <%= hrro.select :dias, options_for_select(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']), {:include_blank => ''},{class: 'select2-simple-dropdown select2-dropdown-width'}%>
-          <!-- <select class='select2-multiple-dropdown select2-dropdown-width'> <option value="Lunes">Lunes</option> <option value="Martes">Martes</option> <option value="Miércoles">Miércoles</option> <option value="Jueves">Jueves</option> <option
-          value="Viernes">Viernes</option> <option value="Sábado">Sábado</option> <option value="Domingo">Domingo</option> </select> -->
-          <!-- <% @selected = select options_for_select(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']), {},{ class: 'select2-multiple-dropdown select2-dropdown-width', multiple:'multiple'} %> <%= puts @selected %> -->
-        </div>
-        <div class="col-md-12 col-sm-12">
-          <div class="form-inline select-time-div-margin">
-            <h8 class='select-time-header-margin'>Desde</h8>
-            <%= hrro.time_select :inicio, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
-            <h8 class='select-time-header-margin'>Hasta</h8>
-            <%= hrro.time_select :fin, { }, { class: 'form-control', default: {hour: '18', minute: '00'}} %>
-          </div>
-        </div>
-        <hr>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="card card-default">
-    <div class="card-header">
       <h3 class="card-title">Estudiantes
       </h3>
       <div class="card-tools">
@@ -165,7 +130,42 @@
     </div>
     <div class="card-body">
       <%= fields_for @clase_estudiante do |ce| %>
-      <%= collection_select(:estudiantes, :id, Estudiante.all, :id, :id_campus, {}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+      <%= collection_select(:estudiantes, :id, Estudiante.all, :id, :id_campus, {selected: clase.estudiantes.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+    <% end %>
+  </div>
+</div>
+
+<div class="card card-default">
+  <div class="card-header">
+    <h3 class="card-title">Horarios
+    </h3>
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+        <i class="fa fa-minus"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <% n = 0 %>
+      <%= form.fields_for :horarios do |hrro| %>
+      <h5>Horario:
+        <%= n += 1 %></h5>
+      <div class="col-md-12 col-sm-12">
+        <%= hrro.select :dias, options_for_select(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']), {:include_blank => ''},{class: 'select2-simple-dropdown select2-dropdown-width'}%>
+        <!-- <select class='select2-multiple-dropdown select2-dropdown-width'> <option value="Lunes">Lunes</option> <option value="Martes">Martes</option> <option value="Miércoles">Miércoles</option> <option value="Jueves">Jueves</option> <option
+        value="Viernes">Viernes</option> <option value="Sábado">Sábado</option> <option value="Domingo">Domingo</option> </select> -->
+        <!-- <% @selected = select options_for_select(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']), {},{ class: 'select2-multiple-dropdown select2-dropdown-width', multiple:'multiple'} %> <%= puts @selected %> -->
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <div class="form-inline select-time-div-margin">
+          <h8 class='select-time-header-margin'>Desde</h8>
+          <%= hrro.time_select :inicio, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
+          <h8 class='select-time-header-margin'>Hasta</h8>
+          <%= hrro.time_select :fin, { }, { class: 'form-control', default: {hour: '18', minute: '00'}} %>
+        </div>
+      </div>
+      <hr>
     <% end %>
   </div>
 </div>

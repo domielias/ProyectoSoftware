@@ -1,0 +1,27 @@
+<%= form_with(model: bloque_estudiante, local: true) do |form| %>
+  <% if bloque_estudiante.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bloque_estudiante.errors.count, "error") %> prohibited this bloque_estudiante from being saved:</h2>
+
+      <ul>
+        <% bloque_estudiante.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :bloque_id %>
+    <%= form.number_field :bloque_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estudiante_id %>
+    <%= form.number_field :estudiante_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

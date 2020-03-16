@@ -1,8 +1,8 @@
 class CreateBloques < ActiveRecord::Migration[6.0]
   def change
     create_table :bloques do |t|
-      t.timestamp :fecha_inicio
-      t.timestamp :fecha_final
+      t.timestamp :fecha_inicio #####
+      t.timestamp :fecha_final #####
 
       t.references :category, foreign_key: {to_table: :categories}
       t.references :creador, foreign_key: {to_table: :usuarios}

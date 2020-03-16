@@ -52,6 +52,17 @@ class ClasesController < ApplicationController
   # PATCH/PUT /clases/1
   # PATCH/PUT /clases/1.json
   def update
+
+    ClaseEstudiante.where(clase_id: @clase).where.not(estudiante_id: params[:estudiantes][:id].reject { |e| e.empty? }).delete_all
+
+    params[:estudiantes][:id].each do |estudiante|
+      if !estudiante.empty?
+        if !ClaseEstudiante.exists?(clase_id: @clase, estudiante_id: estudiante)
+        @clase.clase_estudiantes.build(estudiante_id: estudiante)
+        end
+      end
+    end
+
     respond_to do |format|
       if @clase.update(clase_params)
         format.html { redirect_to @clase, notice: 'Clase was successfully updated.' }
@@ -77,7 +88,6 @@ class ClasesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_clase
     @clase = Clase.find(params[:id])
-    @estudiantes_seleccionados = @clase.estudiantes
   end
 
   # Only allow a list of trusted parameters through.
