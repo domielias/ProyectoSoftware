@@ -24,6 +24,7 @@ class ClasesController < ApplicationController
 
   # GET /clases/1/edit
   def edit
+
   end
 
   # POST /clases
@@ -76,6 +77,7 @@ class ClasesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_clase
     @clase = Clase.find(params[:id])
+    @estudiantes_seleccionados = @clase.estudiantes
   end
 
   # Only allow a list of trusted parameters through.

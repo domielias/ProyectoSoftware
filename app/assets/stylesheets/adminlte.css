@@ -70,6 +70,14 @@ body {
   background-color: #ffffff;
 }
 
+.custom-footer{
+  background: #fff;
+  border-top: 1px solid #dee2e6;
+  color: #869099;
+  padding: 1rem;
+  text-align: center;
+}
+
 [tabindex="-1"]:focus {
   outline: 0 !important;
 }
