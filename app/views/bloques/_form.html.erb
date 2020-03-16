@@ -81,11 +81,6 @@
           <%= fields_for @bloque_asignatura do |ba| %>
           <%= collection_select(:asignaturas, :id, Asignatura.all, :id, :nombre, {selected: bloque.asignaturas.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
         <% end %>
-
-        <% BloqueAsignatura.find_each do |ba| %>
-          <%= ba.bloque_id.to_s + ba.asignatura_id.to_s %>
-        <% end %>
-
       </div>
     </div>
     <hr/>
