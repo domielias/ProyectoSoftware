@@ -1,6 +1,5 @@
 class Estudiante < ApplicationRecord
 
-    belongs_to :facultad, optional: true
     belongs_to :programa_internacional, optional: true
     belongs_to :carrera_solicitada, optional: true
     belongs_to :padre, :class_name => 'Persona', optional: true
@@ -17,7 +16,6 @@ class Estudiante < ApplicationRecord
     has_many :bloque_estudiantes
     has_many :bloques, through: :bloque_estudiantes
 
-    accepts_nested_attributes_for :facultad
     accepts_nested_attributes_for :programa_internacional
     accepts_nested_attributes_for :carrera_solicitada
     accepts_nested_attributes_for :padre
