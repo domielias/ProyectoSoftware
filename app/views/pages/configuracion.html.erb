@@ -1,36 +1,33 @@
-<!--<div class="row col-md-12 col-sm-12 col-lg-12">-->
-<!--<div class="col-lg-4 connectedSortable ui-sortable">-->
-<!--  <div class="card">-->
-<!--    <div class="card-header ui-sortable-handle" style="cursor: move;">-->
-<!--      <h3 class="card-title">Crear Edificio</h3>-->
-<!--      <div class="card-tools">-->
-<!--         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="card-body">-->
-<!--      <div>-->
-        <%#= form_with model: @edificio, url: "edificios" do |form| %>
-<!--        <h5>Nombre:</h5>-->
-        <%#= form.text_field :nombre %>
-<!--        <h5>Abreviatura:</h5>-->
-        <%#= form.text_field :abreviatura %>
-<!--        <p></p>-->
-        <%#= form.submit  %>
-        <%# end  %>
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-<!--<div class="col-lg-4 connectedSortable ui-sortable">-->
-<!--  <div class="card">-->
-<!--    <div class="card-header ui-sortable-handle" style="cursor: move;">-->
-<!--      <h3 class="card-title">Crear Aula</h3>-->
-<!--      <div class="card-tools">-->
-<!--         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fa fa-minus"></i></button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="card-body">-->
-      
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Primera columna -->
+      <div class="col-md-6">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">País</h3>
+          </div>
+          <div class="card-body">
+            <%= form_with model: @pai, url: "pais" do |form| %>
+            <div class="form-group">
+              <%= form.label :nombre, 'Nombre' %>
+              <%= form.text_field :nombre, {class:"form-control", placeholder: 'Nombre'} %>
+            </div>
+            <div class="form-group">
+              <%= form.label :nacionalidad, 'Nacionalidad' %>
+              <%= form.text_field :nacionalidad, {class:"form-control", placeholder: 'Nacionalidad'} %>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="float-right">
+              <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <!-- Segunda columna -->
+    <div class="col-md-6"></div>
+  </div>
+</div>
+</section>
