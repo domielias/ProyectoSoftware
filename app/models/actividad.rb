@@ -1,4 +1,7 @@
 class Actividad < ApplicationRecord
   belongs_to :usuario
-  has_and_belongs_to_many :clase
+
+  has_many :clase_actividads, dependent: :destroy
+  has_many :clases, through: :clase_actividads
+
 end

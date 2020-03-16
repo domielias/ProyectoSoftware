@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :clase_actividads
   resources :bloque_estudiantes
   resources :bloque_asignaturas
   resources :clase_estudiantes

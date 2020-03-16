@@ -10,10 +10,10 @@ class Estudiante < ApplicationRecord
     has_one :progreso_inscripcion
     belongs_to :persona, optional: true
 
-    has_many :clase_estudiantes
+    has_many :clase_estudiantes, dependent: :destroy
     has_many :clases, through: :clase_estudiantes
 
-    has_many :bloque_estudiantes
+    has_many :bloque_estudiantes, dependent: :destroy
     has_many :bloques, through: :bloque_estudiantes
 
     accepts_nested_attributes_for :programa_internacional

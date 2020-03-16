@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 33) do
+ActiveRecord::Schema.define(version: 34) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -122,6 +122,13 @@ ActiveRecord::Schema.define(version: 33) do
     t.index ["id"], name: "index_categories_on_id", unique: true
   end
 
+  create_table "clase_actividads", force: :cascade do |t|
+    t.integer "clase_id", null: false
+    t.integer "actividad_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "clase_estudiantes", force: :cascade do |t|
     t.integer "clase_id", null: false
     t.integer "estudiante_id", null: false
@@ -177,7 +184,6 @@ ActiveRecord::Schema.define(version: 33) do
     t.string "sexo", limit: 9
     t.boolean "egresado"
     t.boolean "admitido"
-    t.bigint "facultad_id"
     t.bigint "padre_id"
     t.bigint "madre_id"
     t.bigint "carrera_solicitada_id"
@@ -186,7 +192,6 @@ ActiveRecord::Schema.define(version: 33) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "persona_id"
     t.index ["carrera_solicitada_id"], name: "index_estudiantes_on_carrera_solicitada_id"
-    t.index ["facultad_id"], name: "index_estudiantes_on_facultad_id"
     t.index ["id"], name: "index_estudiantes_on_id", unique: true
     t.index ["madre_id"], name: "index_estudiantes_on_madre_id"
     t.index ["padre_id"], name: "index_estudiantes_on_padre_id"
@@ -381,7 +386,6 @@ ActiveRecord::Schema.define(version: 33) do
   add_foreign_key "direccions", "estudiantes"
   add_foreign_key "direccions", "pais"
   add_foreign_key "estudiantes", "carrera_solicitadas"
-  add_foreign_key "estudiantes", "facultads"
   add_foreign_key "estudiantes", "personas"
   add_foreign_key "estudiantes", "personas", column: "madre_id"
   add_foreign_key "estudiantes", "personas", column: "padre_id"

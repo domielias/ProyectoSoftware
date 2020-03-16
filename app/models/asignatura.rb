@@ -5,7 +5,7 @@ class Asignatura < ApplicationRecord
     has_and_belongs_to_many :correquisitos, :class_name => "asignatura", :foreign_key => "id", :association_foreign_key => "correquisito_id"
     has_and_belongs_to_many :clases
 
-    has_many :bloque_asignaturas
+    has_many :bloque_asignaturas, dependent: :destroy
     has_many :bloques, through: :bloque_asignaturas
 
 end
