@@ -24,6 +24,7 @@ class EstudiantesController < ApplicationController
     @estudiante.build_examen_de_nivel
     @estudiante.build_informacion_academica
     @estudiante.build_progreso_inscripcion
+    @bloque_estudiante = @estudiante.bloque_estudiantes.build
   end
 
   # GET /estudiantes/1/edit
@@ -37,6 +38,12 @@ class EstudiantesController < ApplicationController
     @estudiante.created_at = Time.zone.now if finalizado?
     @estudiante.admitido = true if finalizado?
     @estudiante.admitido = false if guardado?
+
+    params[:bloques][:id].each do |bloque|
+      if !bloque.empty?
+        @estudiante.bloque_estudiantes.build(bloque_id: bloque)
+      end
+    end
 
     respond_to do |format|
       if @estudiante.save

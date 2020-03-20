@@ -82,30 +82,18 @@ ActiveRecord::Schema.define(version: 34) do
     t.datetime "fecha_inicio"
     t.datetime "fecha_final"
     t.bigint "category_id"
-    t.bigint "creador_id"
+    t.bigint "creador_usuario_id"
+    t.bigint "creador_estudiante_id"
+    t.bigint "bloque_padre_id"
     t.bigint "temporada_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["bloque_padre_id"], name: "index_bloques_on_bloque_padre_id"
     t.index ["category_id"], name: "index_bloques_on_category_id"
-    t.index ["creador_id"], name: "index_bloques_on_creador_id"
+    t.index ["creador_estudiante_id"], name: "index_bloques_on_creador_estudiante_id"
+    t.index ["creador_usuario_id"], name: "index_bloques_on_creador_usuario_id"
     t.index ["id"], name: "index_bloques_on_id", unique: true
     t.index ["temporada_id"], name: "index_bloques_on_temporada_id"
-  end
-
-  create_table "bloques_asignaturas", id: false, force: :cascade do |t|
-    t.bigint "asignatura_id"
-    t.bigint "bloque_id"
-    t.index ["asignatura_id"], name: "index_bloques_asignaturas_on_asignatura_id"
-    t.index ["bloque_id"], name: "index_bloques_asignaturas_on_bloque_id"
-  end
-
-  create_table "bloques_estudiantes", id: false, force: :cascade do |t|
-    t.bigint "estudiante_id", null: false
-    t.bigint "bloque_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["bloque_id"], name: "index_bloques_estudiantes_on_bloque_id"
-    t.index ["estudiante_id"], name: "index_bloques_estudiantes_on_estudiante_id"
   end
 
   create_table "carrera_solicitadas", force: :cascade do |t|
@@ -374,11 +362,11 @@ ActiveRecord::Schema.define(version: 34) do
 
   add_foreign_key "actividads", "usuarios"
   add_foreign_key "asignaturas", "facultads"
+  add_foreign_key "bloques", "bloques", column: "bloque_padre_id"
   add_foreign_key "bloques", "categories"
+  add_foreign_key "bloques", "estudiantes", column: "creador_estudiante_id"
   add_foreign_key "bloques", "temporadas"
-  add_foreign_key "bloques", "usuarios", column: "creador_id"
-  add_foreign_key "bloques_estudiantes", "bloques"
-  add_foreign_key "bloques_estudiantes", "estudiantes"
+  add_foreign_key "bloques", "usuarios", column: "creador_usuario_id"
   add_foreign_key "clases", "asignaturas"
   add_foreign_key "clases", "clases", column: "clase_vinculada_id"
   add_foreign_key "clases", "temporadas"
