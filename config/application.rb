@@ -12,6 +12,7 @@ module Pro
     config.load_defaults 6.0
     config.assets.enabled = true
     config.assets.initialize_on_precompile = false
+    config.require_master_key = false
 
 
     # Settings in config/environments/* take precedence over those specified here.
