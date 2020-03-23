@@ -9,7 +9,6 @@ require("@rails/activestorage").start()
 require("channels")
 require("bootstrap")
 require("adminlte")
-require("datatables")
 
 
 
