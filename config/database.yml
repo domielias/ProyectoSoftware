@@ -83,6 +83,6 @@ test:
 #
 production:
   <<: *default
-  database: nevgljwz
-  username: nevgljwz
-  password: GYN2NfBir2PBh-cS5jWlRF62GeripTw_
+  database: ProyectoSoftware_production
+  username: ProyectoSoftware
+  password: <%= ENV['PRO_DATABASE_PASSWORD'] %>
