@@ -26,6 +26,12 @@ class ActividadsController < ApplicationController
   def create
     @actividad = Actividad.new(actividad_params)
 
+    params[:clases][:id].each do |clase|
+      if !clase.empty?
+        @actividad.clase_actividads.build(clase_id: clase)
+      end
+    end
+
     respond_to do |format|
       if @actividad.save
         format.html { redirect_to @actividad, notice: 'Actividad was successfully created.' }
@@ -40,6 +46,17 @@ class ActividadsController < ApplicationController
   # PATCH/PUT /actividads/1
   # PATCH/PUT /actividads/1.json
   def update
+
+    ClaseActividad.where(actividad_id: @actividad).where.not(clase_id: params[:clases][:id].reject { |e| e.empty? }).delete_all
+
+    params[:clases][:id].each do |clase|
+      if !clase.empty?
+        if !ClaseActividad.exists?(actividad_id: @actividad, clase_id: clase)
+        @actividad.clase_actividads.build(clase_id: clase)
+        end
+      end
+    end
+
     respond_to do |format|
       if @actividad.update(actividad_params)
         format.html { redirect_to @actividad, notice: 'Actividad was successfully updated.' }

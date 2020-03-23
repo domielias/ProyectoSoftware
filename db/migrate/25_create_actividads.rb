@@ -1,8 +1,9 @@
 class CreateActividads < ActiveRecord::Migration[6.0]
   def change
     create_table :actividads do |t|
-      t.timestamp :fecha_inicio
-      t.timestamp :fecha_final
+      t.timestamp :fecha
+      t.timestamp :hora_inicio
+      t.timestamp :hora_fin
       t.string :descripcion, limit: 80
       t.string :ubicacion, limit: 30
       t.string :forma_de_transporte, limit: 30

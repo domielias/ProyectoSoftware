@@ -27,6 +27,8 @@ gem 'rails-i18n'
 # # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'select2-rails'
+gem 'rails-assets-jquery', source: 'https://rails-assets.org'
+gem 'rails-assets-datatables', source: 'https://rails-assets.org'
 gem 'bootstrap-datepicker-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

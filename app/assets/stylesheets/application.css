@@ -20,6 +20,7 @@
  *= require font-awesome
  *= require select2
  *= require bootstrap-datepicker
+ *= require datatables/dataTables.bootstrap
  *= require_self
  *= require_tree .
  */

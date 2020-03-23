@@ -32,5 +32,6 @@ Rails.application.routes.draw do
   get "egresados", to: "pages#egresados"
   get "no_admitidos", to: "pages#no_admitidos"
   get 'configuracion',to: 'pages#configuracion'
+  get 'estudiantes/listar_clases/:id', to: 'estudiantes#listar_clases', as: 'listar_clases_estudiante'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

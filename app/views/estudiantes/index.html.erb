@@ -2,7 +2,7 @@
 
 <h1>Estudiantes</h1>
 
-<table id="dtBasicExample" class="table table-striped">
+<table class="table table-striped display" role='datatable'>
   <thead>
     <tr>
       <th>#</th>
@@ -12,24 +12,28 @@
       <th>Matricula</th>
       <th>Sexo</th>
       <th>Egresado</th>
-      <th colspan="3"></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% n=0 %>
-    <% @estudiantes.each do |estudiante| %>
-      <% if estudiante.admitido == true and estudiante.egresado == false %>
-        <tr>
-          <td><%= n+=1 %></td>
-          <td><%= estudiante.persona.nombres %></td>
-          <td><%= estudiante.persona.apellidos %></td>
-          <td><%= estudiante.id_campus %></td>
-          <td><%= estudiante.matricula %></td>
-          <td><%= estudiante.sexo %></td>
-          <td><%= estudiante.egresado ? :Si : :No %></td>
-          <td><%= link_to 'Mostrar', estudiante, class: "btn btn-info" %></td>
-          <td><%= link_to 'Editar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
+      <% @estudiantes.each do |estudiante| %>
+        <% if estudiante.admitido == true and estudiante.egresado == false %>
+          <tr>
+            <td><%= n+=1 %></td>
+            <td><%= estudiante.persona.nombres %></td>
+            <td><%= estudiante.persona.apellidos %></td>
+            <td><%= estudiante.id_campus %></td>
+            <td><%= estudiante.matricula %></td>
+            <td><%= estudiante.sexo %></td>
+            <td><%= estudiante.egresado ? :Si : :No %></td>
+            <td><%= link_to 'Mostrar', estudiante, class: "btn btn-info" %></td>
+            <td><%= link_to 'Listar Clases', listar_clases_estudiante_path(estudiante), class: "btn btn-secondary" %></td>
+            <td><%= link_to 'Editar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
+          </td>
         </tr>
       <%end %>
     <% end %>
@@ -37,6 +41,5 @@
 </table>
 
 <br>
-
 
 <%= link_to 'Nuevo Estudiante', new_estudiante_path, class: "btn btn-primary" %>

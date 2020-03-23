@@ -1,47 +1,74 @@
 <%= form_with(model: actividad, local: true) do |form| %>
-  <% if actividad.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(actividad.errors.count, "error") %> prohibited this actividad from being saved:</h2>
+<% if actividad.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(actividad.errors.count, "error") %>
+      prohibited this actividad from being saved:</h2>
 
-      <ul>
-        <% actividad.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+    <ul>
+      <% actividad.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="card-container">
+  <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">Datos Generales
+      </h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+          <i class="fa fa-minus"></i>
+        </button>
+      </div>
     </div>
-  <% end %>
+    <div class="card-body">
+      <div class="col-md-12 col-sm-12">
+        <div class="form-group">
+          <%= form.check_box :dentro_de_la_ciudad %>
+          <%= form.label :dentro_de_la_ciudad, "Será dentro de la ciudad ?" %>
+        </div>
+      </div>
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-6 col-sm-6">
+          <div class="form-group">
+            <h5>Fecha</h5>
+            <%= form.date_field :fecha, {class: "form-control date-input" } %>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="form-inline select-time-div-margin">
+            <h8 class='select-time-header-margin'>Desde</h8>
+            <%= form.time_select :hora_inicio, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
+            <h8 class='select-time-header-margin'>Hasta</h8>
+            <%= form.time_select :hora_fin, { }, { class: 'form-control', default: {hour: '18', minute: '00'}} %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <h5>Descripción</h5>
+        <%= form.text_field :descripcion, { class: 'form-control'} %>
+      </div>
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-6 col-sm-6">
+          <h5>Ubicación</h5>
+          <%= form.text_field :ubicacion, { class: 'form-control'} %>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <h5>Forma de transporte</h5>
+          <%= form.text_field :forma_de_transporte, { class: 'form-control'} %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :fecha_inicio %>
-    <%= form.datetime_select :fecha_inicio %>
-  </div>
+      <hr/>
+      <h5>Clases participantes</h5>
+      <%= collection_select(:clases, :id, Clase.where.not(activo: false), :id, :no_clase, {selected: actividad.clases.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
 
-  <div class="field">
-    <%= form.label :fecha_final %>
-    <%= form.datetime_select :fecha_final %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :descripcion %>
-    <%= form.text_field :descripcion %>
+  <div class="float-right">
+    <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
   </div>
-
-  <div class="field">
-    <%= form.label :ubicacion %>
-    <%= form.text_field :ubicacion %>
-  </div>
-
-  <div class="field">
-    <%= form.label :forma_de_transporte %>
-    <%= form.text_field :forma_de_transporte %>
-  </div>
-
-  <div class="field">
-    <%= form.label :dentro_de_la_ciudad %>
-    <%= form.text_field :dentro_de_la_ciudad %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+</div>
 <% end %>

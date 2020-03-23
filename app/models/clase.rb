@@ -1,14 +1,16 @@
 class Clase < ApplicationRecord
     has_many :horarios
     belongs_to :asignatura, optional: true ###########
+    delegate :nombre, to: :asignatura, prefix: true
     has_many :tutory
     belongs_to :clase_vinculada, :class_name => "Clase", :foreign_key => "clase_vinculada_id", optional: true
     has_one :clase_vinculada, :class_name => "Clase"
     # belongs_to :clase_vinculada, :class_name => "Clase"
 
     belongs_to :temporada, optional: true
-    # belongs_to :modalidad, optional: true
+    delegate :nombre, to: :temporada, prefix: true
     belongs_to :profesor, :class_name => "Usuario", optional: true
+    # delegate :nombre, to: :profesor, prefix: true
     has_many :evaluacions
 
     has_many :clase_estudiantes, dependent: :destroy

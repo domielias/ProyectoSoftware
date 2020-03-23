@@ -2,16 +2,15 @@
 
 <h1>Fichas de Admisión</h1>
 
-<table id="dtBasicExample" class="table table-striped">
+<table class="table table-striped display" role='datatable'>
   <thead>
   <tr>
     <th>#</th>
-    <th>Nombre</th>
-    <th>Apellido</th>
+    <th>Nombres</th>
+    <th>Apellidos</th>
     <th>Id Campus</th>
     <th>Matricula</th>
     <th>Sexo</th>
-    <th>Egresado</th>
     <th></th>
     <th></th>
     <th></th>
@@ -29,7 +28,6 @@
         <td><%= estudiante.id_campus %></td>
         <td><%= estudiante.matricula %></td>
         <td><%= estudiante.sexo %></td>
-        <td><%= estudiante.egresado ? :Si : :No %></td>
         <td><%= link_to 'Mostrar', estudiante, class: "btn btn-info" %></td>
         <td><%= link_to 'Editar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
         <td><%= link_to 'Eliminar', estudiante_path(estudiante),method: :destroy, class: "btn btn-danger" %></td>

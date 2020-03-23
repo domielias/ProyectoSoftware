@@ -18,8 +18,9 @@
   <tbody>
     <% @actividads.each do |actividad| %>
       <tr>
-        <td><%= actividad.fecha_inicio %></td>
-        <td><%= actividad.fecha_final %></td>
+        <td><%= actividad.fecha %></td>
+        <td><%= actividad.hora_inicio %></td>
+        <td><%= actividad.hora_fin %></td>
         <td><%= actividad.descripcion %></td>
         <td><%= actividad.ubicacion %></td>
         <td><%= actividad.forma_de_transporte %></td>

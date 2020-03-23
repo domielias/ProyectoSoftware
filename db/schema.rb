@@ -37,8 +37,9 @@ ActiveRecord::Schema.define(version: 34) do
   enable_extension "xml2"
 
   create_table "actividads", force: :cascade do |t|
-    t.datetime "fecha_inicio"
-    t.datetime "fecha_final"
+    t.datetime "fecha"
+    t.datetime "hora_inicio"
+    t.datetime "hora_fin"
     t.string "descripcion", limit: 80
     t.string "ubicacion", limit: 30
     t.string "forma_de_transporte", limit: 30

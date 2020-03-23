@@ -1,5 +1,6 @@
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actioncable (6.0.2.1)
       actionpack (= 6.0.2.1)
@@ -135,6 +136,9 @@ GEM
       bundler (>= 1.3.0)
       railties (= 6.0.2.1)
       sprockets-rails (>= 2.0.0)
+    rails-assets-datatables (1.10.19)
+      rails-assets-jquery (>= 1.7.0)
+    rails-assets-jquery (3.4.1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -221,6 +225,8 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.1)
+  rails-assets-datatables!
+  rails-assets-jquery!
   rails-i18n
   sass-rails (>= 6)
   select2-rails

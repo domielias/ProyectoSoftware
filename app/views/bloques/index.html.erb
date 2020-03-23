@@ -2,12 +2,13 @@
 
 <h1>Bloques</h1>
 
-<table>
+<table class="table table-striped display" role='datatable'>
   <thead>
     <tr>
       <th>Fecha inicio</th>
       <th>Fecha final</th>
-      <th colspan="3"></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -16,9 +17,9 @@
       <tr>
         <td><%= bloque.fecha_inicio %></td>
         <td><%= bloque.fecha_final %></td>
-        <td><%= link_to 'Show', bloque %></td>
-        <td><%= link_to 'Edit', edit_bloque_path(bloque) %></td>
-        <td><%= link_to 'Destroy', bloque, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', bloque, class: "btn btn-info" %></td>
+        <td><%= link_to 'Edit', edit_bloque_path(bloque), class: "btn btn-warning" %></td>
+        <!-- <td><%= link_to 'Destroy', bloque, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>
