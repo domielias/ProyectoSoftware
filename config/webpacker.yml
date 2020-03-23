@@ -70,6 +70,7 @@ development:
     use_local_ip: false
     quiet: false
     pretty: false
+    inline: false
     headers:
       'Access-Control-Allow-Origin': '*'
     watch_options:
