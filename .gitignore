@@ -23,6 +23,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# /public/packs #Da un error en el webpacker si se lo pongo porque no encuentra el public
 /public/packs-test
 /node_modules
 /yarn-error.log
