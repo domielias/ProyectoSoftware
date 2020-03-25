@@ -5,6 +5,7 @@
 //= require datatables
 //= require select2_locale_es
 //= require bootstrap-datepicker
+//= require_tree .
 
 $(document).on('turbolinks:load', function () {
   $('.select2-simple-dropdown').select2({placeholder: "Elegir", allowClear: true, width: '100%'});
