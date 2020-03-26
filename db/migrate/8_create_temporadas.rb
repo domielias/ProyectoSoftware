@@ -3,6 +3,9 @@ class CreateTemporadas < ActiveRecord::Migration[6.0]
     create_table :temporadas do |t|
       t.string :nombre, limit: 20
 
+        t.timestamp :fecha_inicio #####
+        t.timestamp :fecha_final #####
+
       t.timestamps
     end
 

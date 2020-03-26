@@ -22,8 +22,15 @@
           <div class="row col-md-12 col-sm-12">
             <div class="col-md-4 col-sm-4">
               <div class="form-group">
+                <h5>No. pasaporte</h5>
+                <%= form.text_field :pasaporte, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <div class="form-group">
                 <h5>Nombres del estudiante:</h5>
                 <%= prsn.text_field :nombres, class: "form-control" %>
+
               </div>
             </div>
             <div class="col-md-4 col-sm-4">
@@ -32,19 +39,13 @@
                 <%= prsn.text_field :apellidos, class: "form-control" %>
               </div>
             </div>
-            <div class="col-md-4 col-sm-4">
-              <div class="form-group">
-                <h5>Fecha de nacimiento:</h5>
-                <%= prsn.date_field :fecha_nacimiento, {class: "form-control date-input"} %>
-              </div>
-            </div>
           </div>
           <hr/>
           <div class="row col-md-12 col-sm-12">
             <div class="col-md-4 col-sm-4">
               <div class="form-group">
-                <h5>No. pasaporte</h5>
-                <%= form.text_field :pasaporte, class: "form-control" %>
+                <h5>Fecha de nacimiento:</h5>
+                <%= prsn.date_field :fecha_nacimiento, {class: "form-control date-input"} %>
               </div>
             </div>
             <div class="col-md-4 col-sm-4">
@@ -295,7 +296,7 @@
   </div>
   <div class="col-md-6 col-sm-6">
     <div class="form-group float-right">
-      <h6>Es egresado ? 
+      <h6>Es egresado ?
         <%= form.check_box :egresado %></h6>
     </div>
   </div>
