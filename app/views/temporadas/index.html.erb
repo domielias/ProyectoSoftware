@@ -6,6 +6,9 @@
   <thead>
     <tr>
       <th>Nombre</th>
+      <th>Fecha de inicio</th>
+      <th>Fecha final</th>
+      <th></th>
       <th></th>
       <th></th>
     </tr>
@@ -15,6 +18,13 @@
     <% @temporadas.each do |temporada| %>
       <tr>
         <td><%= temporada.nombre %></td>
+        <td><%= temporada.fecha_inicio %></td>
+        <td><%= temporada.fecha_final %></td>
+        <td>
+          <%# if temporada.actual? %>
+            <%= link_to 'Finalizar', finalizar_temporada_path(temporada), class: "btn btn-warning" %>
+          <%# end %>
+        </td>
         <td><%= link_to 'Mostrar', temporada %></td>
         <td><%= link_to 'Editar', edit_temporada_path(temporada) %></td>
       </tr>

@@ -2,7 +2,6 @@ class CreateClases < ActiveRecord::Migration[6.0]
   def change
     create_table :clases do |t|
       t.integer :seccion ######
-      t.boolean :activo ##########
       t.integer :no_clase #######
       t.string :lugar, limit: 20 #######
       t.string :modalidad, limit: 20 #######

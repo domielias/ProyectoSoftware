@@ -1,6 +1,7 @@
 class Bloque < ApplicationRecord
 
   belongs_to :category, optional: true
+  delegate :nombre, to: :category, prefix: true
   belongs_to :creador,:class_name => "Usuario", optional: true
   belongs_to :temporada, optional: true
   delegate :nombre, to: :temporada, prefix: true

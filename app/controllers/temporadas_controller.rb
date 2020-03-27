@@ -1,5 +1,5 @@
 class TemporadasController < ApplicationController
-  before_action :set_temporada, only: [:show, :edit, :update, :destroy]
+  before_action :set_temporada, only: [:show, :edit, :update, :destroy, :finalizar]
 
   # GET /temporadas
   # GET /temporadas.json
@@ -10,6 +10,12 @@ class TemporadasController < ApplicationController
   # GET /temporadas/1
   # GET /temporadas/1.json
   def show
+  end
+
+  def finalizar
+    @temporadas = Temporada.all
+    @temporada.actual = false
+    render "index"
   end
 
   # GET /temporadas/new
@@ -69,6 +75,6 @@ class TemporadasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def temporada_params
-      params.require(:temporada).permit(:nombre)
+      params.require(:temporada).permit(:nombre, :actual, :fecha_inicio, :fecha_final)
     end
 end
