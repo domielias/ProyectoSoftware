@@ -32,8 +32,8 @@
             <td><%= estudiante.matricula %></td>
             <td><%= estudiante.sexo %></td>
             <td><%= estudiante.egresado ? :Si : :No %></td>
-            <td><%= link_to 'Mostrar', estudiante, class: "btn btn-info" %></td>
-            <td><%= link_to 'Editar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
+            <td class="align-column-content-center"><%= link_to 'Mostrar', estudiante, class: "btn btn-info" %></td>
+            <td class="align-column-content-center"><%= link_to 'Editar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
           </tr>
         <%end %>
       <% end %>

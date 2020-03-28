@@ -13,6 +13,18 @@
   padding-right: 35px;
 }
 
+.align-column-content-right{
+  text-align: right;
+}
+
+.align-column-content-center{
+  text-align: center;
+}
+
+.align-column-content-left{
+  text-align: left;
+}
+
 .select2-results__option[aria-selected="true"] {
   display: none;
 }

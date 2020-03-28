@@ -4,19 +4,19 @@
   <div class="container-fluid">
     <h1>Clases</h1>
 
-    <table class="table table-striped display" role='datatable'>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>No. Clase</th>
-          <th>Sección</th>
-          <th>Asignatura</th>
-          <th>Temporada</th>
-          <th>Está activa ?</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
+<table class="table table-striped display" role='datatable'>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>No. Clase</th>
+      <th>Sección</th>
+      <th>Asignatura</th>
+      <th>Está activa ?</th>
+      <th>Temporada</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
 
       <tbody>
         <% n=0 %>
@@ -30,21 +30,19 @@
               <%= clase.asignatura_nombre %>
             <% end %>
           </td>
-          <td>
+          <td><%= clase.temporada.actual ? :Sí : :No %></td>
+           <td>
             <% if !clase.temporada.nil? %>
               <%= clase.temporada_nombre %>
             <% end %>
           </td>
-          <td><%= clase.activo ? :Si : :No %></td>
-          <td><%= link_to 'Mostrar', clase, class: "btn btn-info" %></td>
-          <td><%= link_to 'Editar', edit_clase_path(clase), class: "btn btn-warning" %></td>
+          <td class="align-column-content-center"><%= link_to 'Mostrar', clase, class: "btn btn-info" %></td>
+          <td class="align-column-content-center"><%= link_to 'Editar', edit_clase_path(clase), class: "btn btn-warning" %></td>
           <!-- <td><%= link_to 'Destroy', clase, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
         </tr>
         <% end %>
-      </tbody>
-    </table>
-
-    <%# <%= link_to 'New Clase', new_clase_path %> 
+  </tbody>
+</table>
 
   </div>
 </section>

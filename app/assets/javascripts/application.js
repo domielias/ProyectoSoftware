@@ -31,11 +31,9 @@ $(document).on('turbolinks:load', function() {
   $("table[role='datatable']").each(function() {
     $(this).DataTable({
       "destroy": true,
-      "ordering": false,
       "language": {
         "search": "Buscar:"
       },
-      "paging": false,
       "pageLength": 10,
       "pagingType": "full_numbers"
     });
