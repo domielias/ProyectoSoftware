@@ -8,7 +8,10 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("bootstrap")
-require("adminlte")
+require("custom/adminlte")
+require("custom/jquery.overlayScrollbars")
+// require("adminlte")
+// require("jquery.overlayScrollbars") //Tomar en consideración por si da algun error
 
 
 

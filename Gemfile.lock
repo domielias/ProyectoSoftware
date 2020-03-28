@@ -80,8 +80,8 @@ GEM
     erubi (1.9.0)
     ffi (1.12.2)
     ffi (1.12.2-x64-mingw32)
-    font-awesome-rails (4.7.0.5)
-      railties (>= 3.2, < 6.1)
+    font_awesome5_rails (1.1.0)
+      railties (>= 4.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.2)
@@ -221,7 +221,7 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   byebug
   capybara (>= 2.15)
-  font-awesome-rails (~> 4.7.0.5)
+  font_awesome5_rails (~> 1.1.0)
   jbuilder (~> 2.7)
   jquery-rails
   pg (>= 0.18, < 2.0)

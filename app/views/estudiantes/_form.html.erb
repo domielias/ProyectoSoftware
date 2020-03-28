@@ -9,8 +9,7 @@
 
       <div class="card card-default">
         <div class="card-header">
-          <h3 class="card-title">Datos Personales
-          </h3>
+          <h3 class="card-title">Datos Personales</h3>
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse">
               <i class="fa fa-minus"></i>
@@ -20,6 +19,12 @@
         <div class="card-body">
           <%= form.fields_for :persona do |prsn| %>
           <div class="row col-md-12 col-sm-12">
+            <div class="col-md-4 col-sm-4">
+              <div class="form-group">
+                <h5>No. pasaporte</h5>
+                <%= form.text_field :pasaporte, class: "form-control" %>
+              </div>
+            </div>
             <div class="col-md-4 col-sm-4">
               <div class="form-group">
                 <h5>Nombres del estudiante:</h5>
@@ -32,19 +37,14 @@
                 <%= prsn.text_field :apellidos, class: "form-control" %>
               </div>
             </div>
-            <div class="col-md-4 col-sm-4">
-              <div class="form-group">
-                <h5>Fecha de nacimiento:</h5>
-                <%= prsn.date_field :fecha_nacimiento, {class: "form-control date-input"} %>
-              </div>
-            </div>
+            
           </div>
           <hr/>
           <div class="row col-md-12 col-sm-12">
             <div class="col-md-4 col-sm-4">
               <div class="form-group">
-                <h5>No. pasaporte</h5>
-                <%= form.text_field :pasaporte, class: "form-control" %>
+                <h5>Fecha de nacimiento:</h5>
+                <%= prsn.date_field :fecha_nacimiento, {class: "form-control date-input"} %>
               </div>
             </div>
             <div class="col-md-4 col-sm-4">
@@ -56,7 +56,10 @@
             <div class="col-md-4 col-sm-4">
               <div class="form-group">
                 <h5>Correo electrónico:</h5>
-                <%= prsn.text_field :correo_electronico, class: "form-control date-input", placeholder: "hola@ejemplo.com" %>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">@</span>
+                  <%= prsn.text_field :correo_electronico, class: "form-control date-input", placeholder: "hola@ejemplo.com" %>
+                </div>  
               </div>
             </div>
           </div>
@@ -204,7 +207,37 @@
       <%= info_acad.text_field :asignaturas_de_espanol_recientes, class: "form-control" %>
     </div>
   </div>
-<% end %>
+  <% end %>
+  <hr/>
+  <div class="col-md-12 col-sm-12">
+    <div class="form-group">
+      <h5>Progreso Inscripción</h5>
+    </div>
+  </div>
+  <%= form.fields_for :progreso_inscripcion do |prog_insc| %>
+    <div class="row col-md-12 col-sm-12">
+      <div class="col-md-4 col-sm-4">
+        <div class="form-group">
+          <h6>Formulario de Solicitud <%= prog_insc.check_box :formulario_solicitud %></h6>
+          <h6>Acta de Nacimiento <%= prog_insc.check_box :acta_nacimiento %> </h6>
+          <h6>Certificado Medico <%= prog_insc.check_box :certificacion_medica %> </h6>
+          <h6>Fotografia 2x2 <%= prog_insc.check_box :fotografias %> </h6>
+          <h6>Copia de Cedula <%= prog_insc.check_box :copia_cedula %> </h6>
+          <h6>Record de Secundaria <%= prog_insc.check_box :record_secundaria %> </h6>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="form-group">
+          <h6>Certificado Prueba Nacionales <%= prog_insc.check_box :certificado_pruebas_nacionales %> </h6>
+          <h6>Recibo de Admisión <%= prog_insc.check_box :recibo_admision %> </h6>
+          <h6>Copia Seguro de Salud <%= prog_insc.check_box :copia_seguro_salud %> </h6>
+          <h6>Acta Nacimiento Padre <%= prog_insc.check_box :acta_nacimiento_padre %> </h6>
+          <h6>Record de nota <%= prog_insc.check_box :record_notas_original_de_univ_de_procedencia %> </h6>
+          <h6>Copia de Vacunación <%= prog_insc.check_box :copia_vacunacion %> </h6>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
 </div>
 

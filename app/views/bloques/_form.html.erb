@@ -1,16 +1,8 @@
 <%= form_with(model: bloque, local: true) do |form| %>
 <% if bloque.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(bloque.errors.count, "error") %>
-      prohibited this bloque from being saved:</h2>
-
-    <ul>
-      <% bloque.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+  <%= render '/shared/errors', obj: @bloque %>
 <% end %>
+
 
 <div class="card-container">
   <div class="card card-default">

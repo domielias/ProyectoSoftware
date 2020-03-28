@@ -1,6 +1,10 @@
-<h1>Editing Estudiante</h1>
+<% if @estudiante.admitido == true and @estudiante.egresado == true %>
+  <h1 class="card-container">Editar Egresado</h1>
+<% elsif @estudiante.admitido == true and @estudiante.egresado == false %>
+  <h1 class="card-container">Editar Estudiante</h1>
+<% elsif @estudiante.admitido==false %>
+  <h1 class="card-container">Editar Ficha de Admision</h1>
+<% end %>
 
 <%= render 'form', estudiante: @estudiante %>
 
-<%= link_to 'Show', @estudiante %> |
-<%= link_to 'Back', estudiantes_path %>

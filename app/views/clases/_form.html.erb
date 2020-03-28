@@ -1,16 +1,8 @@
 <%= form_with(model: clase, local: true) do |form| %>
 <% if clase.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(clase.errors.count, "error") %>
-      prohibited this clase from being saved:</h2>
-
-    <ul>
-      <% clase.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+  <%= render '/shared/errors', obj: @clase %>
 <% end %>
+
 
 <div class="card-container">
   <div class="card card-default">
@@ -153,9 +145,6 @@
         <%= n += 1 %></h5>
       <div class="col-md-12 col-sm-12">
         <%= hrro.select :dias, options_for_select(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']), {:include_blank => ''},{class: 'select2-simple-dropdown select2-dropdown-width'}%>
-        <!-- <select class='select2-multiple-dropdown select2-dropdown-width'> <option value="Lunes">Lunes</option> <option value="Martes">Martes</option> <option value="Miércoles">Miércoles</option> <option value="Jueves">Jueves</option> <option
-        value="Viernes">Viernes</option> <option value="Sábado">Sábado</option> <option value="Domingo">Domingo</option> </select> -->
-        <!-- <% @selected = select options_for_select(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']), {},{ class: 'select2-multiple-dropdown select2-dropdown-width', multiple:'multiple'} %> <%= puts @selected %> -->
       </div>
       <div class="col-md-12 col-sm-12">
         <div class="form-inline select-time-div-margin">

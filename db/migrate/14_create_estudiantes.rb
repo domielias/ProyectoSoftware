@@ -17,6 +17,7 @@ class CreateEstudiantes < ActiveRecord::Migration[6.0]
       t.references :madre, foreign_key: {to_table: :personas}
       t.references :carrera_solicitada, foreign_key: true
       t.references :programa_internacional, foreign_key:true
+      t.references :progreso_inscripcion, foreign_key: true
 
       t.timestamps
 

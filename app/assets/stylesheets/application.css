@@ -17,10 +17,11 @@
  *= require adminlte.extra-components
  *= require adminlte.pages
  *= require adminlte.plugins
- *= require font-awesome
+ *= require font_awesome5
  *= require select2
  *= require bootstrap-datepicker
  *= require datatables/dataTables.bootstrap
+ *= require OverlayScrollbars
  *= require_self
  *= require_tree .
  */

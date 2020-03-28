@@ -1,43 +1,42 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Fichas de Admisión</h1>
+<section class="content">
+  <div class="container-fluid">
+    <h1>Fichas de Admisión</h1>
 
-<table class="table table-striped display" role='datatable'>
-  <thead>
-  <tr>
-    <th>#</th>
-    <th>Nombres</th>
-    <th>Apellidos</th>
-    <th>Id Campus</th>
-    <th>Matricula</th>
-    <th>Sexo</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% n=0 %>
-  <% @estudiantes.each do |estudiante| %>
-    <% if estudiante.admitido == false %>
+    <table class="table table-striped display" role='datatable'>
+      <thead>
       <tr>
-        <td><%= n+=1 %></td>
-        <td><%= estudiante.persona.nombres %></td>
-        <td><%= estudiante.persona.apellidos %></td>
-        <td><%= estudiante.id_campus %></td>
-        <td><%= estudiante.matricula %></td>
-        <td><%= estudiante.sexo %></td>
-        <td><%= link_to 'Mostrar', estudiante, class: "btn btn-info" %></td>
-        <td><%= link_to 'Editar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
-        <td><%= link_to 'Eliminar', estudiante_path(estudiante),method: :destroy, class: "btn btn-danger" %></td>
+        <th>#</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Id Campus</th>
+        <th>Matricula</th>
+        <th>Sexo</th>
+        <th></th>
+        <th></th>
       </tr>
-    <%end %>
-  <% end %>
-  </tbody>
-</table>
+      </thead>
 
-<br>
+      <tbody>
+      <% n=0 %>
+      <% @estudiantes.each do |estudiante| %>
+        <% if estudiante.admitido == false %>
+          <tr>
+            <td><%= n+=1 %></td>
+            <td><%= estudiante.persona.nombres %></td>
+            <td><%= estudiante.persona.apellidos %></td>
+            <td><%= estudiante.id_campus %></td>
+            <td><%= estudiante.matricula %></td>
+            <td><%= estudiante.sexo %></td>
+            <td><%= link_to 'Mostrar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
+            <td><%= link_to 'Eliminar', estudiante_path(estudiante),method: :destroy, class: "btn btn-danger" %></td>
+          </tr>
+        <%end %>
+      <% end %>
+      </tbody>
+    </table>
 
-
-<%= link_to 'Nuevo Estudiante', new_estudiante_path, class: "btn btn-primary" %>
+  <br>
+  </div>
+</section>
