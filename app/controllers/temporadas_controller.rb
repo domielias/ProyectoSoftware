@@ -17,7 +17,9 @@ class TemporadasController < ApplicationController
     @temporadas = Temporada.all
     render "index"
   end
-
+  def iniciarnombre
+    puts @temporada.nombre
+  end
   # GET /temporadas/new
   def new
     @temporada = Temporada.new
