@@ -20,13 +20,13 @@
         <td><%= temporada.nombre %></td>
         <td><%= temporada.fecha_inicio %></td>
         <td><%= temporada.fecha_final %></td>
-        <td>
-          <%# if temporada.actual? %>
-            <%= link_to 'Finalizar', finalizar_temporada_path(temporada), class: "btn btn-warning" %>
-          <%# end %>
+        <td class="align-column-content-center">
+          <% if temporada.actual? %>
+            <%= link_to 'Finalizar', finalizar_temporada_path(temporada), class: "btn btn-danger" %>
+          <% end %>
         </td>
-        <td><%= link_to 'Mostrar', temporada %></td>
-        <td><%= link_to 'Editar', edit_temporada_path(temporada) %></td>
+        <td class="align-column-content-center"><%= link_to 'Mostrar', temporada, class: "btn btn-info" %></td>
+        <td class="align-column-content-center"><%= link_to 'Editar', edit_temporada_path(temporada), class: "btn btn-warning" %></td>
       </tr>
     <% end %>
   </tbody>

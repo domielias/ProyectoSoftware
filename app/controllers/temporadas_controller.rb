@@ -13,8 +13,8 @@ class TemporadasController < ApplicationController
   end
 
   def finalizar
+    @temporada.update_attribute(:actual, false)
     @temporadas = Temporada.all
-    @temporada.actual = false
     render "index"
   end
 
