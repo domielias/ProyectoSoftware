@@ -8,7 +8,7 @@
       </div><!-- /.container-fluid -->
     </div>
 <!-- /.col -->
-<!-- /.col -->   
+<!-- /.col -->
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -64,12 +64,12 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <%temporada_id= Temporada.where(:actual =>true)%>
-                <%temporada= Temporada.find(temporada_id.ids.shift)%>
-                <% if temporada.nil? %>
-                  <h3>No hay un ciclo actual</h3>
-                <% elsif !temporada.nil? %>
+                <% Temporada.where(:actual =>true) ? temporada_id=Temporada.where(:actual =>true) : temporada=nil %>
+                <% if !temporada.nil? %>
+                  <%temporada= Temporada.find(temporada_id.ids.shift)%>
                   <h3><%=temporada.nombre%></h3>
+                <% elsif temporada.nil? %>
+                  <h3>No hay un ciclo</h3>
                 <% end %>
                 <p>Ciclo Actual</p>
               </div>
@@ -78,7 +78,11 @@
               </div>
               <div class="small-box-footer">
                 <%# link_to 'Finalizar', finalizar_temporada_path(temporada), class: "btn btn-danger" %>
-                <%= link_to 'Finalizar', finalizar_temporada_path(temporada), class: "small-box-footer" %>
+                <% if !temporada.nil? %>
+                  <%= link_to 'Finalizar', finalizar_temporada_path(temporada), class: "small-box-footer" %>
+                <% elsif temporada.nil? %>
+                  <a class="small-box-footer"> No hay temporada para finalizar</a>
+                <% end %>
                 <i class="fa fa-arrow-circle-right"></i>
               </div>
             </div>
