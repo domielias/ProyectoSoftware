@@ -101,7 +101,7 @@
     </div>
     <div class="card-body">
       <%= fields_for @clase_estudiante do |ce| %>
-      <%= collection_select(:estudiantes, :id, Estudiante.where.not(admitido: false), :id, :id_campus, {selected: clase.estudiantes.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+      <%= collection_select(:estudiantes, :id, Estudiante.where.not(admitido: false), :id, :id_campus_nombres_apellidos, {selected: clase.estudiantes.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
     <% end %>
   </div>
 </div>
