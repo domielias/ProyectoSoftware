@@ -1,7 +1,7 @@
 <section class="content">
   <div class="container-fluid">
     <h3>Listado de clases de
-      <%= @estudiante.id_campus%>
+      <%= @estudiante.persona.id_campus%>
       -
       <%=@estudiante.persona.nombres%>
       <%=@estudiante.persona.apellidos%>
@@ -37,7 +37,11 @@
                 <%= clase.temporada_nombre %>
               <% end %>
             </td>
-            <td><%= clase.activo ? :Si : :No %></td>
+            <td>
+              <% if !clase.temporada.nil? %>
+                <%= clase.temporada.actual ? :Si : :No %>
+              <% end %>
+            </td>
             <td><%= link_to 'Detallar', clase, class: "btn btn-info" %></td>
           </tr>
         <% end %>

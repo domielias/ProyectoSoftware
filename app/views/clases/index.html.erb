@@ -30,7 +30,11 @@
               <%= clase.asignatura_nombre %>
             <% end %>
           </td>
-          <td><%= clase.temporada.actual ? :Sí : :No %></td>
+          <td>
+           <% if !clase.temporada.nil? %>
+             <%= clase.temporada.actual ? :Sí : :No %>
+           <% end %>
+         </td>
            <td>
             <% if !clase.temporada.nil? %>
               <%= clase.temporada_nombre %>

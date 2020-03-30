@@ -29,7 +29,7 @@ class Estudiante < ApplicationRecord
     accepts_nested_attributes_for :persona
 
     def id_campus_nombres_apellidos
-      "#{id_campus} #{persona.nombres} #{persona.apellidos}"
+      "#{persona.id_campus} #{persona.nombres} #{persona.apellidos}"
     end
 
 end

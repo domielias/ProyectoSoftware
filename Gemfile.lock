@@ -59,12 +59,17 @@ GEM
       zeitwerk (~> 2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    autoprefixer-rails (9.7.5)
+      execjs
     bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
     bootstrap-datepicker-rails (1.9.0.1)
       railties (>= 3.0)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.2.4)
     byebug (11.1.1)
     capybara (3.31.0)
@@ -85,6 +90,7 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.9.0)
+    execjs (2.7.0)
     ffi (1.12.2)
     ffi (1.12.2-x64-mingw32)
     font_awesome5_rails (1.1.0)
@@ -164,11 +170,19 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
     rake (13.0.1)
+    rb-fsevent (0.10.3)
+    rb-inotify (0.10.1)
+      ffi (~> 1.0)
     regexp_parser (1.7.0)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
     rubyzip (2.2.0)
+    sass (3.7.4)
+      sass-listen (~> 4.0.0)
+    sass-listen (4.0.0)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.2.1)
@@ -232,6 +246,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   bootstrap-datepicker-rails
+  bootstrap-sass (~> 3.3.6)
   byebug
   capybara (>= 2.15)
   devise

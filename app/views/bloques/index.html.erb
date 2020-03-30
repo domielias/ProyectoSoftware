@@ -7,7 +7,7 @@
     <table class="table table-striped display" role='datatable'>
       <thead>
         <tr>
-          <th>Nombre</th>
+          <th>Creador</th>
           <th>Temporada</th>
           <th>Categoría</th>
           <th></th>
@@ -18,9 +18,17 @@
       <tbody>
         <% @bloques.each do |bloque| %>
           <tr>
-            <td><%= bloque.nombre %></td>
-            <td><%= bloque.temporada_nombre %></td>
-            <td><%= bloque.category_nombre %></td>
+            <td><%= bloque.creador %></td>
+            <td>
+             <% if !bloque.temporada.nil? %>
+               <%= bloque.temporada_nombre %>
+             <% end %>
+           </td>
+           <td>
+            <% if !bloque.category.nil? %>
+              <%= bloque.category_nombre %>
+            <% end %>
+          </td>
             <td class="align-column-content-center"><%= link_to 'Mostrar', bloque, class: "btn btn-info" %></td>
             <td class="align-column-content-center"><%= link_to 'Edit', edit_bloque_path(bloque), class: "btn btn-warning" %></td>
           </tr>

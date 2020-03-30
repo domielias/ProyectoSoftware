@@ -81,17 +81,15 @@ ActiveRecord::Schema.define(version: 38) do
 
   create_table "bloques", force: :cascade do |t|
     t.string "nombre", limit: 20
+    t.string "creador", limit: 100
+    t.boolean "creado_por_estudiante"
     t.bigint "category_id"
-    t.bigint "creador_usuario_id"
-    t.bigint "creador_estudiante_id"
     t.bigint "bloque_padre_id"
     t.bigint "temporada_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bloque_padre_id"], name: "index_bloques_on_bloque_padre_id"
     t.index ["category_id"], name: "index_bloques_on_category_id"
-    t.index ["creador_estudiante_id"], name: "index_bloques_on_creador_estudiante_id"
-    t.index ["creador_usuario_id"], name: "index_bloques_on_creador_usuario_id"
     t.index ["id"], name: "index_bloques_on_id", unique: true
     t.index ["temporada_id"], name: "index_bloques_on_temporada_id"
   end
@@ -379,9 +377,7 @@ ActiveRecord::Schema.define(version: 38) do
   add_foreign_key "asignaturas", "facultads"
   add_foreign_key "bloques", "bloques", column: "bloque_padre_id"
   add_foreign_key "bloques", "categories"
-  add_foreign_key "bloques", "estudiantes", column: "creador_estudiante_id"
   add_foreign_key "bloques", "temporadas"
-  add_foreign_key "bloques", "usuarios", column: "creador_usuario_id"
   add_foreign_key "clases", "asignaturas"
   add_foreign_key "clases", "clases", column: "clase_vinculada_id"
   add_foreign_key "clases", "temporadas"

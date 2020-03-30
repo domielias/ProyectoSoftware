@@ -15,8 +15,6 @@ class BloquesController < ApplicationController
   # GET /bloques/new
   def new
     @bloque = Bloque.new
-    @bloque.build_category
-    @bloque.build_temporada
 
     @bloque_asignatura = @bloque.bloque_asignaturas.build
     @bloque_estudiante = @bloque.bloque_estudiantes.build
@@ -110,6 +108,6 @@ class BloquesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bloque_params
-      params.require(:bloque).permit(:fecha_inicio, :fecha_final, :category_id, :temporada_id, asignaturas_ids:[])
+      params.require(:bloque).permit(:fecha_inicio, :fecha_final, :creador, :category_id, :temporada_id, :persona_id, :estudiante_id, asignaturas_ids:[])
     end
 end
