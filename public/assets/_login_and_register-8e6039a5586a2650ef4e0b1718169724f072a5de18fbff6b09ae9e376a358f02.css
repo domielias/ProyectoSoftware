@@ -1,0 +1,112 @@
+/* line 4, app/assets/stylesheets/_login_and_register.scss */
+.login-logo,
+.register-logo {
+  font-size: 2.1rem;
+  font-weight: 300;
+  margin-bottom: .9rem;
+  text-align: center;
+}
+
+/* line 11, app/assets/stylesheets/_login_and_register.scss */
+.login-logo a,
+.register-logo a {
+  color: gray;
+}
+
+/* line 16, app/assets/stylesheets/_login_and_register.scss */
+.login-page,
+.register-page {
+  align-items: center;
+  background: #b1b1b1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+/* line 26, app/assets/stylesheets/_login_and_register.scss */
+.login-box,
+.register-box {
+  width: 360px;
+}
+
+@media (max-width: 1000px) {
+  /* line 26, app/assets/stylesheets/_login_and_register.scss */
+  .login-box,
+  .register-box {
+    margin-top: 20px;
+    width: 90%;
+  }
+}
+
+/* line 36, app/assets/stylesheets/_login_and_register.scss */
+.login-card-body,
+.register-card-body {
+  background: white;
+  border-top: 0;
+  color: #666;
+  padding: 20px;
+}
+
+/* line 44, app/assets/stylesheets/_login_and_register.scss */
+.login-card-body .input-group .form-control,
+.register-card-body .input-group .form-control {
+  border-right: 0;
+}
+
+/* line 47, app/assets/stylesheets/_login_and_register.scss */
+.login-card-body .input-group .form-control:focus,
+.register-card-body .input-group .form-control:focus {
+  box-shadow: none;
+}
+
+/* line 50, app/assets/stylesheets/_login_and_register.scss */
+.login-card-body .input-group .form-control:focus ~ .input-group-append .input-group-text,
+.register-card-body .input-group .form-control:focus ~ .input-group-append .input-group-text {
+  border-color: 102;
+}
+
+/* line 56, app/assets/stylesheets/_login_and_register.scss */
+.login-card-body .input-group .form-control.is-valid:focus,
+.register-card-body .input-group .form-control.is-valid:focus {
+  box-shadow: none;
+}
+
+/* line 60, app/assets/stylesheets/_login_and_register.scss */
+.login-card-body .input-group .form-control.is-valid ~ .input-group-append .input-group-text,
+.register-card-body .input-group .form-control.is-valid ~ .input-group-append .input-group-text {
+  border-color: green;
+}
+
+/* line 66, app/assets/stylesheets/_login_and_register.scss */
+.login-card-body .input-group .form-control.is-invalid:focus,
+.register-card-body .input-group .form-control.is-invalid:focus {
+  box-shadow: none;
+}
+
+/* line 70, app/assets/stylesheets/_login_and_register.scss */
+.login-card-body .input-group .form-control.is-invalid ~ .input-group-append .input-group-text,
+.register-card-body .input-group .form-control.is-invalid ~ .input-group-append .input-group-text {
+  border-color: red;
+}
+
+/* line 76, app/assets/stylesheets/_login_and_register.scss */
+.login-card-body .input-group .input-group-text,
+.register-card-body .input-group .input-group-text {
+  background-color: transparent;
+  border-left: 0;
+  color: #777;
+}
+
+/* line 84, app/assets/stylesheets/_login_and_register.scss */
+.login-box-msg,
+.register-box-msg {
+  margin: 0;
+  padding: 0 20px 20px;
+  text-align: center;
+}
+
+/* line 91, app/assets/stylesheets/_login_and_register.scss */
+.social-auth-links {
+  margin: 10px 0;
+}

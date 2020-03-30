@@ -1,3 +1,4 @@
+@import '_login_and_register';
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -23,7 +24,4 @@
  *= require datatables
  *= require OverlayScrollbars
  *= require fullcalendar
-  *= require_self
- *= require_tree .
  */
- 

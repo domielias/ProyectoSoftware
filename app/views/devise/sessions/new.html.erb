@@ -1,26 +1,63 @@
-<h2>Log in</h2>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="#"><b>EPE</b>Software</a>   <%# Aqui ponerle link del portal %>
+  </div>  
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Inicia sesión</p>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="input-group mb-3">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+          <%# <---input type="email" class="form-control" placeholder="Email"> %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <%= f.password_field :password, autocomplete: "current-password",class:"form-control" %>
+          <%# <input type="password" class="form-control" placeholder="Password"> %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <% if devise_mapping.rememberable? %>
+            <div class="icheck-primary">
+              <%= f.check_box :remember_me,id:"remember",class:"checkbox" %>
+               <%# <input type="checkbox" id="remember"> %>
+              <label for="remember">
+                Recuerdame
+              </label>
+            </div>  
+            <% end %>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <%= f.submit "Entrar",class:"btn btn-primary btn-block" %>
+            <%# <button type="submit" class="btn btn-primary btn-block">Entrar</button> %>
+          </div>
+          <!-- /.col -->
+        </div>
+      <% end %>
+      <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+        <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+      <% end %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%# render "devise/shared/links" %>
+      <%# if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <%# link_to "Forgot your password?", new_password_path(resource_name) %><br />
+      <%# end %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <!-- /.login-card-body -->
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
+<!-- /.login-box -->
+</body>

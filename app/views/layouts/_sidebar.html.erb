@@ -21,7 +21,7 @@
       <!-- Messages Dropdown Menu -->
 
       <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
+      <!--li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="fa fa-bell"></i>
           <span class="badge badge-warning navbar-badge">15</span>
@@ -46,11 +46,13 @@
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
-      </li>
+      </li-->
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-          <i class="fa fa-th-large"></i>
-        </a>
+        <% if current_user %>
+          <%= link_to destroy_user_session_path, method: :delete,class: "nav-link" do %>
+            <i class="fa fa-sign-in-alt"></i>
+          <% end %>
+        <% end %>
       </li>
     </ul>
   </nav>
@@ -100,7 +102,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/estudiantes/new" class="nav-link">
-                  <i class="nav-icon fa fa-folder-plus"></i>
+                  <i class="nav-icon fa fa-plus"></i>
                   <p>Crear Proceso Admisión</p>
                 </a>
               </li>
@@ -137,19 +139,19 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-             <li class="nav-item">
-                <a href="/clases" class="nav-link">
-                  <i class="nav-icon fa fa-chalkboard-teacher"></i>
+              <li class="nav-item">
+                <a href="/clases/new" class="nav-link">
+                  <i class="nav-icon fa fa-plus"></i>
                   <p>
-                    Listar Clases
+                    Crear Clases
                   </p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="/clases/new" class="nav-link">
+             <li class="nav-item">
+                <a href="/clases" class="nav-link">
                   <i class="nav-icon fa fa-chalkboard"></i>
                   <p>
-                    Crear Clases
+                    Listar Clases
                   </p>
                 </a>
               </li>
@@ -164,19 +166,19 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-             <li class="nav-item">
-                <a href="/bloques" class="nav-link">
-                  <i class="nav-icon fa fa-cube"></i>
-                  <p>
-                    Listar Bloques
-                  </p>
-                </a>
-              </li>
               <li class="nav-item">
                 <a href="/bloques/new" class="nav-link">
                   <i class="nav-icon fa fa-plus"></i>
                   <p>
                     Crear Bloques
+                  </p>
+                </a>
+              </li>
+             <li class="nav-item">
+                <a href="/bloques" class="nav-link">
+                  <i class="nav-icon fa fa-cube"></i>
+                  <p>
+                    Listar Bloques
                   </p>
                 </a>
               </li>
@@ -193,7 +195,7 @@
             <ul class="nav nav-treeview">
              <li class="nav-item">
                 <a href="/actividads/new" class="nav-link">
-                  <i class="nav-icon fa fa-street-view"></i>
+                  <i class="nav-icon fa fa-plus"></i>
                   <p>
                     Crear Actividad
                   </p>

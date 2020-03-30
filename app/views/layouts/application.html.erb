@@ -4,6 +4,7 @@
       <title>Proyecto Software</title>
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <%= stylesheet_link_tag 'application.css', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_pack_tag 'application.js', 'data-turbolinks-track': 'reload' %>
@@ -20,10 +21,12 @@
     <body class="sidebar-mini layout-fixed sidebar-collapse">
       <div class="wrapper">
         <% if current_user %>
-        <%= render 'layouts/sidebar' %>
+          <%= render 'layouts/sidebar' %>
         <% end %>
         <%= yield %>
-        <%= render 'layouts/footer' %>
+        <div>
+          <%# render 'layouts/footer' %>
+        </div>
       </div>
     </body>
   </html>
