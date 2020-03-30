@@ -37,7 +37,7 @@
                 <%= prsn.text_field :apellidos, class: "form-control" %>
               </div>
             </div>
-            
+
           </div>
           <hr/>
           <div class="row col-md-12 col-sm-12">
@@ -59,7 +59,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">@</span>
                   <%= prsn.text_field :correo_electronico, class: "form-control date-input", placeholder: "hola@ejemplo.com" %>
-                </div>  
+                </div>
               </div>
             </div>
           </div>
@@ -137,7 +137,9 @@
       <div class="col-md-4 col-sm-4">
         <div class="form-group">
           <h5>Id del campus</h5>
-          <%= form.text_field :id_campus, class: "form-control" %>
+          <%= form.fields_for :persona do |prsn| %>
+          <%= prsn.text_field :id_campus, class: "form-control" %>
+          <% end %>
         </div>
       </div>
       <div class="col-md-4 col-sm-4">
