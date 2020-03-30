@@ -1,4 +1,10 @@
 class Persona < ApplicationRecord
-    has_one :usuario
+    has_one :user
     has_one :estudiante
+    has_many :bloques
+
+    def id_campus_nombres_apellidos
+      "#{id_campus} #{nombres} #{apellidos}"
+    end
+
 end

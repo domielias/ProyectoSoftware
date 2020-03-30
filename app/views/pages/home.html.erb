@@ -8,7 +8,7 @@
       </div><!-- /.container-fluid -->
     </div>
 <!-- /.col -->
-<!-- /.col -->   
+<!-- /.col -->
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -88,6 +88,14 @@
             </div>
           </div>
         </div>
+        <!-- /.row -->
+        <div class="">
+          <% if current_user %>
+            <!-- true --><%= link_to 'Sign out', destroy_user_session_path, method: :delete%>
+            <% else %>
+            <%= link_to 'Sign up', new_user_registration_path %>
+            <%= link_to 'Sign in', new_user_session_path %>
+          <% end %>
+        </div>
       </div>
     </section>
-        <!-- /.row -->

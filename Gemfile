@@ -31,6 +31,8 @@ gem 'rails-assets-datatables', source: 'https://rails-assets.org'
 gem 'bootstrap-datepicker-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+gem 'devise'
+
 #gem calendar
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'

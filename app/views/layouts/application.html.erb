@@ -16,9 +16,12 @@
 
     </head>
 
+
     <body class="sidebar-mini layout-fixed sidebar-collapse">
       <div class="wrapper">
+        <% if current_user %>
         <%= render 'layouts/sidebar' %>
+        <% end %>
         <%= yield %>
         <%= render 'layouts/footer' %>
       </div>

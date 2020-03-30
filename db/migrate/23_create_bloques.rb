@@ -2,10 +2,10 @@ class CreateBloques < ActiveRecord::Migration[6.0]
   def change
     create_table :bloques do |t|
       t.string :nombre, limit: 20 #######
+      t.string :creador, limit: 100 #######
+      t.boolean :creado_por_estudiante #######
 
       t.references :category, foreign_key: {to_table: :categories}
-      t.references :creador_usuario, foreign_key: {to_table: :usuarios}
-      t.references :creador_estudiante, foreign_key: {to_table: :estudiantes}
       t.references :bloque_padre, foreign_key: {to_table: :bloques}
       t.references :temporada, foreign_key: true
 

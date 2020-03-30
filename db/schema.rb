@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 34) do
+ActiveRecord::Schema.define(version: 38) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -81,17 +81,15 @@ ActiveRecord::Schema.define(version: 34) do
 
   create_table "bloques", force: :cascade do |t|
     t.string "nombre", limit: 20
+    t.string "creador", limit: 100
+    t.boolean "creado_por_estudiante"
     t.bigint "category_id"
-    t.bigint "creador_usuario_id"
-    t.bigint "creador_estudiante_id"
     t.bigint "bloque_padre_id"
     t.bigint "temporada_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bloque_padre_id"], name: "index_bloques_on_bloque_padre_id"
     t.index ["category_id"], name: "index_bloques_on_category_id"
-    t.index ["creador_estudiante_id"], name: "index_bloques_on_creador_estudiante_id"
-    t.index ["creador_usuario_id"], name: "index_bloques_on_creador_usuario_id"
     t.index ["id"], name: "index_bloques_on_id", unique: true
     t.index ["temporada_id"], name: "index_bloques_on_temporada_id"
   end
@@ -125,8 +123,8 @@ ActiveRecord::Schema.define(version: 34) do
   end
 
   create_table "clases", force: :cascade do |t|
-    t.integer "seccion"
-    t.integer "no_clase"
+    t.string "seccion"
+    t.string "no_clase"
     t.string "lugar", limit: 20
     t.string "modalidad", limit: 20
     t.bigint "profesor_id"
@@ -162,7 +160,6 @@ ActiveRecord::Schema.define(version: 34) do
     t.string "pasaporte", limit: 12
     t.float "tiempo_residencia"
     t.integer "numero_residencia"
-    t.integer "id_campus"
     t.integer "matricula"
     t.string "estado_civil", limit: 15
     t.string "nombre_conyugue", limit: 50
@@ -274,6 +271,7 @@ ActiveRecord::Schema.define(version: 34) do
   create_table "personas", force: :cascade do |t|
     t.string "nombres", limit: 50
     t.string "apellidos", limit: 50
+    t.string "id_campus", limit: 10
     t.date "fecha_nacimiento"
     t.string "correo_electronico", limit: 50
     t.datetime "created_at", precision: 6, null: false
@@ -309,7 +307,6 @@ ActiveRecord::Schema.define(version: 34) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["estudiante_id"], name: "index_progreso_inscripcions_on_estudiante_id"
-    t.index ["estudiante_id"], name: "index_progreso_inscripcions_on_estudiantes_id", unique: true
     t.index ["id"], name: "index_progreso_inscripcions_on_id", unique: true
   end
 
@@ -348,6 +345,22 @@ ActiveRecord::Schema.define(version: 34) do
     t.index ["profesor_id"], name: "index_tutories_on_profesor_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin", default: false
+    t.bigint "persona_id", null: false
+    t.boolean "profesor", default: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["persona_id"], name: "index_users_on_persona_id"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
   create_table "usuarios", force: :cascade do |t|
     t.string "nombre", limit: 50
     t.string "password", limit: 50
@@ -364,9 +377,7 @@ ActiveRecord::Schema.define(version: 34) do
   add_foreign_key "asignaturas", "facultads"
   add_foreign_key "bloques", "bloques", column: "bloque_padre_id"
   add_foreign_key "bloques", "categories"
-  add_foreign_key "bloques", "estudiantes", column: "creador_estudiante_id"
   add_foreign_key "bloques", "temporadas"
-  add_foreign_key "bloques", "usuarios", column: "creador_usuario_id"
   add_foreign_key "clases", "asignaturas"
   add_foreign_key "clases", "clases", column: "clase_vinculada_id"
   add_foreign_key "clases", "temporadas"
@@ -391,6 +402,7 @@ ActiveRecord::Schema.define(version: 34) do
   add_foreign_key "progreso_inscripcions", "estudiantes"
   add_foreign_key "tutories", "clases"
   add_foreign_key "tutories", "usuarios", column: "profesor_id"
+  add_foreign_key "users", "personas"
   add_foreign_key "usuarios", "personas"
   add_foreign_key "usuarios", "rols"
 end
