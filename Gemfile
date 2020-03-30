@@ -7,7 +7,6 @@ ruby '2.6.5'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'rails_12factor'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -32,6 +31,9 @@ gem 'rails-assets-datatables', source: 'https://rails-assets.org'
 gem 'bootstrap-datepicker-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+#gem calendar
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

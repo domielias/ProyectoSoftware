@@ -22,6 +22,7 @@
  *= require bootstrap-datepicker
  *= require datatables
  *= require OverlayScrollbars
+ *= require fullcalendar
  *= require_self
  *= require_tree .
  */

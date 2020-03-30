@@ -1,47 +1,14 @@
 <section class="content">
   <div class="container-fluid">
     <h3>Listado de clases de
-      <%= @estudiante.id_campus%>
+      ID:<% @estudiante.persona.id_campus%>
       -
       <%=@estudiante.persona.nombres%>
       <%=@estudiante.persona.apellidos%>
     </h3>
-
-    <table class="table table-striped display" role='datatable'>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>No. Clase</th>
-          <th>Sección</th>
-          <th>Asignatura</th>
-          <th>Temporada</th>
-          <th>Está activa ?</th>
-          <th></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% n=0 %>
-          <% @estudiante.clases.each do |clase| %>
-            <tr>
-            <td><%= n+=1 %></td>
-            <td><%= clase.no_clase %></td>
-            <td><%= clase.seccion %></td>
-            <td>
-              <% if !clase.asignatura.nil? %>
-                <%= clase.asignatura_nombre %>
-              <% end %>
-            </td>
-            <td>
-              <% if !clase.temporada.nil? %>
-                <%= clase.temporada_nombre %>
-              <% end %>
-            </td>
-            <td><%= clase.activo ? :Si : :No %></td>
-            <td><%= link_to 'Detallar', clase, class: "btn btn-info" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div id="calendar">
+    
+    </div>
+    
   </div>
 </section>
