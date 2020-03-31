@@ -31,10 +31,14 @@
         </div>
         <div class="col-md-6 col-sm-6">
           <div class="form-inline select-time-div-margin">
-            <h8 class='select-time-header-margin'>Desde</h8>
-            <%= form.time_select :hora_inicio, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
+            <div class="list-inline-item">
+              <h8 class='select-time-header-margin'>Desde</h8>
+              <%= form.time_select :hora_inicio, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
+            </div>
+            <div class="list-inline-item">
             <h8 class='select-time-header-margin'>Hasta</h8>
             <%= form.time_select :hora_fin, { }, { class: 'form-control', default: {hour: '18', minute: '00'}} %>
+            </div>
           </div>
         </div>
       </div>
@@ -55,7 +59,8 @@
 
       <hr/>
       <h5>Clases participantes</h5>
-      <%= collection_select(:clases, :id, Clase.joins(:temporada).where(:temporadas => {actual: true}), :id, :no_clase, {selected: actividad.clases.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+      <!-- Clase.joins(:temporada).where(:temporadas => {actual: true}) Para solo clases actuales-->
+      <%= collection_select(:clases, :id, Clase.all, :id, :no_clase, {selected: actividad.clases.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
 
     </div>
   </div>
