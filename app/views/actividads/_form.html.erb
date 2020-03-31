@@ -55,7 +55,7 @@
 
       <hr/>
       <h5>Clases participantes</h5>
-      <%= collection_select(:clases, :id, Clase.where.not(activo: false), :id, :no_clase, {selected: actividad.clases.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+      <%= collection_select(:clases, :id, Clase.joins(:temporada).where(:temporadas => {actual: true}), :id, :no_clase, {selected: actividad.clases.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
 
     </div>
   </div>
