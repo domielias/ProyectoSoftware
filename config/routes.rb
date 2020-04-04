@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :programa_epe_solicitados
   devise_for :users
   resources :clase_actividads
   resources :bloque_estudiantes

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Programa Epe Solicitados</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @programa_epe_solicitados.each do |programa_epe_solicitado| %>
+      <tr>
+        <td><%= link_to 'Show', programa_epe_solicitado %></td>
+        <td><%= link_to 'Edit', edit_programa_epe_solicitado_path(programa_epe_solicitado) %></td>
+        <td><%= link_to 'Destroy', programa_epe_solicitado, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Programa Epe Solicitado', new_programa_epe_solicitado_path %>

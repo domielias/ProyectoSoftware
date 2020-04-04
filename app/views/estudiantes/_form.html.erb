@@ -136,15 +136,30 @@
     <div class="row col-md-12 col-sm-12">
       <div class="col-md-4 col-sm-4">
         <div class="form-group">
-          <h5>Id del campus</h5>
           <%= form.fields_for :persona do |prsn| %>
+          <h5>ID estudiante</h5>
           <%= prsn.text_field :id_campus, class: "form-control" %>
-          <% end %>
         </div>
       </div>
       <div class="col-md-4 col-sm-4">
         <div class="form-group">
-          <h5>Programa internacional</h5>
+          <h5>Matrícula del estudiante</h5>
+          <%= prsn.text_field :matricula, class: "form-control" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row col-md-12 col-sm-12">
+      <div class="col-md-4 col-sm-4">
+        <div class="form-group">
+          <h5>Programa EPE solicitado</h5>
+          <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="form-group">
+          <h5>Programa de movilidad</h5>
           <%= form.select :programa_internacional_id, ProgramaInternacional.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
         </div>
       </div>
@@ -165,13 +180,19 @@
       </div>
     </div>
     <div class="row col-md-12 col-sm-12">
-      <div class="col-md-6 col-sm-6">
+      <div class="col-md-4 col-sm-4">
+        <div class="form-group">
+          <h6>Fecha del examen</h6>
+          <%= ex_niv.date_field :fecha_examen, {class: "form-control date-input"} %>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
         <div class="form-group">
           <h6>Nota</h6>
           <%= ex_niv.number_field :promedio, {step: 0.1, class: "form-control"} %>
         </div>
       </div>
-      <div class="col-md-6 col-sm-6">
+      <div class="col-md-4 col-sm-4">
         <div class="form-group">
           <h6>Nivel</h6>
           <%= form.select :nivel_id, Nivel.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
@@ -186,14 +207,14 @@
   <div class="row col-md-12 col-sm-12">
     <div class="col-md-4 col-sm-4">
       <div class="form-group">
-        <h5>Tiempo estudiando español</h5>
-        <%= info_acad.number_field :cantidad_de_anos_de_espanol_estudiadas, {step: 0.1, class: "form-control"} %>
+        <h5>Universidad de procedencia</h5>
+        <%= form.select :institucion_id, Institucion.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
       </div>
     </div>
     <div class="col-md-4 col-sm-4">
       <div class="form-group">
-        <h5>Asignaturas de español recientes</h5>
-        <%= info_acad.text_field :asignaturas_de_espanol_recientes, class: "form-control" %>
+        <h5>Tiempo estudiando español (meses)</h5>
+        <%= info_acad.number_field :cantidad_de_anos_de_espanol_estudiadas, {step: 0.1, class: "form-control"} %>
       </div>
     </div>
     <div class="col-md-4 col-sm-4">
@@ -263,7 +284,7 @@
       <% if n == 0 %>
         <h5>Dirección:
           <%= n += 1 %>
-          (Pais de nacimiento)</h5>
+          (Pais de residencia)</h5>
         <%= dirr.hidden_field :pais_nacimiento, value: 1 %>
       <% else %>
         <h5>Dirección:
@@ -298,8 +319,8 @@
 
   <div class="row col-md-12 col-sm-12">
     <div class="col-md-6 col-sm-6">
-      <h6>Calle:</h6>
-      <%= dirr.text_field :calle, class: "form-control" %>
+      <h6>Dirección completa:</h6>
+      <%= dirr.text_field :direccion_completa, class: "form-control" %>
     </div>
     <div class="col-md-6 col-sm-6">
       <h6>Teléfono:</h6>

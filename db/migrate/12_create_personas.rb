@@ -4,6 +4,7 @@ class CreatePersonas < ActiveRecord::Migration[6.0]
       t.string :nombres, limit: 50
       t.string :apellidos, limit: 50
       t.string :id_campus, limit: 10
+      t.string :matricula, limit: 10
       t.date :fecha_nacimiento
       t.string :correo_electronico, limit: 50
 

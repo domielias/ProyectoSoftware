@@ -3,7 +3,7 @@ class CreateTutories < ActiveRecord::Migration[6.0]
     create_table :tutories do |t|
 
       t.string :lugar, limit: 20
-      t.references :profesor, foreign_key: {to_table: :usuarios}
+      t.references :profesor, foreign_key: {to_table: :users}
       t.references :clase, foreign_key: true
       t.timestamps
     end

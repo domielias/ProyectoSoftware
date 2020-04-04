@@ -1,5 +1,7 @@
 class Clase < ApplicationRecord
     has_many :horarios
+    delegate :start, to: :horario, prefix: true
+    delegate :end, to: :horario, prefix: true
     belongs_to :asignatura, optional: true ###########
     delegate :nombre, to: :asignatura, prefix: true
     has_many :tutory
@@ -20,6 +22,7 @@ class Clase < ApplicationRecord
     has_many :actividads, through: :clase_actividads
 
     accepts_nested_attributes_for :clase_vinculada
-    accepts_nested_attributes_for :horarios, reject_if: proc { |attributes| attributes['dias'].blank? } # discretamente descartar los horarios si tienen el campo de dias vacio
+    accepts_nested_attributes_for :horarios
+    #accepts_nested_attributes_for :horarios, reject_if: proc { |attributes| attributes['dias'].blank? } # discretamente descartar los horarios si tienen el campo de dias vacio
 
 end
