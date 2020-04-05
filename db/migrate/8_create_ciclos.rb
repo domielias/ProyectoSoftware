@@ -1,6 +1,7 @@
-class CreateTemporadas < ActiveRecord::Migration[6.0]
+class CreateCiclos < ActiveRecord::Migration[6.0]
   def change
-    create_table :temporadas do |t|
+    create_table :ciclos do |t|
+      t.string :codigo, limit: 10
       t.string :nombre, limit: 20
       t.boolean :actual ##########
 
@@ -10,7 +11,7 @@ class CreateTemporadas < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    add_index :temporadas, :id, unique: true
+    add_index :ciclos, :id, unique: true
 
   end
 end

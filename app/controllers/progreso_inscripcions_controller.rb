@@ -69,6 +69,6 @@ class ProgresoInscripcionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def progreso_inscripcion_params
-      params.require(:progreso_inscripcion).permit(:formulario_solicitud, :acta_nacimiento, :certificacion_medica, :fotografias, :copia_cedula, :record_secundaria, :certificado_pruebas_nacionales, :recibo_admision, :copia_seguro_salud, :acta_nacimiento_padre, :record_notas_original_de_univ_de_procedencia, :copia_vacunacion)
+      params.require(:progreso_inscripcion).permit(:formulario_admisiones, :acta_nacimiento, :formulario_especial_para_extranjeros, :visa_estudiante, :certificacion_medica, :fotografias, :copia_pasaporte, :record_secundaria, :certificado_pruebas_nacionales, :recibo_admision, :seguro_medico_o_viajero, :acta_nacimiento_padres, :record_notas_original_de_univ_de_procedencia, :copia_vacunacion)
     end
 end

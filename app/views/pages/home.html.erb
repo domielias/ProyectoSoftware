@@ -63,29 +63,31 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
-              <div class="inner">
-                <% Temporada.where(:actual =>true) ? temporada_id=Temporada.where(:actual =>true) : temporada=nil %>
-                <% if !temporada.nil? %>
-                  <%temporada= Temporada.find(temporada_id.ids.shift)%>
-                  <h3><%=temporada.nombre%></h3>
-                <% elsif temporada.nil? %>
-                  <h3>No hay un ciclo</h3>
-                <% end %>
-                <p>Ciclo Actual</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <div class="small-box-footer">
-                <%# link_to 'Finalizar', finalizar_temporada_path(temporada), class: "btn btn-danger" %>
-                <% if !temporada.nil? %>
-                  <%= link_to 'Finalizar', finalizar_temporada_path(temporada), class: "small-box-footer" %>
-                <% elsif temporada.nil? %>
-                  <a class="small-box-footer"> No hay temporada para finalizar</a>
-                <% end %>
-                <i class="fa fa-arrow-circle-right"></i>
-              </div>
+            <div class="inner">
+              <%# Ciclo.where(:actual =>true) ? ciclo_id=Ciclo.where(:actual =>true) : ciclo=nil %>
+              <% Ciclo.where(:actual =>true).present?  ? ciclo = Ciclo.find(Ciclo.where(:actual =>true).ids.shift) : ciclo = nil%>
+              <% if !ciclo.nil? %>
+                <%#ciclo= Ciclo.find(ciclo_id.ids.shift)%>
+                <h3><%=ciclo.nombre%></h3>
+              <% elsif ciclo.nil? %>
+                <h3>No hay un ciclo</h3>
+              <% end %>
+              <p>Ciclo Actual</p>
             </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <div class="small-box-footer">
+              <%# link_to 'Finalizar', finalizar_temporada_path(temporada), class: "btn btn-danger" %>
+              <% if !ciclo.nil? %>
+                <%= link_to 'Finalizar', finalizar_ciclo_path(ciclo), class: "small-box-footer" %>
+              <% elsif ciclo.nil? %>
+                <a class="small-box-footer"> No hay ciclo para finalizar</a>
+              <% end %>
+              <i class="fa fa-arrow-circle-right"></i>
+            </div>
+          </div>
+
           </div>
         </div>
         <!-- /.row -->

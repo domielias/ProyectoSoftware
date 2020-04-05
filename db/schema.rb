@@ -85,13 +85,13 @@ ActiveRecord::Schema.define(version: 38) do
     t.boolean "creado_por_estudiante"
     t.bigint "category_id"
     t.bigint "bloque_padre_id"
-    t.bigint "temporada_id"
+    t.bigint "ciclo_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bloque_padre_id"], name: "index_bloques_on_bloque_padre_id"
     t.index ["category_id"], name: "index_bloques_on_category_id"
+    t.index ["ciclo_id"], name: "index_bloques_on_ciclo_id"
     t.index ["id"], name: "index_bloques_on_id", unique: true
-    t.index ["temporada_id"], name: "index_bloques_on_temporada_id"
   end
 
   create_table "carrera_solicitadas", force: :cascade do |t|
@@ -106,6 +106,17 @@ ActiveRecord::Schema.define(version: 38) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["id"], name: "index_categories_on_id", unique: true
+  end
+
+  create_table "ciclos", force: :cascade do |t|
+    t.string "codigo", limit: 10
+    t.string "nombre", limit: 20
+    t.boolean "actual"
+    t.date "fecha_inicio"
+    t.date "fecha_final"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["id"], name: "index_ciclos_on_id", unique: true
   end
 
   create_table "clase_actividads", force: :cascade do |t|
@@ -129,15 +140,15 @@ ActiveRecord::Schema.define(version: 38) do
     t.string "modalidad", limit: 20
     t.bigint "profesor_id"
     t.bigint "asignatura_id"
-    t.bigint "temporada_id"
-    t.bigint "clase_vinculada_id"
+    t.bigint "ciclo_id"
+    t.bigint "correquisito_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["asignatura_id"], name: "index_clases_on_asignatura_id"
-    t.index ["clase_vinculada_id"], name: "index_clases_on_clase_vinculada_id"
+    t.index ["ciclo_id"], name: "index_clases_on_ciclo_id"
+    t.index ["correquisito_id"], name: "index_clases_on_correquisito_id"
     t.index ["id"], name: "index_clases_on_id", unique: true
     t.index ["profesor_id"], name: "index_clases_on_profesor_id"
-    t.index ["temporada_id"], name: "index_clases_on_temporada_id"
   end
 
   create_table "direccions", force: :cascade do |t|
@@ -303,33 +314,25 @@ ActiveRecord::Schema.define(version: 38) do
   end
 
   create_table "progreso_inscripcions", force: :cascade do |t|
-    t.boolean "formulario_solicitud"
+    t.boolean "formulario_admisiones"
     t.boolean "acta_nacimiento"
     t.boolean "certificacion_medica"
     t.boolean "fotografias"
-    t.boolean "copia_cedula"
+    t.boolean "copia_pasaporte"
     t.boolean "record_secundaria"
     t.boolean "certificado_pruebas_nacionales"
     t.boolean "recibo_admision"
-    t.boolean "copia_seguro_salud"
-    t.boolean "acta_nacimiento_padre"
+    t.boolean "seguro_medico_o_viajero"
+    t.boolean "acta_nacimiento_padres"
     t.boolean "record_notas_original_de_univ_de_procedencia"
     t.boolean "copia_vacunacion"
+    t.boolean "formulario_especial_para_extranjeros"
+    t.boolean "visa_estudiante"
     t.bigint "estudiante_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["estudiante_id"], name: "index_progreso_inscripcions_on_estudiante_id"
     t.index ["id"], name: "index_progreso_inscripcions_on_id", unique: true
-  end
-
-  create_table "temporadas", force: :cascade do |t|
-    t.string "nombre", limit: 20
-    t.boolean "actual"
-    t.date "fecha_inicio"
-    t.date "fecha_final"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["id"], name: "index_temporadas_on_id", unique: true
   end
 
   create_table "tipo_evaluacions", force: :cascade do |t|
@@ -370,10 +373,10 @@ ActiveRecord::Schema.define(version: 38) do
   add_foreign_key "asignaturas", "facultads"
   add_foreign_key "bloques", "bloques", column: "bloque_padre_id"
   add_foreign_key "bloques", "categories"
-  add_foreign_key "bloques", "temporadas"
+  add_foreign_key "bloques", "ciclos"
   add_foreign_key "clases", "asignaturas"
-  add_foreign_key "clases", "clases", column: "clase_vinculada_id"
-  add_foreign_key "clases", "temporadas"
+  add_foreign_key "clases", "ciclos"
+  add_foreign_key "clases", "clases", column: "correquisito_id"
   add_foreign_key "clases", "users", column: "profesor_id"
   add_foreign_key "direccions", "estudiantes"
   add_foreign_key "direccions", "pais"

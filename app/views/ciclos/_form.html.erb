@@ -1,11 +1,11 @@
-<%= form_with(model: temporada, local: true) do |form| %>
-<% if temporada.errors.any? %>
+<%= form_with(model: ciclo, local: true) do |form| %>
+<% if ciclo.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(temporada.errors.count, "error") %>
-      prohibited this temporada from being saved:</h2>
+    <h2><%= pluralize(ciclo.errors.count, "error") %>
+      prohibited this ciclo from being saved:</h2>
 
     <ul>
-      <% temporada.errors.full_messages.each do |message| %>
+      <% ciclo.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
@@ -27,24 +27,30 @@
     <div class="col-md-12 col-sm-12">
       <div class="form-group">
         <%= form.check_box :actual %>
-        <%= form.label :actual, "Temporada actual ?" %>
+        <%= form.label :actual, "Ciclo actual ?" %>
       </div>
     </div>
 
     <div class="row col-md-12 col-sm-12">
-      <div class="col-md-4 col-sm-4">
+      <div class="col-md-3 col-sm-3">
+        <div class="form-group">
+          <h5>Código</h5>
+          <%= form.text_field :codigo, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3">
         <div class="form-group">
           <h5>Nombre</h5>
           <%= form.text_field :nombre, class: "form-control" %>
         </div>
       </div>
-      <div class="col-md-4 col-sm-4">
+      <div class="col-md-3 col-sm-3">
         <div class="form-group">
           <h5>Fecha de inicio</h5>
           <%= form.date_field :fecha_inicio, {class: "form-control date-input" } %>
         </div>
       </div>
-      <div class="col-md-4 col-sm-4">
+      <div class="col-md-3 col-sm-3">
         <div class="form-group">
           <h5>Fecha de final</h5>
           <%= form.date_field :fecha_final, {class: "form-control date-input"} %>

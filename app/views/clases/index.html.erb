@@ -12,7 +12,7 @@
       <th>Sección</th>
       <th>Asignatura</th>
       <th>Está activa ?</th>
-      <th>Temporada</th>
+      <th>Ciclo</th>
       <th></th>
       <th></th>
     </tr>
@@ -31,13 +31,13 @@
             <% end %>
           </td>
           <td>
-           <% if !clase.temporada.nil? %>
-             <%= clase.temporada.actual ? :Sí : :No %>
+           <% if !clase.ciclo.nil? %>
+             <%= clase.ciclo.actual ? :Sí : :No %>
            <% end %>
          </td>
            <td>
-            <% if !clase.temporada.nil? %>
-              <%= clase.temporada_nombre %>
+            <% if !clase.ciclo.nil? %>
+              <%= clase.ciclo_nombre %>
             <% end %>
           </td>
           <td class="align-column-content-center"><%= link_to 'Mostrar', clase, class: "btn btn-info" %></td>

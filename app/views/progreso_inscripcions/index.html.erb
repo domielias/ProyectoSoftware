@@ -24,16 +24,16 @@
   <tbody>
     <% @progreso_inscripcions.each do |progreso_inscripcion| %>
       <tr>
-        <td><%= progreso_inscripcion.formulario_solicitud %></td>
+        <td><%= progreso_inscripcion.formulario_admisiones %></td>
         <td><%= progreso_inscripcion.acta_nacimiento %></td>
         <td><%= progreso_inscripcion.certificacion_medica %></td>
         <td><%= progreso_inscripcion.fotografias %></td>
-        <td><%= progreso_inscripcion.copia_cedula %></td>
+        <td><%= progreso_inscripcion.copia_pasaporte %></td>
         <td><%= progreso_inscripcion.record_secundaria %></td>
         <td><%= progreso_inscripcion.certificado_pruebas_nacionales %></td>
         <td><%= progreso_inscripcion.recibo_admision %></td>
-        <td><%= progreso_inscripcion.copia_seguro_salud %></td>
-        <td><%= progreso_inscripcion.acta_nacimiento_padre %></td>
+        <td><%= progreso_inscripcion.seguro_medico_o_viajero %></td>
+        <td><%= progreso_inscripcion.acta_nacimiento_padres %></td>
         <td><%= progreso_inscripcion.record_notas_original_de_univ_de_procedencia %></td>
         <td><%= progreso_inscripcion.copia_vacunacion %></td>
         <td><%= link_to 'Show', progreso_inscripcion %></td>

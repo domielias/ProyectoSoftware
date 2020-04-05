@@ -27,9 +27,9 @@
         <hr/>
         <div class="col-md-4 col-sm-4">
           <div class="form-group">
-            <h6>Temporada</h6>
-            <!-- <%= form.collection_select(:temporada_id, Temporada.all, :id, :nombre,{},{class:"form-control"}) %> -->
-            <%= form.select :temporada_id, Temporada.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+            <h6>Ciclo</h6>
+            <!-- <%= form.collection_select(:ciclo_id, Ciclo.all, :id, :nombre,{},{class:"form-control"}) %> -->
+            <%= form.select :ciclo_id, Ciclo.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
           </div>
         </div>
         <div class="col-md-4 col-sm-4">

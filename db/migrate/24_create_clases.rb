@@ -9,8 +9,8 @@ class CreateClases < ActiveRecord::Migration[6.0]
 
       t.references :profesor, foreign_key: {to_table: :users} ############
       t.references :asignatura, foreign_key: true  ##############
-      t.references :temporada, foreign_key: true ############
-      t.references :clase_vinculada, foreign_key: {to_table: :clases}
+      t.references :ciclo, foreign_key: true ############
+      t.references :correquisito, foreign_key: {to_table: :clases}
 
       t.timestamps
     end

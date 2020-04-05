@@ -108,6 +108,6 @@ class BloquesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bloque_params
-      params.require(:bloque).permit(:fecha_inicio, :fecha_final, :creador, :category_id, :temporada_id, :persona_id, :estudiante_id, asignaturas_ids:[])
+      params.require(:bloque).permit(:fecha_inicio, :fecha_final, :creador, :category_id, :ciclo_id, :persona_id, :estudiante_id, asignaturas_ids:[])
     end
 end
