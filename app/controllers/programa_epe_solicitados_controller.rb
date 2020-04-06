@@ -25,16 +25,11 @@ class ProgramaEpeSolicitadosController < ApplicationController
   # POST /programa_epe_solicitados.json
   def create
     @programa_epe_solicitado = ProgramaEpeSolicitado.new(programa_epe_solicitado_params)
-
-    respond_to do |format|
       if @programa_epe_solicitado.save
-        format.html { redirect_to @programa_epe_solicitado, notice: 'Programa epe solicitado was successfully created.' }
-        format.json { render :show, status: :created, location: @programa_epe_solicitado }
+        flash.now[:success] = 'Article was successfully created'
       else
-        format.html { render :new }
-        format.json { render json: @programa_epe_solicitado.errors, status: :unprocessable_entity }
+        flash.now[:success] = 'Article was successfully created'
       end
-    end
   end
 
   # PATCH/PUT /programa_epe_solicitados/1
