@@ -4,8 +4,8 @@ class CreateHorarios < ActiveRecord::Migration[6.0]
       t.references :clase, foreign_key: true
       t.references :tutory, foreign_key: true
       t.string :dias, limit: 50
-      t.timestamp :inicio
-      t.timestamp :fin
+      t.timestamp :start
+      t.timestamp :end
       t.timestamps
     end
 

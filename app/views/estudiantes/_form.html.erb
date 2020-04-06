@@ -122,6 +122,45 @@
 
 <div class="card card-default">
   <div class="card-header">
+    <h3 class="card-title">Documentación requerida</h3>
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+        <i class="fa fa-minus"></i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <%= form.fields_for :progreso_inscripcion do |prog_insc| %>
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-6 col-sm-6">
+          <div class="form-group">
+            <h6><%= prog_insc.check_box :formulario_admisiones %> Formulario de Admisiones</h6>
+            <h6><%= prog_insc.check_box :formulario_especial_para_extranjeros %> Formulario especial para extranjeros</h6>
+            <h6><%= prog_insc.check_box :acta_nacimiento %> Acta de Nacimiento Apostillada en País de Origen</h6>
+            <h6><%= prog_insc.check_box :certificacion_medica %> Certificado Médico Firmado y Sellado</h6>
+            <h6><%= prog_insc.check_box :fotografias %> Fotografías 2x2</h6>
+            <h6><%= prog_insc.check_box :copia_pasaporte %> Copia de Pasaporte</h6>
+            <h6><%= prog_insc.check_box :record_secundaria %> Récord de Notas y Diploma de la Escuela Secundaria, Apostillados o Legalizados</h6>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="form-group">
+            <h6><%= prog_insc.check_box :certificado_pruebas_nacionales %> Certificado de Prueba Nacionales (en caso de de tener estudios en RD)</h6>
+            <h6><%= prog_insc.check_box :recibo_admision %> Recibo de Pago de Admisión</h6>
+            <h6><%= prog_insc.check_box :visa_estudiante %> Visa de estudiante (para programas de más de un (1) mes) </h6>
+            <h6><%= prog_insc.check_box :seguro_medico_o_viajero %> Seguro médico de viajero o de estudiante con cobertura internacional para período completo.</h6>
+            <h6><%= prog_insc.check_box :acta_nacimiento_padres %> Acta Nacimiento de Padres (para hijos de dominicanos)</h6>
+            <h6><%= prog_insc.check_box :record_notas_original_de_univ_de_procedencia %> Record de Notas Original de la Universidad de Procedencia</h6>
+            <h6><%= prog_insc.check_box :copia_vacunacion %> Copia de Vacunación (en caso de haber sido requerida por Admisiones o Movilidad)</h6>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="card card-default">
+  <div class="card-header">
     <h3 class="card-title">Datos académicos
     </h3>
     <div class="card-tools">
@@ -136,19 +175,34 @@
     <div class="row col-md-12 col-sm-12">
       <div class="col-md-4 col-sm-4">
         <div class="form-group">
-          <h5>Id del campus</h5>
           <%= form.fields_for :persona do |prsn| %>
+          <h5>ID estudiante</h5>
           <%= prsn.text_field :id_campus, class: "form-control" %>
-          <% end %>
         </div>
       </div>
       <div class="col-md-4 col-sm-4">
         <div class="form-group">
-          <h5>Programa internacional</h5>
+          <h5>Matrícula del estudiante</h5>
+          <%= prsn.text_field :matricula, class: "form-control" %>
+          <% end %>
+        </div>
+      </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <h5>Programa EPE solicitado</h5>
+            <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+          </div>
+        </div>
+    </div>
+
+    <div class="row col-md-12 col-sm-12">
+      <div class="col-md-6 col-sm-6">
+        <div class="form-group">
+          <h5>Programa de movilidad</h5>
           <%= form.select :programa_internacional_id, ProgramaInternacional.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
         </div>
       </div>
-      <div class="col-md-4 col-sm-4">
+      <div class="col-md-6 col-sm-6">
         <div class="form-group">
           <h5>Carrera solicitada</h5>
           <%= form.select :carrera_solicitada_id, CarreraSolicitada.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
@@ -165,13 +219,19 @@
       </div>
     </div>
     <div class="row col-md-12 col-sm-12">
-      <div class="col-md-6 col-sm-6">
+      <div class="col-md-4 col-sm-4">
+        <div class="form-group">
+          <h6>Fecha del examen</h6>
+          <%= ex_niv.date_field :fecha_examen, {class: "form-control date-input"} %>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
         <div class="form-group">
           <h6>Nota</h6>
           <%= ex_niv.number_field :promedio, {step: 0.1, class: "form-control"} %>
         </div>
       </div>
-      <div class="col-md-6 col-sm-6">
+      <div class="col-md-4 col-sm-4">
         <div class="form-group">
           <h6>Nivel</h6>
           <%= form.select :nivel_id, Nivel.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
@@ -186,14 +246,14 @@
   <div class="row col-md-12 col-sm-12">
     <div class="col-md-4 col-sm-4">
       <div class="form-group">
-        <h5>Tiempo estudiando español</h5>
-        <%= info_acad.number_field :cantidad_de_anos_de_espanol_estudiadas, {step: 0.1, class: "form-control"} %>
+        <h5>Universidad de procedencia</h5>
+        <%= form.select :institucion_id, Institucion.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
       </div>
     </div>
     <div class="col-md-4 col-sm-4">
       <div class="form-group">
-        <h5>Asignaturas de español recientes</h5>
-        <%= info_acad.text_field :asignaturas_de_espanol_recientes, class: "form-control" %>
+        <h5>Tiempo estudiando español (meses)</h5>
+        <%= info_acad.number_field :cantidad_de_anos_de_espanol_estudiadas, {step: 0.1, class: "form-control"} %>
       </div>
     </div>
     <div class="col-md-4 col-sm-4">
@@ -209,36 +269,6 @@
       <%= info_acad.text_field :asignaturas_de_espanol_recientes, class: "form-control" %>
     </div>
   </div>
-  <% end %>
-  <hr/>
-  <div class="col-md-12 col-sm-12">
-    <div class="form-group">
-      <h5>Progreso Inscripción</h5>
-    </div>
-  </div>
-  <%= form.fields_for :progreso_inscripcion do |prog_insc| %>
-    <div class="row col-md-12 col-sm-12">
-      <div class="col-md-4 col-sm-4">
-        <div class="form-group">
-          <h6>Formulario de Solicitud <%= prog_insc.check_box :formulario_solicitud %></h6>
-          <h6>Acta de Nacimiento <%= prog_insc.check_box :acta_nacimiento %> </h6>
-          <h6>Certificado Medico <%= prog_insc.check_box :certificacion_medica %> </h6>
-          <h6>Fotografia 2x2 <%= prog_insc.check_box :fotografias %> </h6>
-          <h6>Copia de Cedula <%= prog_insc.check_box :copia_cedula %> </h6>
-          <h6>Record de Secundaria <%= prog_insc.check_box :record_secundaria %> </h6>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-4">
-        <div class="form-group">
-          <h6>Certificado Prueba Nacionales <%= prog_insc.check_box :certificado_pruebas_nacionales %> </h6>
-          <h6>Recibo de Admisión <%= prog_insc.check_box :recibo_admision %> </h6>
-          <h6>Copia Seguro de Salud <%= prog_insc.check_box :copia_seguro_salud %> </h6>
-          <h6>Acta Nacimiento Padre <%= prog_insc.check_box :acta_nacimiento_padre %> </h6>
-          <h6>Record de nota <%= prog_insc.check_box :record_notas_original_de_univ_de_procedencia %> </h6>
-          <h6>Copia de Vacunación <%= prog_insc.check_box :copia_vacunacion %> </h6>
-        </div>
-      </div>
-    </div>
   <% end %>
 </div>
 </div>
@@ -263,7 +293,7 @@
       <% if n == 0 %>
         <h5>Dirección:
           <%= n += 1 %>
-          (Pais de nacimiento)</h5>
+          (Pais de residencia)</h5>
         <%= dirr.hidden_field :pais_nacimiento, value: 1 %>
       <% else %>
         <h5>Dirección:
@@ -298,8 +328,8 @@
 
   <div class="row col-md-12 col-sm-12">
     <div class="col-md-6 col-sm-6">
-      <h6>Calle:</h6>
-      <%= dirr.text_field :calle, class: "form-control" %>
+      <h6>Dirección completa:</h6>
+      <%= dirr.text_field :direccion_completa, class: "form-control" %>
     </div>
     <div class="col-md-6 col-sm-6">
       <h6>Teléfono:</h6>

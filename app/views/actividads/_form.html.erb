@@ -59,8 +59,8 @@
 
       <hr/>
       <h5>Clases participantes</h5>
-      <!-- Clase.joins(:temporada).where(:temporadas => {actual: true}) Para solo clases actuales-->
-      <%= collection_select(:clases, :id, Clase.joins(:temporada).where(:temporadas => {actual: true}), :id, :no_clase, {selected: actividad.clases.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+      <!-- Clase.joins(:ciclo).where(:ciclos => {actual: true}) Para solo clases actuales-->
+      <%= collection_select(:clases, :id, Clase.all, :id, :no_clase, {selected: actividad.clases.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
 
     </div>
   </div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :programa_epe_solicitados
   devise_for :users
   resources :clase_actividads
   resources :bloque_estudiantes
@@ -28,12 +29,12 @@ Rails.application.routes.draw do
   resources :nivels
   resources :pais
   resources :rols
-  resources :temporadas
+  resources :ciclos
   resources :categories
   get "egresados", to: "pages#egresados"
   get "no_admitidos", to: "pages#no_admitidos"
   get 'configuracion',to: 'pages#configuracion'
   get 'estudiantes/listar_clases/:id', to: 'estudiantes#listar_clases', as: 'listar_clases_estudiante'
-  get 'temporadas/finalizar/:id', to: 'temporadas#finalizar', as: 'finalizar_temporada'
+  get 'ciclos/finalizar/:id', to: 'ciclos#finalizar', as: 'finalizar_ciclo'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -69,6 +69,6 @@ class ExamenDeNivelsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def examen_de_nivel_params
-      params.require(:examen_de_nivel).permit(:promedio)
+      params.require(:examen_de_nivel).permit(:promedio, :fecha_examen)
     end
 end

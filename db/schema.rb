@@ -44,11 +44,11 @@ ActiveRecord::Schema.define(version: 38) do
     t.string "ubicacion", limit: 30
     t.string "forma_de_transporte", limit: 30
     t.boolean "dentro_de_la_ciudad"
-    t.bigint "usuario_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["id"], name: "index_actividads_on_id", unique: true
-    t.index ["usuario_id"], name: "index_actividads_on_usuario_id"
+    t.index ["user_id"], name: "index_actividads_on_user_id"
   end
 
   create_table "asignaturas", force: :cascade do |t|
@@ -85,13 +85,13 @@ ActiveRecord::Schema.define(version: 38) do
     t.boolean "creado_por_estudiante"
     t.bigint "category_id"
     t.bigint "bloque_padre_id"
-    t.bigint "temporada_id"
+    t.bigint "ciclo_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bloque_padre_id"], name: "index_bloques_on_bloque_padre_id"
     t.index ["category_id"], name: "index_bloques_on_category_id"
+    t.index ["ciclo_id"], name: "index_bloques_on_ciclo_id"
     t.index ["id"], name: "index_bloques_on_id", unique: true
-    t.index ["temporada_id"], name: "index_bloques_on_temporada_id"
   end
 
   create_table "carrera_solicitadas", force: :cascade do |t|
@@ -106,6 +106,17 @@ ActiveRecord::Schema.define(version: 38) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["id"], name: "index_categories_on_id", unique: true
+  end
+
+  create_table "ciclos", force: :cascade do |t|
+    t.string "codigo", limit: 10
+    t.string "nombre", limit: 20
+    t.boolean "actual"
+    t.date "fecha_inicio"
+    t.date "fecha_final"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["id"], name: "index_ciclos_on_id", unique: true
   end
 
   create_table "clase_actividads", force: :cascade do |t|
@@ -129,21 +140,21 @@ ActiveRecord::Schema.define(version: 38) do
     t.string "modalidad", limit: 20
     t.bigint "profesor_id"
     t.bigint "asignatura_id"
-    t.bigint "temporada_id"
-    t.bigint "clase_vinculada_id"
+    t.bigint "ciclo_id"
+    t.bigint "correquisito_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["asignatura_id"], name: "index_clases_on_asignatura_id"
-    t.index ["clase_vinculada_id"], name: "index_clases_on_clase_vinculada_id"
+    t.index ["ciclo_id"], name: "index_clases_on_ciclo_id"
+    t.index ["correquisito_id"], name: "index_clases_on_correquisito_id"
     t.index ["id"], name: "index_clases_on_id", unique: true
     t.index ["profesor_id"], name: "index_clases_on_profesor_id"
-    t.index ["temporada_id"], name: "index_clases_on_temporada_id"
   end
 
   create_table "direccions", force: :cascade do |t|
-    t.boolean "pais_nacimiento"
+    t.boolean "pais_residencia"
     t.string "telefono", limit: 20
-    t.string "calle", limit: 40
+    t.string "direccion_completa", limit: 40
     t.string "ciudad", limit: 30
     t.string "codigo_postal", limit: 15
     t.bigint "estudiante_id"
@@ -170,14 +181,18 @@ ActiveRecord::Schema.define(version: 38) do
     t.bigint "madre_id"
     t.bigint "carrera_solicitada_id"
     t.bigint "programa_internacional_id"
+    t.bigint "programa_epe_solicitado_id"
+    t.bigint "institucion_id"
+    t.bigint "persona_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "persona_id"
     t.index ["carrera_solicitada_id"], name: "index_estudiantes_on_carrera_solicitada_id"
     t.index ["id"], name: "index_estudiantes_on_id", unique: true
+    t.index ["institucion_id"], name: "index_estudiantes_on_institucion_id"
     t.index ["madre_id"], name: "index_estudiantes_on_madre_id"
     t.index ["padre_id"], name: "index_estudiantes_on_padre_id"
     t.index ["persona_id"], name: "index_estudiantes_on_persona_id"
+    t.index ["programa_epe_solicitado_id"], name: "index_estudiantes_on_programa_epe_solicitado_id"
     t.index ["programa_internacional_id"], name: "index_estudiantes_on_programa_internacional_id"
   end
 
@@ -196,6 +211,7 @@ ActiveRecord::Schema.define(version: 38) do
 
   create_table "examen_de_nivels", force: :cascade do |t|
     t.float "promedio"
+    t.date "fecha_examen"
     t.bigint "estudiante_id"
     t.bigint "nivel_id"
     t.datetime "created_at", precision: 6, null: false
@@ -216,8 +232,8 @@ ActiveRecord::Schema.define(version: 38) do
     t.bigint "clase_id"
     t.bigint "tutory_id"
     t.string "dias", limit: 50
-    t.datetime "inicio"
-    t.datetime "fin"
+    t.datetime "start"
+    t.datetime "end"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["clase_id"], name: "index_horarios_on_clase_id"
@@ -272,11 +288,18 @@ ActiveRecord::Schema.define(version: 38) do
     t.string "nombres", limit: 50
     t.string "apellidos", limit: 50
     t.string "id_campus", limit: 10
+    t.string "matricula", limit: 10
     t.date "fecha_nacimiento"
     t.string "correo_electronico", limit: 50
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["id"], name: "index_personas_on_id", unique: true
+  end
+
+  create_table "programa_epe_solicitados", force: :cascade do |t|
+    t.string "nombre", limit: 60
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "programa_internacionals", force: :cascade do |t|
@@ -291,40 +314,25 @@ ActiveRecord::Schema.define(version: 38) do
   end
 
   create_table "progreso_inscripcions", force: :cascade do |t|
-    t.boolean "formulario_solicitud"
+    t.boolean "formulario_admisiones"
     t.boolean "acta_nacimiento"
     t.boolean "certificacion_medica"
     t.boolean "fotografias"
-    t.boolean "copia_cedula"
+    t.boolean "copia_pasaporte"
     t.boolean "record_secundaria"
     t.boolean "certificado_pruebas_nacionales"
     t.boolean "recibo_admision"
-    t.boolean "copia_seguro_salud"
-    t.boolean "acta_nacimiento_padre"
+    t.boolean "seguro_medico_o_viajero"
+    t.boolean "acta_nacimiento_padres"
     t.boolean "record_notas_original_de_univ_de_procedencia"
     t.boolean "copia_vacunacion"
+    t.boolean "formulario_especial_para_extranjeros"
+    t.boolean "visa_estudiante"
     t.bigint "estudiante_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["estudiante_id"], name: "index_progreso_inscripcions_on_estudiante_id"
     t.index ["id"], name: "index_progreso_inscripcions_on_id", unique: true
-  end
-
-  create_table "rols", force: :cascade do |t|
-    t.string "nombre", limit: 20
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["id"], name: "index_rols_on_id", unique: true
-  end
-
-  create_table "temporadas", force: :cascade do |t|
-    t.string "nombre", limit: 20
-    t.boolean "actual"
-    t.date "fecha_inicio"
-    t.date "fecha_final"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["id"], name: "index_temporadas_on_id", unique: true
   end
 
   create_table "tipo_evaluacions", force: :cascade do |t|
@@ -361,33 +369,23 @@ ActiveRecord::Schema.define(version: 38) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "usuarios", force: :cascade do |t|
-    t.string "nombre", limit: 50
-    t.string "password", limit: 50
-    t.bigint "rol_id"
-    t.bigint "persona_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["id"], name: "index_usuarios_on_id", unique: true
-    t.index ["persona_id"], name: "index_usuarios_on_persona_id"
-    t.index ["rol_id"], name: "index_usuarios_on_rol_id"
-  end
-
-  add_foreign_key "actividads", "usuarios"
+  add_foreign_key "actividads", "users"
   add_foreign_key "asignaturas", "facultads"
   add_foreign_key "bloques", "bloques", column: "bloque_padre_id"
   add_foreign_key "bloques", "categories"
-  add_foreign_key "bloques", "temporadas"
+  add_foreign_key "bloques", "ciclos"
   add_foreign_key "clases", "asignaturas"
-  add_foreign_key "clases", "clases", column: "clase_vinculada_id"
-  add_foreign_key "clases", "temporadas"
-  add_foreign_key "clases", "usuarios", column: "profesor_id"
+  add_foreign_key "clases", "ciclos"
+  add_foreign_key "clases", "clases", column: "correquisito_id"
+  add_foreign_key "clases", "users", column: "profesor_id"
   add_foreign_key "direccions", "estudiantes"
   add_foreign_key "direccions", "pais"
   add_foreign_key "estudiantes", "carrera_solicitadas"
+  add_foreign_key "estudiantes", "institucions"
   add_foreign_key "estudiantes", "personas"
   add_foreign_key "estudiantes", "personas", column: "madre_id"
   add_foreign_key "estudiantes", "personas", column: "padre_id"
+  add_foreign_key "estudiantes", "programa_epe_solicitados"
   add_foreign_key "estudiantes", "programa_internacionals"
   add_foreign_key "evaluacions", "bloques"
   add_foreign_key "evaluacions", "clases"
@@ -401,8 +399,6 @@ ActiveRecord::Schema.define(version: 38) do
   add_foreign_key "programa_internacionals", "pais"
   add_foreign_key "progreso_inscripcions", "estudiantes"
   add_foreign_key "tutories", "clases"
-  add_foreign_key "tutories", "usuarios", column: "profesor_id"
+  add_foreign_key "tutories", "users", column: "profesor_id"
   add_foreign_key "users", "personas"
-  add_foreign_key "usuarios", "personas"
-  add_foreign_key "usuarios", "rols"
 end

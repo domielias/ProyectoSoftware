@@ -63,8 +63,8 @@
       <div class="row col-md-12 col-sm-12">
         <div class="col-md-3 col-sm-3">
           <div class="form-group">
-            <h5>Temporada</h5>
-            <%= form.select :temporada_id, Temporada.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+            <h5>Ciclo</h5>
+            <%= form.select :ciclo_id, Ciclo.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
           </div>
         </div>
         <div class="col-md-3 col-sm-3">
@@ -76,13 +76,14 @@
         <div class="col-md-3 col-sm-3">
           <div class="form-group">
             <h5>Profesor</h5>
-            <%= form.select :profesor_id, Usuario.where(rol_id: 1).pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
+            <%#= form.select :profesor_id, User.where(profesor: true).pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
+            <%= collection_select(:profesor, :id, User.where(profesor: true), :id, :id_campus_nombres_apellidos, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
           </div>
         </div>
         <div class="col-md-3 col-sm-3">
           <div class="form-group">
-            <h5>Clase vinculada</h5>
-            <%= form.select :clase_vinculada_id, Clase.where.not(id: params[:id]).pluck(:no_clase, :id), {:include_blank => 'Ninguna'},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
+            <h5>Correquisito</h5>
+            <%= form.select :correquisito_id, Clase.where.not(id: params[:id]).pluck(:no_clase, :id), {:include_blank => 'Ninguna'},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
           </div>
         </div>
       </div>
@@ -128,9 +129,9 @@
       <div class="col-md-12 col-sm-12">
         <div class="form-inline select-time-div-margin">
           <h8 class='select-time-header-margin'>Desde</h8>
-          <%= hrro.time_select :inicio, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
+          <%= hrro.time_select :start, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
           <h8 class='select-time-header-margin'>Hasta</h8>
-          <%= hrro.time_select :fin, { }, { class: 'form-control', default: {hour: '18', minute: '00'}} %>
+          <%= hrro.time_select :end, { }, { class: 'form-control', default: {hour: '18', minute: '00'}} %>
         </div>
       </div>
       <hr>

@@ -5,11 +5,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+   has_many :clases
    belongs_to :persona
    accepts_nested_attributes_for :persona
 
    def persona
      super || build_persona
    end
-   
+
+   def id_campus_nombres_apellidos
+     "#{persona.id_campus} #{persona.nombres} #{persona.apellidos}"
+   end
+
 end

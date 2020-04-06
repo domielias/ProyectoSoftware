@@ -2,7 +2,7 @@ class CreateExamenDeNivels < ActiveRecord::Migration[6.0]
   def change
     create_table :examen_de_nivels do |t|
       t.float :promedio
-
+      t.date :fecha_examen
       t.references :estudiante, index:true, foreign_key: true
       t.references :nivel, foreign_key: true
 

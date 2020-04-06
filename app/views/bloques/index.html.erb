@@ -8,7 +8,7 @@
       <thead>
         <tr>
           <th>Creador</th>
-          <th>Temporada</th>
+          <th>Ciclo</th>
           <th>Categoría</th>
           <th></th>
           <th></th>
@@ -20,8 +20,8 @@
           <tr>
             <td><%= bloque.creador %></td>
             <td>
-             <% if !bloque.temporada.nil? %>
-               <%= bloque.temporada_nombre %>
+             <% if !bloque.ciclo.nil? %>
+               <%= bloque.ciclo_nombre %>
              <% end %>
            </td>
            <td>

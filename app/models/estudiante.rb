@@ -1,4 +1,4 @@
-class Estudiante < ApplicationRecord
+  class Estudiante < ApplicationRecord
 
     belongs_to :programa_internacional, optional: true
     belongs_to :carrera_solicitada, optional: true
@@ -9,6 +9,8 @@ class Estudiante < ApplicationRecord
     has_one :informacion_academica
     has_one :progreso_inscripcion
     belongs_to :persona, optional: true
+    belongs_to :institucion, optional: true
+    belongs_to :programa_epe_solicitado, optional: true
 
     has_many :clase_estudiantes, dependent: :destroy
     has_many :clases, through: :clase_estudiantes

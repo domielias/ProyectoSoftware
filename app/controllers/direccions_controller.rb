@@ -69,6 +69,6 @@ class DireccionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def direccion_params
-      params.require(:direccion).permit(:telefono, :calle, :ciudad, :codigo_postal)
+      params.require(:direccion).permit(:telefono, :direccion_completa, :ciudad, :pais_residencia, :codigo_postal)
     end
 end
