@@ -1,2 +1,2 @@
-json.extract! progreso_inscripcion, :id, :formulario_admisiones, :acta_nacimiento, :certificacion_medica, :fotografias, :copia_pasaporte, :record_secundaria, :certificado_pruebas_nacionales, :recibo_admision, :seguro_medico_o_viajero, :acta_nacimiento_padres, :record_notas_original_de_univ_de_procedencia, :copia_vacunacion, :created_at, :updated_at
+json.extract! progreso_inscripcion, :id, :formulario_admisiones, :acta_nacimiento, :certificacion_medica, :fotografias, :copia_pasaporte, :record_secundaria, :certificado_pruebas_nacionales, :recibo_admision, :seguro_medico_o_viajero, :acta_nacimiento_padres, :record_notas_original_de_univ_de_procedencia, :created_at, :updated_at
 json.url progreso_inscripcion_url(progreso_inscripcion, format: :json)

@@ -141,7 +141,6 @@
             <h6><%= prog_insc.check_box :fotografias %> Fotografías 2x2</h6>
             <h6><%= prog_insc.check_box :copia_pasaporte %> Copia de Pasaporte</h6>
             <h6><%= prog_insc.check_box :record_secundaria %> Récord de Notas y Diploma de la Escuela Secundaria, Apostillados o Legalizados</h6>
-            <h6><%= prog_insc.check_box :copia_vacunacion %> Copia de Vacunación (en caso de haber sido requerida por Admisiones o Movilidad)</h6>
           </div>
         </div>
         <div class="col-md-6 col-sm-6">
@@ -204,7 +203,7 @@
       </div>
       <div class="col-md-6 col-sm-6">
         <div class="form-group">
-          <h5>Carrera solicitada</h5>
+          <h5>Carrera solicitada (Programa Estudiantes Especiales)</h5>
           <%= form.select :carrera_solicitada_id, CarreraSolicitada.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
         </div>
       </div>
@@ -297,7 +296,8 @@
         <%= dirr.hidden_field :pais_nacimiento, value: 1 %>
       <% else %>
         <h5>Dirección:
-          <%= n += 1 %></h5>
+          <%= n += 1 %>
+          (Dirección local)</h5>
         <%= dirr.hidden_field :pais_nacimiento, value: 0 %>
       <% end %>
     </div>
