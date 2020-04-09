@@ -325,7 +325,6 @@ ActiveRecord::Schema.define(version: 38) do
     t.boolean "seguro_medico_o_viajero"
     t.boolean "acta_nacimiento_padres"
     t.boolean "record_notas_original_de_univ_de_procedencia"
-    t.boolean "copia_vacunacion"
     t.boolean "formulario_especial_para_extranjeros"
     t.boolean "visa_estudiante"
     t.bigint "estudiante_id"
