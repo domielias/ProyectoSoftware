@@ -293,12 +293,12 @@
         <h5>Dirección:
           <%= n += 1 %>
           (Pais de residencia)</h5>
-        <%= dirr.hidden_field :pais_nacimiento, value: 1 %>
+        <%= dirr.hidden_field :pais_residencia, value: 1 %>
       <% else %>
         <h5>Dirección:
           <%= n += 1 %>
           (Dirección local)</h5>
-        <%= dirr.hidden_field :pais_nacimiento, value: 0 %>
+        <%= dirr.hidden_field :pais_residencia, value: 0 %>
       <% end %>
     </div>
   </div>
