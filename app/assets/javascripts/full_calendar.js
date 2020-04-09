@@ -3,11 +3,11 @@ initialize_calendar = function() {
   $('.calendar').each(function() {
     var calendar = $(this)
     calendar.fullCalendar({
-      // header: {
-      //   left: '',
-      //   center: '',
-      //   right: ''
-      // },
+      header: {
+        left: '',
+        // center: '',
+        right: ''
+      },
       monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
       monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
       dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
@@ -30,8 +30,9 @@ initialize_calendar = function() {
       //   end: '14:00', // an end time (2pm in this example)
       //   dow: [1, 4] // Repeat monday and thursday
       // }]
-      events: '/estudiantes/listar_clases/1.json'
+      // events: '/estudiantes/listar_clases/' + 8 + '.json'
     });
   })
 };
 $(document).on('turbolinks:load', initialize_calendar);
+console.log(start.toISOString())
