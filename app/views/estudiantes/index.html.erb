@@ -33,7 +33,7 @@
             <td><%= estudiante.sexo %></td>
             <td><%= estudiante.egresado ? :Si : :No %></td>
             <td class="align-column-content-center"><%= link_to 'Mostrar', estudiante, class: "btn btn-info" %></td>
-            <td class="align-column-content-center"><%= link_to 'Listar Clases', listar_clases_estudiante_path(estudiante), class: "btn btn-secondary" %></td>
+            <td class="align-column-content-center"><%= link_to 'Listar Clases', listar_clases_estudiante_path(id: estudiante), class: "btn btn-secondary" %></td>
             <td class="align-column-content-center"><%= link_to 'Editar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
           </td>
         </tr>
