@@ -142,12 +142,14 @@ ActiveRecord::Schema.define(version: 38) do
     t.bigint "asignatura_id"
     t.bigint "ciclo_id"
     t.bigint "correquisito_id"
+    t.bigint "nivel_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["asignatura_id"], name: "index_clases_on_asignatura_id"
     t.index ["ciclo_id"], name: "index_clases_on_ciclo_id"
     t.index ["correquisito_id"], name: "index_clases_on_correquisito_id"
     t.index ["id"], name: "index_clases_on_id", unique: true
+    t.index ["nivel_id"], name: "index_clases_on_nivel_id"
     t.index ["profesor_id"], name: "index_clases_on_profesor_id"
   end
 
@@ -376,6 +378,7 @@ ActiveRecord::Schema.define(version: 38) do
   add_foreign_key "clases", "asignaturas"
   add_foreign_key "clases", "ciclos"
   add_foreign_key "clases", "clases", column: "correquisito_id"
+  add_foreign_key "clases", "nivels"
   add_foreign_key "clases", "users", column: "profesor_id"
   add_foreign_key "direccions", "estudiantes"
   add_foreign_key "direccions", "pais"

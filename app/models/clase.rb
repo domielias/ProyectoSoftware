@@ -9,6 +9,8 @@ class Clase < ApplicationRecord
     has_one :correquisito, :class_name => "Clase"
     # belongs_to :correquisito, :class_name => "Clase"
 
+    belongs_to :nivel, optional: true
+
     belongs_to :ciclo, optional: true
     delegate :nombre, to: :ciclo, prefix: true
     belongs_to :profesor, :class_name => "User", optional: true

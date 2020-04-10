@@ -18,29 +18,16 @@
 
     <div class="card-body">
       <div class="row col-md-12 col-sm-12">
-        <div class="col-md-3 col-sm-3">
+        <div class="col-md-4 col-sm-4">
           <div class="form-group">
-            <h5>No. clase</h5>
-            <%= form.number_field :no_clase, {step: 1, class: "form-control"} %>
+            <h5>Ciclo</h5>
+            <%= form.select :ciclo_id, Ciclo.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
           </div>
         </div>
-        <div class="col-md-3 col-sm-3">
+        <div class="col-md-4 col-sm-4">
           <div class="form-group">
-            <h5>Sección</h5>
-            <%= form.number_field :seccion, {step: 1, class: "form-control"} %>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-3">
-          <div class="form-group">
-            <h5>Modalidad</h5>
-            <%= form.text_field :modalidad, class: "form-control" %>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-4">
-          <div class="form-group">
-            <h5>Lugar</h5>
-            <%= form.text_field :lugar, class: "form-control" %>
+            <h5>Nivel</h5>
+            <%= form.select :nivel_id, Nivel.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
           </div>
         </div>
       </div>
@@ -50,7 +37,7 @@
 
   <div class="card card-default">
     <div class="card-header">
-      <h3 class="card-title">Datos Académicos
+      <h3 class="card-title">Programación por clase
       </h3>
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -63,7 +50,7 @@
       <div class="row col-md-12 col-sm-12">
         <div class="col-md-3 col-sm-3">
           <div class="form-group">
-            <h5>Ciclo</h5>
+            <h5>No. clase</h5>
             <%= form.select :ciclo_id, Ciclo.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
           </div>
         </div>
