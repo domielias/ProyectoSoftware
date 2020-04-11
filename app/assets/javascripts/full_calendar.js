@@ -30,8 +30,9 @@ initialize_calendar = function() {
       //   end: '14:00', // an end time (2pm in this example)
       //   dow: [1, 4] // Repeat monday and thursday
       // }]
-      // events: '/estudiantes/listar_clases/' + 8 + '.json'
+      events: '/estudiantes/listar_clases/' + $("#idestudiante").text() + '.json'
     });
   })
 };
+// console.log($("#idestudiante").text);
 $(document).on('turbolinks:load', initialize_calendar);

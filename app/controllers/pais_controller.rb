@@ -25,9 +25,9 @@ class PaisController < ApplicationController
   # POST /pais.json
   def create
     @pai = Pai.new(pai_params)
-
     respond_to do |format|
       if @pai.save
+        flash[:success] = 'Carrera Solicitada creada'
         format.html { redirect_to @pai, notice: 'Pai was successfully created.' }
         format.json { render :show, status: :created, location: @pai }
       else
@@ -69,6 +69,6 @@ class PaisController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pai_params
-      params.require(:pai).permit(:nombre, :nacionalidad, :lugar_nacimiento)
+      params.require(:pai).permit(:nombre, :nacionalidad)
     end
 end

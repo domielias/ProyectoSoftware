@@ -24,7 +24,7 @@ class Clase < ApplicationRecord
     has_many :actividads, through: :clase_actividads
 
     accepts_nested_attributes_for :correquisito
-    accepts_nested_attributes_for :horarios
+    accepts_nested_attributes_for :horarios, allow_destroy: true
     #accepts_nested_attributes_for :horarios, reject_if: proc { |attributes| attributes['dias'].blank? } # discretamente descartar los horarios si tienen el campo de dias vacio
 
 end

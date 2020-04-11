@@ -9,6 +9,10 @@
   position: relative;
 }
 
+.div-boton-eliminar-padding{
+  padding-top: 30px;
+}
+
 .form-group.has-icon .form-control {
   padding-right: 35px;
 }

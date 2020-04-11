@@ -37,6 +37,23 @@
 
   <div class="card card-default">
     <div class="card-header">
+      <h3 class="card-title">Estudiantes
+      </h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+          <i class="fa fa-minus"></i>
+        </button>
+      </div>
+    </div>
+    <div class="card-body">
+      <%= fields_for @clase_estudiante do |ce| %>
+      <%= collection_select(:estudiantes, :id, Estudiante.where.not(admitido: false), :id, :id_campus_nombres_apellidos, {selected: clase.estudiantes.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+    <% end %>
+  </div>
+</div>
+
+  <div class="card card-default">
+    <div class="card-header">
       <h3 class="card-title">Programación por clase
       </h3>
       <div class="card-tools">
@@ -57,7 +74,7 @@
         <div class="col-md-3 col-sm-3">
           <div class="form-group">
             <h5>Asignatura</h5>
-            <%= form.select :asignatura_id, Asignatura.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+            <%= form.collection_select(:asignatura_id, Asignatura.all, :id, :clave_nombre, {include_blank: ''}, class: 'select2-simple-dropdown select2-dropdown-width') %>
           </div>
         </div>
         <div class="col-md-3 col-sm-3">
@@ -77,24 +94,7 @@
     </div>
   </div>
 
-  <div class="card card-default">
-    <div class="card-header">
-      <h3 class="card-title">Estudiantes
-      </h3>
-      <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-          <i class="fa fa-minus"></i>
-        </button>
-      </div>
-    </div>
-    <div class="card-body">
-      <%= fields_for @clase_estudiante do |ce| %>
-      <%= collection_select(:estudiantes, :id, Estudiante.where.not(admitido: false), :id, :id_campus_nombres_apellidos, {selected: clase.estudiantes.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
-    <% end %>
-  </div>
-</div>
-
-<div class="card card-default collapsed-card">
+<div class="card card-default">
   <div class="card-header">
     <h3 class="card-title">Horarios
     </h3>
@@ -106,22 +106,9 @@
   </div>
 
   <div class="card-body">
-    <% n = 0 %>
       <%= form.fields_for :horarios do |hrro| %>
-      <h5>Horario:
-        <%= n += 1 %></h5>
-      <div class="col-md-12 col-sm-12">
-        <%= hrro.select :dias, options_for_select(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']), {:include_blank => ''},{class: 'select2-simple-dropdown select2-dropdown-width'}%>
-      </div>
-      <div class="col-md-12 col-sm-12">
-        <div class="form-inline select-time-div-margin">
-          <h8 class='select-time-header-margin'>Desde</h8>
-          <%= hrro.time_select :start, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
-          <h8 class='select-time-header-margin'>Hasta</h8>
-          <%= hrro.time_select :end, { }, { class: 'form-control', default: {hour: '18', minute: '00'}} %>
-        </div>
-      </div>
-      <hr>
+      <%= render 'horario_fields', form: hrro %>
+      <%= link_to_add_fields "Añadir horario", form, :horarios %>
     <% end %>
   </div>
 </div>

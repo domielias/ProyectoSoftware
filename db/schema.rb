@@ -53,10 +53,10 @@ ActiveRecord::Schema.define(version: 38) do
 
   create_table "asignaturas", force: :cascade do |t|
     t.string "nombre", limit: 100
-    t.integer "clave"
-    t.integer "valor_teorico"
-    t.integer "valor_practico"
-    t.integer "valor_credito"
+    t.string "clave", limit: 7
+    t.integer "valor_teorico", limit: 2
+    t.integer "valor_practico", limit: 2
+    t.integer "valor_credito", limit: 2
     t.boolean "activo"
     t.bigint "facultad_id"
     t.datetime "created_at", precision: 6, null: false
