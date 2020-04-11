@@ -9,6 +9,8 @@ class Clase < ApplicationRecord
     has_one :correquisito, :class_name => "Clase"
     # belongs_to :correquisito, :class_name => "Clase"
 
+    belongs_to :nivel, optional: true
+
     belongs_to :ciclo, optional: true
     delegate :nombre, to: :ciclo, prefix: true
     belongs_to :profesor, :class_name => "User", optional: true
@@ -22,7 +24,7 @@ class Clase < ApplicationRecord
     has_many :actividads, through: :clase_actividads
 
     accepts_nested_attributes_for :correquisito
-    accepts_nested_attributes_for :horarios
+    accepts_nested_attributes_for :horarios, allow_destroy: true
     #accepts_nested_attributes_for :horarios, reject_if: proc { |attributes| attributes['dias'].blank? } # discretamente descartar los horarios si tienen el campo de dias vacio
 
 end

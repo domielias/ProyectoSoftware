@@ -18,75 +18,20 @@
 
     <div class="card-body">
       <div class="row col-md-12 col-sm-12">
-        <div class="col-md-3 col-sm-3">
-          <div class="form-group">
-            <h5>No. clase</h5>
-            <%= form.number_field :no_clase, {step: 1, class: "form-control"} %>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-3">
-          <div class="form-group">
-            <h5>Sección</h5>
-            <%= form.number_field :seccion, {step: 1, class: "form-control"} %>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-3">
-          <div class="form-group">
-            <h5>Modalidad</h5>
-            <%= form.text_field :modalidad, class: "form-control" %>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-4">
-          <div class="form-group">
-            <h5>Lugar</h5>
-            <%= form.text_field :lugar, class: "form-control" %>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="card card-default">
-    <div class="card-header">
-      <h3 class="card-title">Datos Académicos
-      </h3>
-      <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-          <i class="fa fa-minus"></i>
-        </button>
-      </div>
-    </div>
-
-    <div class="card-body">
-      <div class="row col-md-12 col-sm-12">
-        <div class="col-md-3 col-sm-3">
+        <div class="col-md-4 col-sm-4">
           <div class="form-group">
             <h5>Ciclo</h5>
             <%= form.select :ciclo_id, Ciclo.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
           </div>
         </div>
-        <div class="col-md-3 col-sm-3">
+        <div class="col-md-4 col-sm-4">
           <div class="form-group">
-            <h5>Asignatura</h5>
-            <%= form.select :asignatura_id, Asignatura.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-3">
-          <div class="form-group">
-            <h5>Profesor</h5>
-            <%#= form.select :profesor_id, User.where(profesor: true).pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
-            <%= collection_select(:profesor, :id, User.where(profesor: true), :id, :id_campus_nombres_apellidos, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-3">
-          <div class="form-group">
-            <h5>Correquisito</h5>
-            <%= form.select :correquisito_id, Clase.where.not(id: params[:id]).pluck(:no_clase, :id), {:include_blank => 'Ninguna'},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
+            <h5>Nivel</h5>
+            <%= form.select :nivel_id, Nivel.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 
@@ -107,6 +52,48 @@
   </div>
 </div>
 
+  <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">Programación por clase
+      </h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+          <i class="fa fa-minus"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h5>No. clase</h5>
+            <%= form.select :ciclo_id, Ciclo.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h5>Asignatura</h5>
+            <%= form.collection_select(:asignatura_id, Asignatura.all, :id, :clave_nombre, {include_blank: ''}, class: 'select2-simple-dropdown select2-dropdown-width') %>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h5>Profesor</h5>
+            <%#= form.select :profesor_id, User.where(profesor: true).pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
+            <%= collection_select(:profesor, :id, User.where(profesor: true), :id, :id_campus_nombres_apellidos, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h5>Correquisito</h5>
+            <%= form.select :correquisito_id, Clase.where.not(id: params[:id]).pluck(:no_clase, :id), {:include_blank => 'Ninguna'},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <div class="card card-default">
   <div class="card-header">
     <h3 class="card-title">Horarios
@@ -119,22 +106,9 @@
   </div>
 
   <div class="card-body">
-    <% n = 0 %>
       <%= form.fields_for :horarios do |hrro| %>
-      <h5>Horario:
-        <%= n += 1 %></h5>
-      <div class="col-md-12 col-sm-12">
-        <%= hrro.select :dias, options_for_select(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']), {:include_blank => ''},{class: 'select2-simple-dropdown select2-dropdown-width'}%>
-      </div>
-      <div class="col-md-12 col-sm-12">
-        <div class="form-inline select-time-div-margin">
-          <h8 class='select-time-header-margin'>Desde</h8>
-          <%= hrro.time_select :start, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
-          <h8 class='select-time-header-margin'>Hasta</h8>
-          <%= hrro.time_select :end, { }, { class: 'form-control', default: {hour: '18', minute: '00'}} %>
-        </div>
-      </div>
-      <hr>
+      <%= render 'horario_fields', form: hrro %>
+      <%= link_to_add_fields "Añadir horario", form, :horarios %>
     <% end %>
   </div>
 </div>

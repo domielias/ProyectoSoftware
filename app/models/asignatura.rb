@@ -8,4 +8,8 @@ class Asignatura < ApplicationRecord
     has_many :bloque_asignaturas, dependent: :destroy
     has_many :bloques, through: :bloque_asignaturas
 
+    def clave_nombre
+      "#{clave} #{nombre}"
+    end
+
 end

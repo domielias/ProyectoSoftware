@@ -17,7 +17,7 @@ class ClasesController < ApplicationController
     @clase.build_ciclo
     @clase.build_profesor
     # @clase.build_asignatura
-    7.times {@clase.horarios.build}
+    1.times {@clase.horarios.build}
     # @clase.build_correquisito
     @clase_estudiante = @clase.clase_estudiantes.build
   end
@@ -92,6 +92,6 @@ class ClasesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def clase_params
-    params.require(:clase).permit(:fecha_inicio, :fecha_final, :seccion, :activo, :no_clase, :lugar, :modalidad, :ciclo_id, :profesor_id, :asignatura_id, :correquisito_id, horarios_attributes: [:id, :dias, :start, :end])
+    params.require(:clase).permit(:fecha_inicio, :fecha_final, :seccion, :activo, :no_clase, :lugar, :modalidad, :ciclo_id, :profesor_id, :asignatura_id, :correquisito_id, :nivel_id, horarios_attributes: [:id, :dias, :start, :end, :_destroy])
   end
 end
