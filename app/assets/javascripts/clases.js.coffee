@@ -1,8 +1,17 @@
 jQuery ->
+
+  $(document).on 'turbolinks:load', ->
+    init_select2()
+
   $('form').on 'click', '.remove_fields', (event) ->
     $(this).prev('input[type=hidden]').val('1')
-    $(this).closest('div').parent().hide()
-    $(this).closest('div').parent().prev('div').hide()
+    # $(this).closest('div').parent().hide()
+    $(this).closest('div').parent().parent().parent().hide()
+    event.preventDefault()
+
+  $('form').on 'click', '.remove_clase', (event) ->
+    $(this).prev('input[type=hidden]').val('1')
+    $(this).closest('div').parent().parent().hide()
     event.preventDefault()
 
   $('form').on 'click', '.add_fields', (event) ->

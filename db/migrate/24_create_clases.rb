@@ -11,7 +11,7 @@ class CreateClases < ActiveRecord::Migration[6.0]
       t.references :asignatura, foreign_key: true  ##############
       t.references :ciclo, foreign_key: true ############
       t.references :correquisito, foreign_key: {to_table: :clases}
-      t.references :nivel, foreign_key: true
+      t.references :bloque, foreign_key: true
 
       t.timestamps
     end

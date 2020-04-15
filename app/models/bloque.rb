@@ -12,9 +12,10 @@ class Bloque < ApplicationRecord
   has_many :bloque_estudiantes, dependent: :destroy
   has_many :estudiantes, through: :bloque_estudiantes
 
-  belongs_to :clase_padre, :class_name => "Clase", :foreign_key => "clase_padre_id", optional: true
-  has_many :clases, :class_name => "Clase"
+  # belongs_to :clase_padre, :class_name => "Clase", :foreign_key => "clase_padre_id", optional: true
+  has_many :clases
 
+  accepts_nested_attributes_for :clases, allow_destroy: true
   accepts_nested_attributes_for :category
   accepts_nested_attributes_for :ciclo
 
