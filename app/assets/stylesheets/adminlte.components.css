@@ -9,6 +9,10 @@
   position: relative;
 }
 
+.div-horario-en-clase-en-bloque{
+    padding-left: 50px;
+}
+
 .div-boton-eliminar-padding{
   padding-top: 30px;
 }

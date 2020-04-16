@@ -17,7 +17,7 @@ class ClasesController < ApplicationController
     @clase.build_ciclo
     @clase.build_profesor
     # @clase.build_asignatura
-    1.times {@clase.horarios.build}
+    @clase.horarios.build
     # @clase.build_correquisito
     @clase_estudiante = @clase.clase_estudiantes.build
   end

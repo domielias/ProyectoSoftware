@@ -65,26 +65,34 @@
 
     <div class="card-body">
       <div class="row col-md-12 col-sm-12">
-        <div class="col-md-3 col-sm-3">
+        <div class="col-md-4 col-sm-4">
           <div class="form-group">
             <h5>No. clase</h5>
-            <%= form.select :ciclo_id, Ciclo.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+            <%= form.text_field :no_clase, { class: 'form-control'} %>
           </div>
         </div>
-        <div class="col-md-3 col-sm-3">
+        <div class="col-md-4 col-sm-4">
           <div class="form-group">
-            <h5>Asignatura</h5>
-            <%= form.collection_select(:asignatura_id, Asignatura.all, :id, :clave_nombre, {include_blank: ''}, class: 'select2-simple-dropdown select2-dropdown-width') %>
+            <h5>Seccion</h5>
+            <%= form.text_field :seccion, { class: 'form-control'} %>
           </div>
         </div>
-        <div class="col-md-3 col-sm-3">
+        <div class="col-md-4 col-sm-4">
           <div class="form-group">
             <h5>Profesor</h5>
             <%#= form.select :profesor_id, User.where(profesor: true).pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
             <%= collection_select(:profesor, :id, User.where(profesor: true), :id, :id_campus_nombres_apellidos, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
           </div>
         </div>
-        <div class="col-md-3 col-sm-3">
+      </div>
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <h5>Asignatura</h5>
+            <%= form.collection_select(:asignatura_id, Asignatura.all, :id, :clave_nombre, {include_blank: ''}, class: 'select2-simple-dropdown select2-dropdown-width') %>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
           <div class="form-group">
             <h5>Correquisito</h5>
             <%= form.select :correquisito_id, Clase.where.not(id: params[:id]).pluck(:no_clase, :id), {:include_blank => 'Ninguna'},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>

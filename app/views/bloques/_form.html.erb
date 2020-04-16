@@ -34,30 +34,31 @@
         </div>
         <div class="col-md-4 col-sm-4">
           <div class="form-group">
-            <h6>Categoría</h6>
-            <%= form.select :category_id, Category.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+            <h6>Nivel</h6>
+            <%= form.select :nivel_id, Nivel.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
           </div>
         </div>
       </div>
-      <hr/>
-      <div class="col-md-12 col-sm-12">
-        <div class="form-group">
-          <h6>Asignaturas</h6>
-          <%= fields_for @bloque_asignatura do |ba| %>
-          <%= collection_select(:asignaturas, :id, Asignatura.all, :id, :nombre, {selected: bloque.asignaturas.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
-        <% end %>
-      </div>
-    </div>
-    <hr/>
-    <div class="col-md-12 col-sm-12">
-      <div class="form-group">
-        <h6>Estudiantes</h6>
-        <%= fields_for @bloque_estudiante do |be| %>
-        <%= collection_select(:estudiantes, :id, Estudiante.where.not(admitido: false), :id, :id_campus_nombres_apellidos, {selected: bloque.estudiantes.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
-      <% end %>
+</div>
+
+</div>
+<div class="card card-default">
+  <div class="card-header">
+    <h3 class="card-title">Programación por clase
+    </h3>
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+        <i class="fa fa-minus"></i>
+      </button>
     </div>
   </div>
-</div>
+
+  <div class="card-body">
+    <%= form.fields_for :clases do |clase| %>
+      <%= render 'clase_fields', form: clase %>
+    <% end %>
+    <%= link_to_add_fields "Añadir clase", form, :clases, "btn btn-primary" %>
+  </div>
 
 </div>
 <div class="float-right">

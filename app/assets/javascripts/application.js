@@ -34,14 +34,21 @@
 // $(document).on('turbolinks:load', eventCalendar);
 // $(document).on('turbolinks:before-cache', clearCalendar)
 
-
+function init_select2(){
+  $('.select2-simple-dropdown').select2({
+    placeholder: "Elegir",
+    allowClear: true,
+    width: '100%',
+    language: "es"
+  });
+};
 
 $(document).on('turbolinks:load', function () {
   $('.select2-simple-dropdown').select2({placeholder: "Elegir", allowClear: true, width: '100%', language: "es"});
 });
+
 $(document).on('turbolinks:load', function () {
   $('.select2-multiple-dropdown').select2({allowClear: true, placeholder: "Elegir 1 o más", closeOnSelect: false, width: '100%', language: "es"});
-
 });
 
 $(document).ready(function () {
