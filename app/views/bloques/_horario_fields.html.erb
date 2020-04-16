@@ -1,4 +1,4 @@
-<div class="card card-warning">
+<div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Horario</h3>
               </div>
@@ -6,19 +6,22 @@
               <!-- form start -->
               <div class="card-body">
                 <div class="col-md-12 col-sm-12">
-                  <h5>Horario:</h5>
                   <%= form.select :dias, ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'], {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
                 </div>
                 <div class="col-md-12 col-sm-12">
                   <div class="form-inline select-time-div-margin">
-                    <h8 class='select-time-header-margin'>Desde</h8>
+                    <div class="">
+                      <h8 class='select-time-header-margin'>Desde</h8>
                       <%= form.time_select :start, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
+                    </div>
+                    <div class="">
                       <h8 class='select-time-header-margin'>Hasta</h8>
                       <%= form.time_select :end, { }, { class: 'form-control', default: {hour: '18', minute: '00'}} %>
+                    </div>
                   </div>
                   <div class="div-boton-eliminar-padding">
                      <%= form.hidden_field :_destroy %>
-                     <%= link_to "Eliminar horario", '#', class: "remove_fields" %>
+                     <%= link_to "Eliminar horario", '#', class: "remove_fields btn btn-secondary" %>
                   </div>
                   <hr/>
                 </div>

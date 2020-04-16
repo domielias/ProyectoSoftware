@@ -40,21 +40,21 @@
         </div>
       </div>
       <hr/>
-      <div class="">
-        <%= form.fields_for :horarios do |hrro| %>
-          <%= render 'clase_horario', form: hrro %>
-        <% end %>
-      </div>
+  </div>
+  <div class="">
+    <%= form.fields_for :horarios do |hrro| %>
+      <%= render 'horario_fields', form: hrro %>
+    <% end %>
   </div>
   <hr/>
   <div class="row col-md-12 col-sm-12">
     <div class="col-md-6 col-sm-6">
-      <%= link_to_add_fields "Añadir horario", form, :horarios %>
+      <%= link_to_add_fields "Añadir horario", form, :horarios, "btn btn-info" %>
     </div>
   </div>
   <div class="div-boton-eliminar-padding">
      <%= form.hidden_field :_destroy %>
-     <%= link_to "Eliminar clase", '#', class: "remove_clase" %>
+     <%= link_to "Eliminar clase", '#', class: "remove_clase btn btn-danger" %>
   </div>
 </div>
 </div>

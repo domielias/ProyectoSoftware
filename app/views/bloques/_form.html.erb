@@ -57,7 +57,7 @@
     <%= form.fields_for :clases do |clase| %>
       <%= render 'clase_fields', form: clase %>
     <% end %>
-    <%= link_to_add_fields "Añadir clase", form, :clases %>
+    <%= link_to_add_fields "Añadir clase", form, :clases, "btn btn-primary" %>
   </div>
 
 </div>
