@@ -20,9 +20,12 @@ $(document).on('turbolinks:load', function () {
       defaultView: 'agendaWeek',
       firstDay: 1,
       minTime: '07:00:00',
-      maxTime: '22:00:00',
+      maxTime: '23:00:00',
       // timeFormat: 'H:(mm)',
       columnFormat: 'dddd',
+      'nowIndicator': true,
+      'timeFormat': 'H(:mm)',
+      axisFormat: 'HH:mm',
       // events: [{
       //   title: "My repeating event",
       //   start: '10:00', // a start time (10am in this example)
