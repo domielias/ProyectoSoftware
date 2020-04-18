@@ -1,5 +1,5 @@
 class EstudiantesController < ApplicationController
-  before_action :set_estudiante, only: [:show, :edit, :update, :destroy, :listar_clases]
+  before_action :set_estudiante, only: [:show, :edit, :update, :destroy, :mostrar_horario_actual]
 
   # GET /estudiantes
   # GET /estudiantes.json
@@ -12,7 +12,7 @@ class EstudiantesController < ApplicationController
   def show
   end
 
-  def listar_clases
+  def mostrar_horario_actual
   end
 
   # GET /estudiantes/new

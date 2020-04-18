@@ -18,24 +18,30 @@
 
     <div class="card-body">
       <div class="row col-md-12 col-sm-12">
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-3 col-sm-3">
           <div class="form-group">
             <h6>Creador</h6>
             <%= form.text_field :creador, { class: 'form-control', value: "#{current_user.persona.id_campus} #{current_user.persona.nombres} #{current_user.persona.apellidos}", readonly: true} %>
           </div>
         </div>
         <hr/>
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-3 col-sm-3">
           <div class="form-group">
             <h6>Ciclo</h6>
             <!-- <%= form.collection_select(:ciclo_id, Ciclo.all, :id, :nombre,{},{class:"form-control"}) %> -->
             <%= form.select :ciclo_id, Ciclo.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
           </div>
         </div>
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-3 col-sm-3">
           <div class="form-group">
-            <h6>Nivel</h6>
+            <h6>Nivel de lengua</h6>
             <%= form.select :nivel_id, Nivel.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h6>Programa de EPE</h6>
+            <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
           </div>
         </div>
       </div>
@@ -54,8 +60,10 @@
   </div>
 
   <div class="card-body">
+    <% @mis_clases = 14 %>
     <%= form.fields_for :clases do |clase| %>
-      <%= render 'clase_fields', form: clase %>
+      <%= render partial: 'clase_fields', locals: {form: clase} %>
+      <%# link_to 'Bloque', url_for(controller: :bloques_controller, action: :new, mis_clases: @mis_clases) %>
     <% end %>
     <%= link_to_add_fields "Añadir clase", form, :clases, "btn btn-primary" %>
   </div>

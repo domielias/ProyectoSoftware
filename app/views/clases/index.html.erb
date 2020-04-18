@@ -32,12 +32,12 @@
           </td>
           <td>
            <% if !clase.ciclo.nil? %>
-             <%= clase.ciclo.actual ? :Sí : :No %>
+             <%= clase.bloque.ciclo.actual ? :Sí : :No %>
            <% end %>
          </td>
            <td>
             <% if !clase.ciclo.nil? %>
-              <%= clase.ciclo_nombre %>
+              <%= clase.bloque.ciclo %>
             <% end %>
           </td>
           <td class="align-column-content-center"><%= link_to 'Mostrar', clase, class: "btn btn-info" %></td>

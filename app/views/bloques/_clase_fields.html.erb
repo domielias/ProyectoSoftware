@@ -14,7 +14,7 @@
       </div>
       <div class="col-md-4 col-sm-4">
         <div class="form-group">
-          <h5>Seccion</h5>
+          <h5>Sección</h5>
           <%= form.text_field :seccion, { class: 'form-control'} %>
         </div>
       </div>
@@ -22,7 +22,7 @@
         <div class="form-group">
           <h5>Profesor</h5>
           <%#= form.select :profesor_id, User.where(profesor: true).pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
-          <%= collection_select(:profesor, :id, User.where(profesor: true), :id, :id_campus_nombres_apellidos, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
+          <%= form.collection_select(:profesor_id, User.where(profesor: true), :id, :id_campus_nombres_apellidos, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
         </div>
       </div>
     </div>
@@ -35,12 +35,34 @@
       </div>
       <div class="col-md-4 col-sm-4">
         <div class="form-group">
-          <h5>Correquisito</h5>
+          <h5>No. clase del correquisito</h5>
           <%#= form.collection_select(:correquisito_id, Clase.all, :id, :clave_nombre, {include_blank: ''}, class: 'select2-simple-dropdown select2-dropdown-width') %>
+          <%= form.text_field :correquisito, { class: 'form-control'} %>
         </div>
       </div>
+      <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <h5>Lugar</h5>
+            <%= form.text_field :lugar, class: "form-control" %>
+          </div>
+        </div>
       <hr/>
   </div>
+  <hr/>
+  <div class="">
+    <%#= form.object.no_clase %>
+    <h5>Estudiantes</h5>
+    <%= form.collection_select(:estudiante_ids, Estudiante.where.not(admitido: false), :id, :id_campus_nombres_apellidos,
+                                {selected: form.object.estudiantes.map(&:id)},
+                                {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+
+    <%#= f.collection_select(:feature_ids, Feature.all, :id, :name,
+                              {include_blank: false, :include_hidden => false, :selected => @property.features.map(&:id)},
+                              {:multiple => true}) %>
+
+    <%#= link_to clase.object.estudiante, clases_path(clase, estudiantes: clase.object.id) %>
+  </div>
+  <hr/>
   <div class="">
     <%= form.fields_for :horarios do |hrro| %>
       <%= render 'horario_fields', form: hrro %>

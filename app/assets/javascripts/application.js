@@ -41,6 +41,13 @@ function init_select2(){
     width: '100%',
     language: "es"
   });
+  $('.select2-multiple-dropdown').select2({
+    allowClear: true,
+    placeholder: "Elegir 1 o más",
+    closeOnSelect: false,
+    width: '100%',
+    language: "es"
+  });
 };
 
 $(document).on('turbolinks:load', function () {

@@ -1,5 +1,4 @@
-var initialize_calendar;
-initialize_calendar = function() {
+$(document).on('turbolinks:load', function () {
   $('.calendar').each(function() {
     var calendar = $(this)
     calendar.fullCalendar({
@@ -30,9 +29,7 @@ initialize_calendar = function() {
       //   end: '14:00', // an end time (2pm in this example)
       //   dow: [1, 4] // Repeat monday and thursday
       // }]
-      events: '/estudiantes/listar_clases/' + $("#idestudiante").text() + '.json'
+      events: '/estudiantes/mostrar_horario_actual/' + $("#idestudiante").text() + '.json'
     });
   })
-};
-// console.log($("#idestudiante").text);
-$(document).on('turbolinks:load', initialize_calendar);
+});
