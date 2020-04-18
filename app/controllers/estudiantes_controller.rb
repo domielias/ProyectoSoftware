@@ -15,6 +15,10 @@ class EstudiantesController < ApplicationController
   def mostrar_horario_actual
   end
 
+  def listar_clases
+    @estudiante = Estudiante.find(params[:id])
+  end
+
   # GET /estudiantes/new
   def new
     @estudiante = Estudiante.new
@@ -42,15 +46,22 @@ class EstudiantesController < ApplicationController
     @estudiante.admitido = false if guardado?
 
 
-    respond_to do |format|
-      if @estudiante.save
-        format.html { redirect_to @estudiante, notice: 'Estudiante was successfully created.' }
-        format.json { render :show, status: :created, location: @estudiante }
-      else
-        format.html { render :new }
-        format.json { render json: @estudiante.errors, status: :unprocessable_entity }
-      end
+    if @estudiante.save
+      redirect_to estudiantes_url
+    else
+      format.html { render :new }
     end
+
+    # respond_to do |format|
+    #   if @estudiante.save
+    #     format.html { redirect_to @estudiante, notice: 'Estudiante was successfully created.' }
+    #     format.json { render :show, status: :created, location: @estudiante }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @estudiante.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
   end
 
   # PATCH/PUT /estudiantes/1
@@ -61,15 +72,12 @@ class EstudiantesController < ApplicationController
     @estudiante.admitido = true if finalizado?
     @estudiante.admitido = false if guardado?
 
-    respond_to do |format|
-      if @estudiante.update(estudiante_params)
-        format.html { redirect_to @estudiante, notice: 'Estudiante was successfully updated.' }
-        format.json { render :show, status: :ok, location: @estudiante }
-      else
-        format.html { render :edit }
-        format.json { render json: @estudiante.errors, status: :unprocessable_entity }
-      end
+    if @estudiante.update(estudiante_params)
+      redirect_to estudiantes_url
+    else
+      format.html { render :new }
     end
+
   end
 
   # DELETE /estudiantes/1

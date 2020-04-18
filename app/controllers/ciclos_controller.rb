@@ -34,28 +34,20 @@ class CiclosController < ApplicationController
   def create
     @ciclo = Ciclo.new(ciclo_params)
 
-    respond_to do |format|
-      if @ciclo.save
-        format.html { redirect_to @ciclo, notice: 'Ciclo was successfully created.' }
-        format.json { render :show, status: :created, location: @ciclo }
-      else
-        format.html { render :new }
-        format.json { render json: @ciclo.errors, status: :unprocessable_entity }
-      end
+    if @ciclo.save
+      redirect_to ciclos_url
+    else
+      format.html { render :new }
     end
   end
 
   # PATCH/PUT /ciclos/1
   # PATCH/PUT /ciclos/1.json
   def update
-    respond_to do |format|
-      if @ciclo.update(ciclo_params)
-        format.html { redirect_to @ciclo, notice: 'Ciclo was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ciclo }
-      else
-        format.html { render :edit }
-        format.json { render json: @ciclo.errors, status: :unprocessable_entity }
-      end
+    if @ciclo.update(ciclo_params)
+      redirect_to ciclos_url
+    else
+      format.html { render :new }
     end
   end
 

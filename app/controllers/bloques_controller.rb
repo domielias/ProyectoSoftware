@@ -40,7 +40,7 @@ class BloquesController < ApplicationController
     @bloque = Bloque.new(bloque_params)
 
     if @bloque.save
-      redirect_to bloques_url, notice: 'El bloque ha sido creado con éxito.'
+      redirect_to bloques_url
     else
       format.html { render :new }
     end
@@ -73,7 +73,7 @@ class BloquesController < ApplicationController
     # end
 
     if @bloque.update(bloque_params)
-      redirect_to bloques_url, notice: 'El bloque ha sido actualizado con éxito.'
+      redirect_to bloques_url
     else
       format.html { render :new }
     end

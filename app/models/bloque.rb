@@ -1,6 +1,6 @@
 class Bloque < ApplicationRecord
 
-  belongs_to :category, optional: true
+  belongs_to :nivel, optional: true
   delegate :nombre, to: :category, prefix: true
   belongs_to :ciclo, optional: true
   delegate :nombre, to: :ciclo, prefix: true
@@ -21,7 +21,7 @@ class Bloque < ApplicationRecord
   accepts_nested_attributes_for :estudiantes
 
   accepts_nested_attributes_for :clases, allow_destroy: true
-  accepts_nested_attributes_for :category
+  accepts_nested_attributes_for :nivel
   accepts_nested_attributes_for :ciclo
 
 end
