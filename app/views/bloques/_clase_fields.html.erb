@@ -37,7 +37,7 @@
         <div class="form-group">
           <h5>No. clase del correquisito</h5>
           <%#= form.collection_select(:correquisito_id, Clase.all, :id, :clave_nombre, {include_blank: ''}, class: 'select2-simple-dropdown select2-dropdown-width') %>
-          <%= form.text_field :correquisito, { class: 'form-control'} %>
+          <%= form.text_field :correquisito_id, { class: 'form-control'} %>
         </div>
       </div>
       <div class="col-md-4 col-sm-4">
