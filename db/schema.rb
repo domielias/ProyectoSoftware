@@ -272,12 +272,14 @@ ActiveRecord::Schema.define(version: 38) do
   end
 
   create_table "nivels", force: :cascade do |t|
-    t.string "nombre", limit: 100
-    t.float "rango_min"
-    t.float "rango_max"
+    t.bigint "programa_epe_solicitado_id"
+    t.string "nombre", limit: 25
+    t.integer "min"
+    t.integer "max"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["id"], name: "index_nivels_on_id", unique: true
+    t.index ["programa_epe_solicitado_id"], name: "index_nivels_on_programa_epe_solicitado_id"
   end
 
   create_table "pais", force: :cascade do |t|
@@ -400,6 +402,7 @@ ActiveRecord::Schema.define(version: 38) do
   add_foreign_key "horarios", "clases"
   add_foreign_key "horarios", "tutories"
   add_foreign_key "informacion_academicas", "estudiantes"
+  add_foreign_key "nivels", "programa_epe_solicitados"
   add_foreign_key "programa_internacionals", "institucions"
   add_foreign_key "programa_internacionals", "pais"
   add_foreign_key "progreso_inscripcions", "estudiantes"

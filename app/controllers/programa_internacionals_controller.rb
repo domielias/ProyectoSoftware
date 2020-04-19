@@ -71,6 +71,6 @@ class ProgramaInternacionalsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def programa_internacional_params
       # params.require(:programa_internacional).permit(:nombre, pai_attributes: [:id, :nombre, :nacionalidad])
-      params.require(:programa_internacional).permit(:nombre, :pai_id)
+      params.require(:programa_internacional).permit(:nombre, :pai_id,:institucion_id)
     end
 end

@@ -9,13 +9,13 @@
           </div>
           <%= form_with model: @programa_epe_solicitado, url: "programa_epe_solicitados" do |form| %>
             <div class="card-body">
-                <div class="form-group">
-                  <%= form.label :nombre, 'Nombre' %>
-                  <%= form.text_field :nombre, {class:"form-control", placeholder: 'Nombre',name:"programa_epe_solicitado[nombre]" } %>
-                </div>
-                <div class="float-right">
-                  <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
-                </div>
+              <div class="form-group">
+                <%= form.label :nombre, 'Nombre' %>
+                <%= form.text_field :nombre, {class:"form-control", placeholder: 'Nombre',name:"programa_epe_solicitado[nombre]" } %>
+              </div>
+              <div class="float-right">
+                <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+              </div>
             </div>
           <% end %>
         </div>
@@ -28,41 +28,42 @@
           </div>
           <%= form_with model: @carrera_solictada, url: "carrera_solicitadas" do |form| %>
             <div class="card-body">
-                <div class="form-group">
-                  <%= form.label :nombre, 'Nombre' %>
-                  <%= form.text_field :nombre, {class:"form-control", placeholder: 'Nombre'} %>
-                </div>
-                <div class="float-right">
-                  <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
-                </div>
+              <div class="form-group">
+                <%= form.label :nombre, 'Nombre' %>
+                <%= form.text_field :nombre, {class:"form-control", placeholder: 'Nombre',name:"carrera_solicitada[nombre]"} %>
+              </div>
+              <div class="float-right">
+                <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+              </div>
             </div>
           <% end %>
         </div>
       </div>
-      <div class="col-md-4"> 
+      <div class="col-md-4">
         <div class="card card-secondary ">
           <div class="card-header">
             <h3 class="card-title">Introducir un nuevo País</h3>
           </div>
           <%= form_with model: @pai, url: "pais" do |form| %>
             <div class="card-body">
-                <div class="form-group">
-                  <%= form.label :nombre, 'Nombre' %>
-                  <%= form.text_field :nombre, {class:"form-control", placeholder: 'Nombre'} %>
-                </div>
-                <div class="form-group">
-                  <%= form.label :nacionalidad, 'Nacionalidad' %>
-                  <%= form.text_field :nacionalidad, {class:"form-control", placeholder: 'Nacionalidad'} %>
-                </div>
-                <div class="float-right">
-                  <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
-                </div>
+              <div class="form-group">
+                <%= form.label :nombre, 'Nombre' %>
+                <%= form.text_field :nombre, {class:"form-control", placeholder: 'Nombre',name:"pai[nombre]"} %>
+              </div>
+              <div class="form-group">
+                <%= form.label :nacionalidad, 'Nacionalidad' %>
+                <%= form.text_field :nacionalidad, {class:"form-control", placeholder: 'Nacionalidad',name:"pai[nacionalidad]"} %>
+              </div>
+              <div class="float-right">
+                <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+              </div>
             </div>
           <% end %>
         </div>
       </div>
       <!-- Tercera columna -->
-    </div><!-- Cerrando Row -->
+    </div>
+    <!-- Cerrando Row -->
     <div class="row">
       <!-- Primera columna -->
       <div class="col-md-4">
@@ -72,17 +73,140 @@
           </div>
           <%= form_with model: @programa_internacional, url: "programa_internacionals" do |form| %>
             <div class="card-body">
-                <div class="form-group">
-                  <%= form.label :nombre, 'Nombre' %>
-                  <%= form.text_field :nombre, {class:"form-control", placeholder: 'Nombre'} %>
-                </div>
-                <div class="float-right">
-                  <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
-                </div>
+              <div class="form-group">
+                <%= form.label :nombre, 'Nombre' %>
+                <%= form.text_field :nombre, {class:"form-control", placeholder: 'Nombre',name:"programa_internacional[nombre]"} %>
+              </div>
+              <div class="form-group">
+                <h6>Pais</h6>
+                <%= form.select :pai_id, Pai.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width',name:"programa_internacional[pai_id]"} %>
+              </div>
+              <div class="form-group">
+                <h6>Institución</h6>
+                <%= form.select :institucion_id, Institucion.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width',name:"programa_internacional[institucion_id]"} %>
+              </div>
+              <div class="float-right">
+                <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+              </div>
             </div>
           <% end %>
         </div>
       </div>
-    </div><!-- Cerrando Row -->
-  </div><!-- Container Row -->
+      <!-- Segunda columna -->
+      <div class="col-md-4">
+        <div class="card card-secondary ">
+          <div class="card-header">
+            <h3 class="card-title">Crear Institución</h3>
+          </div>
+          <%= form_with model: @Institucion, url: "institucions" do |form| %>
+            <div class="card-body">
+              <div class="form-group">
+                <%= form.label :nombre, 'Nombre' %>
+                <%= form.text_field :nombre, {class:"form-control", placeholder: 'Nombre',name:"institucion[nombre]"} %>
+              </div>
+              <div class="float-right">
+                <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <!-- Tercera columna -->
+      <div class="col-md-4">
+        <div class="card card-warning "> <%#No funciona Hay que ver algo con el numero de clase  %>
+          <div class="card-header">
+            <h3 class="card-title">Crear Nivel</h3>
+          </div>
+          <%= form_with model: @Nivel, url: "nivels" do |form| %>
+            <div class="card-body">
+              <div class="form-group">
+                <h6>Programa EPE</h6>
+                <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width',name:"nivel[programa_epe_solicitado_id]"} %>
+              </div>
+              <div class="form-group">
+                <%= form.label :nombre, 'Nombre de Nivel' %>
+                <%= form.text_field :nombre, {class:"form-control", placeholder: 'Nombre',name:"nivel[nombre]"} %>
+              </div>
+              <div class="form-group">
+                <%= form.label :min, 'Nota Minima' %>
+                <%= form.text_field :min, {class:"form-control", placeholder: 'Minima',name:"nivel[min]"} %>
+              </div>
+              <div class="form-group">
+                <%= form.label :max, 'Nota Maxima' %>
+                <%= form.text_field :max, {class:"form-control", placeholder: 'Maxima',name:"nivel[max]"} %>
+              </div>
+              <div class="float-right">
+                <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- Cerrando Row -->
+    <div class="row">
+      <!-- Primera columna -->
+      <div class="col-md-4">
+        <div class="card card-secondary ">
+          <div class="card-header">
+            <h3 class="card-title">Crear una Asignatura</h3>
+          </div>
+          <%= form_with model: @asignatura, url: "asignaturas" do |form| %>
+            <div class="card-body">
+              <div class="form-group">
+                <%= form.label :nombre, 'Nombre' %>
+                <%= form.text_field :nombre, {class:"form-control", placeholder: 'Nombre',name:"asignatura[nombre]"} %>
+              </div>
+              <div class="form-group">
+                <%= form.label :clave, 'Clave' %>
+                <%= form.text_field :clave, {class:"form-control", placeholder: 'Clave',name:"asignatura[clave]"} %>
+              </div>
+              <div class="form-group">
+                <h5>TPC</h5>
+                <div class="row">
+                  <div class="col-md-4">
+                    <%= form.text_field :valor_teorico, {class:"form-control", placeholder: 'Teoria',name:"asignatura[valor_teorico]"} %>
+                  </div>
+                  <div class="col-md-4">
+                    <%= form.text_field :valor_practico, {class:"form-control", placeholder: 'Practica',name:"asignatura[valor_practico]"} %>
+                  </div>
+                  <div class="col-md-4">
+                    <%= form.text_field :valor_credito, {class:"form-control", placeholder: 'Credito',name:"asignatura[valor_credito]"} %>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <h6>Facultad</h6>
+                <%= form.select :facultad_id, Facultad.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width',name:"asignatura[facultad_id]"} %>
+              </div>
+              <div class="float-right">
+                <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <!-- Segunda columna -->
+      <div class="col-md-4">
+        <div class="card card-secondary ">
+          <div class="card-header">
+            <h3 class="card-title">Crear Facultad</h3>
+          </div>
+          <%= form_with model: @facultad, url: "facultads" do |form| %>
+            <div class="card-body">
+              <div class="form-group">
+                <%= form.label :nombre, 'Nombre' %>
+                <%= form.text_field :nombre, {class:"form-control", placeholder: 'Nombre facultad',name:"facultad[nombre]"} %>
+              </div>
+              <div class="float-right">
+                <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- Cerrando Row -->
+  </div>
+  <!-- Container Row -->
 </section>

@@ -69,6 +69,6 @@ class NivelsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def nivel_params
-      params.require(:nivel).permit(:nombre, :rango_min, :rango_max)
+      params.require(:nivel).permit(:nombre,:programa_epe_solicitado_id,:min,:max)
     end
 end
