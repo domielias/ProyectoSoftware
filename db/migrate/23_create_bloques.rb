@@ -9,6 +9,7 @@ class CreateBloques < ActiveRecord::Migration[6.0]
       t.references :bloque_padre, foreign_key: {to_table: :bloques}
       t.references :ciclo, foreign_key: true
       t.references :nivel, foreign_key: true
+      t.references :programa_epe_solicitado, foreign_key: true
 
       t.timestamps
     end

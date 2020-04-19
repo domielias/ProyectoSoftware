@@ -1,5 +1,4 @@
-var initialize_calendar;
-initialize_calendar = function() {
+$(document).on('turbolinks:load', function () {
   $('.calendar').each(function() {
     var calendar = $(this)
     calendar.fullCalendar({
@@ -21,18 +20,19 @@ initialize_calendar = function() {
       defaultView: 'agendaWeek',
       firstDay: 1,
       minTime: '07:00:00',
-      maxTime: '22:00:00',
+      maxTime: '23:00:00',
       // timeFormat: 'H:(mm)',
       columnFormat: 'dddd',
+      'nowIndicator': true,
+      'timeFormat': 'H(:mm)',
+      axisFormat: 'HH:mm',
       // events: [{
       //   title: "My repeating event",
       //   start: '10:00', // a start time (10am in this example)
       //   end: '14:00', // an end time (2pm in this example)
       //   dow: [1, 4] // Repeat monday and thursday
       // }]
-      events: '/estudiantes/listar_clases/' + $("#idestudiante").text() + '.json'
+      events: '/estudiantes/mostrar_horario_actual/' + $("#idestudiante").text() + '.json'
     });
   })
-};
-// console.log($("#idestudiante").text);
-$(document).on('turbolinks:load', initialize_calendar);
+});

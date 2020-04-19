@@ -11,8 +11,8 @@
       <th>No. Clase</th>
       <th>Sección</th>
       <th>Asignatura</th>
-      <th>Está activa ?</th>
-      <th>Ciclo</th>
+      <th>Estado</th>
+      <th>Bloque</th>
       <th></th>
       <th></th>
     </tr>
@@ -31,13 +31,14 @@
             <% end %>
           </td>
           <td>
-           <% if !clase.ciclo.nil? %>
-             <%= clase.ciclo.actual ? :Sí : :No %>
+           <% if !clase.bloque.ciclo.nil? %>
+             <%= clase.bloque.ciclo.actual ? :Actual : :Pasada %>
            <% end %>
          </td>
            <td>
-            <% if !clase.ciclo.nil? %>
-              <%= clase.ciclo_nombre %>
+            <% if !clase.bloque.nil? %>
+              <%= link_to "#{clase.bloque.ciclo.nombre}, #{clase.bloque.nivel.nombre}", edit_bloque_path(clase.bloque) %>
+              <%#= "#{clase.bloque.ciclo.nombre}, #{clase.bloque.nivel.nombre}" %>
             <% end %>
           </td>
           <td class="align-column-content-center"><%= link_to 'Mostrar', clase, class: "btn btn-info" %></td>

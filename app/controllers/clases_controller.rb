@@ -92,6 +92,6 @@ class ClasesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def clase_params
-    params.require(:clase).permit(:fecha_inicio, :fecha_final, :seccion, :activo, :no_clase, :lugar, :modalidad, :ciclo_id, :profesor_id, :asignatura_id, :correquisito_id, :nivel_id, horarios_attributes: [:id, :dias, :start, :end, :_destroy])
+    params.require(:clase).permit(:fecha_inicio, :fecha_final, :seccion, :activo, :no_clase, :lugar, :modalidad, :correquisito, :ciclo_id, :profesor_id, :asignatura_id, :nivel_id, estudiante_ids: [], horarios_attributes: [:id, :dias, :start, :end, :_destroy])
   end
 end

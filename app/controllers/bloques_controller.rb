@@ -10,6 +10,11 @@ class BloquesController < ApplicationController
   # GET /bloques/1
   # GET /bloques/1.json
   def show
+    @mis_clases = @bloque.clases
+    @mis_clases = @mis_clases.where(clase: params[:clase]) if params[:clase]
+
+    # @mis_estuds = @mis_clases.where(estudiantes: params[:estudiantes][:id])
+
   end
 
   # GET /bloques/new
@@ -31,29 +36,16 @@ class BloquesController < ApplicationController
   # POST /bloques
   # POST /bloques.json
   def create
+
     @bloque = Bloque.new(bloque_params)
 
-    # params[:asignaturas][:id].each do |asignatura|
-    #   if !asignatura.empty?
-    #     @bloque.bloque_asignaturas.build(asignatura_id: asignatura)
-    #   end
-    # end
-    #
-    # params[:estudiantes][:id].each do |estudiante|
-    #   if !estudiante.empty?
-    #     @bloque.bloque_estudiantes.build(estudiante_id: estudiante)
-    #   end
-    # end
-
-    respond_to do |format|
-      if @bloque.save
-        format.html { redirect_to @bloque, notice: 'Bloque was successfully created.' }
-        format.json { render :show, status: :created, location: @bloque }
-      else
-        format.html { render :new }
-        format.json { render json: @bloque.errors, status: :unprocessable_entity }
-      end
+    if @bloque.save
+      redirect_to bloques_url
+    else
+      format.html { render :new }
     end
+
+
   end
 
   # PATCH/PUT /bloques/1
@@ -80,15 +72,12 @@ class BloquesController < ApplicationController
     #   end
     # end
 
-    respond_to do |format|
-      if @bloque.update(bloque_params)
-        format.html { redirect_to @bloque, notice: 'Bloque was successfully updated.' }
-        format.json { render :show, status: :ok, location: @bloque }
-      else
-        format.html { render :edit }
-        format.json { render json: @bloque.errors, status: :unprocessable_entity }
-      end
+    if @bloque.update(bloque_params)
+      redirect_to bloques_url
+    else
+      format.html { render :new }
     end
+
   end
 
   # DELETE /bloques/1
@@ -109,6 +98,6 @@ class BloquesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bloque_params
-      params.require(:bloque).permit(:fecha_inicio, :fecha_final, :creador, :nivel_id, :ciclo_id, :persona_id, :estudiante_id, clases_attributes: [:id, :seccion, :no_clase, :lugar, :modalidad, :_destroy, :asignatura_id, :correquisito_id, horarios_attributes: [:id, :dias, :start, :end, :_destroy]])
+      params.require(:bloque).permit(:fecha_inicio, :fecha_final, :creador, :programa_epe_solicitado_id, :nivel_id, :ciclo_id, :persona_id, clases_attributes: [:id, :seccion, :no_clase, :lugar, :modalidad, :correquisito, :_destroy, :asignatura_id, :profesor_id, estudiante_ids: [], horarios_attributes: [:id, :dias, :start, :end, :_destroy]])
     end
 end
