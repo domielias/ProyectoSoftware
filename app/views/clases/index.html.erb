@@ -14,7 +14,7 @@
       <th>Estado</th>
       <th>Bloque</th>
       <th></th>
-      <th></th>
+      <% if can? :update, @clase %><th></th> | <% end %>
     </tr>
   </thead>
 
@@ -36,13 +36,13 @@
            <% end %>
          </td>
            <td>
-            <% if !clase.bloque.nil? %>
+            <% if !clase.bloque.ciclo.nil? %>
               <%= link_to "#{clase.bloque.ciclo.nombre}, #{clase.bloque.nivel.nombre}", edit_bloque_path(clase.bloque) %>
               <%#= "#{clase.bloque.ciclo.nombre}, #{clase.bloque.nivel.nombre}" %>
             <% end %>
           </td>
           <td class="align-column-content-center"><%= link_to 'Mostrar', clase, class: "btn btn-info" %></td>
-          <td class="align-column-content-center"><%= link_to 'Editar', edit_clase_path(clase), class: "btn btn-warning" %></td>
+          <% if can? :update, @clase %><td class="align-column-content-center"><%= link_to 'Editar', edit_clase_path(clase), class: "btn btn-warning" %> </td> | <% end %>
           <!-- <td><%= link_to 'Destroy', clase, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
         </tr>
         <% end %>
