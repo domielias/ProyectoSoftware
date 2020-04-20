@@ -1,4 +1,5 @@
 class EstudiantesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_estudiante, only: [:show, :edit, :update, :destroy, :mostrar_horario_actual]
 
   # GET /estudiantes

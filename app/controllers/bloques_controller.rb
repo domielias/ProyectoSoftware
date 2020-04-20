@@ -1,4 +1,5 @@
 class BloquesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_bloque, only: [:show, :edit, :update, :destroy]
 
   # GET /bloques

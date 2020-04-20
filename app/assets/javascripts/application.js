@@ -79,3 +79,17 @@ $(document).on('turbolinks:load', function() {
     $('input').addClass('form-control');
   });
 })
+
+$(document).on('turbolinks:load', function() {
+  $("table[role='lista_estudiantes_clase_datatable']").each(function() {
+    $(this).DataTable({
+      "destroy": true,
+      "language": {
+        "search": "Buscar:"
+      },
+      "bPaginate": false,
+      "pagingType": "full_numbers"
+    });
+    $('input').addClass('form-control');
+  });
+})

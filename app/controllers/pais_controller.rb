@@ -1,4 +1,5 @@
 class PaisController < ApplicationController
+  load_and_authorize_resource
   before_action :set_pai, only: [:show, :edit, :update, :destroy]
 
   # GET /pais

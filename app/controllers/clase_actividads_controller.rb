@@ -1,4 +1,5 @@
 class ClaseActividadsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_clase_actividad, only: [:show, :edit, :update, :destroy]
 
   # GET /clase_actividads

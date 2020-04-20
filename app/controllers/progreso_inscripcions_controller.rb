@@ -1,4 +1,5 @@
 class ProgresoInscripcionsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_progreso_inscripcion, only: [:show, :edit, :update, :destroy]
 
   # GET /progreso_inscripcions

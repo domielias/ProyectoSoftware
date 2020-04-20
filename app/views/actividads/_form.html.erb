@@ -60,9 +60,16 @@
       <hr/>
       <h5>Clases participantes</h5>
       <!-- Clase.joins(:ciclo).where(:ciclos => {actual: true}) Para solo clases actuales-->
+      <% if current_user.admin? %>
       <%= collection_select(:clases, :id, Clase.all, :id, :no_clase, {selected: actividad.clases.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+      <% else %>
+      <%= collection_select(:clases, :id, Clase.where(profesor_id: current_user.id), :id, :no_clase, {selected: actividad.clases.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+      <% end %>
 
     </div>
+  </div>
+  <div class="float-left">
+  <%= link_to 'Regresar', 'javascript:history.back()', class: "btn btn-block btn-outline-primary" %>
   </div>
   <div class="float-right">
     <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>

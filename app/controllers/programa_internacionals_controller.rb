@@ -1,4 +1,5 @@
 class ProgramaInternacionalsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_programa_internacional, only: [:show, :edit, :update, :destroy]
 
   # GET /programa_internacionals

@@ -1,9 +1,150 @@
-<p id="notice"><%= notice %></p>
+<%= form_with(model: @clase, local: true) do |form| %>
+<% if @clase.errors.any? %>
+  <%= render '/shared/errors', obj: @clase %>
+<% end %>
 
-<p>
-  <strong>No. Clase:</strong>
-  <%= @clase.no_clase %>
-</p>
+<div class="card-container">
+  <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">Clase</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <div class="card-body">
+<div class="row col-md-12 col-sm-12">
+<div class="col-md-4 col-sm-4">
+<div class="form-group">
+<h5>No. clase</h5>
+<% if can? :update, @clase %>
+<%= form.text_field :no_clase, { class: 'form-control'} %>
+<% else %>
+<%= form.text_field :no_clase, { class: 'form-control', readonly: true} %>
+<% end %>
+</div>
+</div>
+<div class="col-md-4 col-sm-4">
+<div class="form-group">
+<h5>Sección</h5>
+<% if can? :update, @clase %>
+<%= form.text_field :seccion, { class: 'form-control'} %>
+<% else %>
+<%= form.text_field :seccion, { class: 'form-control', readonly: true} %>
+<% end %>
+</div>
+</div>
+<div class="col-md-4 col-sm-4">
+<div class="form-group">
+<h5>Profesor</h5>
+<%#= form.select :profesor_id, User.where(profesor: true).pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
+<% if can? :update, @clase %>
+<%= form.collection_select(:profesor_id, User.where(profesor: true), :id, :id_campus_nombres_apellidos, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
+<% else %>
+<%= form.text_field nil, { class: 'form-control', value:current_user.persona.id_campus_nombres_apellidos, readonly: true} %>
+<% end %>
+</div>
+</div>
+</div>
+<div class="row col-md-12 col-sm-12">
+<div class="col-md-4 col-sm-4">
+<div class="form-group">
+<h5>Asignatura</h5>
+<% if can? :update, @clase %>
+<%= form.collection_select(:asignatura_id, Asignatura.all, :id, :clave_nombre, {include_blank: ''}, class: 'select2-simple-dropdown select2-dropdown-width') %>
+<% else %>
+<%= form.text_field nil, { class: 'form-control', value: @clase.asignatura.clave_nombre, readonly: true} %>
+<% end %>
+</div>
+</div>
+<div class="col-md-4 col-sm-4">
+<div class="form-group">
+<h5>No. clase del correquisito</h5>
+<% if can? :update, @clase %>
+<%= form.text_field :correquisito, { class: 'form-control'} %>
+<% else %>
+<%= form.text_field nil, { class: 'form-control', value: @clase.correquisito, readonly: true} %>
+<% end %>
+</div>
+</div>
+<div class="col-md-4 col-sm-4">
+<div class="form-group">
+  <h5>Lugar</h5>
+  <% if can? :update, @clase %>
+  <%= form.text_field :lugar, class: "form-control" %>
+  <% else %>
+  <%= form.text_field nil, { class: 'form-control', value: @clase.lugar, readonly: true} %>
+  <% end %>
+</div>
+</div>
+<hr/>
+</div>
+<hr/>
+<div class="">
+<%#= form.object.no_clase %>
+<h5>Estudiantes</h5>
+<% if can? :update, @clase %>
+<%= form.collection_select(:estudiante_ids, Estudiante.where.not(admitido: false), :id, :id_campus_nombres_apellidos,
+                      {selected: form.object.estudiantes.map(&:id)},
+                      {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+<% else %>
 
-<%= link_to 'Edit', edit_clase_path(@clase) %> |
-<%= link_to 'Back', clases_path %>
+<table class="table table-striped display" role='lista_estudiantes_clase_datatable'>
+  <thead>
+    <tr>
+      <th>Id campus</th>
+      <th>Nombres</th>
+      <th>Apellidos</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clase.estudiantes.each do |estudiante| %>
+      <tr>
+        <td><%= estudiante.persona.id_campus %></td>
+        <td><%= estudiante.persona.nombres %></td>
+        <td><%= estudiante.persona.apellidos %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>
+
+<%#= f.collection_select(:feature_ids, Feature.all, :id, :name,
+                    {include_blank: false, :include_hidden => false, :selected => @property.features.map(&:id)},
+                    {:multiple => true}) %>
+
+<%#= link_to clase.object.estudiante, clases_path(clase, estudiantes: clase.object.id) %>
+</div>
+<hr/>
+<div class="">
+<%= form.fields_for :horarios do |hrro| %>
+<%= render 'horario_fields', form: hrro %>
+<% end %>
+</div>
+<hr/>
+<% if can? :update, @clase %>
+<div class="row col-md-12 col-sm-12">
+<div class="col-md-6 col-sm-6">
+<%= link_to_add_fields "Añadir horario", form, :horarios, "btn btn-info" %>
+</div>
+</div>
+<% end %>
+<% if can? :update, @clase %>
+<div class="div-boton-eliminar-padding">
+<%= form.hidden_field :_destroy %>
+<%= link_to "Eliminar clase", '#', class: "remove_clase btn btn-danger" %>
+</div>
+<% end %>
+</div>
+</div>
+<div class="float-left">
+<%= link_to 'Regresar', 'javascript:history.back()', class: "btn btn-block btn-outline-primary" %>
+</div>
+<% if can? :update, @clase %>
+<div class="float-right">
+  <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+</div>
+<% end %>
+</div>
+</div>
+<% end %>
