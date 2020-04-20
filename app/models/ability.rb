@@ -11,7 +11,7 @@ class Ability
       can :manage, :all
     else
       can :read, Clase, profesor_id: user.id
-      # can :read, :all
+      can :manage, Actividad
     end
     #   user ||= User.new # guest user (not logged in)
     #   if user.admin?

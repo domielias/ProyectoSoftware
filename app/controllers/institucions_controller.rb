@@ -1,4 +1,5 @@
 class InstitucionsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_institucion, only: [:show, :edit, :update, :destroy]
 
   # GET /institucions

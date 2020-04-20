@@ -1,4 +1,5 @@
 class CiclosController < ApplicationController
+  load_and_authorize_resource
   before_action :set_ciclo, only: [:show, :edit, :update, :destroy, :finalizar]
 
   # GET /ciclos

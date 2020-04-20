@@ -1,4 +1,5 @@
 class ProgramaEpeSolicitadosController < ApplicationController
+  load_and_authorize_resource
   before_action :set_programa_epe_solicitado, only: [:show, :edit, :update, :destroy]
 
   # GET /programa_epe_solicitados

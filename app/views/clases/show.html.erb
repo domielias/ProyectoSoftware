@@ -137,7 +137,9 @@
 <% end %>
 </div>
 </div>
-
+<div class="float-left">
+<%= link_to 'Regresar', 'javascript:history.back()', class: "btn btn-block btn-outline-primary" %>
+</div>
 <% if can? :update, @clase %>
 <div class="float-right">
   <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>

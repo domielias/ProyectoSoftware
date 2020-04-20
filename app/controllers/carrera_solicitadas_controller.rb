@@ -1,4 +1,5 @@
 class CarreraSolicitadasController < ApplicationController
+  load_and_authorize_resource
   before_action :set_carrera_solicitada, only: [:show, :edit, :update, :destroy]
 
   # GET /carrera_solicitadas
