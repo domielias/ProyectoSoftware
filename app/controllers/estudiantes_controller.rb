@@ -105,6 +105,9 @@ class EstudiantesController < ApplicationController
     def guardado?
       params[:commit] == "Guardar como borrador"
     end
+    def guardado?
+      params[:commit] == "Enviar solicitud"
+    end
 
     def finalizado?
       params[:commit] == "Finalizar"

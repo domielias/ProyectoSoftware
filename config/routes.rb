@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   resources :categories
   get "egresados", to: "pages#egresados"
   get "no_admitidos", to: "pages#no_admitidos"
+  get "ficha_de_solicitud_estudiante", to: "pages#ficha_de_solicitud_estudiante"
   get 'configuracion',to: 'pages#configuracion'
   get 'estudiantes/mostrar_horario_actual/:id', to: 'estudiantes#mostrar_horario_actual', as: 'mostrar_horario_actual_estudiante'
   get 'estudiantes/listar_clases/:id', to: 'estudiantes#listar_clases', as: 'listar_clases_estudiante'
