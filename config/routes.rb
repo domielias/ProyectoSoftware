@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get "ficha_de_solicitud_estudiante", to: "pages#ficha_de_solicitud_estudiante"
   get 'configuracion',to: 'pages#configuracion'
   get 'estudiantes/mostrar_horario_actual/:id', to: 'estudiantes#mostrar_horario_actual', as: 'mostrar_horario_actual_estudiante'
+  get 'personas/mostrar_horario_actual/:id', to: 'personas#mostrar_horario_actual', as: 'mostrar_horario_actual_persona'
   get 'estudiantes/listar_clases/:id', to: 'estudiantes#listar_clases', as: 'listar_clases_estudiante'
   get 'ciclos/finalizar/:id', to: 'ciclos#finalizar', as: 'finalizar_ciclo'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

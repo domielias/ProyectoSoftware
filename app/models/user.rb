@@ -5,7 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-   has_many :clases
+   has_many :clases, foreign_key: 'profesor_id'
    belongs_to :persona
    accepts_nested_attributes_for :persona
 

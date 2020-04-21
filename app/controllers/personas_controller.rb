@@ -1,5 +1,6 @@
 class PersonasController < ApplicationController
   load_and_authorize_resource
+  skip_authorize_resource :only => :mostrar_horario_actual
   before_action :set_persona, only: [:show, :edit, :update, :destroy]
 
   # GET /personas
@@ -11,6 +12,9 @@ class PersonasController < ApplicationController
   # GET /personas/1
   # GET /personas/1.json
   def show
+  end
+
+  def mostrar_horario_actual
   end
 
   # GET /personas/new
