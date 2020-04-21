@@ -152,7 +152,7 @@
                 <a href="/bloques/new" class="nav-link">
                   <i class="nav-icon fa fa-plus"></i>
                   <p>
-                    Crear Bloques
+                    Crear Bloque
                   </p>
                 </a>
               </li>
@@ -194,7 +194,6 @@
               </li>
             </ul>
           </li>
-
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-running"></i>
@@ -216,18 +215,39 @@
                 <a href="/actividads" class="nav-link">
                   <i class="nav-icon fa fa-list-ul"></i>
                   <p>
-                    Listar Actividad
+                    Listar Actividades
                   </p>
                 </a>
               </li>
             </ul>
           </li>
           <% if current_user.admin? %>
-          <li class="nav-item">
-            <a href="/ciclos" class="nav-link">
-              <i class="nav-icon fa fa-circle-notch"></i>
-              <p>Listar Ciclos</p>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-circle-notch"></i>
+              <p>
+                Ciclos
+                <i class="right fas fa-angle-down"></i>
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+             <li class="nav-item">
+                <a href="/ciclos/new" class="nav-link">
+                  <i class="nav-icon fa fa-plus"></i>
+                  <p>
+                    Crear Ciclo
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/ciclos" class="nav-link">
+                  <i class="nav-icon fa fa-list-ul"></i>
+                  <p>
+                    Listar Ciclos
+                  </p>
+                </a>
+              </li>
+            </ul>
           </li>
           <% end %>
           <% if current_user.admin? %>
@@ -237,6 +257,7 @@
               <p>Configuracion</p>
             </a>
           </li>
+          
           <% end %>
         </ul>
       </nav>
