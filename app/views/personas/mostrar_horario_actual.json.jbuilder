@@ -26,10 +26,9 @@ text_colors={
 }
 
 @color_count = 0
-
-@estudiante.clases.joins(bloque: :ciclo).where(ciclos: {actual: true}).map{|clase| clase.horarios.where.not(dias: "")}.each do |horarios|
+current_user.persona.user.clases.joins(bloque: :ciclo).where(ciclos: {actual: true}).map{|clase| clase.horarios.where.not(dias: "")}.each do |horarios|
   json.array! horarios.each do |horario|
-    json.title "Clave: #{horario.clase.asignatura.clave}\n Nombre: #{horario.clase.asignatura_nombre}\n Profesor"
+    json.title "Clave: #{horario.clase.asignatura.clave}\n Nombre: #{horario.clase.asignatura_nombre}"
     json.extract! horario.clase, :id, :no_clase, :asignatura_nombre
     json.start horario.start.strftime("%H:%M")
     json.end horario.end.strftime("%H:%M")

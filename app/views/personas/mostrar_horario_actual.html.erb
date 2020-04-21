@@ -1,0 +1,16 @@
+<section class="content">
+  <div class="container-fluid">
+    <h3>Listado de clases de <%= current_user.persona.id_campus%>
+      -
+      <%= current_user.persona.nombres%>
+      <%= current_user.persona.apellidos%>
+      <div id="idprofesor" style='display:none;'>
+        <%= current_user.id %>
+      </div>
+    </h3>
+    <div class="profesor_calendar">
+
+    </div>
+
+  </div>
+</section>

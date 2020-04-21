@@ -9,6 +9,7 @@
       <th>No. Clase</th>
       <th>Sección</th>
       <th>Asignatura</th>
+      <th>Ubicación</th>
       <th>Estado</th>
       <th>Bloque</th>
       <th></th>
@@ -25,7 +26,12 @@
           <td><%= clase.seccion %></td>
           <td>
             <% if !clase.asignatura.nil? %>
-              <%= clase.asignatura_nombre %>
+              <%= clase.asignatura.clave_nombre %>
+            <% end %>
+          </td>
+          <td>
+            <% if !clase.nil? %>
+              <%= clase.lugar %>
             <% end %>
           </td>
           <td>
