@@ -80,7 +80,7 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
            <% if current_user.admin? %>
@@ -233,6 +233,35 @@
               </li>
             </ul>
           </li>
+
+          <% if current_user.admin? %>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Usuarios
+                <i class="right fas fa-angle-down"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+             <li class="nav-item">
+               <%= link_to new_user_registration_url, class:"nav-link" do %>
+               <i class="nav-icon fa fa-user-plus"></i><p>Crear Usuario</p>
+               <% end %>
+              </li>
+              <li class="nav-item">
+                <a href="/actividads" class="nav-link">
+                  <i class="nav-icon fa fa-users"></i>
+                  <p>
+                    Listar Usuarios
+                  </p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <% end %>
+
+
           <% if current_user.admin? %>
           <li class="nav-item">
             <a href="/ciclos" class="nav-link">
