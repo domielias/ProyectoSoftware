@@ -5,7 +5,7 @@ class ActividadsController < ApplicationController
   # GET /actividads
   # GET /actividads.json
   def index
-    @actividads = Actividad.all
+    @actividad = Actividad.accessible_by(current_ability)
   end
 
   # GET /actividads/1
@@ -16,6 +16,7 @@ class ActividadsController < ApplicationController
   # GET /actividads/new
   def new
     @actividad = Actividad.new
+    @actividad.user_id= current_user
   end
 
   # GET /actividads/1/edit
@@ -26,7 +27,7 @@ class ActividadsController < ApplicationController
   # POST /actividads.json
   def create
     @actividad = Actividad.new(actividad_params)
-
+    
     params[:clases][:id].each do |clase|
       if !clase.empty?
         @actividad.clase_actividads.build(clase_id: clase)
@@ -49,7 +50,6 @@ class ActividadsController < ApplicationController
   def update
 
     ClaseActividad.where(actividad_id: @actividad).where.not(clase_id: params[:clases][:id].reject { |e| e.empty? }).delete_all
-
     params[:clases][:id].each do |clase|
       if !clase.empty?
         if !ClaseActividad.exists?(actividad_id: @actividad, clase_id: clase)
@@ -85,8 +85,9 @@ class ActividadsController < ApplicationController
       @actividad = Actividad.find(params[:id])
     end
 
+
     # Only allow a list of trusted parameters through.
     def actividad_params
-      params.require(:actividad).permit(:fecha_inicio, :fecha_final, :descripcion, :ubicacion, :forma_de_transporte, :dentro_de_la_ciudad)
+      params.require(:actividad).permit(:fecha, :hora_inicio, :hora_fin, :user_id,:descripcion, :ubicacion, :forma_de_transporte, :dentro_de_la_ciudad)
     end
 end

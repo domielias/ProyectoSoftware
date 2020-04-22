@@ -11,7 +11,7 @@
       <th>Nombre</th>
       <th>Apellido</th>
       <th>ID estudiante</th>
-      <th>Matricula</th>
+      <th>Programa</th>
       <th>Sexo</th>
       <th>Egresado</th>
       <th></th>
@@ -30,7 +30,15 @@
             <td><%= estudiante.persona.nombres %></td>
             <td><%= estudiante.persona.apellidos %></td>
             <td><%= estudiante.persona.id_campus %></td>
-            <td><%= estudiante.matricula %></td>
+            <% if !estudiante.programa_internacional.nil? %>
+              <td> <%= estudiante.programa_internacional.nombre %> </td>
+            <% elsif !estudiante.carrera_solicitada.nil? %>
+              <td><%= estudiante.carrera_solicitada.nombre %></td>
+            <% elsif !estudiante.programa_epe_solicitado.nil? %>
+              <td><%= estudiante.programa_epe_solicitado.nombre %></td>
+            <% else %>
+              <td>No pertenece a ningún programa</td>
+            <% end %>
             <td><%= estudiante.sexo %></td>
             <td><%= estudiante.egresado ? :Si : :No %></td>
             <td class="align-column-content-center"><%= link_to 'Mostrar', estudiante, class: "btn btn-info" %></td>

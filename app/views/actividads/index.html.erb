@@ -8,8 +8,9 @@
     <table class="table table-striped display" role='datatable'>
       <thead>
         <tr>
-          <th>Fecha inicio</th>
-          <th>Fecha final</th>
+          <th>Fecha</th>
+          <th>Hora Inicio</th>
+          <th>Hora final</th>
           <th>Descripcion</th>
           <th>Ubicacion</th>
           <th>Forma de transporte</th>
@@ -23,13 +24,25 @@
       <tbody>
         <% @actividads.each do |actividad| %>
           <tr>
-            <td><%= actividad.fecha %></td>
-            <td><%= actividad.hora_inicio %></td>
-            <td><%= actividad.hora_fin %></td>
+            <% if !actividad.fecha.nil? %>
+              <td><%= actividad.fecha.strftime("%d/%m/%Y")  %></td>
+            <% else %>
+              <td> No tiene</td>
+            <% end %>
+            <% if !actividad.hora_inicio.nil? %>
+              <td><%= actividad.hora_inicio.strftime("%I:%M %p")  %></td>
+            <% else %>
+              <td> No tiene</td>
+            <% end %>
+            <% if !actividad.hora_fin.nil? %>
+              <td><%= actividad.hora_fin.strftime("%I:%M %p")  %></td>
+            <% else %>
+              <td> No tiene</td>
+            <% end %>
             <td><%= actividad.descripcion %></td>
             <td><%= actividad.ubicacion %></td>
             <td><%= actividad.forma_de_transporte %></td>
-            <td><%= actividad.dentro_de_la_ciudad %></td>
+            <td><%= actividad.dentro_de_la_ciudad ? :Si : :No %></td>
             <td><%= link_to 'Show', actividad %></td>
             <td><%= link_to 'Edit', edit_actividad_path(actividad) %></td>
             <td><%= link_to 'Destroy', actividad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
