@@ -1,5 +1,5 @@
 class ClasesController < ApplicationController
-  load_and_authorize_resource
+  # load_and_authorize_resource except: :show
   before_action :set_clase, only: [:show, :edit, :update, :destroy]
   # GET /clases
   # GET /clases.json
@@ -10,7 +10,6 @@ class ClasesController < ApplicationController
   # GET /clases/1
   # GET /clases/1.json
   def show
-
   end
 
   # GET /clases/new

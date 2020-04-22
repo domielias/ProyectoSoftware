@@ -64,15 +64,32 @@
   </div>
   <hr/>
   <div class="">
+  <%#= form.object.no_clase %>
+  <h5>Evaluación de la clase</h5>
+  <div class="col-md-1 col-sm-1">
+    <div class="form-group">
+  <%= form.number_field :evaluacion_parcial_num, step: 0.1, class: "form-control" %>
+    </div>
+  </div>
+  </div>
+  <div class="">
+  <%#= form.object.no_clase %>
+  <h5>Notas sobre la clase</h5>
+  <div class="col-md-12 col-sm-12">
+    <div class="form-group">
+  <%= form.text_field :evaluacion_parcial_str, class: "form-control" %>
+    </div>
+  </div>
+  </div>
+  <hr/>
+  <div class="">
     <%= form.fields_for :horarios do |hrro| %>
       <%= render 'horario_fields', form: hrro %>
     <% end %>
   </div>
   <hr/>
-  <div class="row col-md-12 col-sm-12">
-    <div class="col-md-6 col-sm-6">
+  <div class="">
       <%= link_to_add_fields "Añadir horario", form, :horarios, "btn btn-info" %>
-    </div>
   </div>
   <div class="div-boton-eliminar-padding">
      <%= form.hidden_field :_destroy %>

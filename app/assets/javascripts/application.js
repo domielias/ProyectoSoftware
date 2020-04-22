@@ -93,3 +93,19 @@ $(document).on('turbolinks:load', function() {
     $('input').addClass('form-control');
   });
 })
+
+$(document).on('turbolinks:load', function() {
+  $("table[role='lista_horario']").each(function() {
+    $(this).DataTable({
+      "destroy": true,
+      "language": {
+        "search": "Buscar:"
+      },
+      'paging': false,
+      "pagingType": "full_numbers",
+      "bInfo": false,
+      'searching': false
+    });
+    $('input').addClass('form-control');
+  });
+})
