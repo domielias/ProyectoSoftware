@@ -16,12 +16,21 @@
       </div>
     </div>
     <div class="card-body">
+      <% if current_user.admin? %>
+      <div class="col-md-12 col-sm-12">
+        <div class="form-group">
+          <br>
+          <h5><%= form.check_box :del_departamento%> Es una actividad planificada por el departamento ?</h5>
+        </div>
+      </div>
+      <% end %>
       <div class="row col-md-12 col-sm-12">
         <div class="col-md-5 col-sm-5">
           <div class="form-group">
-            <h6>Creador</h6>  
-              <% form.text_field :user_id, {value: current_user.id}  %>
-              <input class= "form-control" placeholder=<%="#{current_user.persona.id_campus + current_user.persona.nombres + current_user.persona.apellidos}" %> readonly= true>
+            <h6>Creador</h6>
+              <%= form.text_field :creador, {value: current_user.persona.id_campus_nombres_apellidos, readonly: true, class: 'form-control'}  %>
+              <!-- <input class= "form-control" placeholder=<%="#{current_user.persona.id_campus + current_user.persona.nombres + current_user.persona.apellidos}" %> readonly= true> -->
+              <%= form.hidden_field :user_id, value: current_user.id %>
           </div>
         </div>
         <div class="col-md-3 col-sm-3">
@@ -31,7 +40,7 @@
         <div class="col-md-4 col-sm-4">
           <div class="form-group">
             <br>
-            <h5>Sera dentro de la ciudad? <%= form.check_box :dentro_de_la_ciudad%> </h5>
+            <h5><%= form.check_box :dentro_de_la_ciudad%> Sera dentro de la ciudad ?</h5>
           </div>
         </div>
       </div>
@@ -74,9 +83,15 @@
       <h5>Clases participantes</h5>
       <!-- Clase.joins(:ciclo).where(:ciclos => {actual: true}) Para solo clases actuales-->
       <% if current_user.admin? %>
-      <%= collection_select(:clases, :id, Clase.all, :id, :no_clase, {selected: actividad.clases.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+      <%= form.collection_select(:clase_ids, Clase.all, :id, :no_clase,
+                                  {selected: actividad.clases.map(&:id)},
+                                  {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+
+
       <% else %>
-      <%= collection_select(:clases, :id, Clase.where(profesor_id: current_user.id), :id, :no_clase, {selected: actividad.clases.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+      <%= form.collection_select(:clase_ids, Clase.where(profesor_id: current_user.id), :id, :no_clase,
+                                  {selected: actividad.clases.map(&:id)},
+                                  {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
       <% end %>
 
     </div>

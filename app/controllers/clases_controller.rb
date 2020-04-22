@@ -1,5 +1,5 @@
 class ClasesController < ApplicationController
-  load_and_authorize_resource
+  # load_and_authorize_resource except: :show
   before_action :set_clase, only: [:show, :edit, :update, :destroy]
   # GET /clases
   # GET /clases.json
@@ -10,7 +10,6 @@ class ClasesController < ApplicationController
   # GET /clases/1
   # GET /clases/1.json
   def show
-
   end
 
   # GET /clases/new
@@ -72,6 +71,6 @@ class ClasesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def clase_params
-    params.require(:clase).permit(:seccion, :no_clase, :lugar, :modalidad, :correquisito, :asignatura_id, :profesor_id, estudiante_ids: [], horarios_attributes: [:id, :dias, :start, :end, :_destroy])
+    params.require(:clase).permit(:seccion, :no_clase, :lugar, :modalidad, :correquisito, :evaluacion_parcial_num, :evaluacion_parcial_str, :asignatura_id, :profesor_id, estudiante_ids: [], horarios_attributes: [:id, :dias, :start, :end, :_destroy])
   end
 end

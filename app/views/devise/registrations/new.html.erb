@@ -1,12 +1,11 @@
-<body class="hold-transition login-page">
-<div class="login-box">
+<body class="hold-transition login-page ">
+<div class="login-box centered">
   <div class="login-logo">
-    <a href="#"><b>Registrar</b>Usuario</a>   <%# Aqui ponerle link del portal %>
+    <h1>Registrar Usuario</h1>   <%# Aqui ponerle link del portal %>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Registro</p>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
         <div class="input-group mb-3">
@@ -18,21 +17,21 @@
             </div>
           </div>
         </div>
-        <div class="input-group mb-3">
-          <%= f.password_field :password,placeholder: "Contraseña", autocomplete: "new-password",class:"form-control" %>
+        <!-- <div class="input-group mb-3">
+          <%#= f.password_field :password,placeholder: "Contraseña", autocomplete: "new-password",class:"form-control" %>
           <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           <%# <input type="password" class="form-control" placeholder="Password"> %>
         </div>
         <div class="input-group mb-3">
-          <%= f.password_field  :password_confirmation,placeholder: "Contraseña nuevamente", autocomplete: "new-password",class:"form-control" %>
+          <%#= f.password_field  :password_confirmation,placeholder: "Contraseña nuevamente", autocomplete: "new-password",class:"form-control" %>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="field">
           <%= f.check_box :admin %>
           <%= f.label :admin, "Es administrador ?" %>

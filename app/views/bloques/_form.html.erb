@@ -21,7 +21,7 @@
         <div class="col-md-3 col-sm-3">
           <div class="form-group">
             <h6>Creador</h6>
-            <%= form.text_field :creador, { class: 'form-control', value: "#{current_user.persona.id_campus} #{current_user.persona.nombres} #{current_user.persona.apellidos}", readonly: true} %>
+            <%= form.text_field :creador, { class: 'form-control', value: current_user.persona.id_campus_nombres_apellidos, readonly: true} %>
           </div>
         </div>
         <hr/>
@@ -44,6 +44,25 @@
             <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
           </div>
         </div>
+      </div>
+      <hr/>
+      <div class="">
+      <%#= form.object.no_clase %>
+      <h5>Evaluación del bloque</h5>
+      <div class="col-md-1 col-sm-1">
+        <div class="form-group">
+          <%= form.number_field :evaluacion_bloque_num, step: 0.1, class: "form-control" %>
+        </div>
+      </div>
+      </div>
+      <div class="">
+      <%#= form.object.no_clase %>
+      <h5>Notas sobre el bloque</h5>
+      <div class="col-md-12 col-sm-12">
+        <div class="form-group">
+      <%= form.text_field :evaluacion_bloque_str, class: "form-control" %>
+        </div>
+      </div>
       </div>
 </div>
 

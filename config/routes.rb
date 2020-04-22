@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get 'estudiantes/mostrar_horario_actual/:id', to: 'estudiantes#mostrar_horario_actual', as: 'mostrar_horario_actual_estudiante'
   get 'personas/mostrar_horario_actual/:id', to: 'personas#mostrar_horario_actual', as: 'mostrar_horario_actual_persona'
   get 'estudiantes/listar_clases/:id', to: 'estudiantes#listar_clases', as: 'listar_clases_estudiante'
+  get 'listar_usuarios', to: 'personas#listar_usuarios', as: 'listar_usuarios'
   get 'ciclos/finalizar/:id', to: 'ciclos#finalizar', as: 'finalizar_ciclo'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -12,9 +12,9 @@
           <th>Hora Inicio</th>
           <th>Hora final</th>
           <th>Descripcion</th>
-          <th>Ubicacion</th>
           <th>Forma de transporte</th>
           <th>Dentro de la ciudad</th>
+          <th>Creador</th>
           <th></th>
           <th></th>
           <th></th>
@@ -40,12 +40,16 @@
               <td> No tiene</td>
             <% end %>
             <td><%= actividad.descripcion %></td>
-            <td><%= actividad.ubicacion %></td>
             <td><%= actividad.forma_de_transporte %></td>
             <td><%= actividad.dentro_de_la_ciudad ? :Si : :No %></td>
+            <% if actividad.user_id == current_user.id %>
+            <td>Yo</td>
+            <% else %>
+            <td><%=actividad.user.persona.id_campus_nombres_apellidos%></td>
+            <% end %>
             <td><%= link_to 'Show', actividad %></td>
-            <td><%= link_to 'Edit', edit_actividad_path(actividad) %></td>
-            <td><%= link_to 'Destroy', actividad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><% if can? :update, actividad %><%= link_to 'Edit', edit_actividad_path(actividad) %><% end %></td>
+            <td><% if can? :destroy, actividad %><%= link_to 'Destroy', actividad, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></td>
           </tr>
         <% end %>
       </tbody>

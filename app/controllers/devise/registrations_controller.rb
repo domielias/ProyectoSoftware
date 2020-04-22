@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Devise::RegistrationsController < DeviseController
-  prepend_before_action :require_no_authentication, only: [:new, :create, :cancel]
+  prepend_before_action :require_no_authentication, only: [:cancel]
   prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy]
   prepend_before_action :set_minimum_password_length, only: [:new, :edit]
 
@@ -16,23 +16,29 @@ class Devise::RegistrationsController < DeviseController
   def create
     build_resource(sign_up_params)
 
-    resource.save
-    yield resource if block_given?
-    if resource.persisted?
-      if resource.active_for_authentication?
-        set_flash_message! :notice, :signed_up
-        sign_up(resource_name, resource)
-        respond_with resource, location: after_sign_up_path_for(resource)
-      else
-        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
-        expire_data_after_sign_in!
-        respond_with resource, location: after_inactive_sign_up_path_for(resource)
-      end
-    else
-      clean_up_passwords resource
-      set_minimum_password_length
-      respond_with resource
-    end
+    password_length = 6
+    password = Devise.friendly_token.first(password_length)
+    created_person = Persona.create!(:id_campus => build_resource(sign_up_params).persona.id_campus, :nombres => build_resource(sign_up_params).persona.nombres, :apellidos => build_resource(sign_up_params).persona.apellidos)
+    User.create!(:email => build_resource(sign_up_params).email, :password => password, :password_confirmation => password, :initial_password => password, :admin => build_resource(sign_up_params).admin, :profesor => build_resource(sign_up_params).profesor, :persona_id => created_person.id)
+
+    # resource.save
+    # yield resource if block_given?
+    # if resource.persisted?
+      redirect_to listar_usuarios_url
+    #   if resource.active_for_authentication?
+    #     set_flash_message! :notice, :signed_up
+    #     sign_up(resource_name, resource)
+    #     respond_with resource, location: after_sign_up_path_for(resource)
+    #   else
+    #     set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+    #     expire_data_after_sign_in!
+    #     respond_with resource, location: after_inactive_sign_up_path_for(resource)
+    #   end
+    # else
+    #   clean_up_passwords resource
+    #   set_minimum_password_length
+    #   respond_with resource
+    # end
   end
 
   # GET /resource/edit
@@ -161,7 +167,7 @@ class Devise::RegistrationsController < DeviseController
   end
 
   def sign_up_params
-    params.require(:user).permit(:email, :password, :admin, :profesor, persona_attributes: [:nombres, :apellidos, :id_campus])
+    params.require(:user).permit(:email, :password, :password_confirmation, :admin, :profesor, persona_attributes: [:nombres, :apellidos, :id_campus])
   end
 
   def sign_in_after_change_password?

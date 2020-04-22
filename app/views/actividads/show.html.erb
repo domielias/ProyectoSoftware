@@ -1,39 +1,128 @@
-<p id="notice"><%= notice %></p>
+<%= form_with(model: @actividad, local: true) do |form| %>
+<% if @actividad.errors.any? %>
+  <%= render '/shared/errors', obj: @actividad %>
+<% end %>
 
-<p>
-  <strong>Fecha inicio:</strong>
-  <%= @actividad.fecha %>
-</p>
 
-<p>
-  <strong>Fecha final:</strong>
-  <%= @actividad.hora_inicio %>
-</p>
+<div class="card-container">
+  <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">Datos Generales
+      </h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+          <i class="fa fa-minus"></i>
+        </button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="col-md-12 col-sm-12">
+        <div class="form-group">
+          <br>
+          <h5>Es una actividad planificada por el departamento ?: <%= @actividad.del_departamento ? :Sí : :No %></h5>
+        </div>
+      </div>
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-5 col-sm-5">
+          <div class="form-group">
+            <h6>Creador</h6>
+              <%= form.text_field :creador, {value: current_user.persona.id_campus_nombres_apellidos, readonly: true, class: 'form-control'}  %>
+              <!-- <input class= "form-control" placeholder=<%="#{current_user.persona.id_campus + current_user.persona.nombres + current_user.persona.apellidos}" %> readonly= true> -->
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <br>
+            <h5>Sera dentro de la ciudad ?: <%= @actividad.dentro_de_la_ciudad ? :Sí : :No %></h5>
+          </div>
+        </div>
+      </div>
 
-<p>
-  <strong>Fecha final:</strong>
-  <%= @actividad.hora_fin %>
-</p>
 
-<p>
-  <strong>Descripcion:</strong>
-  <%= @actividad.descripcion %>
-</p>
+        <div class="col-md-10 col-sm-10">
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Horario</h3>
+            </div>
+            <div class="card-body">
 
-<p>
-  <strong>Ubicacion:</strong>
-  <%= @actividad.ubicacion %>
-</p>
+              <table class="table table-striped display" role='lista_horario'>
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Desde</th>
+                    <th>Hasta</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <% if !@actividad.fecha.nil? %>
+                        <%=@actividad.fecha.to_date %>
+                      <% else %>
+                        No tiene
+                      <% end %>
+                    </td>
+                    <td><%=@actividad.hora_inicio.strftime("%H:%M")%></td>
+                    <td><%=@actividad.hora_fin.strftime("%H:%M")%></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      <div class="col-md-12 col-sm-12">
+        <h5>Descripción</h5>
+        <%= form.text_field :descripcion, { class: 'form-control', readonly: true} %>
+      </div>
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-6 col-sm-6">
+          <h5>Ubicación</h5>
+          <%= form.text_field :ubicacion, { class: 'form-control', readonly: true} %>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <h5>Forma de transporte</h5>
+          <%= form.text_field :forma_de_transporte, { class: 'form-control', readonly: true} %>
+        </div>
+      </div>
 
-<p>
-  <strong>Forma de transporte:</strong>
-  <%= @actividad.forma_de_transporte %>
-</p>
+      <hr/>
+      <!-- Clase.joins(:ciclo).where(:ciclos => {actual: true}) Para solo clases actuales-->
+      <div class="col-md-10 col-sm-10">
+        <div class="card card-info">
+          <div class="card-header">
+            <h3 class="card-title">Clases participantes</h3>
+          </div>
+          <div class="card-body">
 
-<p>
-  <strong>Dentro de la ciudad:</strong>
-  <%= @actividad.dentro_de_la_ciudad %>
-</p>
+            <table class="table table-striped display" role='lista_horario'>
+              <thead>
+                <tr>
+                  <th>No. clase</th>
+                  <th>Profesor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @actividad.clases.each do |clase| %>
+                <tr>
+                  <td><%=clase.no_clase%></td>
+                  <td><%="#{clase.profesor.persona.id_campus_nombres_apellidos}"%></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
 
-<%= link_to 'Edit', edit_actividad_path(@actividad) %> |
-<%= link_to 'Back', actividads_path %>
+    </div>
+  </div>
+  <div class="float-right">
+  <%= link_to 'Regresar', 'javascript:history.back()', class: "btn btn-block btn-outline-primary" %>
+  </div>
+</div>
+<% end %>

@@ -51,17 +51,9 @@ function init_select2(){
     language: "es"
   });
 };
-$(document).ready(function() {
-  $(".dropdown-toggle").dropdown();
-});
-$(document).on('turbolinks:load', function () {
-  $('.select2-simple-dropdown').select2({placeholder: "Elegir", allowClear: true, width: '100%', language: "es"});
-});
-
 $(document).on('turbolinks:load', function () {
   $('.select2-multiple-dropdown').select2({allowClear: true, placeholder: "Elegir 1 o más", closeOnSelect: false, width: '100%', language: "es"});
 });
-
 $(document).ready(function () {
   $('.datepicker').datepicker({format: 'dd/mm/yyyy'});
 });
@@ -93,6 +85,22 @@ $(document).on('turbolinks:load', function() {
       },
       "bPaginate": false,
       "pagingType": "full_numbers"
+    });
+    $('input').addClass('form-control');
+  });
+})
+
+$(document).on('turbolinks:load', function() {
+  $("table[role='lista_horario']").each(function() {
+    $(this).DataTable({
+      "destroy": true,
+      "language": {
+        "search": "Buscar:"
+      },
+      'paging': false,
+      "pagingType": "full_numbers",
+      "bInfo": false,
+      'searching': false
     });
     $('input').addClass('form-control');
   });

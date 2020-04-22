@@ -4,6 +4,8 @@ class CreateBloques < ActiveRecord::Migration[6.0]
       t.string :nombre, limit: 20 #######
       t.string :creador, limit: 100 #######
       t.boolean :creado_por_estudiante #######
+      t.float :evaluacion_bloque_num
+      t.string :evaluacion_bloque_str
 
       t.references :category, foreign_key: {to_table: :categories}
       t.references :bloque_padre, foreign_key: {to_table: :bloques}

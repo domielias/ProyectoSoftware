@@ -8,6 +8,7 @@ class User < ApplicationRecord
    has_many :clases, foreign_key: 'profesor_id'
    belongs_to :persona
    accepts_nested_attributes_for :persona
+   has_many :actividads
 
    def persona
      super || build_persona

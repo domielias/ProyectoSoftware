@@ -6,6 +6,8 @@ class CreateClases < ActiveRecord::Migration[6.0]
       t.string :lugar, limit: 20 #######
       t.string :modalidad, limit: 20 #######
       t.string :correquisito, limit: 20 #######
+      t.float :evaluacion_parcial_num
+      t.string :evaluacion_parcial_str
 
 
       t.references :profesor, foreign_key: {to_table: :users} ############

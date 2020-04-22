@@ -11,7 +11,16 @@ class Ability
       can :manage, :all
     else
       can :read, Clase, profesor_id: user.id
-      can :manage, Actividad
+
+      #Ver mis actividades y las impuestas por el dept
+      can :read, Actividad, user_id: user.id
+      can :read, Actividad, del_departamento: true
+
+      # # Poder crear, modificar y eliminar mis actividades
+      can :create, Actividad
+      can :update, Actividad, user_id: user.id
+      can :destroy, Actividad, user_id: user.id
+
     end
     #   user ||= User.new # guest user (not logged in)
     #   if user.admin?
