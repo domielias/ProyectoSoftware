@@ -11,7 +11,7 @@ protect_from_forgery with: :exception
                devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:email, :password, :current_password, :admin, :profesor, persona_attributes: [:id, :nombres, :apellidos, :id_campus])}
           end
 
-          before_filter :set_cache_headers
+          before_action :set_cache_headers #before have a before_filter but give a error
 
     private
 

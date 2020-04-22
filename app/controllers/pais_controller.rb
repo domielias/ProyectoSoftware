@@ -27,15 +27,14 @@ class PaisController < ApplicationController
   def create
     @pai = Pai.new(pai_params)
     # respond_to do |format|
-      if @pai.save
-        # flash[:success] = 'Carrera Solicitada creada'
-        redirect_to configuracion_path
-        # format.html { redirect_to @pai, notice: 'Pai was successfully created.' }
-        # format.json { render :show, status: :created, location: @pai }
-      else
-        # format.html { render :new }
-        # format.json { render json: @pai.errors, status: :unprocessable_entity }
-      end
+    if @pai.save
+      # flash[:success] = 'Carrera Solicitada creada'
+      redirect_to configuracion_path
+      # format.html { redirect_to @pai, notice: 'Pai was successfully created.' }
+      # format.json { render :show, status: :created, location: @pai }
+    else
+      # format.html { render :new }
+      # format.json { render json: @pai.errors, status: :unprocessable_entity }
     end
   end
 

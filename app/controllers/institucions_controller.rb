@@ -36,7 +36,6 @@ class InstitucionsController < ApplicationController
         # format.html { render :new }
         # format.json { render json: @institucion.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # PATCH/PUT /institucions/1

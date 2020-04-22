@@ -37,7 +37,6 @@ class ProgramaInternacionalsController < ApplicationController
         # format.html { render :new }
         # format.json { render json: @programa_internacional.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # PATCH/PUT /programa_internacionals/1

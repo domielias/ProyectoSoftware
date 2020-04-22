@@ -36,7 +36,6 @@ class FacultadsController < ApplicationController
         # format.html { render :new }
         # format.json { render json: @facultad.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # PATCH/PUT /facultads/1

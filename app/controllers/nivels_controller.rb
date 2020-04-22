@@ -36,7 +36,6 @@ class NivelsController < ApplicationController
         # format.html { render :new }
         # format.json { render json: @nivel.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # PATCH/PUT /nivels/1

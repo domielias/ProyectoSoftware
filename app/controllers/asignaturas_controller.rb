@@ -37,7 +37,6 @@ class AsignaturasController < ApplicationController
         # format.html { render :new }
         # format.json { render json: @asignatura.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # PATCH/PUT /asignaturas/1
