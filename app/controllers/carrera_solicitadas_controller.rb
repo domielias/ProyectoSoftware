@@ -37,6 +37,7 @@ class CarreraSolicitadasController < ApplicationController
         # format.html { render :new }
         # format.json { render json: @carrera_solicitada.errors, status: :unprocessable_entity }
       end
+    end
   end
 
   # PATCH/PUT /carrera_solicitadas/1
