@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(version: 38) do
     t.string "nombre", limit: 20
     t.string "creador", limit: 100
     t.boolean "creado_por_estudiante"
+    t.float "evaluacion_bloque_num"
+    t.string "evaluacion_bloque_str"
     t.bigint "category_id"
     t.bigint "bloque_padre_id"
     t.bigint "ciclo_id"
@@ -143,6 +145,8 @@ ActiveRecord::Schema.define(version: 38) do
     t.string "lugar", limit: 20
     t.string "modalidad", limit: 20
     t.string "correquisito", limit: 20
+    t.float "evaluacion_parcial_num"
+    t.string "evaluacion_parcial_str"
     t.bigint "profesor_id"
     t.bigint "asignatura_id"
     t.bigint "ciclo_id"

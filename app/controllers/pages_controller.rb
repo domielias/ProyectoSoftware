@@ -19,7 +19,7 @@ class PagesController < ApplicationController
         @estudiante.build_programa_internacional
         @estudiante.build_padre
         @estudiante.build_madre
-        2.times {@estudiante.direccions.build}
+        @estudiante.direccions.build
         @estudiante.build_examen_de_nivel
         @estudiante.build_informacion_academica
         @estudiante.build_progreso_inscripcion

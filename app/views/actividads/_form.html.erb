@@ -16,10 +16,23 @@
       </div>
     </div>
     <div class="card-body">
-      <div class="col-md-12 col-sm-12">
-        <div class="form-group">
-          <%= form.check_box :dentro_de_la_ciudad %>
-          <%= form.label :dentro_de_la_ciudad, "Será dentro de la ciudad ?" %>
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-5 col-sm-5">
+          <div class="form-group">
+            <h6>Creador</h6>  
+              <% form.text_field :user_id, {value: current_user.id}  %>
+              <input class= "form-control" placeholder=<%="#{current_user.persona.id_campus + current_user.persona.nombres + current_user.persona.apellidos}" %> readonly= true>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <br>
+            <h5>Sera dentro de la ciudad? <%= form.check_box :dentro_de_la_ciudad%> </h5>
+          </div>
         </div>
       </div>
       <div class="row col-md-12 col-sm-12">
