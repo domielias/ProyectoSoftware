@@ -18,7 +18,8 @@ class Devise::RegistrationsController < DeviseController
 
     password_length = 6
     password = Devise.friendly_token.first(password_length)
-    User.create!(:email => build_resource(sign_up_params).email, :password => password, :password_confirmation => password, :initial_password => password)
+    created_person = Persona.create!(:id_campus => build_resource(sign_up_params).persona.id_campus, :nombres => build_resource(sign_up_params).persona.nombres, :apellidos => build_resource(sign_up_params).persona.apellidos)
+    User.create!(:email => build_resource(sign_up_params).email, :password => password, :password_confirmation => password, :initial_password => password, :admin => build_resource(sign_up_params).admin, :profesor => build_resource(sign_up_params).profesor, :persona_id => created_person.id)
 
     # resource.save
     # yield resource if block_given?
