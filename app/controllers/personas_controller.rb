@@ -14,6 +14,10 @@ class PersonasController < ApplicationController
   def show
   end
 
+  def listar_usuarios
+    @users = User.all
+  end
+
   def mostrar_horario_actual
   end
 
