@@ -161,7 +161,7 @@ class Devise::RegistrationsController < DeviseController
   end
 
   def sign_up_params
-    params.require(:user).permit(:email, :password, :admin, :profesor, persona_attributes: [:nombres, :apellidos, :id_campus])
+    params.require(:user).permit(:email, :password, :password_confirmation, :admin, :profesor, persona_attributes: [:nombres, :apellidos, :id_campus])
   end
 
   def sign_in_after_change_password?
