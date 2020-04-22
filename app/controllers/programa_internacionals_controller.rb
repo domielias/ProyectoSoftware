@@ -28,13 +28,14 @@ class ProgramaInternacionalsController < ApplicationController
   def create
     @programa_internacional = ProgramaInternacional.new(programa_internacional_params)
 
-    respond_to do |format|
+    # respond_to do |format|
       if @programa_internacional.save
-        format.html { redirect_to @programa_internacional, notice: 'Programa internacional was successfully created.' }
-        format.json { render :show, status: :created, location: @programa_internacional }
+        redirect_to configuracion_path
+        # format.html { redirect_to @programa_internacional, notice: 'Programa internacional was successfully created.' }
+        # format.json { render :show, status: :created, location: @programa_internacional }
       else
-        format.html { render :new }
-        format.json { render json: @programa_internacional.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @programa_internacional.errors, status: :unprocessable_entity }
       end
     end
   end

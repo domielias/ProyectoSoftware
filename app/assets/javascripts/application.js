@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require sweetalert2 
 //= require turbolinks
 //= require select2
 //= require datatables
@@ -10,6 +11,7 @@
 //= require moment
 //= require fullcalendar
 //= require adminlte
+//= require alert
 //= require_tree .
 
 // function eventCalendar() {
@@ -49,7 +51,9 @@ function init_select2(){
     language: "es"
   });
 };
-
+$(document).ready(function() {
+  $(".dropdown-toggle").dropdown();
+});
 $(document).on('turbolinks:load', function () {
   $('.select2-simple-dropdown').select2({placeholder: "Elegir", allowClear: true, width: '100%', language: "es"});
 });

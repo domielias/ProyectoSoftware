@@ -29,12 +29,13 @@ class CarreraSolicitadasController < ApplicationController
 
     respond_to do |format|
       if @carrera_solicitada.save
-        flash[:success] = 'Carrera Solicitada creada'
-        format.html { redirect_to @carrera_solicitada, notice: 'Carrera solicitada was successfully created.' }
-        format.json { render :show, status: :created, location: @carrera_solicitada }
+        redirect_to configuracion_path
+        # flash[:success] = 'Carrera Solicitada creada'
+        # format.html { redirect_to @carrera_solicitada, notice: 'Carrera solicitada was successfully created.' }
+        # format.json { render :show, status: :created, location: @carrera_solicitada }
       else
-        format.html { render :new }
-        format.json { render json: @carrera_solicitada.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @carrera_solicitada.errors, status: :unprocessable_entity }
       end
     end
   end

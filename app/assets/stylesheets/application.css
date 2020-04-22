@@ -23,6 +23,7 @@
  *= require datatables
  *= require OverlayScrollbars
  *= require fullcalendar
+ *= require sweetalert2
  *= require_self
  *= require_tree .
  */

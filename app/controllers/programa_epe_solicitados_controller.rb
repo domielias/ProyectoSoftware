@@ -27,9 +27,9 @@ class ProgramaEpeSolicitadosController < ApplicationController
   def create
     @programa_epe_solicitado = ProgramaEpeSolicitado.new(programa_epe_solicitado_params)
       if @programa_epe_solicitado.save
-        flash.now[:success] = 'Article was successfully created'
+        redirect_to configuracion_path
       else
-        flash.now[:success] = 'Article was successfully created'
+        # flash.now[:success] = 'Article was successfully created'
       end
   end
 

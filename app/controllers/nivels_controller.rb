@@ -27,13 +27,14 @@ class NivelsController < ApplicationController
   def create
     @nivel = Nivel.new(nivel_params)
 
-    respond_to do |format|
+    # respond_to do |format|
       if @nivel.save
-        format.html { redirect_to @nivel, notice: 'Nivel was successfully created.' }
-        format.json { render :show, status: :created, location: @nivel }
+        redirect_to configuracion_path
+        # format.html { redirect_to @nivel, notice: 'Nivel was successfully created.' }
+        # format.json { render :show, status: :created, location: @nivel }
       else
-        format.html { render :new }
-        format.json { render json: @nivel.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @nivel.errors, status: :unprocessable_entity }
       end
     end
   end
