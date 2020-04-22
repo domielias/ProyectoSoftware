@@ -50,7 +50,7 @@ function init_select2(){
   });
 };
 
-$(document).on('turbolilisdatatableta_horarionks:load', function () {
+$(document).on('turbolinks:load', function () {
   $('.select2-simple-dropdown').select2({placeholder: "Elegir", allowClear: true, width: '100%', language: "es"});
 });
 
