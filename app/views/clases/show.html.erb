@@ -12,17 +12,23 @@
     <!-- form start -->
     <div class="card-body">
 <div class="row col-md-12 col-sm-12">
-<div class="col-md-4 col-sm-4">
+<div class="col-md-2 col-sm-2">
 <div class="form-group">
 <h5>No. clase</h5>
 <%= form.text_field :no_clase, { class: 'form-control', readonly: true} %>
 </div>
 </div>
-<div class="col-md-4 col-sm-4">
+<div class="col-md-2 col-sm-2">
 <div class="form-group">
 <h5>Sección</h5>
 <%= form.text_field :seccion, { class: 'form-control', readonly: true} %>
 </div>
+</div>
+<div class="col-md-4 col-sm-4">
+  <div class="form-group">
+    <h5>Modalidad</h5>
+    <%= form.text_field nil, { class: 'form-control', value: @clase.modalidad, readonly: true} %>
+  </div>
 </div>
 <div class="col-md-4 col-sm-4">
 <div class="form-group">
