@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 38) do
+ActiveRecord::Schema.define(version: 39) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -374,6 +374,7 @@ ActiveRecord::Schema.define(version: 38) do
     t.boolean "admin", default: false
     t.bigint "persona_id", null: false
     t.boolean "profesor", default: false
+    t.string "initial_password"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["persona_id"], name: "index_users_on_persona_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
