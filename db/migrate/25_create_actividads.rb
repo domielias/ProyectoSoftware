@@ -4,9 +4,10 @@ class CreateActividads < ActiveRecord::Migration[6.0]
       t.timestamp :fecha
       t.timestamp :hora_inicio
       t.timestamp :hora_fin
-      t.string :descripcion, limit: 80
+      t.string :nombre_de_la_actividad, limit: 80
       t.string :ubicacion, limit: 30
       t.string :forma_de_transporte, limit: 30
+      t.string :objetivo, limit: 30
       t.boolean :dentro_de_la_ciudad
       t.boolean :del_departamento
 

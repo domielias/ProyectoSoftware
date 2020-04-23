@@ -11,8 +11,9 @@
           <th>Fecha</th>
           <th>Hora Inicio</th>
           <th>Hora final</th>
-          <th>Descripcion</th>
+          <th>Nombre</th>
           <th>Forma de transporte</th>
+          <th>Nombre</th>
           <th>Dentro de la ciudad</th>
           <th>Creador</th>
           <th></th>
@@ -39,7 +40,11 @@
             <% else %>
               <td> No tiene</td>
             <% end %>
-            <td><%= actividad.descripcion %></td>
+            <% if !actividad.nombre_de_la_actividad.nil? %>
+              <td><%= actividad.nombre_de_la_actividad  %></td>
+            <% else %>
+              <td> No tiene</td>
+            <% end %>
             <td><%= actividad.forma_de_transporte %></td>
             <td><%= actividad.dentro_de_la_ciudad ? :Si : :No %></td>
             <% if actividad.user_id == current_user.id %>
