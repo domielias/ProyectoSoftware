@@ -30,7 +30,7 @@ $.rails.showConfirmationDialog = function(link){
   swal({
     title: message,
     type: 'warning',
-    confirmButtonText: 'Sure',
+    confirmButtonText: 'Confirmar',
     confirmButtonColor: '#2acbb3',
     showCancelButton: true,
     closeOnConfirm: false,

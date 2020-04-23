@@ -1,0 +1,54 @@
+<%= form_with(model: @bloque, local: true) do |form| %>
+  <% if @bloque.errors.any? %>
+    <%= render '/shared/errors', obj: @bloque %>
+  <% end %>
+  <div class="card-container">
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title">Datos generales</h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h6>Creador</h6>
+              <%= form.text_field :creador, { class: 'form-control', value: current_user.persona.id_campus_nombres_apellidos, readonly: true} %>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h6>Nivel de lengua</h6>
+              <%= form.select :nivel_id, Nivel.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h6>Programa de EPE</h6>
+              <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+            </div>
+          </div>
+        </div>
+        <hr/>
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+              <h6>Asignaturas</h6>
+              <%= form.collection_select(:asignaturas_ids, Asignatura.all, :id, :clave_nombre,
+                {selected: form.object.asignaturas.map(&:id)},
+                {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+            </div>
+          </div>
+        </div>
+        <hr/>
+      </div>
+    </div>
+    <div class="float-right">
+      <%= form.submit 'Guardar bloque',{class: "btn bg-gradient-success",data: { confirm: '¿Estás seguro de crear este bloque para estudiantes?', title: 'Confirma creación de bloque?'}}%>
+    </div>
+  </div>
+<% end %>

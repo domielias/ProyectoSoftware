@@ -5,9 +5,11 @@ class BloquesController < ApplicationController
   # GET /bloques
   # GET /bloques.json
   def index
-    @bloques = Bloque.all
+    @bloques = Bloque.where(seleccion_estudiante: false)
   end
-
+  def index_bloque_estudiante
+    @bloques = Bloque.where(seleccion_estudiante: true)
+  end
   # GET /bloques/1
   # GET /bloques/1.json
   def show
@@ -16,6 +18,10 @@ class BloquesController < ApplicationController
 
     # @mis_estuds = @mis_clases.where(estudiantes: params[:estudiantes][:id])
 
+  end
+
+  def seleccion_para_estudiante
+    @bloque= Bloque.new
   end
 
   # GET /bloques/new
@@ -39,12 +45,27 @@ class BloquesController < ApplicationController
   def create
 
     @bloque = Bloque.new(bloque_params)
+    @bloque.seleccion_estudiante = true if guardado?
+    @bloque.seleccion_estudiante = false if finalizar?
 
-    if @bloque.save
-      redirect_to bloques_url
-    else
-      format.html { render :new }
+    if @bloque.seleccion_estudiante==true
+      if @bloque.save
+        redirect_to index_bloque_estudiante_path
+      else
+        format.html { render :new }
+      end
+    elsif @bloque.seleccion_estudiante==false
+      if @bloque.save
+        redirect_to bloques_path
+      else
+        format.html { render :new }
+      end    
     end
+    # if @bloque.save
+    #   redirect_to bloques_url
+    # else
+    #   format.html { render :new }
+    # end
 
 
   end
@@ -84,10 +105,18 @@ class BloquesController < ApplicationController
   # DELETE /bloques/1
   # DELETE /bloques/1.json
   def destroy
-    @bloque.destroy
-    respond_to do |format|
-      format.html { redirect_to bloques_url, notice: 'Bloque was successfully destroyed.' }
-      format.json { head :no_content }
+    if @bloque.seleccion_estudiante = true
+      if @bloque.destroy
+        redirect_to index_bloque_estudiante_path
+      else
+        format.html { render :new }
+      end
+    elsif @bloque.seleccion_estudiante = false
+      if @bloque.destroy
+        redirect_to bloques_path
+      else
+        format.html { render :new }
+      end
     end
   end
 
@@ -96,9 +125,14 @@ class BloquesController < ApplicationController
     def set_bloque
       @bloque = Bloque.find(params[:id])
     end
-
     # Only allow a list of trusted parameters through.
     def bloque_params
-      params.require(:bloque).permit(:fecha_inicio, :fecha_final, :creador, :evaluacion_bloque_num, :evaluacion_bloque_str, :programa_epe_solicitado_id, :nivel_id, :ciclo_id, :persona_id, clases_attributes: [:id, :seccion, :no_clase, :lugar, :modalidad, :correquisito, :evaluacion_parcial_num, :evaluacion_parcial_str, :_destroy, :asignatura_id, :profesor_id, estudiante_ids: [], horarios_attributes: [:id, :dias, :start, :end, :_destroy]])
+      params.require(:bloque).permit(:fecha_inicio, :admitido,:fecha_final, :creador, :evaluacion_bloque_num, :evaluacion_bloque_str, :programa_epe_solicitado_id, :nivel_id, :ciclo_id, :persona_id, clases_attributes: [:id, :seccion, :no_clase, :lugar, :modalidad, :correquisito, :evaluacion_parcial_num, :evaluacion_parcial_str, :_destroy, :asignatura_id, :profesor_id, estudiante_ids: [], horarios_attributes: [:id, :dias, :start, :end, :_destroy]])
+    end
+    def guardado?
+      params[:commit] == "Guardar bloque"
+    end
+    def finalizar?
+      params[:commit] == "Finalizar"
     end
 end

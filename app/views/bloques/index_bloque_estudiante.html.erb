@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+
+<section class="content">
+  <div class="container-fluid">
+    <h1>Bloque para estudiantes</h1>
+    <table class="table table-striped display" role='datatable'>
+      <thead>
+        <tr>
+          <th>Creador</th>
+          <th>Nivel de lengua</th>
+          <th>Programa EPE</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @bloques.each do |bloque| %>
+          <tr>
+            <td><%= bloque.creador %></td>
+            <td>
+              <% if !bloque.nivel.nil? %>
+                <%= bloque.nivel.nombre %>
+              <% end %>
+            </td>
+            <td>
+              <% if !bloque.programa_epe_solicitado.nil? %>
+                <%= bloque.programa_epe_solicitado.nombre %>
+              <% end %>
+           </td>
+            <td class="align-column-content-center"><%= link_to 'Mostrar', bloque, class: "btn btn-info" %></td>
+            <td class="align-column-content-center"><%= link_to 'Eliminar', bloque_path(bloque), method: :delete, class: "btn btn-warning" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <%# link_to 'New Bloque', new_bloque_path %>
+  </div>
+</section>

@@ -21,7 +21,7 @@
       <!-- Messages Dropdown Menu -->
 
       <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
+      <!--li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="fa fa-bell"></i>
           <span class="badge badge-warning navbar-badge">15</span>
@@ -46,7 +46,7 @@
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
-      </li>
+      </li-->
       <li class="nav-item">
         <% if current_user %>
           <%= link_to destroy_user_session_path, method: :delete,class: "nav-link" do %>
@@ -164,6 +164,22 @@
                   </p>
                 </a>
               </li>
+             <li class="nav-item">
+                <a href="/seleccion_para_estudiante" class="nav-link">
+                  <i class="nav-icon fa fa-plus"></i>
+                  <p>
+                    Crear Bloque Estudiante
+                  </p>
+                </a>
+              </li>
+             <li class="nav-item">
+                <a href="/index_bloque_estudiante" class="nav-link">
+                  <i class="nav-icon fa fa-list-ul"></i>
+                  <p>
+                    Listar Bloques Estudiantes
+                  </p>
+                </a>
+              </li>
             </ul>
           </li>
           <% end %>
@@ -245,12 +261,12 @@
             <ul class="nav nav-treeview">
              <li class="nav-item">
                <%= link_to new_user_registration_url, class:"nav-link" do %>
-               <i class="nav-icon fa fa-user-plus"></i><p>Crear Usuario</p>
+               <i class="nav-icon fa fa-plus"></i><p>Crear Usuario</p>
                <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to listar_usuarios_url, class:"nav-link" do %>
-                  <i class="nav-icon fa fa-users"></i><p>Listar Usuarioa</p>
+                  <i class="nav-icon fa fa-list-ul"></i><p>Listar Usuarios</p>
                 <% end %>
               </li>
             </ul>
