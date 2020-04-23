@@ -49,7 +49,7 @@
               <%#= "#{clase.bloque.ciclo.nombre}, #{clase.bloque.nivel.nombre}" %>
             <% end %>
           </td>
-          <td class="align-column-content-center"><%= link_to 'Mostrar', clase, class: "btn btn-info" %></td>
+          <td class="align-column-content-center"><%= link_to 'Presentar', clase, class: "btn btn-info" %></td>
           <% if can? :update, @clase %><td class="align-column-content-center"><%= link_to 'Editar', edit_clase_path(clase), class: "btn btn-warning" %> </td> <% end %>
           <!-- <td><%= link_to 'Destroy', clase, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
         </tr>

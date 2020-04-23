@@ -46,9 +46,17 @@ class EstudiantesController < ApplicationController
     @estudiante.admitido = true if finalizado?
     @estudiante.admitido = false if guardado?
 
+    byebug
+
 
     if @estudiante.save
-      redirect_to estudiantes_url
+      if guardado?
+        redirect_to no_admitidos_url
+      elsif finalizado?
+        redirect_to estudiantes_url
+      else
+        redirect_to estudiantes_url
+      end
     else
       format.html { render :new }
     end
@@ -74,7 +82,13 @@ class EstudiantesController < ApplicationController
     @estudiante.admitido = false if guardado?
 
     if @estudiante.update(estudiante_params)
-      redirect_to estudiantes_url
+      if guardado?
+        redirect_to no_admitidos_url
+      elsif finalizado? and estudiante_params['egresado'] == '0'
+        redirect_to estudiantes_url
+      elsif finalizado? and estudiante_params['egresado'] == '1'
+        redirect_to egresados_url
+      end
     else
       format.html { render :new }
     end
@@ -104,9 +118,6 @@ class EstudiantesController < ApplicationController
 
     def guardado?
       params[:commit] == "Guardar como borrador"
-    end
-    def guardado?
-      params[:commit] == "Enviar solicitud"
     end
 
     def finalizado?

@@ -8,22 +8,19 @@
       <thead>
       <tr>
         <th>#</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
         <th>ID estudiante</th>
-        <th>Matricula</th>
+        <th>Matrícula</th>
         <th>Sexo</th>
         <th>Egresado</th>
-        <th ></th>
-        <th ></th>
         <th ></th>
       </tr>
       </thead>
 
       <tbody>
       <% n=0 %>
-      <% @estudiantes.each do |estudiante| %>
-        <% if estudiante.admitido == true and estudiante.egresado == true %>
+      <% @estudiantes.where(egresado: true).each do |estudiante| %>
           <tr>
             <td><%= n+=1%></td>
             <td><%= estudiante.persona.nombres %></td>
@@ -32,10 +29,8 @@
             <td><%= estudiante.matricula %></td>
             <td><%= estudiante.sexo %></td>
             <td><%= estudiante.egresado ? :Si : :No %></td>
-            <td class="align-column-content-center"><%= link_to 'Mostrar', estudiante, class: "btn btn-info" %></td>
-            <td class="align-column-content-center"><%= link_to 'Editar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
+            <td class="align-column-content-center"><%= link_to 'Mostrar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
           </tr>
-        <%end %>
       <% end %>
       </tbody>
     </table>

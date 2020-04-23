@@ -14,14 +14,12 @@
         <th>Matricula</th>
         <th>Sexo</th>
         <th></th>
-        <th></th>
       </tr>
       </thead>
 
       <tbody>
       <% n=0 %>
-      <% @estudiantes.each do |estudiante| %>
-        <% if estudiante.admitido == false %>
+      <% @estudiantes.where(admitido: false).each do |estudiante| %>
           <tr>
             <td><%= n+=1 %></td>
             <td><%= estudiante.persona.nombres %></td>
@@ -30,9 +28,7 @@
             <td><%= estudiante.matricula %></td>
             <td><%= estudiante.sexo %></td>
             <td class="align-column-content-center"><%= link_to 'Mostrar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
-            <td class="align-column-content-center"><%= link_to 'Eliminar', estudiante_path(estudiante),method: :destroy, class: "btn btn-danger" %></td>
           </tr>
-        <%end %>
       <% end %>
       </tbody>
     </table>

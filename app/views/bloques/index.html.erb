@@ -11,7 +11,6 @@
           <th>Ciclo</th>
           <th>Nivel de lengua</th>
           <th></th>
-          <th></th>
         </tr>
       </thead>
 
@@ -30,8 +29,7 @@
               <%= bloque.nivel.nombre %>
             <% end %>
           </td>
-            <td class="align-column-content-center"><%= link_to 'Mostrar', bloque, class: "btn btn-info" %></td>
-            <td class="align-column-content-center"><%= link_to 'Editar', edit_bloque_path(bloque), class: "btn btn-warning" %></td>
+            <td class="align-column-content-center"><%= link_to 'Mostrar', edit_bloque_path(bloque), class: "btn btn-warning" %></td>
           </tr>
         <% end %>
       </tbody>
