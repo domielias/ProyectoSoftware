@@ -3,6 +3,7 @@ class CreateTutories < ActiveRecord::Migration[6.0]
     create_table :tutories do |t|
 
       t.string :ubicacion, limit: 30
+      t.references :clase, foreign_key: true
 
     end
 

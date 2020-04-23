@@ -46,8 +46,6 @@ class EstudiantesController < ApplicationController
     @estudiante.admitido = true if finalizado?
     @estudiante.admitido = false if guardado?
 
-    byebug
-
 
     if @estudiante.save
       if guardado?

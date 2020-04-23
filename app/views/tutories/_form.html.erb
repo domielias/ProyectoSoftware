@@ -2,7 +2,6 @@
   <% if tutory.errors.any? %>
     <%= render '/shared/errors', obj: @tutory %>
   <% end %>
-  <% byebug %>
   <div class="card-container">
     <div class="card card-default">
       <div class="card-header">
@@ -15,7 +14,7 @@
         <div class="col-md-4 col-sm-4">
           <div class="form-group">
             <h5>Ubicación</h5>
-            <%= form.text_field :lugar, class: "form-control" %>
+            <%= form.text_field :ubicacion, class: "form-control" %>
           </div>
         </div>
         <div class="col-md-6 col-sm-6">
