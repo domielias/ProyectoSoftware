@@ -20,6 +20,19 @@ class EstudiantesController < ApplicationController
     @estudiante = Estudiante.find(params[:id])
   end
 
+  def ficha_de_solicitud_estudiante
+    @estudiante = Estudiante.new
+    @estudiante.build_carrera_solicitada
+    @estudiante.build_persona
+    @estudiante.build_programa_internacional
+    @estudiante.build_padre
+    @estudiante.build_madre
+    @estudiante.direccions.build
+    @estudiante.build_examen_de_nivel
+    @estudiante.build_informacion_academica
+    @estudiante.build_progreso_inscripcion
+end
+
   # GET /estudiantes/new
   def new
     @estudiante = Estudiante.new
@@ -41,6 +54,7 @@ class EstudiantesController < ApplicationController
   # POST /estudiantes
   # POST /estudiantes.json
   def create
+
     @estudiante = Estudiante.new(estudiante_params)
     @estudiante.created_at = Time.zone.now if finalizado?
     @estudiante.admitido = true if finalizado?
@@ -50,15 +64,12 @@ class EstudiantesController < ApplicationController
     if @estudiante.save
       if guardado?
         redirect_to no_admitidos_url
-      elsif finalizado?
-        redirect_to estudiantes_url
-      else
+      else finalizado?
         redirect_to estudiantes_url
       end
     else
       format.html { render :new }
     end
-
     # respond_to do |format|
     #   if @estudiante.save
     #     format.html { redirect_to @estudiante, notice: 'Estudiante was successfully created.' }
@@ -111,7 +122,7 @@ class EstudiantesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def estudiante_params
-      params.require(:estudiante).permit(:pasaporte, :tiempo_residencia, :numero_residencia, :matricula, :estado_civil, :nombre_conyugue, :nombre_conyugue, :sexo, :egresado, :admitido, :programa_epe_solicitado_id, :programa_internacional_id, :carrera_solicitada_id, :institucion_id, direccions_attributes: [:id, :telefono, :direccion_completa, :ciudad, :codigo_postal, :pais_residencia, :pai_id], persona_attributes: [:id, :nombres, :apellidos, :fecha_nacimiento, :correo_electronico, :id_campus, :matricula], padre_attributes: [:id, :nombres, :apellidos], madre_attributes: [:id, :nombres, :apellidos], examen_de_nivel_attributes: [:id, :promedio, :nivel_id, :fecha_examen],informacion_academica_attributes: [:id, :cantidad_de_anos_de_espanol_estudiadas, :asignaturas_de_espanol_recientes, :cantidad_de_horas_de_espanol_cursadas, :nivel_alcanzado],progreso_inscripcion_attributes: [:id, :formulario_admisiones, :formulario_especial_para_extranjeros, :visa_estudiante, :acta_nacimiento, :certificacion_medica, :fotografias, :copia_pasaporte, :record_secundaria, :certificado_pruebas_nacionales, :recibo_admision, :seguro_medico_o_viajero, :acta_nacimiento_padres, :record_notas_original_de_univ_de_procedencia])
+      params.require(:estudiante).permit(:pasaporte, :tiempo_residencia, :numero_residencia, :matricula, :estado_civil, :nombre_conyugue, :nombre_conyugue, :sexo, :egresado, :admitido, :programa_epe_solicitado_id, :bloque_id,:programa_internacional_id, :carrera_solicitada_id, :institucion_id, direccions_attributes: [:id, :telefono, :direccion_completa, :ciudad, :codigo_postal, :pais_residencia, :pai_id], persona_attributes: [:id, :nombres, :apellidos, :fecha_nacimiento, :correo_electronico, :id_campus, :matricula], padre_attributes: [:id, :nombres, :apellidos], madre_attributes: [:id, :nombres, :apellidos], examen_de_nivel_attributes: [:id, :promedio, :nivel_id, :fecha_examen],informacion_academica_attributes: [:id, :cantidad_de_anos_de_espanol_estudiadas, :asignaturas_de_espanol_recientes, :cantidad_de_horas_de_espanol_cursadas, :nivel_alcanzado],progreso_inscripcion_attributes: [:id, :formulario_admisiones, :formulario_especial_para_extranjeros, :visa_estudiante, :acta_nacimiento, :certificacion_medica, :fotografias, :copia_pasaporte, :record_secundaria, :certificado_pruebas_nacionales, :recibo_admision, :seguro_medico_o_viajero, :acta_nacimiento_padres, :record_notas_original_de_univ_de_procedencia])
     end
 
     def guardado?

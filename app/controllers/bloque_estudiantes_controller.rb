@@ -70,6 +70,6 @@ class BloqueEstudiantesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bloque_estudiante_params
-      params.require(:bloque_estudiante).permit(:bloque_id, :estudiante_id)
+      params.require(:bloque_estudiante).permit(:bloque_id, :estudiante_id,:asignaturas_solicitadas)
     end
 end

@@ -338,8 +338,8 @@
           <% if @estudiante.admitido? %>
             <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
           <% else %>
-            <%= form.submit 'Guardar como borrador', {class: "btn btn-primary", data: { confirm: 'Estás seguro de guardar este estudiante como borrador?', title: 'Desea guardar este estudiante?'}} %>
-            <%= form.submit 'Finalizar', {class: "btn bg-gradient-success", data: { confirm: 'Estás seguro de guardar este estudiante?', title: 'Desea guardar este estudiante?'}} %>
+            <%= form.submit 'Guardar como borrador', {class: "btn btn-primary", data: { confirm: '¿Estás seguro de guardar como borrador?', title: 'Desea guardar este estudiante?'}} %>
+            <%= form.submit 'Finalizar', {class: "btn bg-gradient-success", data: { confirm: '¿Estás seguro de guardar este estudiante?', title: 'Desea guardar este estudiante?'}} %>
           <% end %>
         </div>
       </div>

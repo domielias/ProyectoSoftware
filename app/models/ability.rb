@@ -12,9 +12,11 @@ class Ability
     else
       can :read, Clase, profesor_id: user.id
 
+      #Puede leer todas las actividades
+      can :read, Actividad, :all
       #Ver mis actividades y las impuestas por el dept
-      can :read, Actividad, user_id: user.id
-      can :read, Actividad, del_departamento: true
+      # can :read, Actividad, user_id: user.id
+      # can :read, Actividad, del_departamento: true
 
       # # Poder crear, modificar y eliminar mis actividades
       can :create, Actividad
