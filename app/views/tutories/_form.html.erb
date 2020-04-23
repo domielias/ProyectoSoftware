@@ -1,27 +1,45 @@
 <%= form_with(model: tutory, local: true) do |form| %>
   <% if tutory.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(tutory.errors.count, "error") %> prohibited this tutory from being saved:</h2>
-
-      <ul>
-        <% tutory.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= render '/shared/errors', obj: @tutory %>
   <% end %>
-
-  <div class="field">
-    <%= form.label :profesor_id %>
-    <%= form.number_field :profesor_id %>
+  <% byebug %>
+  <div class="card-container">
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title">Datos generales</h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <div class="card-body">
+        <div class="row col-md-12 col-sm-12">
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <h5>Ubicación</h5>
+            <%= form.text_field :lugar, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="form-group">
+            <h5>Clase</h5>
+            <!-- <%= form.collection_select(:ciclo_id, Ciclo.all, :id, :nombre,{},{class:"form-control"}) %> -->
+            <%= form.select :clase_id, Clase.where(profesor_id: current_user.id).pluck(:no_clase, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+          </div>
+        </div>
+      </div>
+        <hr/>
+        <hr/>
+        <div class="">
+          <%= form.fields_for :horarios do |hrro| %>
+            <%= render 'horario_fields', form: hrro %>
+          <% end %>
+        </div>
+        <hr/>
+        <div class="">
+          <%= link_to_add_fields "Añadir horario", form, :horarios, "btn btn-info" %>
+        </div>
   </div>
-
-  <div class="field">
-    <%= form.label :clase_id %>
-    <%= form.number_field :clase_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+</div>
+<div class="float-right">
+  <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+</div>
 <% end %>

@@ -11,7 +11,7 @@
           <th>Fecha</th>
           <th>Hora Inicio</th>
           <th>Hora final</th>
-          <th>Descripcion</th>
+          <th>Nombre</th>
           <th>Forma de transporte</th>
           <th>Dentro de la ciudad</th>
           <th>Creador</th>
@@ -39,7 +39,11 @@
             <% else %>
               <td> No tiene</td>
             <% end %>
-            <td><%= actividad.descripcion %></td>
+            <% if !actividad.nombre_de_la_actividad.nil? %>
+              <td><%= actividad.nombre_de_la_actividad  %></td>
+            <% else %>
+              <td> No tiene</td>
+            <% end %>
             <td><%= actividad.forma_de_transporte %></td>
             <td><%= actividad.dentro_de_la_ciudad ? :Si : :No %></td>
             <% if actividad.user_id == current_user.id %>
@@ -47,9 +51,9 @@
             <% else %>
             <td><%=actividad.user.persona.id_campus_nombres_apellidos%></td>
             <% end %>
-            <td><%= link_to 'Show', actividad %></td>
-            <td><% if can? :update, actividad %><%= link_to 'Edit', edit_actividad_path(actividad) %><% end %></td>
-            <td><% if can? :destroy, actividad %><%= link_to 'Destroy', actividad, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></td>
+            <td class="align-column-content-center"><%= link_to 'Presentar', actividad, class: "btn btn-info" %></td>
+            <td class="align-column-content-center"><% if can? :update, actividad %><%= link_to 'Editar', edit_actividad_path(actividad), class: "btn btn-warning" %><% end %></td>
+            <td class="align-column-content-center"><% if can? :destroy, actividad %><%= link_to 'Eliminar', actividad, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %><% end %></td>
           </tr>
         <% end %>
       </tbody>

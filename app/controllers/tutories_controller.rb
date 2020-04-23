@@ -70,6 +70,6 @@ class TutoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tutory_params
-      params.require(:tutory).permit(:profesor_id, :clase_id)
+      params.require(:tutory).permit(:lugar, :clase_id, horarios_attributes: [:id, :dias, :start, :end, :_destroy])
     end
 end

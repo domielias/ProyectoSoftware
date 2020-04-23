@@ -5,7 +5,7 @@ class Clase < ApplicationRecord
     belongs_to :asignatura, optional: true ###########
     delegate :nombre, to: :asignatura, prefix: true
     delegate :clave, to: :asignatura, prefix: true
-    has_many :tutory
+    has_many :tutories
     #belongs_to :correquisito, :class_name => "Clase", :foreign_key => "correquisito_id", optional: true
     #has_one :correquisito, :class_name => "Clase"
     # belongs_to :correquisito, :class_name => "Clase"

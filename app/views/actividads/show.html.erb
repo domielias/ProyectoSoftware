@@ -19,7 +19,7 @@
       <div class="col-md-12 col-sm-12">
         <div class="form-group">
           <br>
-          <h5>Es una actividad planificada por el departamento ?: <%= @actividad.del_departamento ? :Sí : :No %></h5>
+          <h5>Es una actividad planificada por el coordinación ?: <%= @actividad.del_departamento ? :Sí : :No %></h5>
         </div>
       </div>
       <div class="row col-md-12 col-sm-12">
@@ -37,7 +37,7 @@
         <div class="col-md-4 col-sm-4">
           <div class="form-group">
             <br>
-            <h5>Sera dentro de la ciudad ?: <%= @actividad.dentro_de_la_ciudad ? :Sí : :No %></h5>
+            <h5>Será dentro de la ciudad ?: <%= @actividad.dentro_de_la_ciudad ? :Sí : :No %></h5>
           </div>
         </div>
       </div>
@@ -76,8 +76,12 @@
           </div>
         </div>
       <div class="col-md-12 col-sm-12">
-        <h5>Descripción</h5>
-        <%= form.text_field :descripcion, { class: 'form-control', readonly: true} %>
+        <h5>Nombre</h5>
+        <%= form.text_field :nombre_de_la_actividad, { class: 'form-control', readonly: true} %>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <h5>Objetivo</h5>
+        <%= form.text_area :objetivo, { class: 'form-control', readonly: true} %>        
       </div>
       <div class="row col-md-12 col-sm-12">
         <div class="col-md-6 col-sm-6">
