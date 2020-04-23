@@ -4,7 +4,7 @@ class CreateBloques < ActiveRecord::Migration[6.0]
       t.string :nombre, limit: 20 #######
       t.string :creador, limit: 100 #######
       t.boolean :creado_por_estudiante #######
-      t.boolean :bloque_para_estudiante #######
+      t.boolean :seleccion_estudiante #######
       t.float :evaluacion_bloque_num
       t.string :evaluacion_bloque_str
 
