@@ -14,8 +14,12 @@
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h5>Profesor</h5>
-              <%= form.text_field :user_id, { class: 'form-control', value:current_user.persona.id_campus_nombres_apellidos, readonly: true} %>
-              <%= form.hidden_field :user_id, value: current_user.id %>
+              <% if !current_user.admin? %>
+                <%= form.text_field :user_id, { class: 'form-control', value:current_user.persona.id_campus_nombres_apellidos, readonly: true} %>
+                <%= form.hidden_field :user_id, value: current_user.id %>
+              <% else %>
+                <%= form.collection_select(:user_id, User.where(profesor: true), :id, :id_campus_nombres_apellidos, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
+              <% end %>
             </div>
           </div>
         <div class="col-md-4 col-sm-4">

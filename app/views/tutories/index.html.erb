@@ -17,8 +17,8 @@
     <% @tutories.each do |tutory| %>
       <tr>
         <td>
-          <% if !tutory.clase.nil? %>
-            <%= tutory.clase.profesor.persona.id_campus_nombres_apellidos %>
+          <% if !tutory.user_id.nil? %>
+            <%= User.find(tutory.user_id).persona.id_campus_nombres_apellidos %>
           <% end %>
         </td>
         <td>

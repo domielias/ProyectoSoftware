@@ -27,8 +27,6 @@ class TutoriesController < ApplicationController
   def create
     @tutory = Tutory.new(tutory_params)
 
-    byebug
-
     if @tutory.save
       redirect_to tutories_url
     else
