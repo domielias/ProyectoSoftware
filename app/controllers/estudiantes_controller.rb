@@ -93,10 +93,8 @@ end
     if @estudiante.update(estudiante_params)
       if guardado?
         redirect_to no_admitidos_url
-      elsif finalizado? and estudiante_params['egresado'] == '0'
+      else finalizado?
         redirect_to estudiantes_url
-      elsif finalizado? and estudiante_params['egresado'] == '1'
-        redirect_to egresados_url
       end
     else
       format.html { render :new }
