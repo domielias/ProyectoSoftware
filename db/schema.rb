@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 39) do
     t.string "nombre", limit: 20
     t.string "creador", limit: 100
     t.boolean "creado_por_estudiante"
-    t.boolean "bloque_para_estudiante"
+    t.boolean "seleccion_estudiante"
     t.float "evaluacion_bloque_num"
     t.string "evaluacion_bloque_str"
     t.bigint "category_id"
@@ -359,8 +359,10 @@ ActiveRecord::Schema.define(version: 39) do
   create_table "tutories", force: :cascade do |t|
     t.string "ubicacion", limit: 30
     t.bigint "clase_id"
+    t.bigint "user_id"
     t.index ["clase_id"], name: "index_tutories_on_clase_id"
     t.index ["id"], name: "index_tutories_on_id", unique: true
+    t.index ["user_id"], name: "index_tutories_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -413,5 +415,6 @@ ActiveRecord::Schema.define(version: 39) do
   add_foreign_key "programa_internacionals", "pais"
   add_foreign_key "progreso_inscripcions", "estudiantes"
   add_foreign_key "tutories", "clases"
+  add_foreign_key "tutories", "users"
   add_foreign_key "users", "personas"
 end

@@ -21,6 +21,9 @@ class Ability
       can :update, Actividad, user_id: user.id
       can :destroy, Actividad, user_id: user.id
 
+      can :manage, Tutory, user_id: user.id
+      can :read, Tutory
+
     end
     #   user ||= User.new # guest user (not logged in)
     #   if user.admin?

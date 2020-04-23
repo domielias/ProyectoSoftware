@@ -11,13 +11,20 @@
       <!-- form start -->
       <div class="card-body">
         <div class="row col-md-12 col-sm-12">
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Profesor</h5>
+              <%= form.text_field :user_id, { class: 'form-control', value:current_user.persona.id_campus_nombres_apellidos, readonly: true} %>
+              <%= form.hidden_field :user_id, value: current_user.id %>
+            </div>
+          </div>
         <div class="col-md-4 col-sm-4">
           <div class="form-group">
             <h5>Ubicación</h5>
             <%= form.text_field :ubicacion, class: "form-control" %>
           </div>
         </div>
-        <div class="col-md-6 col-sm-6">
+        <div class="col-md-4 col-sm-4">
           <div class="form-group">
             <h5>Clase</h5>
             <!-- <%= form.collection_select(:ciclo_id, Ciclo.all, :id, :nombre,{},{class:"form-control"}) %> -->
@@ -32,7 +39,6 @@
             <%= render 'horario_fields', form: hrro %>
           <% end %>
         </div>
-        <hr/>
         <div class="">
           <%= link_to_add_fields "Añadir horario", form, :horarios, "btn btn-info" %>
         </div>

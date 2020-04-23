@@ -4,6 +4,7 @@ class CreateTutories < ActiveRecord::Migration[6.0]
 
       t.string :ubicacion, limit: 30
       t.references :clase, foreign_key: true
+      t.references :user, foreign_key: true
 
     end
 

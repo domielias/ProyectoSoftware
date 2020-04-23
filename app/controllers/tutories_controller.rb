@@ -25,32 +25,28 @@ class TutoriesController < ApplicationController
   # POST /tutories
   # POST /tutories.json
   def create
-    byebug
     @tutory = Tutory.new(tutory_params)
-    #
-    # respond_to do |format|
-    #   if @tutory.save
-    #     format.html { redirect_to @tutory, notice: 'Tutory was successfully created.' }
-    #     format.json { render :show, status: :created, location: @tutory }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @tutory.errors, status: :unprocessable_entity }
-    #   end
-    # end
+
+    byebug
+
+    if @tutory.save
+      redirect_to tutories_url
+    else
+      format.html { render :new }
+    end
+
   end
 
   # PATCH/PUT /tutories/1
   # PATCH/PUT /tutories/1.json
   def update
-    respond_to do |format|
-      if @tutory.update(tutory_params)
-        format.html { redirect_to @tutory, notice: 'Tutory was successfully updated.' }
-        format.json { render :show, status: :ok, location: @tutory }
-      else
-        format.html { render :edit }
-        format.json { render json: @tutory.errors, status: :unprocessable_entity }
-      end
+
+    if @tutory.update(tutory_params)
+      redirect_to tutories_url
+    else
+      format.html { render :new }
     end
+
   end
 
   # DELETE /tutories/1
@@ -71,6 +67,6 @@ class TutoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tutory_params
-      params.require(:tutory).permit(:ubicacion, :clase_id, horarios_attributes: [:id, :dias, :start, :end, :_destroy])
+      params.require(:tutory).permit(:ubicacion, :clase_id, :user_id, horarios_attributes: [:id, :dias, :start, :end, :_destroy])
     end
 end
