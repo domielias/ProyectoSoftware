@@ -1,115 +1,108 @@
 <%= form_with(model: clase, local: true) do |form| %>
-<% if clase.errors.any? %>
-  <%= render '/shared/errors', obj: @clase %>
-<% end %>
-
-
-<div class="card-container">
-  <div class="card card-default">
-    <div class="card-header">
-      <h3 class="card-title">Clase</h3>
-    </div>
-    <!-- /.card-header -->
-    <!-- form start -->
-    <div class="card-body">
-<div class="row col-md-12 col-sm-12">
-<div class="col-md-2 col-sm-2">
-<div class="form-group">
-<h5>No. clase</h5>
-<%= form.text_field :no_clase, { class: 'form-control'} %>
-</div>
-</div>
-<div class="col-md-2 col-sm-2">
-<div class="form-group">
-<h5>Sección</h5>
-<%= form.text_field :seccion, { class: 'form-control'} %>
-</div>
-</div>
-<div class="col-md-4 col-sm-4">
-  <div class="form-group">
-    <h5>Modalidad</h5>
-    <%= form.select :modalidad, ['Presencial', 'Semi-presencial', 'Virtual'], {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
-  </div>
-</div>
-<div class="col-md-4 col-sm-4">
-<div class="form-group">
-<h5>Profesor</h5>
-<%#= form.select :profesor_id, User.where(profesor: true).pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
-<%= form.collection_select(:profesor_id, User.where(profesor: true), :id, :id_campus_nombres_apellidos, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
-</div>
-</div>
-</div>
-<div class="row col-md-12 col-sm-12">
-<div class="col-md-4 col-sm-4">
-<div class="form-group">
-<h5>Asignatura</h5>
-<%= form.collection_select(:asignatura_id, Asignatura.all, :id, :clave_nombre, {include_blank: ''}, class: 'select2-simple-dropdown select2-dropdown-width') %>
-</div>
-</div>
-<div class="col-md-4 col-sm-4">
-<div class="form-group">
-<h5>No. clase del correquisito</h5>
-<%#= form.collection_select(:correquisito_id, Clase.all, :id, :clave_nombre, {include_blank: ''}, class: 'select2-simple-dropdown select2-dropdown-width') %>
-<%= form.text_field :correquisito, { class: 'form-control'} %>
-</div>
-</div>
-<div class="col-md-4 col-sm-4">
-<div class="form-group">
-  <h5>Ubicación</h5>
-  <%= form.text_field :lugar, class: "form-control" %>
-</div>
-</div>
-<hr/>
-</div>
-<hr/>
-<div class="">
-<%#= form.object.no_clase %>
-<h5>Estudiantes</h5>
-<%= form.collection_select(:estudiante_ids, Estudiante.where.not(admitido: false), :id, :id_campus_nombres_apellidos,
+  <% if clase.errors.any? %>
+    <%= render '/shared/errors', obj: @clase %>
+  <% end %>
+  <div class="card-container">
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title">Clase</h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <div class="card-body">
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-2 col-sm-2">
+            <div class="form-group">
+              <h5>No. clase</h5>
+              <%= form.text_field :no_clase, { class: 'form-control'} %>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-2">
+            <div class="form-group">
+              <h5>Sección</h5>
+              <%= form.text_field :seccion, { class: 'form-control'} %>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Modalidad</h5>
+              <%= form.select :modalidad, ['Presencial', 'Semi-presencial', 'Virtual'], {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Profesor</h5>
+              <%#= form.select :profesor_id, User.where(profesor: true).pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'}%>
+              <%= form.collection_select(:profesor_id, User.where(profesor: true), :id, :id_campus_nombres_apellidos, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
+            </div>
+          </div>
+        </div>
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Asignatura</h5>
+              <%= form.collection_select(:asignatura_id, Asignatura.all, :id, :clave_nombre, {include_blank: ''}, class: 'select2-simple-dropdown select2-dropdown-width') %>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>No. clase del correquisito</h5>
+              <%#= form.collection_select(:correquisito_id, Clase.all, :id, :clave_nombre, {include_blank: ''}, class: 'select2-simple-dropdown select2-dropdown-width') %>
+              <%= form.text_field :correquisito, { class: 'form-control'} %>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Ubicación</h5>
+              <%= form.text_field :lugar, class: "form-control" %>
+            </div>
+          </div>
+          <hr/>
+        </div>
+        <hr/>
+        <div class="">
+          <%#= form.object.no_clase %>
+          <h5>Estudiantes</h5>
+          <%= form.collection_select(:estudiante_ids, Estudiante.where.not(admitido: false), :id, :id_campus_nombres_apellidos,
                       {selected: form.object.estudiantes.map(&:id)},
                       {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
-
-<%#= f.collection_select(:feature_ids, Feature.all, :id, :name,
+          <%#= f.collection_select(:feature_ids, Feature.all, :id, :name,
                     {include_blank: false, :include_hidden => false, :selected => @property.features.map(&:id)},
                     {:multiple => true}) %>
-
-<%#= link_to clase.object.estudiante, clases_path(clase, estudiantes: clase.object.id) %>
-</div>
-<hr/>
-<div class="">
-<%#= form.object.no_clase %>
-<h5>Evaluación de la clase</h5>
-<div class="col-md-1 col-sm-1">
-  <div class="form-group">
-<%= form.number_field :evaluacion_parcial_num, step: 0.1, class: "form-control" %>
+          <%#= link_to clase.object.estudiante, clases_path(clase, estudiantes: clase.object.id) %>
+        </div>
+        <hr/>
+        <div class="row col-md-12 col-sm-12">
+          <%#= form.object.no_clase %>
+          <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+              <h5>Evaluación bloque</h5>
+              <%= form.number_field :evaluacion_bloque_num, step: 0.1, class: "form-control" %>
+            </div>
+          </div>
+          <%#= form.object.no_clase %>
+          <div class="col-md-9 col-sm-9">
+            <div class="form-group">
+              <h5>Notas sobre bloque</h5>
+              <%= form.text_field :evaluacion_bloque_str, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+        <hr/>
+        <div class="">
+          <%= form.fields_for :horarios do |hrro| %>
+            <%= render 'horario_fields', form: hrro %>
+          <% end %>
+        </div>
+        <hr/>
+        <div class="">
+          <%= link_to_add_fields "Añadir horario", form, :horarios, "btn btn-info" %>
+        </div>
+      </div>
+    </div>
+    <div class="float-right">
+      <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+    </div>
   </div>
-</div>
-</div>
-<div class="">
-<%#= form.object.no_clase %>
-<h5>Notas sobre la clase</h5>
-<div class="col-md-12 col-sm-12">
-  <div class="form-group">
-<%= form.text_field :evaluacion_parcial_str, class: "form-control" %>
-  </div>
-</div>
-</div>
-<hr/>
-<div class="">
-<%= form.fields_for :horarios do |hrro| %>
-<%= render 'horario_fields', form: hrro %>
-<% end %>
-</div>
-<hr/>
-<div class="">
-<%= link_to_add_fields "Añadir horario", form, :horarios, "btn btn-info" %>
-</div>
-</div>
-</div>
-
-<div class="float-right">
-  <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
-</div>
-</div>
 </div>
 <% end %>

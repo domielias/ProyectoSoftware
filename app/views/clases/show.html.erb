@@ -1,127 +1,142 @@
 <%= form_with(model: @clase, local: true) do |form| %>
-<% if @clase.errors.any? %>
-  <%= render '/shared/errors', obj: @clase %>
-<% end %>
-
-<div class="card-container">
-  <div class="card card-default">
-    <div class="card-header">
-      <h3 class="card-title">Clase</h3>
+  <% if @clase.errors.any? %>
+    <%= render '/shared/errors', obj: @clase %>
+  <% end %>
+  <div class="card-container">
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title">Clase</h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <div class="card-body">
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-2 col-sm-2">
+            <div class="form-group">
+              <h5>No. clase</h5>
+              <%= form.text_field :no_clase, { class: 'form-control', readonly: true} %>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-2">
+            <div class="form-group">
+              <h5>Sección</h5>
+              <%= form.text_field :seccion, { class: 'form-control', readonly: true} %>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Modalidad</h5>
+              <%= form.text_field nil, { class: 'form-control', value: @clase.modalidad, readonly: true} %>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Profesor</h5>
+              <%= form.text_field nil, { class: 'form-control', value:current_user.persona.id_campus_nombres_apellidos, readonly: true} %>
+            </div>
+          </div>
+        </div>
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Asignatura</h5>
+              <% if !@clase.asignatura.nil? %>
+                <%= form.text_field nil, { class: 'form-control', value: @clase.asignatura.clave_nombre, readonly: true} %>
+              <% else %>
+                <%= form.text_field nil, { class: 'form-control', value: '', readonly: true} %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>No. clase del correquisito</h5>
+              <%= form.text_field nil, { class: 'form-control', value: @clase.correquisito, readonly: true} %>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Ubicación</h5>
+              <%= form.text_field nil, { class: 'form-control', value: @clase.lugar, readonly: true} %>
+            </div>
+          </div>
+          <hr/>
+        </div>
+        <% if current_user.admin? %>
+        <hr/>
+          <div class="row col-md-12 col-sm-12">
+            <%#= form.object.no_clase %>
+            <div class="col-md-3 col-sm-3">
+              <div class="form-group">
+                  <h5>Evaluación bloque</h5>
+                  <%= form.number_field :evaluacion_bloque_num, step: 0.1, class: "form-control",readonly: true %>
+              </div>
+            </div>
+            <%#= form.object.no_clase %>
+            <div class="col-md-9 col-sm-9">
+              <div class="form-group">
+                  <h5>Notas sobre bloque</h5>
+                  <%= form.text_field :evaluacion_bloque_str, {class: "form-control",readonly: true} %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <hr/>
+        <div class="">
+          <%#= form.object.no_clase %>
+          <h5>Estudiantes</h5>
+          <table class="table table-striped display" role='lista_estudiantes_clase_datatable'>
+            <thead>
+              <tr>
+                <th>Id campus</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @clase.estudiantes.each do |estudiante| %>
+                <tr>
+                  <td><%= estudiante.persona.id_campus %></td>
+                  <td><%= estudiante.persona.nombres %></td>
+                  <td><%= estudiante.persona.apellidos %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <hr/>
+        <div class="col-md-10 col-sm-10">
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Horarios</h3>
+            </div>
+            <div class="card-body">
+              <table class="table table-striped display" role='lista_horario'>
+                <thead>
+                  <tr>
+                    <th>Día</th>
+                    <th>Desde</th>
+                    <th>Hasta</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @clase.horarios.each do |horario| %>
+                    <tr>
+                      <td><%=horario.dias%></td>
+                      <td><%=horario.start.strftime("%H:%M")%></td>
+                      <td><%=horario.end.strftime("%H:%M")%></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <hr/>
+      </div>
     </div>
-    <!-- /.card-header -->
-    <!-- form start -->
-    <div class="card-body">
-<div class="row col-md-12 col-sm-12">
-<div class="col-md-2 col-sm-2">
-<div class="form-group">
-<h5>No. clase</h5>
-<%= form.text_field :no_clase, { class: 'form-control', readonly: true} %>
-</div>
-</div>
-<div class="col-md-2 col-sm-2">
-<div class="form-group">
-<h5>Sección</h5>
-<%= form.text_field :seccion, { class: 'form-control', readonly: true} %>
-</div>
-</div>
-<div class="col-md-4 col-sm-4">
-  <div class="form-group">
-    <h5>Modalidad</h5>
-    <%= form.text_field nil, { class: 'form-control', value: @clase.modalidad, readonly: true} %>
+    <div class="float-left">
+      <%= link_to 'Regresar', 'javascript:history.back()', class: "btn btn-block btn-outline-primary" %>
+    </div>
   </div>
-</div>
-<div class="col-md-4 col-sm-4">
-<div class="form-group">
-<h5>Profesor</h5>
-<%= form.text_field nil, { class: 'form-control', value:current_user.persona.id_campus_nombres_apellidos, readonly: true} %>
-</div>
-</div>
-</div>
-<div class="row col-md-12 col-sm-12">
-<div class="col-md-4 col-sm-4">
-<div class="form-group">
-<h5>Asignatura</h5>
-<% if !@clase.asignatura.nil? %>
-<%= form.text_field nil, { class: 'form-control', value: @clase.asignatura.clave_nombre, readonly: true} %>
-<% else %>
-<%= form.text_field nil, { class: 'form-control', value: '', readonly: true} %>
-<% end %>
-</div>
-</div>
-<div class="col-md-4 col-sm-4">
-<div class="form-group">
-<h5>No. clase del correquisito</h5>
-<%= form.text_field nil, { class: 'form-control', value: @clase.correquisito, readonly: true} %>
-</div>
-</div>
-<div class="col-md-4 col-sm-4">
-<div class="form-group">
-  <h5>Ubicación</h5>
-  <%= form.text_field nil, { class: 'form-control', value: @clase.lugar, readonly: true} %>
-</div>
-</div>
-<hr/>
-</div>
-<hr/>
-<div class="">
-<%#= form.object.no_clase %>
-<h5>Estudiantes</h5>
-
-<table class="table table-striped display" role='lista_estudiantes_clase_datatable'>
-  <thead>
-    <tr>
-      <th>Id campus</th>
-      <th>Nombres</th>
-      <th>Apellidos</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @clase.estudiantes.each do |estudiante| %>
-      <tr>
-        <td><%= estudiante.persona.id_campus %></td>
-        <td><%= estudiante.persona.nombres %></td>
-        <td><%= estudiante.persona.apellidos %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
-<hr/>
-<div class="col-md-10 col-sm-10">
-  <div class="card card-info">
-    <div class="card-header">
-      <h3 class="card-title">Horarios</h3>
-    </div>
-    <div class="card-body">
-
-      <table class="table table-striped display" role='lista_horario'>
-        <thead>
-          <tr>
-            <th>Día</th>
-            <th>Desde</th>
-            <th>Hasta</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @clase.horarios.each do |horario| %>
-          <tr>
-            <td><%=horario.dias%></td>
-            <td><%=horario.start.strftime("%H:%M")%></td>
-            <td><%=horario.end.strftime("%H:%M")%></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-<hr/>
-</div>
-</div>
-<div class="float-left">
-<%= link_to 'Regresar', 'javascript:history.back()', class: "btn btn-block btn-outline-primary" %>
-</div>
-</div>
 </div>
 <% end %>
