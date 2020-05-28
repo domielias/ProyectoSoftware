@@ -1,4 +1,5 @@
 class BloqueAsignaturasController < ApplicationController
+  load_and_authorize_resource
   before_action :set_bloque_asignatura, only: [:show, :edit, :update, :destroy]
 
   # GET /bloque_asignaturas

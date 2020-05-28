@@ -1,4 +1,5 @@
 class InstitucionsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_institucion, only: [:show, :edit, :update, :destroy]
 
   # GET /institucions
@@ -26,15 +27,15 @@ class InstitucionsController < ApplicationController
   def create
     @institucion = Institucion.new(institucion_params)
 
-    respond_to do |format|
+    # respond_to do |format|
       if @institucion.save
-        format.html { redirect_to @institucion, notice: 'Institucion was successfully created.' }
-        format.json { render :show, status: :created, location: @institucion }
+        redirect_to configuracion_path
+        # format.html { redirect_to @institucion, notice: 'Institucion was successfully created.' }
+        # format.json { render :show, status: :created, location: @institucion }
       else
-        format.html { render :new }
-        format.json { render json: @institucion.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @institucion.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # PATCH/PUT /institucions/1

@@ -1,4 +1,6 @@
 class PersonasController < ApplicationController
+  load_and_authorize_resource
+  skip_authorize_resource :only => :mostrar_horario_actual
   before_action :set_persona, only: [:show, :edit, :update, :destroy]
 
   # GET /personas
@@ -10,6 +12,13 @@ class PersonasController < ApplicationController
   # GET /personas/1
   # GET /personas/1.json
   def show
+  end
+
+  def listar_usuarios
+    @users = User.all
+  end
+
+  def mostrar_horario_actual
   end
 
   # GET /personas/new
@@ -69,6 +78,6 @@ class PersonasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def persona_params
-      params.require(:persona).permit(:lugar_nacimiento_persona_id, :residencia_persona_id, :nombres, :apellidos, :fecha_nacimiento, :puesto, :correo_electronico)
+      params.require(:persona).permit(:lugar_nacimiento_persona_id, :residencia_persona_id, :nombres, :apellidos, :fecha_nacimiento, :puesto, :correo_electronico, :id_campus, :matricula)
     end
 end

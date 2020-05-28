@@ -1,4 +1,5 @@
 class FacultadsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_facultad, only: [:show, :edit, :update, :destroy]
 
   # GET /facultads
@@ -26,15 +27,15 @@ class FacultadsController < ApplicationController
   def create
     @facultad = Facultad.new(facultad_params)
 
-    respond_to do |format|
+    # respond_to do |format|
       if @facultad.save
-        format.html { redirect_to @facultad, notice: 'Facultad was successfully created.' }
-        format.json { render :show, status: :created, location: @facultad }
+        redirect_to configuracion_path
+        # format.html { redirect_to @facultad, notice: 'Facultad was successfully created.' }
+        # format.json { render :show, status: :created, location: @facultad }
       else
-        format.html { render :new }
-        format.json { render json: @facultad.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @facultad.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # PATCH/PUT /facultads/1

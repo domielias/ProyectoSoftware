@@ -1,4 +1,5 @@
 class NivelsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_nivel, only: [:show, :edit, :update, :destroy]
 
   # GET /nivels
@@ -26,15 +27,15 @@ class NivelsController < ApplicationController
   def create
     @nivel = Nivel.new(nivel_params)
 
-    respond_to do |format|
+    # respond_to do |format|
       if @nivel.save
-        format.html { redirect_to @nivel, notice: 'Nivel was successfully created.' }
-        format.json { render :show, status: :created, location: @nivel }
+        redirect_to configuracion_path
+        # format.html { redirect_to @nivel, notice: 'Nivel was successfully created.' }
+        # format.json { render :show, status: :created, location: @nivel }
       else
-        format.html { render :new }
-        format.json { render json: @nivel.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @nivel.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # PATCH/PUT /nivels/1
@@ -69,6 +70,6 @@ class NivelsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def nivel_params
-      params.require(:nivel).permit(:nombre, :rango_min, :rango_max)
+      params.require(:nivel).permit(:nombre,:programa_epe_solicitado_id,:min,:max)
     end
 end

@@ -1,0 +1,37 @@
+<section class="content">
+  <div class="container-fluid">
+<h1>Ciclos</h1>
+
+<table class="table table-striped display" role='datatable'>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Fecha de inicio</th>
+      <th>Fecha final</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ciclos.each do |ciclo| %>
+      <tr>
+        <td><%= ciclo.nombre %></td>
+        <td><%= ciclo.fecha_inicio %></td>
+        <td><%= ciclo.fecha_final %></td>
+        <td class="align-column-content-center">
+          <% if ciclo.actual? %>
+            <%= link_to 'Finalizar', finalizar_ciclo_path(ciclo), class: "btn btn-danger" %>
+          <% end %>
+        </td>
+        <td class="align-column-content-center"><%= link_to 'Mostrar', ciclo, class: "btn btn-info" %></td>
+        <td class="align-column-content-center"><%= link_to 'Editar', edit_ciclo_path(ciclo), class: "btn btn-warning" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+</div>
+</section>

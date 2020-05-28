@@ -1,19 +1,20 @@
 class CreateClases < ActiveRecord::Migration[6.0]
   def change
     create_table :clases do |t|
-      t.timestamp :fecha_inicio ########
-      t.timestamp :fecha_final ########
-      t.integer :seccion ######
-      t.boolean :activo ##########
-      t.integer :no_clase #######
+      t.string :seccion ######
+      t.string :no_clase #######
       t.string :lugar, limit: 20 #######
       t.string :modalidad, limit: 20 #######
+      t.string :correquisito, limit: 20 #######
+      t.float :evaluacion_parcial_num
+      t.string :evaluacion_parcial_str
 
 
-      t.references :profesor, foreign_key: {to_table: :usuarios} ############
+      t.references :profesor, foreign_key: {to_table: :users} ############
       t.references :asignatura, foreign_key: true  ##############
-      t.references :temporada, foreign_key: true ############
-      t.references :clase_vinculada, foreign_key: {to_table: :clases}
+      t.references :ciclo, foreign_key: true ############
+      # t.references :correquisito, foreign_key: {to_table: :clases}
+      t.references :bloque, foreign_key: true
 
       t.timestamps
     end

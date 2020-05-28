@@ -1,30 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Bloques</h1>
 
-<table class="table table-striped display" role='datatable'>
-  <thead>
-    <tr>
-      <th>Fecha inicio</th>
-      <th>Fecha final</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<section class="content">
+  <div class="container-fluid">
+    <h1>Bloques</h1>
+    <table class="table table-striped display" role='datatable'>
+      <thead>
+        <tr>
+          <th>Creador</th>
+          <th>Ciclo</th>
+          <th>Nivel de lengua</th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @bloques.each do |bloque| %>
-      <tr>
-        <td><%= bloque.fecha_inicio %></td>
-        <td><%= bloque.fecha_final %></td>
-        <td><%= link_to 'Mostrar', bloque, class: "btn btn-info" %></td>
-        <td><%= link_to 'Edit', edit_bloque_path(bloque), class: "btn btn-warning" %></td>
-        <!-- <td><%= link_to 'Destroy', bloque, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Bloque', new_bloque_path %>
+      <tbody>
+        <% @bloques.each do |bloque| %>
+          <tr>
+            <td><%= bloque.creador %></td>
+            <td>
+             <% if !bloque.ciclo.nil? %>
+              <%= link_to "#{bloque.ciclo.codigo}, #{bloque.ciclo.nombre}", edit_ciclo_path(bloque.ciclo) %>
+              <%#= bloque.ciclo_nombre %>
+             <% end %>
+           </td>
+           <td>
+            <% if !bloque.nivel.nil? %>
+              <%= bloque.nivel.nombre %>
+            <% end %>
+          </td>
+            <td class="align-column-content-center"><%= link_to 'Mostrar', edit_bloque_path(bloque), class: "btn btn-warning" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <%# link_to 'New Bloque', new_bloque_path %>
+  </div>
+</section>

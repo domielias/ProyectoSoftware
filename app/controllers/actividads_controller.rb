@@ -1,10 +1,11 @@
 class ActividadsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_actividad, only: [:show, :edit, :update, :destroy]
 
   # GET /actividads
   # GET /actividads.json
   def index
-    @actividads = Actividad.all
+    @actividad = Actividad.accessible_by(current_ability)
   end
 
   # GET /actividads/1
@@ -15,6 +16,7 @@ class ActividadsController < ApplicationController
   # GET /actividads/new
   def new
     @actividad = Actividad.new
+    @clase_actividads = @actividad.clase_actividads.build
   end
 
   # GET /actividads/1/edit
@@ -26,46 +28,31 @@ class ActividadsController < ApplicationController
   def create
     @actividad = Actividad.new(actividad_params)
 
-    params[:clases][:id].each do |clase|
-      if !clase.empty?
-        @actividad.clase_actividads.build(clase_id: clase)
-      end
+    # params[:clases][:id].each do |clase|
+    #   if !clase.empty?
+    #     @actividad.clase_actividads.build(clase_id: clase)
+    #   end
+    # end
+
+
+    if @actividad.save
+      redirect_to actividads_url
+    else
+      format.html { render :new }
     end
 
-    respond_to do |format|
-      if @actividad.save
-        format.html { redirect_to @actividad, notice: 'Actividad was successfully created.' }
-        format.json { render :show, status: :created, location: @actividad }
-      else
-        format.html { render :new }
-        format.json { render json: @actividad.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /actividads/1
   # PATCH/PUT /actividads/1.json
   def update
 
-    ClaseActividad.where(actividad_id: @actividad).where.not(clase_id: params[:clases][:id].reject { |e| e.empty? }).delete_all
-
-    params[:clases][:id].each do |clase|
-      if !clase.empty?
-        if !ClaseActividad.exists?(actividad_id: @actividad, clase_id: clase)
-        @actividad.clase_actividads.build(clase_id: clase)
-        end
-      end
+    if @actividad.update(actividad_params)
+      redirect_to actividads_url
+    else
+      format.html { render :new }
     end
 
-    respond_to do |format|
-      if @actividad.update(actividad_params)
-        format.html { redirect_to @actividad, notice: 'Actividad was successfully updated.' }
-        format.json { render :show, status: :ok, location: @actividad }
-      else
-        format.html { render :edit }
-        format.json { render json: @actividad.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # DELETE /actividads/1
@@ -84,8 +71,9 @@ class ActividadsController < ApplicationController
       @actividad = Actividad.find(params[:id])
     end
 
+
     # Only allow a list of trusted parameters through.
     def actividad_params
-      params.require(:actividad).permit(:fecha_inicio, :fecha_final, :descripcion, :ubicacion, :forma_de_transporte, :dentro_de_la_ciudad)
+      params.require(:actividad).permit(:fecha, :del_departamento, :hora_inicio, :hora_fin, :user_id,:nombre_de_la_actividad,:objetivo, :ubicacion, :forma_de_transporte, :dentro_de_la_ciudad, clase_ids: [])
     end
 end

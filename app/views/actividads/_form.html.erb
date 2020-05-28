@@ -1,16 +1,8 @@
 <%= form_with(model: actividad, local: true) do |form| %>
 <% if actividad.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(actividad.errors.count, "error") %>
-      prohibited this actividad from being saved:</h2>
-
-    <ul>
-      <% actividad.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+  <%= render '/shared/errors', obj: @actividad %>
 <% end %>
+
 
 <div class="card-container">
   <div class="card card-default">
@@ -24,10 +16,32 @@
       </div>
     </div>
     <div class="card-body">
+      <% if current_user.admin? %>
       <div class="col-md-12 col-sm-12">
         <div class="form-group">
-          <%= form.check_box :dentro_de_la_ciudad %>
-          <%= form.label :dentro_de_la_ciudad, "Será dentro de la ciudad ?" %>
+          <br>
+          <h5><%= form.check_box :del_departamento%> Es una actividad planificada por coordinación ?</h5>
+        </div>
+      </div>
+      <% end %>
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-5 col-sm-5">
+          <div class="form-group">
+            <h6>Creador</h6>
+              <%= form.text_field :creador, {value: current_user.persona.id_campus_nombres_apellidos, readonly: true, class: 'form-control'}  %>
+              <!-- <input class= "form-control" placeholder=<%="#{current_user.persona.id_campus + current_user.persona.nombres + current_user.persona.apellidos}" %> readonly= true> -->
+              <%= form.hidden_field :user_id, value: current_user.id %>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <br>
+            <h5><%= form.check_box :dentro_de_la_ciudad%> Será dentro de la ciudad ?</h5>
+          </div>
         </div>
       </div>
       <div class="row col-md-12 col-sm-12">
@@ -39,16 +53,24 @@
         </div>
         <div class="col-md-6 col-sm-6">
           <div class="form-inline select-time-div-margin">
-            <h8 class='select-time-header-margin'>Desde</h8>
-            <%= form.time_select :hora_inicio, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
+            <div class="list-inline-item">
+              <h8 class='select-time-header-margin'>Desde</h8>
+              <%= form.time_select :hora_inicio, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
+            </div>
+            <div class="list-inline-item">
             <h8 class='select-time-header-margin'>Hasta</h8>
             <%= form.time_select :hora_fin, { }, { class: 'form-control', default: {hour: '18', minute: '00'}} %>
+            </div>
           </div>
         </div>
       </div>
       <div class="col-md-12 col-sm-12">
-        <h5>Descripción</h5>
-        <%= form.text_field :descripcion, { class: 'form-control'} %>
+        <h5>Nombre</h5>
+        <%= form.text_field :nombre_de_la_actividad, { class: 'form-control'} %>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <h5>Objetivo</h5>
+        <%= form.text_area :objetivo, { class: 'form-control'} %>        
       </div>
       <div class="row col-md-12 col-sm-12">
         <div class="col-md-6 col-sm-6">
@@ -63,12 +85,26 @@
 
       <hr/>
       <h5>Clases participantes</h5>
-      <%= collection_select(:clases, :id, Clase.where.not(activo: false), :id, :no_clase, {selected: actividad.clases.map(&:id)}, {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+      <!-- Clase.joins(:ciclo).where(:ciclos => {actual: true}) Para solo clases actuales-->
+      <% if current_user.admin? %>
+      <%= form.collection_select(:clase_ids, Clase.all, :id, :no_clase,
+                                  {selected: actividad.clases.map(&:id)},
+                                  {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+
+
+      <% else %>
+      <%= form.collection_select(:clase_ids, Clase.where(profesor_id: current_user.id), :id, :no_clase,
+                                  {selected: actividad.clases.map(&:id)},
+                                  {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+      <% end %>
 
     </div>
   </div>
+  <div class="float-left">
+  <%= link_to 'Regresar', 'javascript:history.back()', class: "btn btn-block btn-outline-primary" %>
+  </div>
   <div class="float-right">
-    <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+    <%= form.submit 'Finalizar', {class: "btn bg-gradient-success",data: { confirm: '¿Desea crear esta actividad?'}} %>
   </div>
 </div>
 <% end %>

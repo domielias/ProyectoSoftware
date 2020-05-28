@@ -1,4 +1,5 @@
 class AsignaturasController < ApplicationController
+  load_and_authorize_resource
   before_action :set_asignatura, only: [:show, :edit, :update, :destroy]
 
   # GET /asignaturas
@@ -27,15 +28,15 @@ class AsignaturasController < ApplicationController
   def create
     @asignatura = Asignatura.new(asignatura_params)
 
-    respond_to do |format|
+    # respond_to do |format|
       if @asignatura.save
-        format.html { redirect_to @asignatura, notice: 'Asignatura was successfully created.' }
-        format.json { render :show, status: :created, location: @asignatura }
+        redirect_to configuracion_path
+        # format.html { redirect_to @asignatura, notice: 'Asignatura was successfully created.' }
+        # format.json { render :show, status: :created, location: @asignatura }
       else
-        format.html { render :new }
-        format.json { render json: @asignatura.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @asignatura.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # PATCH/PUT /asignaturas/1
@@ -70,6 +71,6 @@ class AsignaturasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def asignatura_params
-      params.require(:asignatura).permit(:nombre,:clave, :valor_teorico, :valor_practico, :valor_credito, :facultad_id)
+      params.require(:asignatura).permit(:nombre, :clave, :valor_teorico, :valor_practico, :valor_credito, :facultad_id)
     end
 end

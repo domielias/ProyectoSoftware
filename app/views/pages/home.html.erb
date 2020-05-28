@@ -1,78 +1,94 @@
 <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
-          </div>
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Estadística</h1>
+      </div>
     </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
 <!-- /.col -->
-<!-- /.col -->   
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3><%= Estudiante.where(:admitido =>true).where(:egresado=>false).count  %></h3>
-                <p>Estudiantes Activos</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="estudiantes" class="small-box-footer">Más Información <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
+<!-- /.col -->
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-info">
+          <div class="inner">
+            <h3><%= Estudiante.where(:admitido =>true).where(:egresado=>false).count  %></h3>
+            <p>Estudiantes Activos</p>
           </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <!--<h3>53<sup style="font-size: 20px">%</sup></h3>-->
-                <h3><%= Estudiante.where(:admitido =>true).where(:egresado=>true).count  %></h3>
-
-                <p>Cantidad de Egresados</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="egresados" class="small-box-footer">Mas Información <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
+          <div class="icon">
+            <i class="ion ion-bag"></i>
           </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3><%= Estudiante.where(:admitido =>false).count  %></h3>
-
-                <p>Proceso de admisión en curso</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="no_admitidos" class="small-box-footer">Mas Información <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
+          <a href="estudiantes" class="small-box-footer">Más Información <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-success">
+          <div class="inner">
+            <!--<h3>53<sup style="font-size: 20px">%</sup></h3>-->
+            <h3><%= Estudiante.where(:admitido =>true).where(:egresado=>true).count  %></h3>
+            <p>Cantidad de Egresados</p>
           </div>
-          <!-- ./col -->
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>0</h3>
-
-                <p>Usuarios Registrados</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+          <a href="egresados" class="small-box-footer">Mas Información <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <h3><%= Estudiante.where(:admitido =>false).count  %></h3>
+            <p>Proceso de admisión en curso</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-pie-graph"></i>
+          </div>
+          <a href="no_admitidos" class="small-box-footer">Mas Información <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      <!-- ./col -->
+      <!-- ./col -->
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-warning">
+          <div class="inner">
+            <%# Ciclo.where(:actual =>true) ? ciclo_id=Ciclo.where(:actual =>true) : ciclo=nil %>
+            <% Ciclo.where(:actual =>true).present?  ? ciclo = Ciclo.find(Ciclo.where(:actual =>true).ids.shift) : ciclo = nil%>
+            <% if !ciclo.nil? %>
+              <%#ciclo= Ciclo.find(ciclo_id.ids.shift)%>
+              <h3><%=ciclo.nombre%></h3>
+            <% elsif ciclo.nil? %>
+              <h3>No hay un ciclo</h3>
+            <% end %>
+            <p>Ciclo Actual</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-person-add"></i>
+          </div>
+          <div class="small-box-footer">
+            <%# link_to 'Finalizar', finalizar_temporada_path(temporada), class: "btn btn-danger" %>
+            <% if !ciclo.nil? %>
+              <%= link_to 'Finalizar', finalizar_ciclo_path(ciclo), class: "small-box-footer" %>
+            <% elsif ciclo.nil? %>
+              <a class="small-box-footer"> No hay ciclo para finalizar</a>
+            <% end %>
+            <i class="fa fa-arrow-circle-right"></i>
           </div>
         </div>
-        <!-- /.row -->
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+</section>

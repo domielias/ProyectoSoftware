@@ -1,4 +1,5 @@
 class ProgramaInternacionalsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_programa_internacional, only: [:show, :edit, :update, :destroy]
 
   # GET /programa_internacionals
@@ -27,15 +28,15 @@ class ProgramaInternacionalsController < ApplicationController
   def create
     @programa_internacional = ProgramaInternacional.new(programa_internacional_params)
 
-    respond_to do |format|
+    # respond_to do |format|
       if @programa_internacional.save
-        format.html { redirect_to @programa_internacional, notice: 'Programa internacional was successfully created.' }
-        format.json { render :show, status: :created, location: @programa_internacional }
+        redirect_to configuracion_path
+        # format.html { redirect_to @programa_internacional, notice: 'Programa internacional was successfully created.' }
+        # format.json { render :show, status: :created, location: @programa_internacional }
       else
-        format.html { render :new }
-        format.json { render json: @programa_internacional.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @programa_internacional.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # PATCH/PUT /programa_internacionals/1
@@ -71,6 +72,6 @@ class ProgramaInternacionalsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def programa_internacional_params
       # params.require(:programa_internacional).permit(:nombre, pai_attributes: [:id, :nombre, :nacionalidad])
-      params.require(:programa_internacional).permit(:nombre, :pai_id)
+      params.require(:programa_internacional).permit(:nombre, :pai_id,:institucion_id)
     end
 end

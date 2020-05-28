@@ -1,4 +1,5 @@
 class ExamenDeNivelsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_examen_de_nivel, only: [:show, :edit, :update, :destroy]
 
   # GET /examen_de_nivels
@@ -69,6 +70,6 @@ class ExamenDeNivelsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def examen_de_nivel_params
-      params.require(:examen_de_nivel).permit(:promedio)
+      params.require(:examen_de_nivel).permit(:promedio, :fecha_examen)
     end
 end

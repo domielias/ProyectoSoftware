@@ -1,4 +1,5 @@
 class PaisController < ApplicationController
+  load_and_authorize_resource
   before_action :set_pai, only: [:show, :edit, :update, :destroy]
 
   # GET /pais
@@ -25,15 +26,15 @@ class PaisController < ApplicationController
   # POST /pais.json
   def create
     @pai = Pai.new(pai_params)
-
-    respond_to do |format|
-      if @pai.save
-        format.html { redirect_to @pai, notice: 'Pai was successfully created.' }
-        format.json { render :show, status: :created, location: @pai }
-      else
-        format.html { render :new }
-        format.json { render json: @pai.errors, status: :unprocessable_entity }
-      end
+    # respond_to do |format|
+    if @pai.save
+      # flash[:success] = 'Carrera Solicitada creada'
+      redirect_to configuracion_path
+      # format.html { redirect_to @pai, notice: 'Pai was successfully created.' }
+      # format.json { render :show, status: :created, location: @pai }
+    else
+      # format.html { render :new }
+      # format.json { render json: @pai.errors, status: :unprocessable_entity }
     end
   end
 
@@ -69,6 +70,6 @@ class PaisController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pai_params
-      params.require(:pai).permit(:nombre, :nacionalidad, :lugar_nacimiento)
+      params.require(:pai).permit(:nombre, :nacionalidad)
     end
 end

@@ -1,0 +1,35 @@
+<section class="content">
+  <div class="container-fluid">
+    <h1>Usuarios</h1>
+
+<table class="table table-striped display" role='datatable'>
+  <thead>
+    <tr>
+      <th>Correo electrónico</th>
+      <th>Id Campus</th>
+      <th>Nombres</th>
+      <th>Apellidos</th>
+      <th>Contraseña inicial</th>
+      <th>Es administrador ?</th>
+      <th>Es profesor ?</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.persona.id_campus %></td>
+        <td><%= user.persona.nombres %></td>
+        <td><%= user.persona.apellidos %></td>
+        <td><%= user.initial_password %></td>
+        <td><%= user.admin ? :Sí : :No %></td>
+        <td><%= user.profesor ? :Sí : :No %></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</section>

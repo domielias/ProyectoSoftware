@@ -1,5 +1,5 @@
 <h3>Listado de clases de
-  <%= @estudiante.id_campus%>
+  <%= @estudiante.persona.id_campus%>
   -
   <%=@estudiante.persona.nombres%>
   <%=@estudiante.persona.apellidos%>
@@ -12,7 +12,7 @@
       <th>No. Clase</th>
       <th>Sección</th>
       <th>Asignatura</th>
-      <th>Temporada</th>
+      <th>Ciclo</th>
       <th>Está activa ?</th>
       <th></th>
     </tr>
@@ -31,11 +31,16 @@
             <% end %>
           </td>
           <td>
-            <% if !clase.temporada.nil? %>
-              <%= clase.temporada_nombre %>
+            <% if !clase.bloque.ciclo.nil? %>
+              <%= clase.bloque.ciclo_nombre %>
             <% end %>
           </td>
-          <td><%= clase.activo ? :Si : :No %></td>
+          
+          <td>
+              <% if !clase.bloque.ciclo.nil? %>
+                <%= clase.bloque.ciclo.actual ? :Si : :No %>
+              <% end %>
+          </td>
           <td><%= link_to 'Detallar', clase, class: "btn btn-info" %></td>
         </tr>
       <% end %>

@@ -2,7 +2,7 @@
 
 <p>
   <strong>Formulario solicitud:</strong>
-  <%= @progreso_inscripcion.formulario_solicitud %>
+  <%= @progreso_inscripcion.formulario_admisiones %>
 </p>
 
 <p>
@@ -22,7 +22,7 @@
 
 <p>
   <strong>Copia cedula:</strong>
-  <%= @progreso_inscripcion.copia_cedula %>
+  <%= @progreso_inscripcion.copia_pasaporte %>
 </p>
 
 <p>
@@ -42,22 +42,17 @@
 
 <p>
   <strong>Copia seguro salud:</strong>
-  <%= @progreso_inscripcion.copia_seguro_salud %>
+  <%= @progreso_inscripcion.seguro_medico_o_viajero %>
 </p>
 
 <p>
   <strong>Acta nacimiento padre:</strong>
-  <%= @progreso_inscripcion.acta_nacimiento_padre %>
+  <%= @progreso_inscripcion.acta_nacimiento_padres %>
 </p>
 
 <p>
   <strong>Record notas original de univ de procedencia:</strong>
   <%= @progreso_inscripcion.record_notas_original_de_univ_de_procedencia %>
-</p>
-
-<p>
-  <strong>Copia vacunacion:</strong>
-  <%= @progreso_inscripcion.copia_vacunacion %>
 </p>
 
 <%= link_to 'Edit', edit_progreso_inscripcion_path(@progreso_inscripcion) %> |

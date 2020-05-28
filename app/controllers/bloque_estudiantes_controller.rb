@@ -1,4 +1,5 @@
 class BloqueEstudiantesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_bloque_estudiante, only: [:show, :edit, :update, :destroy]
 
   # GET /bloque_estudiantes
@@ -69,6 +70,6 @@ class BloqueEstudiantesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bloque_estudiante_params
-      params.require(:bloque_estudiante).permit(:bloque_id, :estudiante_id)
+      params.require(:bloque_estudiante).permit(:bloque_id, :estudiante_id,:asignaturas_solicitadas)
     end
 end

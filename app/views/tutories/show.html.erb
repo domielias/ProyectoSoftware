@@ -1,14 +1,74 @@
-<p id="notice"><%= notice %></p>
+<%= form_with(model: @tutory, local: true) do |form| %>
+  <% if @tutory.errors.any? %>
+    <%= render '/shared/errors', obj: @tutory %>
+  <% end %>
+  <div class="card-container">
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title">Datos generales</h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <div class="card-body">
+        <div class="row col-md-12 col-sm-12">
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <h5>Profesor</h5>
+              <%= form.text_field :user_id, { class: 'form-control', value:current_user.persona.id_campus_nombres_apellidos, readonly: true} %>
+            </div>
+          </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <h5>Ubicación</h5>
+            <%= form.text_field :ubicacion, {class: "form-control", readonly: true} %>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <h5>Clase</h5>
+            <!-- <%= form.collection_select(:ciclo_id, Ciclo.all, :id, :nombre,{},{class:"form-control"}) %> -->
+            <% if !@tutory.clase.nil? %>
+              <%= form.text_field :clase_id, {class: 'forma-control', value: @tutory.clase.no_clase, readonly: true} %>
+            <% else %>
+              <%= form.text_field :clase_id, {class: 'forma-control', value: '', readonly: true} %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+        <hr/>
+        <hr/>
 
-<p>
-  <strong>Profesor:</strong>
-  <%= @tutory.profesor_id %>
-</p>
+        <div class="col-md-10 col-sm-10">
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Horarios</h3>
+            </div>
+            <div class="card-body">
+              <table class="table table-striped display" role='lista_horario'>
+                <thead>
+                  <tr>
+                    <th>Día</th>
+                    <th>Desde</th>
+                    <th>Hasta</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @tutory.horarios.each do |horario| %>
+                    <tr>
+                      <td><%=horario.dias%></td>
+                      <td><%=horario.start.strftime("%H:%M")%></td>
+                      <td><%=horario.end.strftime("%H:%M")%></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
 
-<p>
-  <strong>Clase:</strong>
-  <%= @tutory.clase_id %>
-</p>
-
-<%= link_to 'Edit', edit_tutory_path(@tutory) %> |
-<%= link_to 'Back', tutories_path %>
+  </div>
+</div>
+<div class="float-right">
+  <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+</div>
+<% end %>

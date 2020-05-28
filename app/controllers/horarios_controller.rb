@@ -1,4 +1,5 @@
 class HorariosController < ApplicationController
+  load_and_authorize_resource
   before_action :set_horario, only: [:show, :edit, :update, :destroy]
 
   # GET /horarios
@@ -69,6 +70,6 @@ class HorariosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def horario_params
-      params.require(:horario).permit(:clase_id, :tutoria_id, :dias, :inicio, :fin)
+      params.require(:horario).permit(:clase_id, :tutoria_id, :dias, :start, :end)
     end
 end

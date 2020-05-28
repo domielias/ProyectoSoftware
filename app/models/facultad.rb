@@ -1,4 +1,4 @@
 class Facultad < ApplicationRecord
-    has_many :estudiante
+    has_many :estudiantes
     has_many :asignaturas
 end

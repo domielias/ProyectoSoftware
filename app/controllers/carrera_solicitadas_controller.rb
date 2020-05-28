@@ -1,4 +1,5 @@
 class CarreraSolicitadasController < ApplicationController
+  load_and_authorize_resource
   before_action :set_carrera_solicitada, only: [:show, :edit, :update, :destroy]
 
   # GET /carrera_solicitadas
@@ -28,11 +29,13 @@ class CarreraSolicitadasController < ApplicationController
 
     respond_to do |format|
       if @carrera_solicitada.save
-        format.html { redirect_to @carrera_solicitada, notice: 'Carrera solicitada was successfully created.' }
-        format.json { render :show, status: :created, location: @carrera_solicitada }
+        redirect_to configuracion_path
+        # flash[:success] = 'Carrera Solicitada creada'
+        # format.html { redirect_to @carrera_solicitada, notice: 'Carrera solicitada was successfully created.' }
+        # format.json { render :show, status: :created, location: @carrera_solicitada }
       else
-        format.html { render :new }
-        format.json { render json: @carrera_solicitada.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @carrera_solicitada.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -2,7 +2,10 @@
  
 Proyecto Software EPE
 
-Este proyecto se trata de mejorar los proceso en la instancia de Español para Extranjeros  
+Este es un Proyecto de la Asignatura de Ingeniería de Software para la unidad
+de Español para extranjeros de la Pontificia Universidad
+Catolica Madre y Maestra (PUCMM) de parte de los estudiantes de Ing. Sistemas
+Computacionales
 
 Entre las cualidades de este proyecto se tiene:
 

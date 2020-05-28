@@ -1,38 +1,65 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Actividads</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Fecha inicio</th>
-      <th>Fecha final</th>
-      <th>Descripcion</th>
-      <th>Ubicacion</th>
-      <th>Forma de transporte</th>
-      <th>Dentro de la ciudad</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<section class="content">
+  <div class="container-fluid">
+    <h1>Actividades</h1>
 
-  <tbody>
-    <% @actividads.each do |actividad| %>
-      <tr>
-        <td><%= actividad.fecha %></td>
-        <td><%= actividad.hora_inicio %></td>
-        <td><%= actividad.hora_fin %></td>
-        <td><%= actividad.descripcion %></td>
-        <td><%= actividad.ubicacion %></td>
-        <td><%= actividad.forma_de_transporte %></td>
-        <td><%= actividad.dentro_de_la_ciudad %></td>
-        <td><%= link_to 'Show', actividad %></td>
-        <td><%= link_to 'Edit', edit_actividad_path(actividad) %></td>
-        <td><%= link_to 'Destroy', actividad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <table class="table table-striped display" role='datatable'>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Hora Inicio</th>
+          <th>Hora final</th>
+          <th>Nombre</th>
+          <th>Forma de transporte</th>
+          <th>Dentro de la ciudad</th>
+          <th>Creador</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-<br>
+      <tbody>
+        <% @actividads.each do |actividad| %>
+          <tr>
+            <% if !actividad.fecha.nil? %>
+              <td><%= actividad.fecha.strftime("%d/%m/%Y")  %></td>
+            <% else %>
+              <td> No tiene</td>
+            <% end %>
+            <% if !actividad.hora_inicio.nil? %>
+              <td><%= actividad.hora_inicio.strftime("%I:%M %p")  %></td>
+            <% else %>
+              <td> No tiene</td>
+            <% end %>
+            <% if !actividad.hora_fin.nil? %>
+              <td><%= actividad.hora_fin.strftime("%I:%M %p")  %></td>
+            <% else %>
+              <td> No tiene</td>
+            <% end %>
+            <% if !actividad.nombre_de_la_actividad.nil? %>
+              <td><%= actividad.nombre_de_la_actividad  %></td>
+            <% else %>
+              <td> No tiene</td>
+            <% end %>
+            <td><%= actividad.forma_de_transporte %></td>
+            <td><%= actividad.dentro_de_la_ciudad ? :Si : :No %></td>
+            <% if actividad.user_id == current_user.id %>
+            <td>Yo</td>
+            <% else %>
+            <td><%=actividad.user.persona.id_campus_nombres_apellidos%></td>
+            <% end %>
+            <td class="align-column-content-center"><%= link_to 'Presentar', actividad, class: "btn btn-info" %></td>
+            <td class="align-column-content-center"><% if can? :update, actividad %><%= link_to 'Editar', edit_actividad_path(actividad), class: "btn btn-warning" %><% end %></td>
+            <td class="align-column-content-center"><% if can? :destroy, actividad %><%= link_to 'Eliminar', actividad, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %><% end %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<%= link_to 'New Actividad', new_actividad_path %>
+    <br>
+    <%# link_to 'New Actividad', new_actividad_path %>
+  </div>
+</section>

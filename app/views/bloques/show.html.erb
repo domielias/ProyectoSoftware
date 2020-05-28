@@ -1,14 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Fecha inicio:</strong>
-  <%= @bloque.fecha_inicio %>
-</p>
 
-<p>
-  <strong>Fecha final:</strong>
-  <%= @bloque.fecha_final %>
-</p>
+<% @mis_clases.each do |estudiante| %>
+  <%= estudiante.inspect %>
+<% end %>
 
 <%= link_to 'Edit', edit_bloque_path(@bloque) %> |
 <%= link_to 'Back', bloques_path %>

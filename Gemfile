@@ -7,7 +7,6 @@ ruby '2.6.5'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'rails_12factor'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -18,8 +17,10 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
+gem 'cancancan'
 #Use FontAwesome
-gem 'font-awesome-rails', '~> 4.7.0.5'
+gem 'coffee-rails'
+gem 'font_awesome5_rails', '~> 1.1.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -32,6 +33,14 @@ gem 'rails-assets-datatables', source: 'https://rails-assets.org'
 gem 'bootstrap-datepicker-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+gem 'devise'
+
+#gem calendar
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
+
+#Alerta
+gem 'sweetalert2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

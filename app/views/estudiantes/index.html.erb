@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Estudiantes</h1>
+<section class="content">
+  <div class="container-fluid">
+    <h1>Estudiantes</h1>
 
 <table class="table table-striped display" role='datatable'>
   <thead>
@@ -8,8 +10,8 @@
       <th>#</th>
       <th>Nombre</th>
       <th>Apellido</th>
-      <th>Id Campus</th>
-      <th>Matricula</th>
+      <th>ID estudiante</th>
+      <th>Programa</th>
       <th>Sexo</th>
       <th>Egresado</th>
       <th></th>
@@ -20,26 +22,32 @@
 
   <tbody>
     <% n=0 %>
-      <% @estudiantes.each do |estudiante| %>
-        <% if estudiante.admitido == true and estudiante.egresado == false %>
+      <% @estudiantes.where(admitido: true).each do |estudiante| %>
           <tr>
             <td><%= n+=1 %></td>
             <td><%= estudiante.persona.nombres %></td>
             <td><%= estudiante.persona.apellidos %></td>
-            <td><%= estudiante.id_campus %></td>
-            <td><%= estudiante.matricula %></td>
+            <td><%= estudiante.persona.id_campus %></td>
+            <% if !estudiante.programa_internacional.nil? %>
+              <td> <%= estudiante.programa_internacional.nombre %> </td>
+            <% elsif !estudiante.carrera_solicitada.nil? %>
+              <td><%= estudiante.carrera_solicitada.nombre %></td>
+            <% elsif !estudiante.programa_epe_solicitado.nil? %>
+              <td><%= estudiante.programa_epe_solicitado.nombre %></td>
+            <% else %>
+              <td>No pertenece a ningún programa</td>
+            <% end %>
             <td><%= estudiante.sexo %></td>
             <td><%= estudiante.egresado ? :Si : :No %></td>
-            <td><%= link_to 'Mostrar', estudiante, class: "btn btn-info" %></td>
+            <td class="align-column-content-center"><%= link_to 'Mostrar calendario actual', mostrar_horario_actual_estudiante_path(id: estudiante), class: "btn btn-secondary" %></td>
             <td><%= link_to 'Listar Clases', listar_clases_estudiante_path(estudiante), class: "btn btn-secondary" %></td>
-            <td><%= link_to 'Editar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
+            <td class="align-column-content-center"><%= link_to 'Mostrar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
           </td>
         </tr>
-      <%end %>
-    <% end %>
-  </tbody>
-</table>
+        <% end %>
+      </tbody>
+    </table>
 
-<br>
-
-<%= link_to 'Nuevo Estudiante', new_estudiante_path, class: "btn btn-primary" %>
+  <br>
+  </div>
+</section>
