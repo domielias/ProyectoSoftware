@@ -1,24 +1,30 @@
-# README
+# READ ME
+ 
+Proyecto Software EPE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este proyecto se trata de mejorar los proceso en la instancia de Español para Extranjeros  
 
-Things you may want to cover:
+Entre las cualidades de este proyecto se tiene:
 
-* Ruby version
+* Gestión de Estudiantes 
 
-* System dependencies
+* Gestión de Clases
 
-* Configuration
+* Gestión de Programación
 
-* Database creation
+* Gestión de Horarios
 
-* Database initialization
+* Gestión de Tutorías/Actividades
 
-* How to run the test suite
+* Gestión de Profesores
 
-* Services (job queues, cache servers, search engines, etc.)
+* Gestión de Usuarios
 
-* Deployment instructions
+* Configuración
 
-* ...
+* Manejo de reportes
+
+Desarrollado por los estudiantes de Ingeniería de Sistemas Computacionales:
+
+* Dominigel Rodriguez Peña 2016-0797
+* Louvens Rafael 2017-0639
