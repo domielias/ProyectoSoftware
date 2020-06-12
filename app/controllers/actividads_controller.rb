@@ -73,7 +73,8 @@ class ActividadsController < ApplicationController
   # PATCH/PUT /actividads/1.json
   def update
 
-    @n_actividad = Actividad.new(actividad_params).merge(id: @actividad.id)
+    # Esta variable es para obtener las modificaciones, el id es para que la actividad modif tenga el id de la actividad original
+    @n_actividad = Actividad.new(actividad_params.merge(:id => @actividad.id))
 
     @valid = true
 
@@ -89,15 +90,14 @@ class ActividadsController < ApplicationController
       end
     end
 
-    byebug
 
-    # if @valid
-    #   if @actividad.update(actividad_params)
-    #     redirect_to actividads_url
-    #   else
-    #     format.html { render :new }
-    #   end
-    # end
+    if @valid
+      if @actividad.update(actividad_params)
+        redirect_to actividads_url
+      else
+        format.html { render :new }
+      end
+    end
 
   end
 
