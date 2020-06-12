@@ -87,15 +87,13 @@ class ActividadsController < ApplicationController
       end
     end
 
-    byebug
-
-    # if @valid
-    #   if @actividad.update(actividad_params)
-    #     redirect_to actividads_url
-    #   else
-    #     format.html { render :new }
-    #   end
-    # end
+    if @valid
+      if @actividad.update(actividad_params)
+        redirect_to actividads_url
+      else
+        format.html { render :new }
+      end
+    end
 
   end
 
