@@ -73,16 +73,16 @@ class ActividadsController < ApplicationController
   # PATCH/PUT /actividads/1.json
   def update
 
-    # n_actividad = Acti
+    @n_actividad = Actividad.new(actividad_params).merge(id: @actividad.id)
 
     @valid = true
 
     # Todas actividades de los profesores de las clases seleccionadas
     # Actividad.joins(:clases).where(clases: {profesor_id: Clase.where(profesor_id: params[:actividad][:clase_ids]).ids}).each
-    Actividad.where.not(id: @actividad.id).each do |otra_actividad|
+    Actividad.where.not(id: @n_actividad.id).each do |otra_actividad|
       # Si las fechas son las mismas
-      if Time.at(otra_actividad.fecha).to_date === Time.at(@actividad.fecha).to_date
-        if ((@actividad.hora_inicio.strftime("%H:%M") < otra_actividad.hora_fin.strftime("%H:%M") && @actividad.hora_inicio.strftime("%H:%M") >= otra_actividad.hora_inicio.strftime("%H:%M")) && @actividad.hora_fin.strftime("%H:%M") > otra_actividad.hora_fin.strftime("%H:%M")) || (@actividad.hora_inicio.strftime("%H:%M") < otra_actividad.hora_inicio.strftime("%H:%M") && (@actividad.hora_fin.strftime("%H:%M") <= otra_actividad.hora_fin.strftime("%H:%M") && @actividad.hora_fin.strftime("%H:%M") > otra_actividad.hora_inicio.strftime("%H:%M"))) || ((@actividad.hora_inicio.strftime("%H:%M") > otra_actividad.hora_inicio.strftime("%H:%M") && @actividad.hora_inicio.strftime("%H:%M") < otra_actividad.hora_fin.strftime("%H:%M")) && (@actividad.hora_fin.strftime("%H:%M") > otra_actividad.hora_inicio.strftime("%H:%M") && @actividad.hora_fin.strftime("%H:%M") < otra_actividad.hora_fin.strftime("%H:%M"))) || (@actividad.hora_inicio.strftime("%H:%M") <= otra_actividad.hora_inicio.strftime("%H:%M") && @actividad.hora_fin.strftime("%H:%M") >= otra_actividad.hora_fin.strftime("%H:%M"))
+      if Time.at(otra_actividad.fecha).to_date === Time.at(@n_actividad.fecha).to_date
+        if ((@n_actividad.hora_inicio.strftime("%H:%M") < otra_actividad.hora_fin.strftime("%H:%M") && @n_actividad.hora_inicio.strftime("%H:%M") >= otra_actividad.hora_inicio.strftime("%H:%M")) && @n_actividad.hora_fin.strftime("%H:%M") > otra_actividad.hora_fin.strftime("%H:%M")) || (@n_actividad.hora_inicio.strftime("%H:%M") < otra_actividad.hora_inicio.strftime("%H:%M") && (@n_actividad.hora_fin.strftime("%H:%M") <= otra_actividad.hora_fin.strftime("%H:%M") && @n_actividad.hora_fin.strftime("%H:%M") > otra_actividad.hora_inicio.strftime("%H:%M"))) || ((@n_actividad.hora_inicio.strftime("%H:%M") > otra_actividad.hora_inicio.strftime("%H:%M") && @n_actividad.hora_inicio.strftime("%H:%M") < otra_actividad.hora_fin.strftime("%H:%M")) && (@n_actividad.hora_fin.strftime("%H:%M") > otra_actividad.hora_inicio.strftime("%H:%M") && @n_actividad.hora_fin.strftime("%H:%M") < otra_actividad.hora_fin.strftime("%H:%M"))) || (@n_actividad.hora_inicio.strftime("%H:%M") <= otra_actividad.hora_inicio.strftime("%H:%M") && @n_actividad.hora_fin.strftime("%H:%M") >= otra_actividad.hora_fin.strftime("%H:%M"))
           @valid = false
           break
         end
