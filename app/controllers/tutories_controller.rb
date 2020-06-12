@@ -56,20 +56,15 @@ class TutoriesController < ApplicationController
   # PATCH/PUT /tutories/1.json
   def update
 
-    # Esta variable es para obtener las modificaciones, el id es para que los horarios reconozcan de que tutoría vienen
-    @n_tutory = Tutory.new(tutory_params.merge(:id => @tutory.id))  
-
     @valid = true
 
-    # Aquí comparo solamente el estado de las nuevas actualizaciones entre ellas, para ver si chocan.
-    @n_tutory.horarios.each do |horario_tutoria|
-      @n_tutory.horarios.each do |horario_otra_tutoria|
-        if horario_tutoria.id != horario_otra_tutoria.id
-          if horario_tutoria.dias == horario_otra_tutoria.dias
-            if ((horario_tutoria.start.strftime("%H:%M") < horario_otra_tutoria.end.strftime("%H:%M") && horario_tutoria.start.strftime("%H:%M") >= horario_otra_tutoria.start.strftime("%H:%M")) && horario_tutoria.end.strftime("%H:%M") > horario_otra_tutoria.end.strftime("%H:%M")) || (horario_tutoria.start.strftime("%H:%M") < horario_otra_tutoria.start.strftime("%H:%M") && (horario_tutoria.end.strftime("%H:%M") <= horario_otra_tutoria.end.strftime("%H:%M") && horario_tutoria.end.strftime("%H:%M") > horario_otra_tutoria.start.strftime("%H:%M"))) || ((horario_tutoria.start.strftime("%H:%M") > horario_otra_tutoria.start.strftime("%H:%M") && horario_tutoria.start.strftime("%H:%M") < horario_otra_tutoria.end.strftime("%H:%M")) && (horario_tutoria.end.strftime("%H:%M") > horario_otra_tutoria.start.strftime("%H:%M") && horario_tutoria.end.strftime("%H:%M") < horario_otra_tutoria.end.strftime("%H:%M"))) || (horario_tutoria.start.strftime("%H:%M") <= horario_otra_tutoria.start.strftime("%H:%M") && horario_tutoria.end.strftime("%H:%M") >= horario_otra_tutoria.end.strftime("%H:%M"))
-              @valid = false
-              break
-            end
+    # Horario.joins(:tutory).where(tutories: {user_id: 3})
+    @tutory.horarios.each do |horario_tutoria|
+      Horario.joins(:tutory).where(tutories: {user_id: @tutory.user_id}).each do |horario_otra_tutoria|
+        if horario_tutoria.dias == horario_otra_tutoria.dias
+          if ((horario_tutoria.start.strftime("%H:%M") < horario_otra_tutoria.end.strftime("%H:%M") && horario_tutoria.start.strftime("%H:%M") >= horario_otra_tutoria.start.strftime("%H:%M")) && horario_tutoria.end.strftime("%H:%M") > horario_otra_tutoria.end.strftime("%H:%M")) || (horario_tutoria.start.strftime("%H:%M") < horario_otra_tutoria.start.strftime("%H:%M") && (horario_tutoria.end.strftime("%H:%M") <= horario_otra_tutoria.end.strftime("%H:%M") && horario_tutoria.end.strftime("%H:%M") > horario_otra_tutoria.start.strftime("%H:%M"))) || ((horario_tutoria.start.strftime("%H:%M") > horario_otra_tutoria.start.strftime("%H:%M") && horario_tutoria.start.strftime("%H:%M") < horario_otra_tutoria.end.strftime("%H:%M")) && (horario_tutoria.end.strftime("%H:%M") > horario_otra_tutoria.start.strftime("%H:%M") && horario_tutoria.end.strftime("%H:%M") < horario_otra_tutoria.end.strftime("%H:%M"))) || (horario_tutoria.start.strftime("%H:%M") <= horario_otra_tutoria.start.strftime("%H:%M") && horario_tutoria.end.strftime("%H:%M") >= horario_otra_tutoria.end.strftime("%H:%M"))
+            @valid = false
+            break
           end
         end
       end
