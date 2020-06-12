@@ -27,11 +27,28 @@ class TutoriesController < ApplicationController
   def create
     @tutory = Tutory.new(tutory_params)
 
-    if @tutory.save
-      redirect_to tutories_url
-    else
-      format.html { render :new }
+    @valid = true
+
+    # Horario.joins(:tutory).where(tutories: {user_id: 3})
+    @tutory.horarios.each do |horario_tutoria|
+      Horario.joins(:tutory).where(tutories: {user_id: @tutory.user_id}).each do |horario_otra_tutoria|
+        if horario_tutoria.dias == horario_otra_tutoria.dias
+          if ((horario_tutoria.start.strftime("%H:%M") < horario_otra_tutoria.end.strftime("%H:%M") && horario_tutoria.start.strftime("%H:%M") >= horario_otra_tutoria.start.strftime("%H:%M")) && horario_tutoria.end.strftime("%H:%M") > horario_otra_tutoria.end.strftime("%H:%M")) || (horario_tutoria.start.strftime("%H:%M") < horario_otra_tutoria.start.strftime("%H:%M") && (horario_tutoria.end.strftime("%H:%M") <= horario_otra_tutoria.end.strftime("%H:%M") && horario_tutoria.end.strftime("%H:%M") > horario_otra_tutoria.start.strftime("%H:%M"))) || ((horario_tutoria.start.strftime("%H:%M") > horario_otra_tutoria.start.strftime("%H:%M") && horario_tutoria.start.strftime("%H:%M") < horario_otra_tutoria.end.strftime("%H:%M")) && (horario_tutoria.end.strftime("%H:%M") > horario_otra_tutoria.start.strftime("%H:%M") && horario_tutoria.end.strftime("%H:%M") < horario_otra_tutoria.end.strftime("%H:%M"))) || (horario_tutoria.start.strftime("%H:%M") <= horario_otra_tutoria.start.strftime("%H:%M") && horario_tutoria.end.strftime("%H:%M") >= horario_otra_tutoria.end.strftime("%H:%M"))
+            @valid = false
+            break
+          end
+        end
+      end
     end
+
+    if @valid
+      if @tutory.save
+        redirect_to tutories_url
+      else
+        format.html { render :new }
+      end
+    end
+      
 
   end
 
@@ -39,10 +56,26 @@ class TutoriesController < ApplicationController
   # PATCH/PUT /tutories/1.json
   def update
 
-    if @tutory.update(tutory_params)
-      redirect_to tutories_url
-    else
-      format.html { render :new }
+    @valid = true
+
+    # Horario.joins(:tutory).where(tutories: {user_id: 3})
+    @tutory.horarios.each do |horario_tutoria|
+      Horario.joins(:tutory).where(tutories: {user_id: @tutory.user_id}).each do |horario_otra_tutoria|
+        if horario_tutoria.dias == horario_otra_tutoria.dias
+          if ((horario_tutoria.start.strftime("%H:%M") < horario_otra_tutoria.end.strftime("%H:%M") && horario_tutoria.start.strftime("%H:%M") >= horario_otra_tutoria.start.strftime("%H:%M")) && horario_tutoria.end.strftime("%H:%M") > horario_otra_tutoria.end.strftime("%H:%M")) || (horario_tutoria.start.strftime("%H:%M") < horario_otra_tutoria.start.strftime("%H:%M") && (horario_tutoria.end.strftime("%H:%M") <= horario_otra_tutoria.end.strftime("%H:%M") && horario_tutoria.end.strftime("%H:%M") > horario_otra_tutoria.start.strftime("%H:%M"))) || ((horario_tutoria.start.strftime("%H:%M") > horario_otra_tutoria.start.strftime("%H:%M") && horario_tutoria.start.strftime("%H:%M") < horario_otra_tutoria.end.strftime("%H:%M")) && (horario_tutoria.end.strftime("%H:%M") > horario_otra_tutoria.start.strftime("%H:%M") && horario_tutoria.end.strftime("%H:%M") < horario_otra_tutoria.end.strftime("%H:%M"))) || (horario_tutoria.start.strftime("%H:%M") <= horario_otra_tutoria.start.strftime("%H:%M") && horario_tutoria.end.strftime("%H:%M") >= horario_otra_tutoria.end.strftime("%H:%M"))
+            @valid = false
+            break
+          end
+        end
+      end
+    end
+
+    if @valid
+      if @tutory.update(tutory_params)
+        redirect_to tutories_url
+      else
+        format.html { render :new }
+      end
     end
 
   end
