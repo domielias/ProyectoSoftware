@@ -73,6 +73,8 @@ class ActividadsController < ApplicationController
   # PATCH/PUT /actividads/1.json
   def update
 
+    # n_actividad = Acti
+
     @valid = true
 
     # Todas actividades de los profesores de las clases seleccionadas
@@ -87,13 +89,15 @@ class ActividadsController < ApplicationController
       end
     end
 
-    if @valid
-      if @actividad.update(actividad_params)
-        redirect_to actividads_url
-      else
-        format.html { render :new }
-      end
-    end
+    byebug
+
+    # if @valid
+    #   if @actividad.update(actividad_params)
+    #     redirect_to actividads_url
+    #   else
+    #     format.html { render :new }
+    #   end
+    # end
 
   end
 
