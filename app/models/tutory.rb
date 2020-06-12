@@ -1,5 +1,5 @@
 class Tutory < ApplicationRecord
-    has_many :horarios
+    has_many :horarios, :dependent => :destroy
     belongs_to :clase, optional: true
     # belongs_to :profesor, :class_name => "Usuario"
 
