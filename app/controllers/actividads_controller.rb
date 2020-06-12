@@ -73,10 +73,26 @@ class ActividadsController < ApplicationController
   # PATCH/PUT /actividads/1.json
   def update
 
-    if @actividad.update(actividad_params)
-      redirect_to actividads_url
-    else
-      format.html { render :new }
+    @valid = true
+
+    # Todas actividades de los profesores de las clases seleccionadas
+    # Actividad.joins(:clases).where(clases: {profesor_id: Clase.where(profesor_id: params[:actividad][:clase_ids]).ids}).each
+    Actividad.all.each do |otra_actividad|
+      # Si las fechas son las mismas
+      if Time.at(otra_actividad.fecha).to_date === Time.at(@actividad.fecha).to_date
+        if ((@actividad.hora_inicio.strftime("%H:%M") < otra_actividad.hora_fin.strftime("%H:%M") && @actividad.hora_inicio.strftime("%H:%M") >= otra_actividad.hora_inicio.strftime("%H:%M")) && @actividad.hora_fin.strftime("%H:%M") > otra_actividad.hora_fin.strftime("%H:%M")) || (@actividad.hora_inicio.strftime("%H:%M") < otra_actividad.hora_inicio.strftime("%H:%M") && (@actividad.hora_fin.strftime("%H:%M") <= otra_actividad.hora_fin.strftime("%H:%M") && @actividad.hora_fin.strftime("%H:%M") > otra_actividad.hora_inicio.strftime("%H:%M"))) || ((@actividad.hora_inicio.strftime("%H:%M") > otra_actividad.hora_inicio.strftime("%H:%M") && @actividad.hora_inicio.strftime("%H:%M") < otra_actividad.hora_fin.strftime("%H:%M")) && (@actividad.hora_fin.strftime("%H:%M") > otra_actividad.hora_inicio.strftime("%H:%M") && @actividad.hora_fin.strftime("%H:%M") < otra_actividad.hora_fin.strftime("%H:%M"))) || (@actividad.hora_inicio.strftime("%H:%M") <= otra_actividad.hora_inicio.strftime("%H:%M") && @actividad.hora_fin.strftime("%H:%M") >= otra_actividad.hora_fin.strftime("%H:%M"))
+          @valid = false
+          break
+        end
+      end
+    end
+
+    if @valid
+      if @actividad.update(actividad_params)
+        redirect_to actividads_url
+      else
+        format.html { render :new }
+      end
     end
 
   end
