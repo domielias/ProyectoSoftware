@@ -52,6 +52,11 @@ function init_select2(){
   });
 };
 
+$(document).on("turbolinks:before-cache", function() {
+  $('.select2-simple-dropdown').select2('destroy');
+  $('.select2-multiple-dropdown').select2('destroy');
+});
+
 $(document).on('turbolinks:load', function () {
   $('.select2-simple-dropdown').select2({placeholder: "Elegir", allowClear: true, width: '100%', language: "es"});
 });
