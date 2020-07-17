@@ -1,43 +1,43 @@
 <div class="card card-info">
-              <div class="card-header">
-                <h3 class="card-title">Horario</h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <div class="card-body">
-                <div class="col-md-12 col-sm-12">
-                  <% if can? :update, @clase %>
-                  <%= form.select :dias, ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'], {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
-                  <% else %>
-                  <%= form.text_field nil, { class: 'form-control', value: form.object.dias, readonly: true} %>
-                  <% end %>
-                </div>
-                <div class="col-md-12 col-sm-12">
-                  <div class="form-inline select-time-div-margin">
-                    <div class="">
-                      <h8 class='select-time-header-margin'>Desde</h8>
-                      <% if can? :update, @clase %>
-                      <%= form.time_select :start, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
-                      <% else %>
-                      <%= form.time_select :start, { }, { class: 'form-control', disabled: true} %>
-                      <% end %>
-                    </div>
-                    <div class="">
-                      <h8 class='select-time-header-margin'>Hasta</h8>
-                      <% if can? :update, @clase %>
-                      <%= form.time_select :end, { }, { class: 'form-control', default: {hour: '18', minute: '00'}} %>
-                      <% else %>
-                      <%= form.time_select :end, { }, { class: 'form-control', disabled: true} %>
-                      <% end %>
-                    </div>
-                  </div>
-                  <% if can? :update, @clase %>
-                  <div class="div-boton-eliminar-padding">
-                     <%= form.hidden_field :_destroy %>
-                     <%= link_to "Eliminar horario", '#', class: "remove_fields btn btn-secondary" %>
-                  </div>
-                  <% end %>
-                  <hr/>
-                </div>
-              </div>
+  <div class="card-header">
+    <h3 class="card-title">Horario</h3>
+  </div>
+  <!-- /.card-header -->
+  <!-- form start -->
+  <div class="card-body">
+    <div class="col-md-12 col-sm-12">
+      <% if can? :update, @clase %>
+      <%= form.select :dias, ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'], {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+      <% else %>
+      <%= form.text_field nil, { class: 'form-control', value: form.object.dias, readonly: true} %>
+      <% end %>
+    </div>
+    <div class="col-md-12 col-sm-12">
+      <div class="form-inline select-time-div-margin">
+        <div class="">
+          <h8 class='select-time-header-margin'>Desde</h8>
+          <% if can? :update, @clase %>
+          <%= form.time_select :start, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
+          <% else %>
+          <%= form.time_select :start, { }, { class: 'form-control', disabled: true} %>
+          <% end %>
+        </div>
+        <div class="">
+          <h8 class='select-time-header-margin'>Hasta</h8>
+          <% if can? :update, @clase %>
+          <%= form.time_select :end, { }, { class: 'form-control', default: {hour: '18', minute: '00'}} %>
+          <% else %>
+          <%= form.time_select :end, { }, { class: 'form-control', disabled: true} %>
+          <% end %>
+        </div>
+      </div>
+      <% if can? :update, @clase %>
+      <div class="div-boton-eliminar-padding">
+        <%= form.hidden_field :_destroy %>
+        <%= link_to "Eliminar horario", '#', class: "remove_fields btn btn-secondary" %>
+      </div>
+      <% end %>
+      <hr />
+    </div>
+  </div>
 </div>
