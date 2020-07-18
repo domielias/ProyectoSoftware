@@ -1,9 +1,9 @@
 <% if @estudiante.admitido == true and @estudiante.egresado == true %>
-  <h1 class="card-container">Editar Egresado</h1>
-<% elsif @estudiante.admitido == true and @estudiante.egresado == false %>
-  <h1 class="card-container">Editar Estudiante</h1>
+  <h1 class="text-center">Editar Egresado</h1>
+<% elsif @estudiante.admitido == true and (@estudiante.egresado == false or @estudiante.egresado.nil?) %>
+  <h1 class="text-center">Editar Estudiante</h1>
 <% elsif @estudiante.admitido==false %>
-  <h1 class="card-container">Editar Ficha de Admision</h1>
+  <h1 class="text-center">Editar Ficha de Admisión</h1>
 <% end %>
 
 <%= render 'form', estudiante: @estudiante %>

@@ -1,66 +1,70 @@
 <%= form_with(model: ciclo, local: true) do |form| %>
 <% if ciclo.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(ciclo.errors.count, "error") %>
-      prohibited this ciclo from being saved:</h2>
+<div id="error_explanation">
+  <h2><%= pluralize(ciclo.errors.count, "error") %>
+    prohibited this ciclo from being saved:</h2>
 
-    <ul>
-      <% ciclo.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<div class="card-container">
-  <div class="card card-default">
-    <div class="card-header">
-      <h3 class="card-title">Datos Generales
-      </h3>
-      <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-          <i class="fa fa-minus"></i>
-        </button>
-      </div>
-    </div>
-
-    <div class="col-md-12 col-sm-12">
-      <div class="form-group">
-        <%= form.check_box :actual %>
-        <%= form.label :actual, "Ciclo actual ?" %>
-      </div>
-    </div>
-
-    <div class="row col-md-12 col-sm-12">
-      <div class="col-md-3 col-sm-3">
-        <div class="form-group">
-          <h5>Código</h5>
-          <%= form.text_field :codigo, class: "form-control" %>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-3">
-        <div class="form-group">
-          <h5>Nombre</h5>
-          <%= form.text_field :nombre, class: "form-control" %>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-3">
-        <div class="form-group">
-          <h5>Fecha de inicio</h5>
-          <%= form.date_field :fecha_inicio, {class: "form-control date-input" } %>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-3">
-        <div class="form-group">
-          <h5>Fecha de final</h5>
-          <%= form.date_field :fecha_final, {class: "form-control date-input"} %>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="float-right">
-    <%= form.submit 'Finalizar', {class: "btn bg-gradient-success",data: { confirm: '¿Desea crear este ciclo?'}} %>
-  </div>
-<% end %>
+  <ul>
+    <% ciclo.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
 </div>
+<% end %>
+
+<div class="container-fluid">
+  <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12 py-3 pl-lg-5 pr-lg-5 bd-content">
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title">Datos Generales
+        </h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-sm-12">
+        <br/>
+        <div class="form-group">
+          <%= form.check_box :actual %>
+          <%= form.label :actual, "Ciclo actual ?" %>
+        </div>
+      </div>
+
+      <div class="row col-md-12 col-sm-12">
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h5>Código</h5>
+            <%= form.text_field :codigo, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h5>Nombre</h5>
+            <%= form.text_field :nombre, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h5>Fecha de inicio</h5>
+            <%= form.date_field :fecha_inicio, {class: "form-control date-input" } %>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <h5>Fecha de final</h5>
+            <%= form.date_field :fecha_final, {class: "form-control date-input"} %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="float-right">
+      <%= form.submit 'Finalizar', {class: "btn bg-gradient-success",data: { confirm: '¿Desea crear este ciclo?'}} %>
+    </div>
+    <% end %>
+  </div>
+</div>
+<<% end %>

@@ -63,10 +63,10 @@
       <div class="col-lg-3 col-6">
         <!-- small box -->
         <div class="small-box bg-warning">
-          <div class="inner">
+          <div class="inner adapt-text">
             <%# Ciclo.where(:actual =>true) ? ciclo_id=Ciclo.where(:actual =>true) : ciclo=nil %>
             <% Ciclo.where(:actual =>true).present?  ? ciclo = Ciclo.find(Ciclo.where(:actual =>true).ids.shift) : ciclo = nil%>
-            <% if !ciclo.nil? %>
+            <% if !ciclo.nil? %> <%# Solo usar if ciclo porque eso me permite hacerlo solo si esta %>
               <%#ciclo= Ciclo.find(ciclo_id.ids.shift)%>
               <h3><%=ciclo.nombre%></h3>
             <% elsif ciclo.nil? %>

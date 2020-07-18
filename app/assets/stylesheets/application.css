@@ -39,3 +39,8 @@
   color: black;
   padding: 10px 30px;
 }
+/* Add for yellow small box to adapter the text for ciclo  */
+.adapt-text h3{  
+  margin-bottom: 1.5rem !important;
+  font-size: 1.5rem !important;
+}

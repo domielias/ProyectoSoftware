@@ -1,8 +1,9 @@
 <%= form_with(model: @bloque, local: true) do |form| %>
-  <% if @bloque.errors.any? %>
-    <%= render '/shared/errors', obj: @bloque %>
-  <% end %>
-  <div class="card-container">
+<% if @bloque.errors.any? %>
+<%= render '/shared/errors', obj: @bloque %>
+<% end %>
+<div class="container-fluid">
+  <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12 py-3 pl-lg-5 pr-lg-5 bd-content">
     <div class="card card-default">
       <div class="card-header">
         <h3 class="card-title">Datos generales</h3>
@@ -33,7 +34,7 @@
             </div>
           </div>
         </div>
-        <hr/>
+        <hr />
         <div class="row col-md-12 col-sm-12">
           <div class="col-md-12 col-sm-12">
             <div class="form-group">
@@ -44,11 +45,13 @@
             </div>
           </div>
         </div>
-        <hr/>
+        <hr />
       </div>
     </div>
     <div class="float-right">
       <%= form.submit 'Guardar bloque',{class: "btn bg-gradient-success",data: { confirm: '¿Estás seguro de crear este bloque para estudiantes?', title: 'Confirma creación de bloque?'}}%>
     </div>
   </div>
+</div>
+
 <% end %>
