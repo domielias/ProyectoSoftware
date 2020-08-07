@@ -35,6 +35,9 @@ gem 'bootstrap-datepicker-rails'
 # gem 'image_processing', '~> 1.2'
 gem 'devise'
 
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 #gem calendar
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'

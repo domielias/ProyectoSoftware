@@ -6,6 +6,11 @@ class EstudiantesController < ApplicationController
   # GET /estudiantes.json
   def index
     @estudiantes = Estudiante.all
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template: 'estudiantes/reporte', pdf: 'Reporte'}
+    end
   end
 
   # GET /estudiantes/1
