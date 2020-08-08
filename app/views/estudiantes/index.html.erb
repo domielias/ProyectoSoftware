@@ -4,6 +4,9 @@
   <div class="container-fluid">
     <h1>Estudiantes</h1>
 
+  <div>
+    <%= link_to "Generar PDF", estudiantes_path(format: "pdf" ), style:"float:right", class:"btn btn-success", target: :_blank %>
+  </div>
 <table class="table table-striped display" role='datatable'>
   <thead>
     <tr>
