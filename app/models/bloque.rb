@@ -24,4 +24,8 @@ class Bloque < ApplicationRecord
   accepts_nested_attributes_for :nivel
   accepts_nested_attributes_for :ciclo
 
+  def nombre
+    "#{nivel.nombre} #{programa_epe_solicitado.nombre}"
+  end
+
 end

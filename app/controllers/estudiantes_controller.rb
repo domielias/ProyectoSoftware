@@ -5,7 +5,6 @@ class EstudiantesController < ApplicationController
   # GET /estudiantes
   # GET /estudiantes.json
   def index
-    byebug
     @estudiantes = Estudiante.all
     respond_to do |format|
       format.html
@@ -21,7 +20,7 @@ class EstudiantesController < ApplicationController
 
   def generar_pdf_individual
     @estudiante = Estudiante.find(params[:id])
-    @clases = @estudiante.clases
+    @ciclos = Ciclo.order(:actual => :desc).order(:fecha_inicio).includes(:bloques => [:clases => [:estudiantes]]).where(estudiantes: {id: @estudiante.id})
     respond_to do |format|
       format.html
       format.json
