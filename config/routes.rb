@@ -42,5 +42,6 @@ Rails.application.routes.draw do
   get 'estudiantes/listar_clases/:id', to: 'estudiantes#listar_clases', as: 'listar_clases_estudiante'
   get 'listar_usuarios', to: 'personas#listar_usuarios', as: 'listar_usuarios'
   get 'ciclos/finalizar/:id', to: 'ciclos#finalizar', as: 'finalizar_ciclo'
+  get 'estudiantes/generar_pdf_individual/:id', to: 'estudiantes#generar_pdf_individual', as: 'generar_pdf_individual_estudiante'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

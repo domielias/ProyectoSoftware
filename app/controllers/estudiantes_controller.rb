@@ -5,6 +5,7 @@ class EstudiantesController < ApplicationController
   # GET /estudiantes
   # GET /estudiantes.json
   def index
+    byebug
     @estudiantes = Estudiante.all
     respond_to do |format|
       format.html
@@ -16,6 +17,16 @@ class EstudiantesController < ApplicationController
   # GET /estudiantes/1
   # GET /estudiantes/1.json
   def show
+  end
+
+  def generar_pdf_individual
+    @estudiante = Estudiante.find(params[:id])
+    @clases = @estudiante.clases
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template: 'estudiantes/generar_pdf_individual', pdf: 'Reporte', layout: 'pdf.html'}
+    end
   end
 
   def mostrar_horario_actual

@@ -1,0 +1,50 @@
+<div style="text-align: center;">
+    <h1><%= @estudiante.persona.id_campus %></h1>
+    <h1><%= @estudiante.persona.nombres%> <%= @estudiante.persona.apellidos%></h1>
+</div>
+<h2>Clases actuales</h2>
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>No. clase</th>
+                <th>Sección</th>
+                <th>Asignatura</th>
+                <th>Profesor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @estudiante.clases.joins(bloque: :ciclo).where(:ciclos => {actual: true}).each do |clase| %>
+                <tr>
+                    <td> <%= clase.no_clase %> </td>
+                    <td> <%= clase.seccion %> </td>
+                    <td> <%= clase.asignatura.nombre %> </td>
+                    <td><%= clase.profesor.persona.id_campus_nombres_apellidos %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+<h2>Clases pasadas</h2>
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>No. clase</th>
+                <th>Sección</th>
+                <th>Asignatura</th>
+                <th>Profesor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @estudiante.clases.joins(bloque: :ciclo).where(:ciclos => {actual: false}).each do |clase| %>
+                <tr>
+                    <td> <%= clase.no_clase %> </td>
+                    <td> <%= clase.seccion %> </td>
+                    <td> <%= clase.asignatura.nombre %> </td>
+                    <td><%= clase.profesor.persona.id_campus_nombres_apellidos %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
