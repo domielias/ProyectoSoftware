@@ -15,6 +15,7 @@
         <th>Sexo</th>
         <th>Egresado</th>
         <th ></th>
+        <th ></th>
       </tr>
       </thead>
 
@@ -30,6 +31,7 @@
             <td><%= estudiante.sexo %></td>
             <td><%= estudiante.egresado ? :Si : :No %></td>
             <td class="align-column-content-center"><%= link_to 'Mostrar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
+            <td class="align-column-content-center"><%= link_to "Generar PDF Egresado", generar_pdf_individual_estudiante_path(estudiante, format: "pdf" ),  class:"btn btn-info", target: :_blank %></td>
           </tr>
       <% end %>
       </tbody>
