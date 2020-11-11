@@ -10,7 +10,7 @@
     "jquery": "^3.4.1",
     "popper.js": "^1.16.1",
     "turbolinks": "^5.2.0",
-    "webpack": "^4.42.0",
+    "webpack": "^4.44.2",
     "webpack-cli": "^3.3.11"
   },
   "version": "0.1.0",
