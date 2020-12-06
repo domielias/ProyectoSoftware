@@ -33,6 +33,11 @@ class EstudiantesController < ApplicationController
 
   def listar_clases
     @estudiante = Estudiante.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template: 'ciclos/reporte', pdf: 'Reporte'}
+    end
   end
 
   def ficha_de_solicitud_estudiante
