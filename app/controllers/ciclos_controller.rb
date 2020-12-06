@@ -6,6 +6,11 @@ class CiclosController < ApplicationController
   # GET /ciclos.json
   def index
     @ciclos = Ciclo.all
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template: 'ciclos/reporte', pdf: 'Reporte', layout: 'pdf.html'}
+    end
   end
 
   # GET /ciclos/1

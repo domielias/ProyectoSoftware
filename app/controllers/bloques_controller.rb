@@ -45,6 +45,11 @@ class BloquesController < ApplicationController
   def create
 
     @bloque = Bloque.new(bloque_params)
+    
+    @bloque.clases.each do |clase|
+      clase.ciclo_id = @bloque.ciclo_id
+    end
+
     @bloque.seleccion_estudiante = true if guardado?
     @bloque.seleccion_estudiante = false if finalizar?
 
@@ -127,7 +132,7 @@ class BloquesController < ApplicationController
     end
     # Only allow a list of trusted parameters through.
     def bloque_params
-      params.require(:bloque).permit(:fecha_inicio, :admitido,:fecha_final, :creador, :evaluacion_bloque_num, :evaluacion_bloque_str, :programa_epe_solicitado_id, :nivel_id, :ciclo_id, :persona_id, clases_attributes: [:id, :seccion, :no_clase, :lugar, :modalidad, :correquisito, :evaluacion_parcial_num, :evaluacion_parcial_str, :_destroy, :asignatura_id, :profesor_id, estudiante_ids: [], horarios_attributes: [:id, :dias, :start, :end, :_destroy]])
+      params.require(:bloque).permit(:fecha_inicio, :admitido,:fecha_final, :creador, :evaluacion_bloque_num, :evaluacion_bloque_str, :programa_epe_solicitado_id, :nivel_id, :ciclo_id, :persona_id, clases_attributes: [:id, :seccion, :no_clase, :lugar, :modalidad, :correquisito, :evaluacion_parcial_num, :evaluacion_parcial_str, :_destroy, :asignatura_id, :ciclo_id, :profesor_id, estudiante_ids: [], horarios_attributes: [:id, :dias, :start, :end, :_destroy]])
     end
     def guardado?
       params[:commit] == "Guardar bloque"
