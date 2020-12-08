@@ -18,6 +18,15 @@ class CiclosController < ApplicationController
   def show
   end
 
+  def generar_pdf_individual
+    @ciclo = Ciclo.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template: 'ciclos/generar_pdf_individual', pdf: 'Reporte', layout: 'pdf.html'}
+    end
+  end
+
   def finalizar
     @ciclo.update_attribute(:actual, false)
     @ciclos = Ciclo.all

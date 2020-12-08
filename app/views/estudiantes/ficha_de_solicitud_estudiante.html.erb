@@ -208,7 +208,7 @@
             </div>
             <div class="col-md-12 col-sm-12">
               <div class="form-group">
-                <h6>Asignaturas de español recientes</h6>
+                <h6>Bloque para estudiante</h6>
                 <%= form.collection_select(:bloque_id, Bloque.where(seleccion_estudiante: true), :id, :creador, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
               </div>
             </div>
