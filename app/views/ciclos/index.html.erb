@@ -2,12 +2,16 @@
   <div class="container-fluid">
 <h1>Ciclos</h1>
 
+  <div>
+    <%= link_to "Generar PDF", ciclos_path(format: "pdf" ), style:"float:right", class:"btn btn-success", target: :_blank %>
+  </div>
 <table class="table table-striped display" role='datatable'>
   <thead>
     <tr>
       <th>Nombre</th>
       <th>Fecha de inicio</th>
       <th>Fecha final</th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -27,6 +31,7 @@
         </td>
         <td class="align-column-content-center"><%= link_to 'Mostrar', ciclo, class: "btn btn-info" %></td>
         <td class="align-column-content-center"><%= link_to 'Editar', edit_ciclo_path(ciclo), class: "btn btn-warning" %></td>
+        <td class="align-column-content-center"><%= link_to "Generar PDF del ciclo", generar_pdf_individual_ciclo_path(ciclo, format: "pdf" ),  class:"btn btn-info", target: :_blank %></td>
       </tr>
     <% end %>
   </tbody>

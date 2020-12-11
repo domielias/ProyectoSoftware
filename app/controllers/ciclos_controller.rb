@@ -6,11 +6,25 @@ class CiclosController < ApplicationController
   # GET /ciclos.json
   def index
     @ciclos = Ciclo.all
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template: 'ciclos/reporte', pdf: 'Reporte', layout: 'pdf.html'}
+    end
   end
 
   # GET /ciclos/1
   # GET /ciclos/1.json
   def show
+  end
+
+  def generar_pdf_individual
+    @ciclo = Ciclo.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template: 'ciclos/generar_pdf_individual', pdf: 'Reporte', layout: 'pdf.html'}
+    end
   end
 
   def finalizar

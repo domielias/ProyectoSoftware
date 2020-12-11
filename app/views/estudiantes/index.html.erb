@@ -4,6 +4,9 @@
   <div class="container-fluid">
     <h1>Estudiantes</h1>
 
+  <div>
+    <%= link_to "Generar PDF General", estudiantes_path(format: "pdf" ), style:"float:right", class:"btn btn-success", target: :_blank %>
+  </div>
 <table class="table table-striped display" role='datatable'>
   <thead>
     <tr>
@@ -14,6 +17,7 @@
       <th>Programa</th>
       <th>Sexo</th>
       <th>Egresado</th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -42,6 +46,7 @@
             <td class="align-column-content-center"><%= link_to 'Mostrar calendario actual', mostrar_horario_actual_estudiante_path(id: estudiante), class: "btn btn-secondary" %></td>
             <td><%= link_to 'Listar Clases', listar_clases_estudiante_path(estudiante), class: "btn btn-secondary" %></td>
             <td class="align-column-content-center"><%= link_to 'Mostrar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
+            <td class="align-column-content-center"><%= link_to "Generar PDF Estudiante", generar_pdf_individual_estudiante_path(estudiante, format: "pdf" ),  class:"btn btn-info", target: :_blank %></td>
           </td>
         </tr>
         <% end %>

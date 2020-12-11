@@ -1,0 +1,7 @@
+tr{
+    border-bottom: solid;
+    border-width: 3px;
+}
+table, tr, td, th, tbody, thead, tfoot{
+    page-break-inside: avoid !important;
+}

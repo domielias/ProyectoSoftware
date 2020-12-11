@@ -3,8 +3,10 @@ class CreateBloques < ActiveRecord::Migration[6.0]
     create_table :bloques do |t|
       t.string :nombre, limit: 20 #######
       t.string :creador, limit: 100 #######
-      t.boolean :creado_por_estudiante #######
-      t.boolean :seleccion_estudiante #######
+      t.boolean :creado_por_estudiante ####### No se va a usar
+      ###### Si es true, es un bloque creado con el propósito de ser seleccionado en la ficha de estudiante,
+      ###### si es false, es para almacenar las asignaturas para el semestre.
+      t.boolean :seleccion_estudiante
       t.float :evaluacion_bloque_num
       t.string :evaluacion_bloque_str
 

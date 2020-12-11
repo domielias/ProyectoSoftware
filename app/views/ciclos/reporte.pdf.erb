@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <head>
+            <title></title>
+            <%= wicked_pdf_stylesheet_link_tag 'pdf' %>
+            <%= wicked_pdf_stylesheet_link_tag 'adminlte.core' %>
+            <meta charset="utf-8">
+        </head>
+        <div style="text-align: center; margin-top: 48px; margin-bottom: 48px;">
+            <%= image_tag wicked_pdf_asset_base64('Logo PUCMM (Color Azul).png'), :style=>"margin:0px;padding:0px", :width=>"91.2" %>
+            <h4 style="color: #0053fa; margin-top: 24px">Pontificia Universidad Católica Madre y Maestra</h4>
+        </div>
+        <h1 style="margin-bottom: 50px">Listado de ciclos</h1>
+        <% @ciclos.order(fecha_inicio: :desc).each do |ciclo| %>
+            <h4> Ciclo: <%=ciclo.codigo %> | Nombre: <%=ciclo.nombre %></h4>
+            <h4> Fecha de inicio: <%=ciclo.fecha_inicio %> | Fecha final: <%=ciclo.fecha_final %></h4>
+            <h5>Clases para ese ciclo:</h5>
+            <div style="margin-bottom: 50px">
+                <table class="table table-striped table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>No. clase</th>
+                            <th>Sección</th>
+                            <th>Asignatura</th>
+                            <th>Profesor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% ciclo.clases.each do |clase| %>
+                            <tr>
+                                <td><%= clase.no_clase %></td>
+                                <td><%= clase.seccion %></td>
+                                <td><%= clase.asignatura.nombre %></td>
+                                <td><%= clase.profesor.persona.id_campus_nombres_apellidos %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
+    </body>
+</html>

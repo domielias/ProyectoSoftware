@@ -29,6 +29,4 @@ class Clase < ApplicationRecord
     #accepts_nested_attributes_for :correquisito
     accepts_nested_attributes_for :horarios, allow_destroy: true
     #accepts_nested_attributes_for :horarios, reject_if: proc { |attributes| attributes['dias'].blank? } # discretamente descartar los horarios si tienen el campo de dias vacio
-
-
 end

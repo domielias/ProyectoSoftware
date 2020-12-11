@@ -6,6 +6,11 @@ class EstudiantesController < ApplicationController
   # GET /estudiantes.json
   def index
     @estudiantes = Estudiante.all
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template: 'estudiantes/reporte_general', pdf: 'Reporte', layout: 'pdf.html'}
+    end
   end
 
   # GET /estudiantes/1
@@ -13,11 +18,26 @@ class EstudiantesController < ApplicationController
   def show
   end
 
+  def generar_pdf_individual
+    @estudiante = Estudiante.find(params[:id])
+    @ciclos = Ciclo.order(:actual => :desc).order(:fecha_inicio).includes(:bloques => [:clases => [:estudiantes]]).where(estudiantes: {id: @estudiante.id})
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template: 'estudiantes/generar_pdf_individual', pdf: 'Reporte', layout: 'pdf.html'}
+    end
+  end
+
   def mostrar_horario_actual
   end
 
   def listar_clases
     @estudiante = Estudiante.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template: 'ciclos/reporte', pdf: 'Reporte'}
+    end
   end
 
   def ficha_de_solicitud_estudiante

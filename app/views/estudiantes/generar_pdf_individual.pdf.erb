@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <body>
+        <head>
+            <meta charset="UTF-8">
+            <style>
+            </style>
+        </head>
+        <div style="text-align: center; margin-top: 48px; margin-bottom: 48px;">
+            <%= image_tag wicked_pdf_asset_base64('Logo PUCMM (Color Azul).png'), :style=>"margin:0px;padding:0px", :width=>"91.2" %>
+            <h4 style="color: #0053fa; margin-top: 24px">Pontificia Universidad Católica Madre y Maestra</h4>
+        </div>
+        <div style="text-align: left;">
+            <h2>ID: <%= @estudiante.persona.id_campus %></h2>
+            <h2>Estudiante: <%= @estudiante.persona.nombres%> <%= @estudiante.persona.apellidos%></h2>
+        </div>
+        <div>
+        <% @ciclos.each do |ciclo| %>
+            <% n=0 %>
+            <% @bloque = Bloque.includes(:clases => [:estudiantes]).where(estudiantes: {id: @estudiante.id}, ciclo: ciclo).first %>
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="background-color:lightgray">
+                        <th colspan="5"> <h3><%= ciclo.nombre %></h3></th>
+                    </tr>
+                    <tr style="background-color:lightgray">
+                        <th colspan="5"> <h5><%= @bloque.nivel.nombre %> <%= @bloque.programa_epe_solicitado.nombre %></h5></th>
+                    </tr>
+                    <tr>
+                    </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>No. clase</th>
+                        <th>Sección</th>
+                        <th>Asignatura</th>
+                        <th>Profesor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <% Clase.joins(:estudiantes).where(estudiantes: {id: 8}, bloque_id: @bloque.id).each do |clase| %>
+                            <tr>
+                                <td><%= n+=1 %></td>
+                                <td> <%= clase.no_clase %> </td>
+                                <td> <%= clase.seccion %> </td>
+                                <td> <%= clase.asignatura.nombre %> </td>
+                                <td><%= clase.profesor.persona.id_campus_nombres_apellidos %></td>
+                            </tr>
+                        <% end %>
+                </tbody>
+            </table>
+            <% end %>
+        </div>
+    </body>
+</html>

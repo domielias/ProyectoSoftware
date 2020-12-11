@@ -194,11 +194,11 @@
               <h6>Tiempo estudiado español(*)</h6>
               <%= info_acad.text_field :cantidad_de_anos_de_espanol_estudiadas, class: "form-control" %>
             </div>
-          </div>
-          <div class="col-md-4 col-sm-4">
-            <div class="form-group">
-              <h6>Nivel alcanzado previamente</h6>
-              <%= info_acad.text_field :nivel_alcanzado, class: "form-control" %>
+            <div class="col-md-12 col-sm-12">
+              <div class="form-group">
+                <h6>Bloque para estudiante</h6>
+                <%= form.collection_select(:bloque_id, Bloque.where(seleccion_estudiante: true), :id, :creador, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
+              </div>
             </div>
           </div>
         </div>
