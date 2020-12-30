@@ -45,9 +45,7 @@ class TutoriesController < ApplicationController
       if @tutory.save
         redirect_to tutories_url
       else
-        puts "Testeando donde tiene un error", tutory_params
-        render :new
-        # format.html { render :new }
+        format.html { render :new }
       end
     end
       

@@ -11,6 +11,7 @@
     belongs_to :persona, optional: true
     belongs_to :institucion, optional: true
     belongs_to :programa_epe_solicitado, optional: true
+
     has_many :clase_estudiantes, dependent: :destroy
     has_many :clases, through: :clase_estudiantes
 
@@ -28,12 +29,6 @@
     # accepts_nested_attributes_for :bloques
     # accepts_nested_attributes_for :clases
     accepts_nested_attributes_for :persona
-
-    #validaciones
-    validates :pasaporte, presence: true
-    validates :madre, presence: true
-    validates :padre, presence: true
-    validates :sexo, presence: true
 
     def id_campus_nombres_apellidos
       "#{persona.id_campus} #{persona.nombres} #{persona.apellidos}"
