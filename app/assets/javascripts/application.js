@@ -13,6 +13,7 @@
 //= require adminlte
 //= require alert
 //= require_tree .
+//= require nivel_de_lengua
 
 // function eventCalendar() {
 //   return $('#calendar').fullCalendar({

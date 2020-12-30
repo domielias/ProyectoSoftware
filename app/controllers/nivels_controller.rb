@@ -38,6 +38,13 @@ class NivelsController < ApplicationController
       end
   end
 
+  def get_nivels_by_location
+    @nivels = Nivel.where("programa_epe_solicitado_id = ?", params[:programa_epe_solicitado_id])
+    respond_to do |format|
+      format.json { render :json => @nivels }
+    end
+  end
+
   # PATCH/PUT /nivels/1
   # PATCH/PUT /nivels/1.json
   def update

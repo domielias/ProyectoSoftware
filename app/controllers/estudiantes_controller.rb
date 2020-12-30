@@ -42,6 +42,8 @@ class EstudiantesController < ApplicationController
 
   def ficha_de_solicitud_estudiante
     @estudiante = Estudiante.new
+    # @programa_epe_solicitado = ProgramaEpeSolicitado.find params[:estudiante_programa_epe_solicitado_id]
+    # @nivels = @programa_epe_solicitado.nivels
     @estudiante.build_carrera_solicitada
     @estudiante.build_persona
     @estudiante.build_programa_internacional
@@ -51,6 +53,7 @@ class EstudiantesController < ApplicationController
     @estudiante.build_examen_de_nivel
     @estudiante.build_informacion_academica
     @estudiante.build_progreso_inscripcion
+    # byebug
 end
 
   # GET /estudiantes/new
