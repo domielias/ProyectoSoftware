@@ -6,5 +6,6 @@ class CreateProgramaEpeSolicitados < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    add_index :programa_epe_solicitados, :id, unique: true
   end
 end

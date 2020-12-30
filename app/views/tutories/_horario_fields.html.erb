@@ -7,7 +7,7 @@
               <div class="card-body">
                 <div class="col-md-12 col-sm-12">
                   <% if can? :update, @clase %>
-                  <%= form.select :dias, ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'], {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+                  <%= form.select :dias, ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'], {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width',required: true} %>
                   <% else %>
                   <%= form.text_field nil, { class: 'form-control', value: form.object.dias, readonly: true} %>
                   <% end %>

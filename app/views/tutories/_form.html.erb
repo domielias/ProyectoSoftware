@@ -1,6 +1,6 @@
 <%= form_with(model: tutory, local: true) do |form| %>
-<% if tutory.errors.any? %>
-<%= render '/shared/errors', obj: @tutory %>
+  <% if tutory.errors.any? %>
+  <%= render '/shared/errors', obj: @tutory %>
 <% end %>
 <div class="container-fluid">
   <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12 py-3 pl-lg-5 pr-lg-5 bd-content">
@@ -19,21 +19,21 @@
               <%= form.text_field :user_id, { class: 'form-control', value:current_user.persona.id_campus_nombres_apellidos, readonly: true} %>
               <%= form.hidden_field :user_id, value: current_user.id %>
               <% else %>
-              <%= form.collection_select(:user_id, User.where(profesor: true), :id, :id_campus_nombres_apellidos, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
+              <%= form.collection_select(:user_id, User.where(profesor: true), :id, :id_campus_nombres_apellidos, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width',required: true}) %>
               <% end %>
             </div>
           </div>
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h5>Ubicación</h5>
-              <%= form.text_field :ubicacion, class: "form-control" %>
+              <%= form.text_field :ubicacion, class: "form-control",required: true %>
             </div>
           </div>
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h5>Clase</h5>
               <!-- <%= form.collection_select(:ciclo_id, Ciclo.all, :id, :nombre,{},{class:"form-control"}) %> -->
-              <%= form.select :clase_id, Clase.where(profesor_id: current_user.id).pluck(:no_clase, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+              <%= form.select :clase_id, Clase.where(profesor_id: current_user.id).pluck(:no_clase, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width', required: true} %>
             </div>
           </div>
         </div>
@@ -50,6 +50,9 @@
     </div>
     <div class="float-right">
       <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+    </div>
+    <div class="float-left">
+      <%= link_to "Cancelar", '/tutories', class: "btn btn-danger " %>
     </div>
   </div>
 </div>

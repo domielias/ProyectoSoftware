@@ -33,6 +33,11 @@ class PaisController < ApplicationController
       # format.html { redirect_to @pai, notice: 'Pai was successfully created.' }
       # format.json { render :show, status: :created, location: @pai }
     else
+      @pai.errors.full_messages.each do |error_mensaje| 
+        puts "Error en", error_mensaje
+      end
+      flash[:alert]="Tengo un error"
+      redirect_to configuracion_path
       # format.html { render :new }
       # format.json { render json: @pai.errors, status: :unprocessable_entity }
     end
