@@ -197,16 +197,7 @@
               <%= info_acad.text_field :cantidad_de_anos_de_espanol_estudiadas, class: "form-control" %>
             </div>
           </div>
-          <%
-=begin%>
- <div class="col-md-4 col-sm-12">
-            <div class="form-group">
-              <h6>Bloque para estudiante</h6>
-              <%= form.collection_select(:bloque_id, Bloque.where(seleccion_estudiante: true), :id, :creador, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
-            </div>
-          </div> 
-<%
-=end%>
+
         </div>
         <hr />
         <div class="row col-md-12 col-sm-12">
@@ -216,16 +207,18 @@
               <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width programa_epe_solicitado_selection'} %>
             </div>
           </div>
-          <div class="col-md-6 col-sm-12">
-            <div class="form-group">
-              <h6>Nivel de lengua</h6>
-              <%#Nivel.find_by(id: :id).nombre  %>
-              <%= form.select :nivel_id, Nivel.pluck(:nombre, :id), {:include_blank => ''}, {class: 'nivel_de_lengua_selection'} %>
+          <%= form.fields_for :examen_de_nivel do |exmn| %>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group">
+                <h6>Nivel de lengua</h6>
+                <%#Nivel.find_by(id: :id).nombre  %>
+                <%= exmn.select :nivel_id, Nivel.pluck(:nombre, :id), {:include_blank => ''}, {class: 'nivel_de_lengua_selection'} %>
+              </div>
             </div>
+            <% end %>
           </div>
-          <% end %>
         </div>
-      </div>
+      <% end %>
       <div class="right">
         <div class="float-right">
           <%= form.submit 'Guardar como borrador', {class: "btn btn-success", data: { confirm: '¿Desea enviar la solicitud de estudiante?', title: 'Desea guardar este estudiante?'}} %>
