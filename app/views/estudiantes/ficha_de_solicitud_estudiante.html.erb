@@ -204,7 +204,7 @@
           <div class="col-md-6 col-sm-12">
             <div class="form-group">
               <h6>Programa EPE solicitado</h6>
-              <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width programa_epe_solicitado_selection'} %>
+              <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), {:include_blank => ''},{ class: 'programa_epe_solicitado_selection'} %>
             </div>
           </div>
           <%= form.fields_for :examen_de_nivel do |exmn| %>
