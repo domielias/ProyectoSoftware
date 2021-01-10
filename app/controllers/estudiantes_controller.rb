@@ -1,6 +1,12 @@
 class EstudiantesController < ApplicationController
   load_and_authorize_resource
   before_action :set_estudiante, only: [:show, :edit, :update, :destroy, :mostrar_horario_actual]
+  # Autorizar el acceso sin login
+  skip_before_action :authenticate_user!, only: %i[ficha_de_solicitud_estudiante create]
+  # Autorizar el acceso sin usuario
+  skip_authorize_resource :only => [:ficha_de_solicitud_estudiante, :create]
+
+
 
   # GET /estudiantes
   # GET /estudiantes.json
@@ -88,16 +94,17 @@ end
 
     @estudiante.bloques.push(@bloque_seleccionado)
 
-    byebug
-
     if @estudiante.save
       if guardado?
-        redirect_to no_admitidos_url
+        # redirect_to no_admitidos_url
+        redirect_to ficha_de_solicitud_estudiante_url
       else finalizado?
-        redirect_to estudiantes_url
+        # redirect_to estudiantes_url
+        redirect_to ficha_de_solicitud_estudiante_url
       end
     else
-      format.html { render :new }
+      # format.html { render :new }
+      redirect_to ficha_de_solicitud_estudiante_url
     end
     # respond_to do |format|
     #   if @estudiante.save

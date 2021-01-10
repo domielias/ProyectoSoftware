@@ -1,6 +1,8 @@
 class BloquesController < ApplicationController
   load_and_authorize_resource
   before_action :set_bloque, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: %i[index]
+  skip_authorize_resource :only => [:index]
 
   # GET /bloques
   # GET /bloques.json
