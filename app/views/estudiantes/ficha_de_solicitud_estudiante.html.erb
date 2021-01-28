@@ -24,13 +24,13 @@
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h6>Nombres:</h6>
-              <%= prsn.text_field :nombres, class: "form-control" %>
+              <%= prsn.text_field :nombres, {class: "form-control",required: true} %>
             </div>
           </div>
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h6>Apellidos:</h6>
-              <%= prsn.text_field :apellidos, class: "form-control" %>
+              <%= prsn.text_field :apellidos, {class: "form-control",required: true} %>
             </div>
           </div>
         </div>
@@ -39,13 +39,13 @@
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h6>Fecha de nacimiento:</h6>
-              <%= prsn.date_field :fecha_nacimiento, {class: "form-control date-input"} %>
+              <%= prsn.date_field :fecha_nacimiento, {class: "form-control date-input",required: true} %>
             </div>
           </div>
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h6>Sexo:</h6>
-              <%= form.select :sexo, ['Femenino', 'Masculino'], {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+              <%= form.select :sexo, ['Femenino', 'Masculino'], {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width',required: true} %>
             </div>
           </div>
           <div class="col-md-4 col-sm-4">
@@ -53,7 +53,7 @@
               <h6>Correo electrónico:</h6>
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">@</span>
-                <%= prsn.text_field :correo_electronico, class: "form-control date-input", placeholder: "hola@ejemplo.com" %>
+                <%= prsn.text_field :correo_electronico, {class: "form-control date-input",required: true, placeholder: "hola@ejemplo.com"} %>
               </div>
             </div>
           </div>
@@ -64,13 +64,13 @@
           <div class="col-md-6 col-sm-6">
             <div class="form-group">
               <h6>Nombres del padre:</h6>
-              <%= padre.text_field :nombres, class: "form-control" %>
+              <%= padre.text_field :nombres, {class: "form-control",required: true} %>
             </div>
           </div>
           <div class="col-md-6 col-sm-6">
             <div class="form-group">
               <h6>Apellidos del padre:</h6>
-              <%= padre.text_field :apellidos, class: "form-control" %>
+              <%= padre.text_field :apellidos, {class: "form-control",required: true} %>
             </div>
           </div>
         </div>
@@ -80,13 +80,13 @@
           <div class="col-md-6 col-sm-6">
             <div class="form-group">
               <h6>Nombres de la madre:</h6>
-              <%= madre.text_field :nombres, class: "form-control" %>
+              <%= madre.text_field :nombres, {class: "form-control",required: true} %>
             </div>
           </div>
           <div class="col-md-6 col-sm-6">
             <div class="form-group">
               <h6>Apellidos de la madre:</h6>
-              <%= madre.text_field :apellidos, class: "form-control" %>
+              <%= madre.text_field :apellidos, {class: "form-control",required: true} %>
             </div>
           </div>
         </div>
@@ -97,13 +97,13 @@
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h6>Estado civil:</h6>
-              <%= form.select :estado_civil, ['Soltero/a', 'Casado/a', 'Viudo/a', 'Comprometido/a', 'En Relación', 'Unión Libre', 'Separado/a', 'Divorciado/a', 'Noviazgo/a'], {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+              <%= form.select :estado_civil, ['Soltero/a', 'Casado/a', 'Viudo/a', 'Comprometido/a', 'En Relación', 'Unión Libre', 'Separado/a', 'Divorciado/a', 'Noviazgo/a'], {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width',required: true} %>
             </div>
           </div>
           <div class="col-md-8 col-sm-8">
             <div class="form-group">
               <h6>Nombre Cónyugue:</h6>
-              <%= form.text_field :nombre_conyugue, class: "form-control" %>
+              <%= form.text_field :nombre_conyugue, {class: "form-control",required: true} %>
             </div>
           </div>
         </div>
@@ -114,20 +114,20 @@
             <div class="form-group">
               <div>
                 <h6>País:</h6>
-                <%= dirr.select :pai_id, Pai.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+                <%= dirr.select :pai_id, Pai.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width',required: true} %>
               </div>
             </div>
           </div>
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h6>Ciudad:</h6>
-              <%= dirr.text_field :ciudad, class: "form-control" %>
+              <%= dirr.text_field :ciudad, {class: "form-control",required: true} %>
             </div>
           </div>
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h6>Código Postal:</h6>
-              <%= dirr.text_field :codigo_postal, class: "form-control" %>
+              <%= dirr.text_field :codigo_postal, {class: "form-control",required: true} %>
             </div>
           </div>
         </div>
@@ -135,11 +135,11 @@
         <div class="row col-md-12 col-sm-12">
           <div class="col-md-6 col-sm-6">
             <h6>Dirección completa:</h6>
-            <%= dirr.text_field :direccion_completa, class: "form-control" %>
+            <%= dirr.text_field :direccion_completa, {class: "form-control",required: true} %>
           </div>
           <div class="col-md-6 col-sm-6">
             <h6>Teléfono:</h6>
-            <%= dirr.text_field :telefono, class: "form-control" %>
+            <%= dirr.text_field :telefono, {class: "form-control",required: true} %>
           </div>
         </div>
       </div>
@@ -163,19 +163,19 @@
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h6>Programa EPE solicitado</h6>
-              <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+              <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width',required: true} %>
             </div>
           </div>
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h6>Programa de movilidad(*)</h6>
-              <%= form.select :programa_internacional_id, ProgramaInternacional.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+              <%= form.select :programa_internacional_id, ProgramaInternacional.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width',required: true} %>
             </div>
           </div>
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h6>Carrera solicitada(*)</h6>
-              <%= form.select :carrera_solicitada_id, CarreraSolicitada.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+              <%= form.select :carrera_solicitada_id, CarreraSolicitada.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width',required: true} %>
             </div>
           </div>
         </div>
@@ -186,18 +186,18 @@
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h6>Universidad de procedencia</h6>
-              <%= form.select :institucion_id, Institucion.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+              <%= form.select :institucion_id, Institucion.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width',required: true} %>
             </div>
           </div>
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <h6>Tiempo estudiado español(*)</h6>
-              <%= info_acad.text_field :cantidad_de_anos_de_espanol_estudiadas, class: "form-control" %>
+              <%= info_acad.text_field :cantidad_de_anos_de_espanol_estudiadas, {class: "form-control",required: true} %>
             </div>
             <div class="col-md-12 col-sm-12">
               <div class="form-group">
                 <h6>Bloque para estudiante</h6>
-                <%= form.collection_select(:bloque_id, Bloque.where(seleccion_estudiante: true), :id, :creador, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
+                <%= form.collection_select(:bloque_id, Bloque.where(seleccion_estudiante: true), :id, :creador, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width',required: true}) %>
               </div>
             </div>
           </div>
@@ -206,7 +206,7 @@
         <div class="col-md-12 col-sm-12">
           <div class="form-group">
             <h6>Asignaturas de español recientes</h6>
-            <%= info_acad.text_field :asignaturas_de_espanol_recientes, class: "form-control" %>
+            <%= info_acad.text_field :asignaturas_de_espanol_recientes, {class: "form-control",required: true} %>
           </div>
         </div>
         <div class="row col-md-12 col-sm-12">
@@ -214,7 +214,7 @@
             <div class="form-group">
               <h6>Bloque Interesado</h6>
               <%#Nivel.find_by(id: :id).nombre  %>
-              <%= form.collection_select(:nivel_id, Nivel.joins(:bloques).where(bloques: {seleccion_estudiante: true}), :id, :nombre, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width'}) %>
+              <%= form.collection_select(:nivel_id, Nivel.joins(:bloques).where(bloques: {seleccion_estudiante: true}), :id, :nombre, {:include_blank => ''}, {class: 'select2-simple-dropdown select2-dropdown-width',required: true}) %>
             </div>
           </div>
           <% end %>

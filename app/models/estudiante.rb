@@ -29,12 +29,17 @@
     # accepts_nested_attributes_for :clases
     accepts_nested_attributes_for :persona
 
-    #validaciones
-    validates :pasaporte, presence: true
+    #validacion de campos
+    validates :pasaporte, presence: true, uniqueness: true
+    
+    #validaciones de las relaciones
+    validates :bloques, presence: true
+    validates :informacion_academica, presence: true
+    validates :institucion, presence: true
+    validates :persona , presence: true , uniqueness: true
     validates :madre, presence: true
     validates :padre, presence: true
     validates :sexo, presence: true
-
     def id_campus_nombres_apellidos
       "#{persona.id_campus} #{persona.nombres} #{persona.apellidos}"
     end
