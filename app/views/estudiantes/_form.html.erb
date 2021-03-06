@@ -19,19 +19,31 @@
               <div class="col-md-4 col-sm-4">
                 <div class="form-group">
                   <h5>No. pasaporte</h5>
-                  <%= form.text_field :pasaporte, class: "form-control" %>
+                  <% if not @estudiante.errors[:pasaporte].empty? %>
+                    <%= form.text_field :pasaporte, class: "form-control is-invalid" %>
+                  <% else %>
+                    <%= form.text_field :pasaporte, class: "form-control" %>
+                  <% end %>
                 </div>
               </div>
               <div class="col-md-4 col-sm-4">
                 <div class="form-group">
                   <h5>Nombres del estudiante:</h5>
-                  <%= prsn.text_field :nombres, class: "form-control" %>
+                  <% if not @estudiante.persona.errors[:nombres].empty? %>
+                    <%= prsn.text_field :nombres, class: "form-control is-invalid" %>
+                  <% else %>
+                    <%= prsn.text_field :nombres, class: "form-control" %>
+                  <% end %>
                 </div>
               </div>
               <div class="col-md-4 col-sm-4">
                 <div class="form-group">
                   <h5>Apellidos del estudiante:</h5>
-                  <%= prsn.text_field :apellidos, class: "form-control" %>
+                  <% if not @estudiante.persona.errors[:apellidos].empty? %>
+                    <%= prsn.text_field :apellidos, class: "form-control is-invalid" %>
+                  <% else %>
+                    <%= prsn.text_field :apellidos, class: "form-control" %>
+                  <% end %>
                 </div>
               </div>
             </div>
