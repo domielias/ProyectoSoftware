@@ -2,8 +2,8 @@
 
     belongs_to :programa_internacional, optional: true
     belongs_to :carrera_solicitada, optional: true
-    belongs_to :padre, :class_name => 'Persona', optional: true
-    belongs_to :madre, :class_name => 'Persona', optional: true
+    belongs_to :padre, :class_name => 'Persona', optional: true, :validate => false
+    belongs_to :madre, :class_name => 'Persona', optional: true, :validate => false
     has_many :direccions
     has_one :examen_de_nivel
     has_one :informacion_academica
@@ -31,9 +31,9 @@
 
     #validaciones
     validates :pasaporte, presence: true
-    validates :madre, presence: true
-    validates :padre, presence: true
-    validates :sexo, presence: true
+    # validates :madre, presence: true
+    # validates :padre, presence: true
+    # validates :sexo, presence: true
 
     def id_campus_nombres_apellidos
       "#{persona.id_campus} #{persona.nombres} #{persona.apellidos}"

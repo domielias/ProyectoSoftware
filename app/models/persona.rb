@@ -5,7 +5,7 @@ class Persona < ApplicationRecord
     #Validaciones
     validates :nombres, presence: true
     validates :apellidos, presence: true
-    validates :fecha_nacimiento, presence: true
+    # validates :fecha_nacimiento, presence: true
     def id_campus_nombres_apellidos
       "#{id_campus} #{nombres} #{apellidos}"
     end
