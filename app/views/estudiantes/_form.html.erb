@@ -2,8 +2,8 @@
   <% if estudiante.errors.any? %>
     <%= render '/shared/errors', obj: @estudiante %>
   <% end %>
-<div class="container-fluid">
-  <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12 py-3 pl-lg-5 pr-lg-5 bd-content">
+  <div class="container-fluid">
+    <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12 py-3 pl-lg-5 pr-lg-5 bd-content">
       <div class="card card-default">
         <div class="card-header">
           <h3 class="card-title">Datos Personales</h3>
@@ -40,13 +40,13 @@
               <div class="col-md-4 col-sm-4">
                 <div class="form-group">
                   <h5>Fecha de nacimiento:</h5>
-                  <%= prsn.date_field :fecha_nacimiento, {class: "form-control date-input"} %>
+                  <%= prsn.date_field :fecha_nacimiento, { class: "form-control date-input" } %>
                 </div>
               </div>
               <div class="col-md-4 col-sm-4">
                 <div class="form-group">
                   <h5>Sexo:</h5>
-                  <%= form.select :sexo, ['Femenino', 'Masculino'], {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+                  <%= form.select :sexo, ['Femenino', 'Masculino'], { :include_blank => '' }, { class: 'select2-simple-dropdown select2-dropdown-width' } %>
                 </div>
               </div>
               <div class="col-md-4 col-sm-4">
@@ -98,7 +98,7 @@
             <div class="col-md-4 col-sm-4">
               <div class="form-group">
                 <h5>Estado civil:</h5>
-                <%= form.select :estado_civil, ['Soltero/a', 'Casado/a', 'Viudo/a', 'Comprometido/a', 'En Relación', 'Unión Libre', 'Separado/a', 'Divorciado/a', 'Noviazgo/a'], {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+                <%= form.select :estado_civil, ['Soltero/a', 'Casado/a', 'Viudo/a', 'Comprometido/a', 'En Relación', 'Unión Libre', 'Separado/a', 'Divorciado/a', 'Noviazgo/a'], { :include_blank => '' }, { class: 'select2-simple-dropdown select2-dropdown-width' } %>
               </div>
             </div>
             <div class="col-md-8 col-sm-8">
@@ -125,22 +125,29 @@
               <div class="col-md-6 col-sm-6">
                 <div class="form-group">
                   <h6><%= prog_insc.check_box :formulario_admisiones %> Formulario de Admisiones</h6>
-                  <h6><%= prog_insc.check_box :formulario_especial_para_extranjeros %> Formulario especial para extranjeros</h6>
+                  <h6><%= prog_insc.check_box :formulario_especial_para_extranjeros %> Formulario especial para
+                    extranjeros</h6>
                   <h6><%= prog_insc.check_box :acta_nacimiento %> Acta de Nacimiento Apostillada en País de Origen</h6>
                   <h6><%= prog_insc.check_box :certificacion_medica %> Certificado Médico Firmado y Sellado</h6>
                   <h6><%= prog_insc.check_box :fotografias %> Fotografías 2x2</h6>
                   <h6><%= prog_insc.check_box :copia_pasaporte %> Copia de Pasaporte</h6>
-                  <h6><%= prog_insc.check_box :record_secundaria %> Récord de Notas y Diploma de la Escuela Secundaria, Apostillados o Legalizados</h6>
+                  <h6><%= prog_insc.check_box :record_secundaria %> Récord de Notas y Diploma de la Escuela Secundaria,
+                    Apostillados o Legalizados</h6>
                 </div>
               </div>
               <div class="col-md-6 col-sm-6">
                 <div class="form-group">
-                  <h6><%= prog_insc.check_box :certificado_pruebas_nacionales %> Certificado de Prueba Nacionales (en caso de de tener estudios en RD)</h6>
+                  <h6><%= prog_insc.check_box :certificado_pruebas_nacionales %> Certificado de Prueba Nacionales (en
+                    caso de de tener estudios en RD)</h6>
                   <h6><%= prog_insc.check_box :recibo_admision %> Recibo de Pago de Admisión</h6>
-                  <h6><%= prog_insc.check_box :visa_estudiante %> Visa de estudiante (para programas de más de un (1) mes) </h6>
-                  <h6><%= prog_insc.check_box :seguro_medico_o_viajero %> Seguro médico de viajero o de estudiante con cobertura internacional para período completo.</h6>
-                  <h6><%= prog_insc.check_box :acta_nacimiento_padres %> Acta Nacimiento de Padres (para hijos de dominicanos)</h6>
-                  <h6><%= prog_insc.check_box :record_notas_original_de_univ_de_procedencia %> Record de Notas Original de la Universidad de Procedencia</h6>
+                  <h6><%= prog_insc.check_box :visa_estudiante %> Visa de estudiante (para programas de más de un (1)
+                    mes) </h6>
+                  <h6><%= prog_insc.check_box :seguro_medico_o_viajero %> Seguro médico de viajero o de estudiante con
+                    cobertura internacional para período completo.</h6>
+                  <h6><%= prog_insc.check_box :acta_nacimiento_padres %> Acta Nacimiento de Padres (para hijos de
+                    dominicanos)</h6>
+                  <h6><%= prog_insc.check_box :record_notas_original_de_univ_de_procedencia %> Record de Notas Original
+                    de la Universidad de Procedencia</h6>
                 </div>
               </div>
             </div>
@@ -164,63 +171,35 @@
                 <%= form.fields_for :persona do |prsn| %>
                   <h5>ID estudiante</h5>
                   <%= prsn.text_field :id_campus, class: "form-control" %>
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <div class="form-group">
-                  <h5>Matrícula del estudiante</h5>
-                  <%= prsn.text_field :matricula, class: "form-control" %>
+                  </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4">
+                    <div class="form-group">
+                      <h5>Matrícula del estudiante</h5>
+                      <%= prsn.text_field :matricula, class: "form-control" %>
                 <% end %>
-              </div>
-            </div>
-            <div class="col-md-4 col-sm-4">
-              <div class="form-group">
-                <h5>Programa EPE solicitado</h5>
-                <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
-              </div>
-            </div>
-          </div>
+                </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                  <div class="form-group">
+                    <h5>Programa EPE solicitado</h5>
+                    <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), { :include_blank => '' }, { class: 'select2-simple-dropdown select2-dropdown-width' } %>
+                  </div>
+                </div>
+                </div>
           <div class="row col-md-12 col-sm-12">
             <div class="col-md-6 col-sm-6">
               <div class="form-group">
                 <h5>Programa de movilidad</h5>
-                <%= form.select :programa_internacional_id, ProgramaInternacional.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+                <%= form.select :programa_internacional_id, ProgramaInternacional.pluck(:nombre, :id), { :include_blank => '' }, { class: 'select2-simple-dropdown select2-dropdown-width' } %>
               </div>
             </div>
             <div class="col-md-6 col-sm-6">
               <div class="form-group">
                 <h5>Carrera solicitada (Programa Estudiantes Especiales)</h5>
-                <%= form.select :carrera_solicitada_id, CarreraSolicitada.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+                <%= form.select :carrera_solicitada_id, CarreraSolicitada.pluck(:nombre, :id), { :include_blank => '' }, { class: 'select2-simple-dropdown select2-dropdown-width' } %>
               </div>
             </div>
-          </div>
-          <hr/>
-          <%= form.fields_for :examen_de_nivel do |ex_niv| %>
-            <div class="col-md-12 col-sm-12">
-              <div class="form-group">
-                <h5>Examen de nivel</h5>
-              </div>
-            </div>
-            <div class="row col-md-12 col-sm-12">
-              <div class="col-md-4 col-sm-4">
-                <div class="form-group">
-                  <h6>Fecha del examen</h6>
-                  <%= ex_niv.date_field :fecha_examen, {class: "form-control date-input"} %>
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <div class="form-group">
-                  <h6>Nota</h6>
-                  <%= ex_niv.number_field :promedio, {step: 0.1, class: "form-control"} %>
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <div class="form-group">
-                  <h6>Nivel</h6>
-                  <%= form.select :nivel_id, Nivel.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
-                </div>
-              </div>
-            <% end %>
           </div>
           <hr/>
           <%= form.fields_for :informacion_academica do |info_acad| %>
@@ -228,13 +207,13 @@
               <div class="col-md-4 col-sm-4">
                 <div class="form-group">
                   <h5>Universidad de procedencia</h5>
-                  <%= form.select :institucion_id, Institucion.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+                  <%= form.select :institucion_id, Institucion.pluck(:nombre, :id), { :include_blank => '' }, { class: 'select2-simple-dropdown select2-dropdown-width' } %>
                 </div>
               </div>
               <div class="col-md-4 col-sm-4">
                 <div class="form-group">
                   <h5>Tiempo estudiando español (meses)</h5>
-                  <%= info_acad.number_field :cantidad_de_anos_de_espanol_estudiadas, {step: 0.1, class: "form-control"} %>
+                  <%= info_acad.number_field :cantidad_de_anos_de_espanol_estudiadas, { step: 0.1, class: "form-control" } %>
                 </div>
               </div>
               <div class="col-md-4 col-sm-4">
@@ -244,13 +223,43 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-12 col-sm-12">
-              <div class="form-group">
-                <h5>Asignaturas de español recientes</h5>
-                <%= info_acad.text_field :asignaturas_de_espanol_recientes, class: "form-control" %>
+            <div class="row col-md-12 col-sm-12">
+              <div class="col-md-4 col-sm-4">
+                <div class="form-group">
+                  <h5>Asignaturas de español recientes</h5>
+                  <%= info_acad.text_field :asignaturas_de_espanol_recientes, class: "form-control" %>
+                </div>
               </div>
             </div>
           <% end %>
+          <%= form.fields_for :examen_de_nivel do |ex_niv| %>
+            <div class="col-md-12 col-sm-12">
+              <hr/>
+              <div class="form-group">
+                <h5>Examen de nivel</h5>
+              </div>
+            </div>
+            <div class="row col-md-12 col-sm-12">
+              <div class="col-md-4 col-sm-4">
+                <div class="form-group">
+                  <h6>Fecha del examen</h6>
+                  <%= ex_niv.date_field :fecha_examen, { class: "form-control date-input" } %>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-4">
+                <div class="form-group">
+                  <h6>Nota</h6>
+                  <%= ex_niv.number_field :promedio, { step: 0.1, class: "form-control" } %>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-4">
+                <div class="form-group">
+                  <h6>Nivel</h6>
+                  <%= form.select :nivel_id, Nivel.pluck(:nombre, :id), { :include_blank => '' }, { class: 'select2-simple-dropdown select2-dropdown-width' } %>
+                </div>
+              </div>
+          <% end %>
+          </div>
         </div>
       </div>
       <div class="card card-default">
@@ -267,6 +276,9 @@
           <%= form.fields_for :direccions do |dirr| %>
             <div class="col-md-12 col-sm-12"></div>
             <div class="col-md-12 col-sm-12">
+              <% if n == 1 %>
+              <hr/>
+              <% end %>
               <div class="form-group">
                 <% if n == 0 %>
                   <h5>Dirección:
@@ -286,7 +298,7 @@
                 <div class="form-group">
                   <div>
                     <h6>País:</h6>
-                    <%= form.select :pai_id, Pai.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
+                    <%= form.select :pai_id, Pai.pluck(:nombre, :id), { :include_blank => '' }, { class: 'select2-simple-dropdown select2-dropdown-width' } %>
                   </div>
                 </div>
               </div>
@@ -303,18 +315,23 @@
                 </div>
               </div>
             </div>
-            <hr/>
             <div class="row col-md-12 col-sm-12">
               <div class="col-md-6 col-sm-6">
+                <div class="form-group">
                 <h6>Dirección completa:</h6>
                 <%= dirr.text_field :direccion_completa, class: "form-control" %>
+                </div>
               </div>
               <div class="col-md-6 col-sm-6">
+                <div class="form-group">
                 <h6>Teléfono:</h6>
                 <%= dirr.text_field :telefono, class: "form-control" %>
+                </div>
               </div>
             </div>
+            <% if n == 0 %>
             <hr/>
+            <% end %>
           <% end %>
           <div class="row col-md-12 col-sm-12">
             <div class="col-md-6 col-sm-6">
@@ -331,20 +348,17 @@
           </div>
         </div>
       </div>
-      <div class="right">
+      <div class="flex-end">
         <% if @estudiante.new_record? %>
           <%= link_to "Cancelar", '/estudiantes', class: "btn btn-danger " %>
         <% end %>
-        <div class="float-right">
           <% if @estudiante.admitido? %>
-            <%= form.submit 'Finalizar', {class: "btn bg-gradient-success"} %>
+            <%= form.submit 'Finalizar', { class: "btn bg-gradient-success" } %>
           <% else %>
-            <%= form.submit 'Guardar como borrador', {class: "btn btn-primary", data: { confirm: '¿Estás seguro de guardar como borrador?', title: 'Desea guardar este estudiante?'}} %>
-            <%= form.submit 'Finalizar', {class: "btn bg-gradient-success", data: { confirm: '¿Estás seguro de guardar este estudiante?', title: 'Desea guardar este estudiante?'}} %>
+            <%= form.submit 'Guardar como borrador', { class: "btn btn-primary", data: { confirm: '¿Estás seguro de guardar como borrador?', title: 'Desea guardar este estudiante?' } } %>
+            <%= form.submit 'Finalizar', { class: "btn bg-gradient-success", data: { confirm: '¿Estás seguro de guardar este estudiante?', title: 'Desea guardar este estudiante?' } } %>
           <% end %>
-        </div>
       </div>
     </div>
   </div>
-</div>
 <% end %>
