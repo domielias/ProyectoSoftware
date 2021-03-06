@@ -80,15 +80,15 @@ class EstudiantesController < ApplicationController
     @estudiante.admitido = true if finalizado?
     @estudiante.admitido = false if guardado?
 
-    respond_to do |format|
-      if @estudiante.save
-        if guardado?
-          redirect_to no_admitidos_url
-        else
-          finalizado?
-          redirect_to estudiantes_url
-        end
+    if @estudiante.save
+      if guardado?
+        redirect_to no_admitidos_url
       else
+        finalizado?
+        redirect_to estudiantes_url
+      end
+    else
+      respond_to do |format|
         format.html { render :new }
       end
     end
