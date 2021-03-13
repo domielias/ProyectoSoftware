@@ -20,8 +20,8 @@ class AsignaturasController < ApplicationController
   end
 
   # GET /asignaturas/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /asignaturas
   # POST /asignaturas.json
@@ -30,7 +30,8 @@ class AsignaturasController < ApplicationController
 
     # respond_to do |format|
       if @asignatura.save
-        redirect_to configuracion_path
+        # render @asignatura
+        redirect_to asignaturas_path
         # format.html { redirect_to @asignatura, notice: 'Asignatura was successfully created.' }
         # format.json { render :show, status: :created, location: @asignatura }
       else
@@ -41,27 +42,29 @@ class AsignaturasController < ApplicationController
 
   # PATCH/PUT /asignaturas/1
   # PATCH/PUT /asignaturas/1.json
-  def update
-    respond_to do |format|
-      if @asignatura.update(asignatura_params)
-        format.html { redirect_to @asignatura, notice: 'Asignatura was successfully updated.' }
-        format.json { render :show, status: :ok, location: @asignatura }
-      else
-        format.html { render :edit }
-        format.json { render json: @asignatura.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # No se puede actualiza raisgnaturas después de ser creadas
+  # def update
+  #   respond_to do |format|
+  #     if @asignatura.update(asignatura_params)
+  #       format.html { redirect_to @asignatura, notice: 'Asignatura was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @asignatura }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @asignatura.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /asignaturas/1
   # DELETE /asignaturas/1.json
-  def destroy
-    @asignatura.destroy
-    respond_to do |format|
-      format.html { redirect_to asignaturas_url, notice: 'Asignatura was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  #No se pueden eliminar asignaturas después de ser creadas
+  # def destroy
+  #   @asignatura.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to asignaturas_url, notice: 'Asignatura was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

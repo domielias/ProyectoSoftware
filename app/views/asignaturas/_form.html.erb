@@ -1,46 +1,49 @@
 <%= form_with(model: asignatura, local: true) do |form| %>
   <% if asignatura.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(asignatura.errors.count, "error") %> prohibited this asignatura from being saved:</h2>
-
-      <ul>
-        <% asignatura.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= render '/shared/errors', obj: @actividad %>
   <% end %>
 
-  <div class="field">
-    <%= form.label :nombre %>
-    <%= form.text_field :nombre %>
-  </div>
-  <div class="field">
-    <%= form.label :clave %>
-    <%= form.text_field :clave %>
-  </div>
-
-  <div class="field">
-    <%= form.label :valor_teorico %>
-    <%= form.number_field :valor_teorico %>
-  </div>
-
-  <div class="field">
-    <%= form.label :valor_practico %>
-    <%= form.number_field :valor_practico %>
-  </div>
-
-  <div class="field">
-    <%= form.label :valor_credito %>
-    <%= form.number_field :valor_credito %>
-  </div>
-
-  <div class="field">
-    <%= form.label :facultad %>
-    <%= form.collection_select(:facultad_id, Facultad.all, :id, :nombre,{},{class:"form-control"}) %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="container-fluid">
+    <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12 py-3 pl-lg-5 pr-lg-5 bd-content">
+      <div class="card card-default">
+        <div class="card-body">
+          <h6 class="card-title">Datos generales</h6>
+          <div class="row col-md-12 col-sm-12">
+            <div class="col-md-4 col-sm-4">
+              <h5>Nombre:</h5>
+              <%= form.text_field :nombre, class: "form-control"%>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <h5>Clave:</h5>
+              <%= form.text_field :clave, class: "form-control" %>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <h5>Valor teorico:</h5>
+              <%= form.text_field :valor_teorico, class: "form-control" %>
+            </div>
+          </div>
+          <div class="row col-md-12 col-sm-12">
+            <div class="col-md-4 col-sm-4">
+              <h5>Valor de credito:</h5>
+              <%= form.text_field :valor_credito, class: "form-control" %>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <h5>Valor de Practico:</h5>
+              <%= form.text_field :valor_practico, class: "form-control" %>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <h5>Facultad:</h5>
+              <%= form.collection_select(:facultad_id, Facultad.all, :id, :nombre,{},{class:"select2-simple-dropdown select2-dropdown-width"}) %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="float-left">
+        <%= link_to 'Regresar', asignaturas_path, class: "btn btn-danger" %>
+      </div>
+      <div class="float-right">
+        <%= form.submit 'Crear', class: "btn btn-primary" %>
+      </div>
+    </div>
   </div>
 <% end %>
