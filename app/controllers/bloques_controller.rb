@@ -1,11 +1,20 @@
 class BloquesController < ApplicationController
   load_and_authorize_resource
   before_action :set_bloque, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: %i[index]
+  skip_authorize_resource :only => [:index]
 
   # GET /bloques
   # GET /bloques.json
   def index
-    @bloques = Bloque.where(seleccion_estudiante: false)
+    # Este if es para que si no se especifica la condicion de seleccion_estudiante en la url, será
+    # falsa por defecto, como lo estuvo antes de modificar ese pedazo de código
+    if params[:seleccion_estudiante] == nil
+      params[:seleccion_estudiante] = false
+    end
+    # Este params[:seleccion_estudiante] if es para que pueda usar la condicion de seleccion_estudiante en la llamada de ajax
+    # url: '/bloques.json?seleccion_estudiante=true'
+    @bloques = Bloque.where(seleccion_estudiante: params[:seleccion_estudiante])
   end
   def index_bloque_estudiante
     @bloques = Bloque.where(seleccion_estudiante: true)
