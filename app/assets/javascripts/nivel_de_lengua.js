@@ -8,8 +8,8 @@ $(document).on('turbolinks:load', function () {
     $('.nivel_de_lengua_selection').empty().addClass("custom-select");
 
     // Agregar una opción vacía a los selects
-    // $('.programa_epe_solicitado_selection').append($('<option value="" disabled selected></option>'));
-    // $('.nivel_de_lengua_selection').append($('<option value="" disabled selected>Seleccione un Programa EPE</option>'));
+    $('.programa_epe_solicitado_selection').append($('<option value="" disabled selected></option>'));
+    $('.nivel_de_lengua_selection').append($('<option value="" disabled selected>Seleccione un Programa EPE</option>'));
 
     // Obtener los bloques para selección por ajax
     $.ajax({
@@ -47,14 +47,6 @@ $(document).on('turbolinks:load', function () {
         for (var key in programa_nivel_nivel_arr) {
             $('.programa_epe_solicitado_selection').append($('<option value="'+key+'">'+programa_nivel_nivel_arr[key][0]+'</option>'));
         }
-
-        // Seleccionar el primer Programa EPE por defecto
-        $("#estudiante_programa_epe_solicitado_id").prop("selectedIndex", 0);
-
-        // Seleccionar el primer nivel del primer Programa EPE por defecto
-        programa_nivel_nivel_arr[1].slice(1).forEach(function(value) {
-            $('.nivel_de_lengua_selection').append($('<option value="'+value[0]+'">'+value[1]+'</option>'));
-        });
 
     });
 

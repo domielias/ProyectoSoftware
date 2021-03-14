@@ -204,7 +204,7 @@
           <div class="col-md-6 col-sm-12">
             <div class="form-group">
               <h6>Programa EPE solicitado</h6>
-              <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), {:include_blank => ''},{ class: 'programa_epe_solicitado_selection'} %>
+              <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), {:include_blank => ''},{ class: 'programa_epe_solicitado_selection', required: true} %>
             </div>
           </div>
           <%= form.fields_for :examen_de_nivel do |exmn| %>
@@ -221,7 +221,7 @@
       <% end %>
       <div class="right">
         <div class="float-right">
-          <%= form.submit 'Enviar solicitud', {class: "btn btn-success", data: { confirm: '¿Desea enviar la solicitud de estudiante?', title: 'Desea guardar este estudiante?'}} %>
+          <%= form.submit 'Enviar solicitud', {class: "btn btn-success", data: { confirm: '¿Desea enviar la solicitud?', title: '¿Desea guardar este estudiante?'}} %>
         </div>
       </div>
       <% end %>
