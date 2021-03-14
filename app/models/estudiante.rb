@@ -17,6 +17,7 @@
     has_many :bloque_estudiantes, dependent: :destroy
     has_many :bloques, through: :bloque_estudiantes
 
+
     accepts_nested_attributes_for :programa_internacional
     accepts_nested_attributes_for :carrera_solicitada
     accepts_nested_attributes_for :padre
@@ -31,6 +32,9 @@
 
     #validaciones
     validates :pasaporte, presence: true
+
+    validates :programa_epe_solicitado, presence: true
+    validates :examen_de_nivel, presence: true
     # validates :madre, presence: true
     # validates :padre, presence: true
     # validates :sexo, presence: true

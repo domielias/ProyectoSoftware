@@ -88,6 +88,8 @@ class EstudiantesController < ApplicationController
     @estudiante.admitido = true if finalizado?
     @estudiante.admitido = false if guardado?
 
+    byebug
+
     bloque_seleccionado
     
     @estudiante.bloques.push(@bloque_seleccionado)
