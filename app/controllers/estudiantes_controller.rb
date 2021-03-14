@@ -88,8 +88,6 @@ class EstudiantesController < ApplicationController
     @estudiante.admitido = true if finalizado?
     @estudiante.admitido = false if guardado?
 
-    byebug
-
     bloque_seleccionado
     
     @estudiante.bloques.push(@bloque_seleccionado)
@@ -166,7 +164,7 @@ class EstudiantesController < ApplicationController
   end
   
   def solicitud_estudiante_params
-    params.require(:estudiante).permit(:pasaporte, :estado_civil, :nombre_conyugue, :sexo, :programa_epe_solicitado_id, :bloque_id, :programa_internacional_id, :carrera_solicitada_id, :institucion_id, direccions_attributes: [:id, :telefono, :direccion_completa, :ciudad, :codigo_postal, :pais_residencia, :pai_id], persona_attributes: [:id, :nombres, :apellidos, :fecha_nacimiento, :correo_electronico], padre_attributes: [:id, :nombres, :apellidos], madre_attributes: [:id, :nombres, :apellidos], examen_de_nivel_attributes: [:id, :promedio, :nivel_id, :fecha_examen], informacion_academica_attributes: [:id, :cantidad_de_anos_de_espanol_estudiadas, :asignaturas_de_espanol_recientes, :cantidad_de_horas_de_espanol_cursadas, :nivel_alcanzado])
+    params.require(:estudiante).permit(:pasaporte, :estado_civil, :nombre_conyugue, :sexo, :programa_epe_solicitado_id, :bloque_id, :programa_internacional_id, :carrera_solicitada_id, :institucion_id, direccions_attributes: [:id, :telefono, :direccion_completa, :ciudad, :codigo_postal, :pais_residencia, :pai_id], persona_attributes: [:id, :nombres, :apellidos, :fecha_nacimiento, :correo_electronico], padre_attributes: [:id, :nombres, :apellidos], madre_attributes: [:id, :nombres, :apellidos], examen_de_nivel_attributes: [:id, :promedio, :nivel_id, :fecha_examen], informacion_academica_attributes: [:id, :cantidad_de_anos_de_espanol_estudiadas, :asignaturas_de_espanol_recientes, :cantidad_de_horas_de_espanol_cursadas, :nivel_alcanzado], progreso_inscripcion_attributes: [:id, :formulario_admisiones, :formulario_especial_para_extranjeros, :visa_estudiante, :acta_nacimiento, :certificacion_medica, :fotografias, :copia_pasaporte, :record_secundaria, :certificado_pruebas_nacionales, :recibo_admision, :seguro_medico_o_viajero, :acta_nacimiento_padres, :record_notas_original_de_univ_de_procedencia])
   end
   
   def guardado?
