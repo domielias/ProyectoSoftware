@@ -33,11 +33,9 @@
     #validaciones
     validates :pasaporte, presence: true
 
-    validates :programa_epe_solicitado, presence: true
+    # Esta validación no tiene efectio en /ficha_de_solicitud_estudiante
+    # validates :programa_epe_solicitado, presence: true
     validates :examen_de_nivel, presence: true
-    # validates :madre, presence: true
-    # validates :padre, presence: true
-    # validates :sexo, presence: true
 
     def id_campus_nombres_apellidos
       "#{persona.id_campus} #{persona.nombres} #{persona.apellidos}"
