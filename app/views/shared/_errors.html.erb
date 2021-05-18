@@ -1,20 +1,21 @@
 <% if obj.errors.any? %>
-  <div class="col-xs-5">
-    <div class="card text-white bg-danger mb-3 row">
-    <div class="card-header">
-      <h2> Los siguientes erores evitan que se pueda guardar</h2>
-    </div>
-    <h5 class="card-title offset-1">
-      Revise lo siguiente: <%= pluralize(obj.errors.count, "Error") %> 
-    </h5>
-    <div class="card-body">    
-        <ul >
-          <% obj.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-    </div>
+  <div class="container-fluid">
+    <div class="py-3 pl-lg-5 pr-lg-5">
+      <div class="card text-white bg-danger mb-3">
+        <div class="card-header">
+          <h2>Los siguientes errores evitan que se pueda guardar</h2>
+        </div>
+        <div class="card-body">
+          <h5>
+            Revise lo siguiente: <%= pluralize(obj.errors.count, "error/es") %>
+          </h5>
+          <ul>
+            <% obj.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
-  <div>
 <% end %>
