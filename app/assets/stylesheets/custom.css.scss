@@ -40,6 +40,12 @@
   margin-left: 5px;
 }
 
+.pdf-generator-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px
+}
+
 @media screen and (max-width: 576px) {
   .flex-end {
     flex-direction: column;
