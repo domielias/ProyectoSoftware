@@ -4,31 +4,33 @@
   <div class="container-fluid">
     <h1>Estudiantes</h1>
 
-  <div class="pdf-generator-button-wrapper">
-    <%= link_to "Generar PDF General", estudiantes_path(format: "pdf" ), class:"btn btn-success", target: :_blank %>
-  </div>
-<table class="table table-striped display table-responsive" role='datatable'>
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>ID estudiante</th>
-      <th>Programa</th>
-      <th>Sexo</th>
-      <th>Egresado</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+    <div class="pdf-generator-button-wrapper">
+      <%= link_to "Generar PDF General", estudiantes_path(format: "pdf"), class: "btn btn-success", target: :_blank %>
+    </div>
 
-  <tbody>
-    <% n=0 %>
-      <% @estudiantes.where(admitido: true).each do |estudiante| %>
+    <div style="overflow-x:auto;">
+      <table class="table table-striped display" role='datatable'>
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>ID estudiante</th>
+          <th>Programa</th>
+          <th>Sexo</th>
+          <th>Egresado</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% n = 0 %>
+        <% @estudiantes.where(admitido: true).each do |estudiante| %>
           <tr>
-            <td><%= n+=1 %></td>
+            <td><%= n += 1 %></td>
             <td><%= estudiante.persona.nombres %></td>
             <td><%= estudiante.persona.apellidos %></td>
             <td><%= estudiante.persona.id_campus %></td>
@@ -46,12 +48,13 @@
             <td class="align-column-content-center"><%= link_to 'Mostrar calendario actual', mostrar_horario_actual_estudiante_path(id: estudiante), class: "btn btn-secondary" %></td>
             <td><%= link_to 'Listar Clases', listar_clases_estudiante_path(estudiante), class: "btn btn-secondary" %></td>
             <td class="align-column-content-center"><%= link_to 'Mostrar', edit_estudiante_path(estudiante), class: "btn btn-warning" %></td>
-            <td class="align-column-content-center"><%= link_to "Generar PDF Estudiante", generar_pdf_individual_estudiante_path(estudiante, format: "pdf" ),  class:"btn btn-info", target: :_blank %></td>
-          </td>
-        </tr>
+            <td class="align-column-content-center"><%= link_to "Generar PDF Estudiante", generar_pdf_individual_estudiante_path(estudiante, format: "pdf"), class: "btn btn-info", target: :_blank %></td>
+            </td>
+          </tr>
         <% end %>
-      </tbody>
-    </table>
-  <br>
+        </tbody>
+      </table>
+    </div>
+    <br>
   </div>
 </section>

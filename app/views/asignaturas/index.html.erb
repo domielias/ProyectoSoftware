@@ -9,8 +9,8 @@
       <%= link_to "Generar PDF General" , estudiantes_path(format: "pdf" ), style:"float:right", class:"btn
         btn-success", target: :_blank %>
     </div>
-
-    <table class="table table-striped display table-responsive" role='datatable'>
+    <div style="overflow-x:auto;">
+    <table class="table table-striped display" role='datatable'>
       <thead>
         <tr>
           <th>Nombre Asignatura</th>
@@ -48,7 +48,7 @@
           <% end %>
       </tbody>
     </table>
-
+    </div>
     <br>
     <div class="float-left">
       <%= link_to 'New Asignatura' , new_asignatura_path,{class:"btn bg-gradient-info"} %>

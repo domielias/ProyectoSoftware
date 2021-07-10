@@ -5,7 +5,8 @@
   <div class="container-fluid">
     <h1>Actividades</h1>
 
-    <table class="table table-striped display table-responsive" role='datatable'>
+    <div style="overflow-x:auto;">
+    <table class="table table-striped display" role='datatable'>
       <thead>
         <tr>
           <th>Fecha</th>
@@ -58,6 +59,7 @@
         <% end %>
       </tbody>
     </table>
+    </div>
 
     <br>
     <%# link_to 'New Actividad', new_actividad_path %>
