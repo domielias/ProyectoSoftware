@@ -35,7 +35,6 @@ class ActividadsController < ApplicationController
     #   end
     # end
 
-    @otras_actividades = Actividad.all
     # Time.at(@otras_actividades[0].fecha).to_date === Time.at(@actividad.fecha).to_date
 
     # Actividad.joins(:clases).where(clases: {profesor_id: 2})
@@ -63,7 +62,9 @@ class ActividadsController < ApplicationController
       if @actividad.save
         redirect_to actividads_url
       else
-        format.html { render :new }
+        respond_to do |format|
+          format.html { render :new }
+        end
       end
     end
 

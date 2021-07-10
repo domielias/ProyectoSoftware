@@ -48,38 +48,50 @@
           <div class="col-md-6 col-sm-6">
             <div class="form-group">
               <h5>Fecha</h5>
-              <%= form.date_field :fecha, {class: "form-control date-input" } %>
+              <%= form.date_field :fecha, {class: "form-control date-input", required: true } %>
             </div>
           </div>
           <div class="col-md-6 col-sm-6">
             <div class="form-inline select-time-div-margin">
               <div class="list-inline-item">
-                <h8 class='select-time-header-margin'>Desde</h8>
-                <%= form.time_select :hora_inicio, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
+                <div class="form-group">
+                  <h8 class='select-time-header-margin'>Desde</h8>
+                  <%= form.time_select :hora_inicio, { }, { class: 'form-control', default: {hour: '16', minute: '00'}} %>
+                </div>
               </div>
               <div class="list-inline-item">
-                <h8 class='select-time-header-margin'>Hasta</h8>
-                <%= form.time_select :hora_fin, { }, { class: 'form-control', default: {hour: '18', minute: '00'}} %>
+                <div class="form-group">
+                  <h8 class='select-time-header-margin'>Hasta</h8>
+                  <%= form.time_select :hora_fin, { }, { class: 'form-control', default: {hour: '18', minute: '00'}} %>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div class="col-md-12 col-sm-12">
-          <h5>Nombre</h5>
-          <%= form.text_field :nombre_de_la_actividad, { class: 'form-control'} %>
+          <div class="form-group">
+            <h5>Nombre</h5>
+            <%= form.text_field :nombre_de_la_actividad, { class: 'form-control', required: true } %>
+          </div>
         </div>
         <div class="col-md-12 col-sm-12">
-          <h5>Objetivo</h5>
-          <%= form.text_area :objetivo, { class: 'form-control'} %>
+          <div class="form-group">
+            <h5>Objetivo</h5>
+            <%= form.text_area :objetivo, { class: 'form-control'} %>
+          </div>
         </div>
         <div class="row col-md-12 col-sm-12">
           <div class="col-md-6 col-sm-6">
-            <h5>Ubicación</h5>
-            <%= form.text_field :ubicacion, { class: 'form-control'} %>
+            <div class="form-group">
+              <h5>Ubicación</h5>
+              <%= form.text_field :ubicacion, { class: 'form-control'} %>
+            </div>
           </div>
           <div class="col-md-6 col-sm-6">
-            <h5>Forma de transporte</h5>
-            <%= form.text_field :forma_de_transporte, { class: 'form-control'} %>
+            <div class="form-group">
+              <h5>Forma de transporte</h5>
+              <%= form.text_field :forma_de_transporte, { class: 'form-control'} %>
+            </div>
           </div>
         </div>
 
@@ -89,13 +101,13 @@
         <% if current_user.admin? %>
         <%= form.collection_select(:clase_ids, Clase.all, :id, :no_clase,
                                   {selected: actividad.clases.map(&:id)},
-                                  {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+                                  {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true', required: true }) %>
 
 
         <% else %>
         <%= form.collection_select(:clase_ids, Clase.where(profesor_id: current_user.id), :id, :no_clase,
                                   {selected: actividad.clases.map(&:id)},
-                                  {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true'}) %>
+                                  {class: 'select2-multiple-dropdown select2-dropdown-width', multiple: 'true', required: true }) %>
         <% end %>
 
       </div>
