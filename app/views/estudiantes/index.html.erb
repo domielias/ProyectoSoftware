@@ -4,10 +4,10 @@
   <div class="container-fluid">
     <h1>Estudiantes</h1>
 
-  <div>
-    <%= link_to "Generar PDF General", estudiantes_path(format: "pdf" ), style:"float:right", class:"btn btn-success", target: :_blank %>
+  <div class="pdf-generator-button-wrapper">
+    <%= link_to "Generar PDF General", estudiantes_path(format: "pdf" ), class:"btn btn-success", target: :_blank %>
   </div>
-<table class="table table-striped display" role='datatable'>
+<table class="table table-striped display table-responsive" role='datatable'>
   <thead>
     <tr>
       <th>#</th>
@@ -52,7 +52,6 @@
         <% end %>
       </tbody>
     </table>
-
   <br>
   </div>
 </section>
