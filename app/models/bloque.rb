@@ -1,8 +1,8 @@
 class Bloque < ApplicationRecord
 
-  belongs_to :nivel, optional: true
+  belongs_to :nivel
   delegate :nombre, to: :category, prefix: true
-  belongs_to :ciclo, optional: true
+  belongs_to :ciclo
   delegate :nombre, to: :ciclo, prefix: true
   has_many :evaluacions
 
@@ -12,7 +12,7 @@ class Bloque < ApplicationRecord
   has_many :bloque_estudiantes, dependent: :destroy
   has_many :estudiantes, through: :bloque_estudiantes
 
-  belongs_to :programa_epe_solicitado, optional: true
+  belongs_to :programa_epe_solicitado
 
   # belongs_to :clase_padre, :class_name => "Clase", :foreign_key => "clase_padre_id", optional: true
   has_many :clases

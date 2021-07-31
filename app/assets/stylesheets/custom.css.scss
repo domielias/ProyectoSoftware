@@ -60,5 +60,10 @@
   }
 
 }
+
+//Para que el dropdown de select2 tenga el estilo correcto cuando el inpu sea inválido
+.select2-simple-dropdown.is-invalid.form-control + * .select2-selection {
+  border-color: #dc3545 !important;
+}
     
     
