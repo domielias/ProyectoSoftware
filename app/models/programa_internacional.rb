@@ -4,6 +4,7 @@ class ProgramaInternacional < ApplicationRecord
     belongs_to :institucion
     has_many :estudiantes
 
+    validates :nombre, presence: true, length: {maximum: 30}
     accepts_nested_attributes_for :pai
     accepts_nested_attributes_for :institucion
 
