@@ -2,11 +2,11 @@ class CreateDireccions < ActiveRecord::Migration[6.0]
   def change
     create_table :direccions do |t|
       t.boolean :pais_residencia
-      t.string :telefono, limit: 20
-      t.string :direccion_completa, limit: 40
-      t.string :ciudad, limit: 30
-      t.string :codigo_postal, limit: 15
-
+      t.string :telefono, null: false , limit: 15
+      t.string :direccion_completa, null: false,limit: 40
+      t.string :ciudad, null: false , limit: 85
+      t.string :codigo_postal, null: false ,limit: 15
+      
       t.references :estudiante, foreign_key: true
       t.references :pai, foreign_key: true
 
