@@ -72,7 +72,9 @@ class BloquesController < ApplicationController
       if @bloque.save
         redirect_to bloques_path
       else
-        format.html { render :new }
+        respond_to do |format|
+          format.html { render :new }
+        end
       end    
     end
     # if @bloque.save
@@ -119,13 +121,13 @@ class BloquesController < ApplicationController
   # DELETE /bloques/1
   # DELETE /bloques/1.json
   def destroy
-    if @bloque.seleccion_estudiante = true
+    if @bloque.seleccion_estudiante == true
       if @bloque.destroy
         redirect_to index_bloque_estudiante_path
       else
         format.html { render :new }
       end
-    elsif @bloque.seleccion_estudiante = false
+    elsif @bloque.seleccion_estudiante == false
       if @bloque.destroy
         redirect_to bloques_path
       else

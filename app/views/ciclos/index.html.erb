@@ -5,6 +5,7 @@
   <div>
     <%= link_to "Generar PDF", ciclos_path(format: "pdf" ), style:"float:right", class:"btn btn-success", target: :_blank %>
   </div>
+    <div style="overflow-x:auto;">
 <table class="table table-striped display" role='datatable'>
   <thead>
     <tr>
@@ -36,6 +37,7 @@
     <% end %>
   </tbody>
 </table>
+    </div>
 
 <br>
 </div>

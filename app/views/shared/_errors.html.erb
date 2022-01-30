@@ -10,8 +10,21 @@
             Revise lo siguiente: <%= pluralize(obj.errors.count, "error/es") %>
           </h5>
           <ul>
-            <% obj.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
+
+            <% if obj.class != Estudiante %>
+              <% obj.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            <% else %>
+              <% obj.errors.messages.keys.each_with_index do |key, index| %>
+                <% if key == :"persona.nombres" %>
+                  <li>Los nombres del estudiante no pueden estar en blanco</li>
+                <% elsif key == :"persona.apellidos" %>
+                  <li>Los apellidos del estudiante no pueden estar en blanco</li>
+                <% else %>
+                  <li><%= obj.errors.full_messages[index] %></li>
+                <% end %>
+              <% end %>
             <% end %>
           </ul>
         </div>

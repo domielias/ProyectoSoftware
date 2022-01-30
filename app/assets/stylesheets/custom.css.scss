@@ -40,6 +40,12 @@
   margin-left: 5px;
 }
 
+.pdf-generator-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px
+}
+
 @media screen and (max-width: 576px) {
   .flex-end {
     flex-direction: column;
@@ -53,6 +59,11 @@
     margin: 15px 0 0;
   }
 
+}
+
+//Para que el dropdown de select2 tenga el estilo correcto cuando el inpu sea inválido
+.select2-simple-dropdown.is-invalid.form-control + * .select2-selection {
+  border-color: #dc3545 !important;
 }
     
     

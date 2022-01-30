@@ -35,7 +35,6 @@ class ActividadsController < ApplicationController
     #   end
     # end
 
-    @otras_actividades = Actividad.all
     # Time.at(@otras_actividades[0].fecha).to_date === Time.at(@actividad.fecha).to_date
 
     # Actividad.joins(:clases).where(clases: {profesor_id: 2})
@@ -47,7 +46,7 @@ class ActividadsController < ApplicationController
 
     # Todas actividades de los profesores de las clases seleccionadas
     # Actividad.joins(:clases).where(clases: {profesor_id: Clase.where(profesor_id: params[:actividad][:clase_ids]).ids}).each
-    Actividad.all.each do |otra_actividad|
+    Actividad.where(fecha: @actividad.fecha).each do |otra_actividad|
       # Si las fechas son las mismas
       if Time.at(otra_actividad.fecha).to_date === Time.at(@actividad.fecha).to_date
         if ((@actividad.hora_inicio.strftime("%H:%M") < otra_actividad.hora_fin.strftime("%H:%M") && @actividad.hora_inicio.strftime("%H:%M") >= otra_actividad.hora_inicio.strftime("%H:%M")) && @actividad.hora_fin.strftime("%H:%M") > otra_actividad.hora_fin.strftime("%H:%M")) || (@actividad.hora_inicio.strftime("%H:%M") < otra_actividad.hora_inicio.strftime("%H:%M") && (@actividad.hora_fin.strftime("%H:%M") <= otra_actividad.hora_fin.strftime("%H:%M") && @actividad.hora_fin.strftime("%H:%M") > otra_actividad.hora_inicio.strftime("%H:%M"))) || ((@actividad.hora_inicio.strftime("%H:%M") > otra_actividad.hora_inicio.strftime("%H:%M") && @actividad.hora_inicio.strftime("%H:%M") < otra_actividad.hora_fin.strftime("%H:%M")) && (@actividad.hora_fin.strftime("%H:%M") > otra_actividad.hora_inicio.strftime("%H:%M") && @actividad.hora_fin.strftime("%H:%M") < otra_actividad.hora_fin.strftime("%H:%M"))) || (@actividad.hora_inicio.strftime("%H:%M") <= otra_actividad.hora_inicio.strftime("%H:%M") && @actividad.hora_fin.strftime("%H:%M") >= otra_actividad.hora_fin.strftime("%H:%M"))
@@ -63,7 +62,9 @@ class ActividadsController < ApplicationController
       if @actividad.save
         redirect_to actividads_url
       else
-        format.html { render :new }
+        respond_to do |format|
+          format.html { render :new }
+        end
       end
     end
 
