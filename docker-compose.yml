@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: GYN2NfBir2PBh-cS5jWlRF62GeripTw_
+      POSTGRES_USER: nevgljwz
+      POSTGRES_DB: nevgljwz
+    ports:
+      - "54302:5432"
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -e production -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000:3000"
+    environment:
+      POSTGRES_PASSWORD: GYN2NfBir2PBh-cS5jWlRF62GeripTw_
+      POSTGRES_USER: nevgljwz
+      POSTGRES_DB: nevgljwz
+      RAILS_MASTER_KEY: 91bda5eb52013efbfa1ab734a0a3eac6b0bb63dafcef6d392296bb8059d512dce51cc88352cda542370dc0bad4263245a2a078c48561dc29ee963ed7c6e9bbdf
+    depends_on:
+      - db
