@@ -83,6 +83,8 @@ test:
 #
 production:
   <<: *default
-  database: ProyectoSoftware_production
-  username: ProyectoSoftware
-  password: <%= ENV['PRO_DATABASE_PASSWORD'] %>
+  database: <%= ENV['POSTGRES_DB'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  host: db
+  port: 5432
