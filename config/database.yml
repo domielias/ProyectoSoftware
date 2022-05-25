@@ -83,8 +83,8 @@ test:
 #
 production:
   <<: *default
-  database: <%= ENV['POSTGRES_DB'] %>
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
-  host: db
+  database: nevgljwz
+  username: nevgljwz
+  password: GYN2NfBir2PBh-cS5jWlRF62GeripTw_
+  host: rajje.db.elephantsql.com
   port: 5432
