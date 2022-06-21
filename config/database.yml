@@ -86,5 +86,5 @@ production:
   database: nevgljwz
   username: nevgljwz
   password: GYN2NfBir2PBh-cS5jWlRF62GeripTw_
-  host: rajje.db.elephantsql.com
+  host: db
   port: 5432
