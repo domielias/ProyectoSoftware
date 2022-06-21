@@ -8,13 +8,14 @@ services:
       POSTGRES_PASSWORD: GYN2NfBir2PBh-cS5jWlRF62GeripTw_
       POSTGRES_USER: nevgljwz
       POSTGRES_DB: nevgljwz
+      POSTGRES_HOST_AUTH_METHOD: "trust"
     ports:
-      - "54302:5432"
-    networks:
-      - default
+      - "5432:5432"
   web:
-    build: .
-    command: bash -c "rm -f tmp/pids/server.pid && yarn install --check-files && bundle exec rails assets:precompile && bundle exec rails s -e production -p 3000 -b '0.0.0.0'"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "rm -f tmp/pids/server.pid && yarn install --check-files && bundle exec rails assets:precompile && rails db:create && rails db:migrate && bundle exec rails s -e production -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/myapp
     ports:
@@ -26,8 +27,3 @@ services:
       RAILS_MASTER_KEY: 23c9fbb22adf45fe8caef931d896f8d1
     depends_on:
       - db
-    networks:
-      - default
-
-networks:
-  default:
