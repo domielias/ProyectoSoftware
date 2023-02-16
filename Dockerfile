@@ -12,6 +12,7 @@ RUN bundle install
 RUN yarn install --check-files
 
 #RUN bundle update
+RUN rails db:create
 RUN rails db:migrate
 RUN rails db:seed
 
