@@ -1,11 +1,20 @@
 class BloquesController < ApplicationController
   load_and_authorize_resource
   before_action :set_bloque, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: %i[index]
+  skip_authorize_resource :only => [:index]
 
   # GET /bloques
   # GET /bloques.json
   def index
-    @bloques = Bloque.where(seleccion_estudiante: false)
+    # Este if es para que si no se especifica la condicion de seleccion_estudiante en la url, será
+    # falsa por defecto, como lo estuvo antes de modificar ese pedazo de código
+    if params[:seleccion_estudiante] == nil
+      params[:seleccion_estudiante] = false
+    end
+    # Este params[:seleccion_estudiante] if es para que pueda usar la condicion de seleccion_estudiante en la llamada de ajax
+    # url: '/bloques.json?seleccion_estudiante=true'
+    @bloques = Bloque.where(seleccion_estudiante: params[:seleccion_estudiante])
   end
   def index_bloque_estudiante
     @bloques = Bloque.where(seleccion_estudiante: true)
@@ -63,7 +72,9 @@ class BloquesController < ApplicationController
       if @bloque.save
         redirect_to bloques_path
       else
-        format.html { render :new }
+        respond_to do |format|
+          format.html { render :new }
+        end
       end    
     end
     # if @bloque.save
@@ -110,13 +121,13 @@ class BloquesController < ApplicationController
   # DELETE /bloques/1
   # DELETE /bloques/1.json
   def destroy
-    if @bloque.seleccion_estudiante = true
+    if @bloque.seleccion_estudiante == true
       if @bloque.destroy
         redirect_to index_bloque_estudiante_path
       else
         format.html { render :new }
       end
-    elsif @bloque.seleccion_estudiante = false
+    elsif @bloque.seleccion_estudiante == false
       if @bloque.destroy
         redirect_to bloques_path
       else

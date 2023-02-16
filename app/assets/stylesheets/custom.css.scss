@@ -6,27 +6,64 @@
 @import 'adminlte.core';
 
 
-    .navbar-brand {
-    
-    font-size: 3rem;
-    
+.navbar-brand {
 
-    }
-    .card{
-        border-radius: .25rem;
-    }
-    .display-4{
-        color: red;
-    }
-  
-  .footer {
-    position: absolute;
+  font-size: 3rem;
+
+
+}
+
+.card {
+  border-radius: .25rem;
+}
+
+.display-4 {
+  color: red;
+}
+
+.footer {
+  position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
   text-align: center;
   width: 100%;
-  height: 2.5rem;            /* Footer height */
+  height: 2.5rem; /* Footer height */
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flex-end > * {
+  margin-left: 5px;
+}
+
+.pdf-generator-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px
+}
+
+@media screen and (max-width: 576px) {
+  .flex-end {
+    flex-direction: column;
+  }
+
+  .flex-end > * {
+    margin: 15px 0 0;
+  }
+
+  .flex-end > * {
+    margin: 15px 0 0;
+  }
+
+}
+
+//Para que el dropdown de select2 tenga el estilo correcto cuando el inpu sea inválido
+.select2-simple-dropdown.is-invalid.form-control + * .select2-selection {
+  border-color: #dc3545 !important;
 }
     
     

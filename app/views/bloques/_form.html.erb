@@ -1,93 +1,105 @@
 <%= form_with(model: bloque, local: true) do |form| %>
-<% if bloque.errors.any? %>
-<%= render '/shared/errors', obj: @bloque %>
-<% end %>
+  <% if bloque.errors.any? %>
+    <%= render '/shared/errors', obj: @bloque %>
+  <% end %>
 
-<div class="container-fluid">
-  <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12 py-3 pl-lg-5 pr-lg-5 bd-content">
-    <div class="card card-default">
-      <div class="card-header">
-        <h3 class="card-title">Datos generales</h3>
-        <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-card-widget="collapse">
-            <i class="fa fa-minus"></i>
-          </button>
-        </div>
-      </div>
-
-      <div class="card-body">
-        <div class="row col-md-12 col-sm-12">
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <h6>Creador</h6>
-              <%= form.text_field :creador, { class: 'form-control', value: current_user.persona.id_campus_nombres_apellidos, readonly: true} %>
-            </div>
-          </div>
-          <hr />
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <h6>Ciclo</h6>
-              <!-- <%= form.collection_select(:ciclo_id, Ciclo.all, :id, :nombre,{},{class:"form-control"}) %> -->
-              <%= form.select :ciclo_id, Ciclo.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <h6>Nivel de lengua</h6>
-              <%= form.select :nivel_id, Nivel.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <h6>Programa de EPE</h6>
-              <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), {:include_blank => ''},{ class: 'select2-simple-dropdown select2-dropdown-width'} %>
-            </div>
+  <div class="container-fluid">
+    <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12 py-3 pl-lg-5 pr-lg-5 bd-content">
+      <div class="card card-default">
+        <div class="card-header">
+          <h3 class="card-title">Datos generales</h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fa fa-minus"></i>
+            </button>
           </div>
         </div>
-        <hr />
-        <div class="row col-md-12 col-sm-12">
-          <%#= form.object.no_clase %>
-          <div class="col-md-3 col-sm-3">
-            <div class="form-group">
-              <h5>Evaluación bloque</h5>
-              <%= form.number_field :evaluacion_bloque_num, step: 0.1, class: "form-control" %>
+
+        <div class="card-body">
+          <div class="row col-md-12 col-sm-12">
+            <div class="col-md-3 col-sm-3">
+              <div class="form-group">
+                <h6>Creador</h6>
+                <%= form.text_field :creador, { class: 'form-control', value: current_user.persona.id_campus_nombres_apellidos, readonly: true } %>
+              </div>
+            </div>
+            <hr/>
+            <div class="col-md-3 col-sm-3">
+              <div class="form-group">
+                <h6>Ciclo</h6>
+                <% if not @bloque.errors[:ciclo].empty? %>
+                  <%= form.select :ciclo_id, Ciclo.pluck(:nombre, :id), { :include_blank => '' }, { class: 'select2-simple-dropdown select2-dropdown-width is-invalid form-control' } %>
+                <% else %>
+                  <%= form.select :ciclo_id, Ciclo.pluck(:nombre, :id), { :include_blank => '' }, { class: 'select2-simple-dropdown select2-dropdown-width' } %>
+                <% end %>
+                <%#= form.select :phys_ociclo_idption, options_for_select([["N/A", "n/a"], ["No", "no"], ["Yes", "yes"]]), {:include_blank => true}, {:required => true, :class => 'select'} %>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+              <div class="form-group">
+                <h6>Nivel de lengua</h6>
+                <% if not @bloque.errors[:nivel].empty? %>
+                  <%= form.select :nivel_id, Nivel.pluck(:nombre, :id), { :include_blank => '' }, { class: 'select2-simple-dropdown select2-dropdown-width is-invalid form-control' } %>
+                <% else %>
+                  <%= form.select :nivel_id, Nivel.pluck(:nombre, :id), { :include_blank => '' }, { class: 'select2-simple-dropdown select2-dropdown-width' } %>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+              <div class="form-group">
+                <h6>Programa de EPE</h6>
+                <% if not @bloque.errors[:nivel].empty? %>
+                  <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), { :include_blank => '' }, { class: 'select2-simple-dropdown select2-dropdown-width is-invalid form-control' } %>
+                <% else %>
+                  <%= form.select :programa_epe_solicitado_id, ProgramaEpeSolicitado.pluck(:nombre, :id), { :include_blank => '' }, { class: 'select2-simple-dropdown select2-dropdown-width' } %>
+                <% end %>
+              </div>
             </div>
           </div>
-          <%#= form.object.no_clase %>
-          <div class="col-md-9 col-sm-9">
-            <div class="form-group">
-              <h5>Notas sobre bloque</h5>
-              <%= form.text_field :evaluacion_bloque_str, class: "form-control" %>
+          <hr/>
+          <div class="row col-md-12 col-sm-12">
+            <%#= form.object.no_clase %>
+            <div class="col-md-3 col-sm-3">
+              <div class="form-group">
+                <h5>Evaluación bloque</h5>
+                <%= form.number_field :evaluacion_bloque_num, step: 0.1, class: "form-control" %>
+              </div>
+            </div>
+            <%#= form.object.no_clase %>
+            <div class="col-md-9 col-sm-9">
+              <div class="form-group">
+                <h5>Notas sobre bloque</h5>
+                <%= form.text_field :evaluacion_bloque_str, class: "form-control" %>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="card card-default">
-      <div class="card-header">
-        <h3 class="card-title">Programación por clase
-        </h3>
-        <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-card-widget="collapse">
-            <i class="fa fa-minus"></i>
-          </button>
+      <div class="card card-default">
+        <div class="card-header">
+          <h3 class="card-title">Programación por clase
+          </h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fa fa-minus"></i>
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="card-body">
-        <% @mis_clases = 14 %>
-        <%= form.fields_for :clases do |clase| %>
-        <%= render partial: 'clase_fields', locals: {form: clase} %>
-        <%# link_to 'Bloque', url_for(controller: :bloques_controller, action: :new, mis_clases: @mis_clases) %>
-        <% end %>
-        <%= link_to_add_fields "Añadir clase", form, :clases, "btn btn-primary" %>
-      </div>
+        <div class="card-body">
+          <% @mis_clases = 14 %>
+          <%= form.fields_for :clases do |clase| %>
+            <%= render partial: 'clase_fields', locals: { form: clase } %>
+            <%# link_to 'Bloque', url_for(controller: :bloques_controller, action: :new, mis_clases: @mis_clases) %>
+          <% end %>
+          <%= link_to_add_fields "Añadir clase", form, :clases, "btn btn-primary" %>
+        </div>
 
-    </div>
-    <div class="float-right">
-      <%= form.submit 'Finalizar',{class: "btn bg-gradient-success",data: { confirm: '¿Estás seguro de crear este nuevo bloque?', title: 'Confirma creación de bloque?'}}%>
+      </div>
+      <div class="float-right">
+        <%= form.submit 'Finalizar', { class: "btn bg-gradient-success", data: { confirm: '¿Estás seguro de crear este nuevo bloque?', title: 'Confirma creación de bloque?' } } %>
+      </div>
     </div>
   </div>
-</div>
 
 <% end %>

@@ -18,6 +18,11 @@ class ProgramaEpeSolicitadosController < ApplicationController
     @programa_epe_solicitado = ProgramaEpeSolicitado.new
   end
 
+  def get_nivels
+    @programa_epe_solicitado = ProgramaEpeSolicitado.find(params[:id])
+    @nivels = @programa_epe_solicitado.nivels
+  end
+
   # GET /programa_epe_solicitados/1/edit
   def edit
   end

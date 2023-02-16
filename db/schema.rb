@@ -13,31 +13,10 @@
 ActiveRecord::Schema.define(version: 39) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "btree_gin"
-  enable_extension "btree_gist"
-  enable_extension "citext"
-  enable_extension "cube"
-  enable_extension "dblink"
-  enable_extension "dict_int"
-  enable_extension "dict_xsyn"
-  enable_extension "earthdistance"
-  enable_extension "fuzzystrmatch"
-  enable_extension "hstore"
-  enable_extension "intarray"
-  enable_extension "ltree"
-  enable_extension "pg_stat_statements"
-  enable_extension "pg_trgm"
-  enable_extension "pgcrypto"
-  enable_extension "pgrowlocks"
-  enable_extension "pgstattuple"
   enable_extension "plpgsql"
-  enable_extension "tablefunc"
-  enable_extension "unaccent"
-  enable_extension "uuid-ossp"
-  enable_extension "xml2"
 
   create_table "actividads", force: :cascade do |t|
-    t.datetime "fecha"
+    t.datetime "fecha", null: false
     t.datetime "hora_inicio"
     t.datetime "hora_fin"
     t.string "nombre_de_la_actividad", limit: 80
@@ -86,14 +65,14 @@ ActiveRecord::Schema.define(version: 39) do
     t.string "nombre", limit: 20
     t.string "creador", limit: 100
     t.boolean "creado_por_estudiante"
-    t.boolean "seleccion_estudiante"
+    t.boolean "seleccion_estudiante", null: false
     t.float "evaluacion_bloque_num"
     t.string "evaluacion_bloque_str"
     t.bigint "category_id"
     t.bigint "bloque_padre_id"
-    t.bigint "ciclo_id"
-    t.bigint "nivel_id"
-    t.bigint "programa_epe_solicitado_id"
+    t.bigint "ciclo_id", null: false
+    t.bigint "nivel_id", null: false
+    t.bigint "programa_epe_solicitado_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bloque_padre_id"], name: "index_bloques_on_bloque_padre_id"
@@ -166,10 +145,10 @@ ActiveRecord::Schema.define(version: 39) do
 
   create_table "direccions", force: :cascade do |t|
     t.boolean "pais_residencia"
-    t.string "telefono", limit: 20
-    t.string "direccion_completa", limit: 40
-    t.string "ciudad", limit: 30
-    t.string "codigo_postal", limit: 15
+    t.string "telefono", limit: 15, null: false
+    t.string "direccion_completa", limit: 40, null: false
+    t.string "ciudad", limit: 85, null: false
+    t.string "codigo_postal", limit: 15, null: false
     t.bigint "estudiante_id"
     t.bigint "pai_id"
     t.datetime "created_at", precision: 6, null: false
@@ -181,13 +160,13 @@ ActiveRecord::Schema.define(version: 39) do
   end
 
   create_table "estudiantes", force: :cascade do |t|
-    t.string "pasaporte", limit: 12
+    t.string "pasaporte", limit: 12, null: false
     t.float "tiempo_residencia"
     t.integer "numero_residencia"
     t.integer "matricula"
-    t.string "estado_civil", limit: 15
+    t.string "estado_civil", limit: 15, null: false
     t.string "nombre_conyugue", limit: 50
-    t.string "sexo", limit: 9
+    t.string "sexo", limit: 9, null: false
     t.boolean "egresado"
     t.boolean "admitido"
     t.bigint "padre_id"
@@ -292,20 +271,20 @@ ActiveRecord::Schema.define(version: 39) do
   end
 
   create_table "pais", force: :cascade do |t|
-    t.string "nombre", limit: 60
-    t.string "nacionalidad", limit: 30
+    t.string "nombre", limit: 150, null: false
+    t.string "nacionalidad", limit: 150
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["id"], name: "index_pais_on_id", unique: true
   end
 
   create_table "personas", force: :cascade do |t|
-    t.string "nombres", limit: 50
-    t.string "apellidos", limit: 50
+    t.string "nombres", limit: 50, null: false
+    t.string "apellidos", limit: 50, null: false
     t.string "id_campus", limit: 10
     t.string "matricula", limit: 10
-    t.date "fecha_nacimiento"
-    t.string "correo_electronico", limit: 50
+    t.date "fecha_nacimiento", null: false
+    t.string "correo_electronico", limit: 50, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["id"], name: "index_personas_on_id", unique: true
@@ -315,10 +294,11 @@ ActiveRecord::Schema.define(version: 39) do
     t.string "nombre", limit: 60
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["id"], name: "index_programa_epe_solicitados_on_id", unique: true
   end
 
   create_table "programa_internacionals", force: :cascade do |t|
-    t.string "nombre", limit: 30
+    t.string "nombre", limit: 30, null: false
     t.bigint "pai_id"
     t.bigint "institucion_id"
     t.datetime "created_at", precision: 6, null: false
